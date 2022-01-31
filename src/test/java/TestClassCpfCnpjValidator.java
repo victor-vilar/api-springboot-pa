@@ -5,13 +5,9 @@ public class TestClassCpfCnpjValidator {
 
 	public static void main(String[] args) {
 		
-		String number = "0845483600017855";
+		String number = "52998224724";
 		
-		try {
-			CpfCnpjValidator.checkIfIsCpfOrCnpj(number);
-		}catch(WrongLengthOfCpfCnpjException e) {
-			System.out.println(e.getMessage());
-		}
+		CpfCnpjValidator.checkIfIsValid(number);
 	}
 
 }
