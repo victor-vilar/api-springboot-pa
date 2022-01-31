@@ -58,6 +58,11 @@ public class Client {
 		return this.cpfCnpj;
 	}
 	
+	/**
+	 * Set the cpfCnpj attribute. As there are rules to know if the
+	 * value it's true, it uses a class to test if the string is correct.
+	 * @param cpfCnpj
+	 */
 	public void setCpfCnpj(String cpfCnpj) {
 	
 		
@@ -85,6 +90,7 @@ public class Client {
 		this.supervisors.add(supervisor);
 	}
 	//-------------------------------------
+	
 	
 	//getters and setters - Contracts
 	public List<Contract> getContracts() {
