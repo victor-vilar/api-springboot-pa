@@ -25,6 +25,7 @@ public abstract class CpfCnpjValidator {
 		}catch(AllNumbersAreTheSameException e) {
 			System.out.println(e.getMessage());
 		}
+		System.out.println(isValid);
 		return isValid;
 	}
 	
@@ -32,7 +33,7 @@ public abstract class CpfCnpjValidator {
 	/**
 	 * Check if the CPF is valid
 	 * @param cpf variable that represents a cpf number
-	 * @return true if it's ok;
+	 * @return boolean that inform if the variable it's ok;
 	 */
 	
 	private static boolean validateCpf(String cpf) {
@@ -69,10 +70,15 @@ public abstract class CpfCnpjValidator {
 		if(sum == 10) sum = 0;
 		if(sum != Integer.parseInt(numbers[10])) return false;
 		//--------------------------
-		System.out.println("Cpf Valido");
 		return true;
 		
 	}
+	
+	/**
+	 * check if the cnpj is valid
+	 * @param cnpj a variable that represents a cnpj number
+	 * @return boolean that inform if the variable it's ok
+	 */
 	
 	private static boolean validateCnpj(String cnpj) {
 		
@@ -108,7 +114,7 @@ public abstract class CpfCnpjValidator {
 	/**
 	 * check if all numbers of variable are the same, if it is must return true;
 	 * @param cpfCnpj
-	 * @return 
+	 * @return boolean that represents if is equals
 	 */
 	private static boolean checkIfAllNumbersAreEqual(String cpfCnpj) throws AllNumbersAreTheSameException{
 		String[] sameCpfs = {"00000000000","11111111111","22222222222","33333333333","44444444444",
@@ -132,7 +138,7 @@ public abstract class CpfCnpjValidator {
 	/**
 	 * check if the string is a valid number
 	 * @param cpfCnpj
-	 * @return true false variable
+	 * @return boolean variable that inform if it is a number
 	 */
 	private static boolean checkIfIsNumber(String cpfCnpj) {
 		boolean isValid = false;
