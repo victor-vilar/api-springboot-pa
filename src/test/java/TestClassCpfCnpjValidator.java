@@ -5,7 +5,7 @@ public class TestClassCpfCnpjValidator {
 
 	public static void main(String[] args) {
 		
-		String number = "52998224724";
+		String number = "11111111111";
 		
 		CpfCnpjValidator.checkIfIsValid(number);
 	}

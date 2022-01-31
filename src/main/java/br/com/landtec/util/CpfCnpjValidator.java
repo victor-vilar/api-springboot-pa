@@ -1,5 +1,6 @@
 package br.com.landtec.util;
 
+import br.com.landtec.exceptions.AllNumbersAreTheSameException;
 import br.com.landtec.exceptions.WrongLengthOfCpfCnpjException;
 /**
  * Created to check if a valid cpf/cnpj
@@ -9,27 +10,32 @@ import br.com.landtec.exceptions.WrongLengthOfCpfCnpjException;
 public abstract class CpfCnpjValidator {
 	
 	public static boolean checkIfIsValid(String cpfCnpj) {
-		boolean isValid =false;
+		boolean isValid = false;
 		try{
 			if(checkIfItsLength(cpfCnpj)) {
 				if(cpfCnpj.length() == 11) {
-					isValid =validadeCpf(cpfCnpj);
+					isValid =validateCpf(cpfCnpj);
 				}else {
-					isValid =validadeCnpj(cpfCnpj);
+					isValid =validateCnpj(cpfCnpj);
 				}
 			}
 			
 		}catch(WrongLengthOfCpfCnpjException e) {
 			System.out.println(e.getMessage());
+		}catch(AllNumbersAreTheSameException e) {
+			System.out.println(e.getMessage());
 		}
-		
 		return isValid;
 	}
 	
 	
+	/**
+	 * Check if the CPF is valid
+	 * @param cpf variable that represents a cpf number
+	 * @return true if it's ok;
+	 */
 	
-	
-	public static boolean validadeCpf(String cpf) {
+	private static boolean validateCpf(String cpf) {
 		
 		String[] numbers = cpf.split("");
 		int cont = 10;
@@ -68,7 +74,7 @@ public abstract class CpfCnpjValidator {
 		
 	}
 	
-	private static boolean validadeCnpj(String cnpj) {
+	private static boolean validateCnpj(String cnpj) {
 		
 		return false;
 	}
@@ -80,24 +86,49 @@ public abstract class CpfCnpjValidator {
 	 * @param cpfCnpj variable that represents a CPF or CNPJ.
 	 */
 	
-	private static boolean checkIfItsLength(String cpfCnpj) throws WrongLengthOfCpfCnpjException {
+	private static boolean checkIfItsLength(String cpfCnpj) throws WrongLengthOfCpfCnpjException, AllNumbersAreTheSameException {
 		boolean validNumber = checkIfIsNumber(cpfCnpj);
 		boolean isValidLength = false;
 		if(validNumber) {
-			
-			if(cpfCnpj.length() == 11 || cpfCnpj.length() == 14) {
-				isValidLength=true;
+			 validNumber = checkIfAllNumbersAreEqual(cpfCnpj);
+			//not because above method check if all the numbers are the same. If it is return true
+			if(!validNumber) {
+				if(cpfCnpj.length() == 11 || cpfCnpj.length() == 14) {
+					isValidLength=true;
+				}
+				else {
+					throw new WrongLengthOfCpfCnpjException("The number of elemets it's wrong");
+				}		
 			}
-			else {
-				throw new WrongLengthOfCpfCnpjException("The number of elemets it's wrong");
-
-			}		
 		}
 		
 		return isValidLength;
 	}
 		
-	
+	/**
+	 * check if all numbers of variable are the same, if it is must return true;
+	 * @param cpfCnpj
+	 * @return 
+	 */
+	private static boolean checkIfAllNumbersAreEqual(String cpfCnpj) throws AllNumbersAreTheSameException{
+		String[] sameCpfs = {"00000000000","11111111111","22222222222","33333333333","44444444444",
+				"55555555555","66666666666","77777777777","88888888888","99999999999"};
+		String[] sameCnpjs = {"00000000000000","11111111111111","22222222222222","33333333333333",
+				"44444444444444","55555555555555","66666666666666","77777777777","88888888888888",
+				"99999999999999"};
+		
+		boolean isTheSame = false;
+		for(int i = 0; i < 10 ; i++) {
+			if(cpfCnpj.equals(sameCpfs[i]) || cpfCnpj.equals(sameCnpjs[i])) {
+				isTheSame = true;
+				throw new AllNumbersAreTheSameException("All the numbers are the same, invalid input");
+			}
+		}
+		
+		return isTheSame;
+	}
+
+
 	/**
 	 * check if the string is a valid number
 	 * @param cpfCnpj
