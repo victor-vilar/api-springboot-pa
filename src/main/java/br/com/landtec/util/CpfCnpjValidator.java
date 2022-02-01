@@ -74,15 +74,47 @@ public abstract class CpfCnpjValidator {
 		
 	}
 	
+	
 	/**
 	 * check if the cnpj is valid
 	 * @param cnpj a variable that represents a cnpj number
 	 * @return boolean that inform if the variable it's ok
 	 */
+		private static boolean validateCnpj(String cnpj) {
+			
+			String[] numbers = cnpj.split("");
+			int[] numbersOfReference = {5,4,3,2,9,8,7,6,5,4,3,2};
+			int sum = 0;
+			
+			for(int i = 0; i < numbersOfReference.length; i++) {
+				sum += Integer.parseInt(numbers[i]) * numbersOfReference[i];
 	
-	private static boolean validateCnpj(String cnpj) {
-		
-		return false;
+			}
+			
+			// if the rest of division is lower then 2 then turn sum to 0(zero)
+			// else  is sum - 11
+			// if num != of first digit so the cpf it's wrong, return false.
+			sum = sum % 11;
+			sum = sum < 2 ? 0 : Math.abs(sum - 11);
+			if(sum != Integer.parseInt(numbers[12])) return false;
+			
+			
+			int[] numbersOfReference2 = {6,5,4,3,2,9,8,7,6,5,4,3,2};
+			sum = 0;
+			for(int i = 0; i < numbersOfReference2.length; i++) {
+				sum += Integer.parseInt(numbers[i]) * numbersOfReference2[i];
+	
+			}
+			
+			// if the rest of division is lower then 2 then turn sum to 0(zero)
+			// else  is sum - 11
+			// if num != of first digit so the cpf it's wrong, return false.
+			sum = sum % 11;
+			sum = sum < 2 ? 0 : Math.abs(sum - 11);
+			if(sum != Integer.parseInt(numbers[13])) return false;
+			
+					
+			return true;
 	}
 	
 	

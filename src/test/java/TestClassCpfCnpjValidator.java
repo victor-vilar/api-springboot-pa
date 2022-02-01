@@ -1,5 +1,4 @@
-import br.com.landtec.exceptions.WrongLengthOfCpfCnpjException;
-import br.com.landtec.util.CpfCnpjValidator;
+import br.com.landtec.entities.Client;
 
 public class TestClassCpfCnpjValidator {
 
@@ -7,7 +6,10 @@ public class TestClassCpfCnpjValidator {
 		
 		String number = "12525299701";
 		
-		CpfCnpjValidator.checkIfIsValid(number);
+		Client client = new Client("Aborgama do Brasil");
+		client.setCpfCnpj("09478089000170");
+		
+		System.out.println(client.getCpfCnpj());
 	}
 
 }

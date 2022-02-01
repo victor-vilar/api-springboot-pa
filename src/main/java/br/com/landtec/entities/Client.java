@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import br.com.landtec.util.CpfCnpjValidator;
+
 /**
  * 
  * @author Victor Vilar
@@ -59,12 +61,16 @@ public class Client {
 	}
 	
 	/**
-	 * Set the cpfCnpj attribute. As there are rules to know if the
+	 * Set the cpfCnpj variable. As there are rules to know if the
 	 * value it's true, it uses a class to test if the string is correct.
-	 * @param cpfCnpj
+	 * @param cpfCnpj variable that represents a cpf or cnpj number
 	 */
 	public void setCpfCnpj(String cpfCnpj) {
-	
+	if(CpfCnpjValidator.checkIfIsValid(cpfCnpj)) {
+		this.cpfCnpj = cpfCnpj;
+	}else {
+		System.out.println("CPF/CNPJ Invalid");
+	}
 		
 	}
 	//-------------------------------------
