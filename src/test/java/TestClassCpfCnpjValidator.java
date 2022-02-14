@@ -7,7 +7,7 @@ public class TestClassCpfCnpjValidator {
 		String number = "12525299701";
 		
 		Client client = new Client("Aborgama do Brasil");
-		client.setCpfCnpj("09478089000170");
+		client.setCpfCnpj("11111111111");
 		
 		System.out.println(client.getCpfCnpj());
 	}
