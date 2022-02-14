@@ -107,6 +107,17 @@ public class Client {
 		this.contracts.add(contracts);
 	}
 	//-------------------------------------
-	
-	
+
+
+	@Override
+	public String toString() {
+		return "Client{" +
+				"id=" + id +
+				", nameCompanyName='" + nameCompanyName + '\'' +
+				", cpfCnpj='" + cpfCnpj + '\'' +
+				", addresses=" + addresses +
+				", supervisors=" + supervisors +
+				", contracts=" + contracts +
+				'}';
+	}
 }

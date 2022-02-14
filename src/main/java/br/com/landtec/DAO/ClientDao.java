@@ -6,6 +6,7 @@ import org.hibernate.jpa.boot.spi.EntityManagerFactoryBuilder;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.util.List;
 
 /**
  * Class to manager Client in database
@@ -26,7 +27,12 @@ public class ClientDao {
         this.em.getTransaction().begin();
         this.em.persist(client);
         this.em.getTransaction().commit();
-        this.em.close();
+    }
+
+    public List<Client> getAllClients(){
+        String sql = "SELECT c From Client c";
+        List<Client> clients = this.em.createQuery(sql,Client.class).getResultList();
+        return clients;
     }
 
 
