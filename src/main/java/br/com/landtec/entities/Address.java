@@ -2,6 +2,11 @@ package br.com.landtec.entities;
 
 import javax.persistence.*;
 
+/**
+ * Class that represents the address of a Client
+ * @since 2022-02-14
+ * @author Victor Vilar
+ */
 @Entity
 @Table(name="Address")
 public class Address {
@@ -17,6 +22,8 @@ public class Address {
     private String city;
     private String state;
 
+
+    //getters and setters - address name
     public String getAddressName() {
         return addressName;
     }
@@ -24,7 +31,9 @@ public class Address {
     public void setAddressName(String addressName) {
         this.addressName = addressName;
     }
+    //------------------------
 
+    //getters and setters - address number
     public String getAddressNumber() {
         return addressNumber;
     }
@@ -33,6 +42,9 @@ public class Address {
         this.addressNumber = addressNumber;
     }
 
+    //------------------------
+
+    //getters and setters - complement
     public String getComplement() {
         return complement;
     }
@@ -40,7 +52,9 @@ public class Address {
     public void setComplement(String complement) {
         this.complement = complement;
     }
+    //------------------------
 
+    //getters and setters - zip Cobde
     public String getZipCode() {
         return zipCode;
     }
@@ -48,7 +62,9 @@ public class Address {
     public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
     }
+    //------------------------
 
+    //getters and setters - city
     public String getCity() {
         return city;
     }
@@ -56,7 +72,9 @@ public class Address {
     public void setCity(String city) {
         this.city = city;
     }
+    //------------------------
 
+    //getters and setters - state
     public String getState() {
         return state;
     }
@@ -64,4 +82,5 @@ public class Address {
     public void setState(String state) {
         this.state = state;
     }
+    //------------------------
 }

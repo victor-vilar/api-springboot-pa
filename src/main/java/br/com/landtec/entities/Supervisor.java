@@ -7,10 +7,10 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * 
+ * class that represents a supervisor of a client.
  * @author Victor Vilar
  * @since 2022-02-01
- * class that represents a supervisor of a client.
+ *
  */
 
 @Entity

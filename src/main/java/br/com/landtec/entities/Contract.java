@@ -1,7 +1,11 @@
 package br.com.landtec.entities;
 
 import javax.persistence.*;
-
+/**
+ * Class that represents the address of a Client
+ * @since 2022-02-14
+ * @author Victor Vilar
+ */
 @Entity
 @Table(name="contracts")
 public class Contract {

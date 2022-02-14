@@ -6,7 +6,6 @@ public class TestPersistClientDataBase {
 
         ClientDao dao = new ClientDao();
         Client client = new Client("My Company");
-
         dao.saveClient(client);
 
 
