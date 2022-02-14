@@ -2,6 +2,10 @@ package br.com.landtec.util;
 
 import br.com.landtec.exceptions.AllNumbersAreTheSameException;
 import br.com.landtec.exceptions.WrongLengthOfCpfCnpjException;
+
+import java.util.Arrays;
+import java.util.Optional;
+
 /**
  * Created to check if a valid cpf/cnpj
  * @author Victor Vilar
@@ -154,15 +158,21 @@ public abstract class CpfCnpjValidator {
 		String[] sameCnpjs = {"00000000000000","11111111111111","22222222222222","33333333333333",
 				"44444444444444","55555555555555","66666666666666","77777777777","88888888888888",
 				"99999999999999"};
-		
+
+
 		boolean isTheSame = false;
+		if(Arrays.asList(sameCnpjs).contains(cpfCnpj) || Arrays.asList(sameCpfs).contains(cpfCnpj)){
+			isTheSame = true;
+			throw new AllNumbersAreTheSameException("All the numbers are the same, invalid input");
+		}
+		/*
 		for(int i = 0; i < 10 ; i++) {
 			if(cpfCnpj.equals(sameCpfs[i]) || cpfCnpj.equals(sameCnpjs[i])) {
 				isTheSame = true;
 				throw new AllNumbersAreTheSameException("All the numbers are the same, invalid input");
 			}
 		}
-		
+		*/
 		return isTheSame;
 	}
 
