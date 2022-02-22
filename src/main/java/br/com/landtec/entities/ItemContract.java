@@ -38,7 +38,48 @@ public class ItemContract {
 	//the value of the item
 	@Column(nullable=false)
 	private double value;
+
 	
+	
+	//getters e setters - residue
+	public ResidueType getResidue() {
+		return residue;
+	}
+
+	public void setResidue(ResidueType residue) {
+		this.residue = residue;
+	}
+	//-----------
+	
+	//getters e setters - equipament
+	public Equipament getEquipament() {
+		return equipament;
+	}
+
+	public void setEquipament(Equipament equipament) {
+		this.equipament = equipament;
+	}
+	//-----------
+	
+	//getters e setters - amount
+	public Double getQtdOfResidue() {
+		return qtdOfResidue;
+	}
+
+	public void setQtdOfResidue(Double qtdOfResidue) {
+		this.qtdOfResidue = qtdOfResidue;
+	}
+	//-----------
+	
+	//getters e setters - value
+	public double getValue() {
+		return value;
+	}
+
+	public void setValue(double value) {
+		this.value = value;
+	}
+	//-----------
 	
 	
 	
