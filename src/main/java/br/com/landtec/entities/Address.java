@@ -8,7 +8,7 @@ import javax.persistence.*;
  * @author Victor Vilar
  */
 @Entity
-@Table(name="Address")
+@Table(name="address")
 public class Address {
 
     @Id
