@@ -39,8 +39,6 @@ public class ItemContract {
 	@Column(nullable=false)
 	private double value;
 
-	
-	
 	//getters e setters - residue
 	public ResidueType getResidue() {
 		return residue;
@@ -80,6 +78,19 @@ public class ItemContract {
 		this.value = value;
 	}
 	//-----------
+	
+	
+	@Override
+	public String toString() {
+		StringBuilder string = new StringBuilder();
+		string.append("Item:\n");
+		string.append("Tipo de Resíduo: " + this.residue.getType() + "\n");
+		string.append("Equipamento: " + this.equipament.getEquipamentName()+ "\n");
+		string.append("Valor Unitário: R$" + this.value + "\n");
+		string.append("Qtd Anual: " + this.qtdOfResidue + "\n");
+		string.append("Valor Anual: R$" + (Double)this.value * this.qtdOfResidue + "\n" );
+		return string.toString();
+	}
 	
 	
 	
