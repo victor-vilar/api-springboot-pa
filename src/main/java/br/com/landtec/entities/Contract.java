@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
 
@@ -27,15 +28,60 @@ public class Contract {
     
     private String number;
     private LocalDate validity;
-    @JoinColumn(name="contract-id")
+    
+    @JoinColumn(name="contract_id")
     private List<ItemContract> itens;
     
     
     
-    
-    public void addItemContrato(ItemContract item) {
-    	this.itens.add(item);
-    }
+    //Constructors
+    public Contract() {
+		
+	}
+    //-----------------------
+
+
+  //getters and setters - number
+	public String getNumber() {
+		return number;
+	}
+
+
+
+
+	public void setNumber(String number) {
+		this.number = number;
+	}
+	//-----------------------
+
+
+	//getters and setters - validity
+	public LocalDate getValidity() {
+		return validity;
+	}
+
+
+
+
+	public void setValidity(LocalDate validity) {
+		this.validity = validity;
+	}
+	//-----------------------
+
+
+	//getters and setters - itens
+	public List<ItemContract> getItens() {
+		return itens;
+	}
+
+
+
+
+	public void setItens(List<ItemContract> itens) {
+		this.itens = itens;
+	}
+	//-----------------------
+
     
 
 }
