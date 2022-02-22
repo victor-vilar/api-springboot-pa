@@ -1,5 +1,6 @@
 package br.com.landtec.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,16 +23,20 @@ public class ItemContract {
 	
 	//the type of residue(trash) of the item.
 	@ManyToOne
+	@Column(nullable = false)
 	private ResidueType residue;
 	
-	//the equipamento that gonna be used to store the trash.
+	//the equipament that gonna be used to store the trash.
 	@ManyToOne
+	@Column(nullable = false)
 	private Equipament equipament;
 	
-	//the quantity estimated for month or year
+	//the quantity estimated for  year
+	@Column(nullable = false, name="max_qtd_year")
 	private Double qtdOfResidue;
 	
 	//the value of the item
+	@Column(nullable=false)
 	private double value;
 	
 	

@@ -27,6 +27,7 @@ public class Contract {
     
     private String number;
     private LocalDate validity;
+    @JoinColumn(name="contract-id")
     private List<ItemContract> itens;
     
     

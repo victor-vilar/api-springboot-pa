@@ -14,7 +14,7 @@ import java.util.List;
  * @author Victor Vilar
  */
 
-public class ClientDao {
+public class ClientDao implements Serializable {
     EntityManager em;
 
     public ClientDao(){
