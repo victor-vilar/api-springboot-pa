@@ -1,5 +1,6 @@
 package br.com.landtec.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,9 +21,12 @@ public class Supervisor {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
+	@Column(nullable = false)
 	private String name;
 	private String role;
+	@Column(nullable = false)
 	private String phoneNumber;
+	@Column(nullable = false)
 	private String email;
 	
 	
