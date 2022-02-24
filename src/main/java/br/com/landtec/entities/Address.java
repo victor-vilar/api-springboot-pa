@@ -86,10 +86,16 @@ public class Address {
     }
     //------------------------
 
-    //getters and setters - state
+    
+	//getters e setters - client
 	public void setClient(Client client2) {
 		this.client = client2;
 		
 	}
-	//------------------------
+	
+	public Client getCliente() {
+		return this.client;
+	}
+	//--------------
+	
 }
