@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -14,7 +15,7 @@ import javax.persistence.Table;
  * @since 2022-02-21
  */
 @Entity
-@Table(name = "itens-contract")
+@Table(name = "itens_contract")
 public class ItemContract {
 
 	@Id
@@ -23,12 +24,12 @@ public class ItemContract {
 	
 	//the type of residue(trash) of the item.
 	@ManyToOne
-	@Column(nullable = false)
+	@JoinColumn(name = "residue_id", nullable = false)
 	private ResidueType residue;
 	
 	//the equipament that gonna be used to store the trash.
 	@ManyToOne
-	@Column(nullable = false)
+	@JoinColumn(name = "equipament_id", nullable = false)
 	private Equipament equipament;
 	
 	//the quantity estimated for  year
@@ -40,6 +41,7 @@ public class ItemContract {
 	private double value;
 
 	@ManyToOne
+	@JoinColumn(name="contract_id", nullable=false)
 	private Contract contract;
 	
 	//getters e setters - Contract

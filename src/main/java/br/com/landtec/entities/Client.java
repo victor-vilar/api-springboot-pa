@@ -71,10 +71,7 @@ public class Client {
 		this.getContracts().add(contract);
 	}
 	
-	
-	
-	
-	
+
 	//Constructors
 	public Client() {
 		
@@ -139,6 +136,11 @@ public class Client {
 	}
 	//-------------------------------------
 
+	
+	
+	
+	
+	
 
 	@Override
 	public String toString() {
@@ -150,5 +152,13 @@ public class Client {
 				", supervisors=" + supervisors +
 				", contracts=" + contracts +
 				'}';
+	}
+
+	public String getNameCompanyName() {
+		return nameCompanyName;
+	}
+
+	public void setNameCompanyName(String nameCompanyName) {
+		this.nameCompanyName = nameCompanyName;
 	}
 }

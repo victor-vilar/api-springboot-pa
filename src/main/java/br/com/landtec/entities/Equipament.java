@@ -15,10 +15,14 @@ public class Equipament {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	
 	@Column(nullable = false)
 	private String equipamentName;
+	
 	@Column(nullable = false)
 	private double sizeInMeterCubic;
+	
+	
 	
 	
 	//constructors
