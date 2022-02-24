@@ -42,6 +42,18 @@ public class ItemContract {
 	@ManyToOne
 	private Contract contract;
 	
+	//getters e setters - Contract
+	public Contract getContract() {
+		return this.contract;
+	}
+
+	public void setContract(Contract contract) {
+		this.contract = contract;
+	}
+	//-----------
+	
+	
+	
 	
 	//getters e setters - residue
 	public ResidueType getResidue() {

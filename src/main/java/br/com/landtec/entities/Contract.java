@@ -36,6 +36,16 @@ public class Contract {
     
 	@ManyToOne
 	private Client client;
+	
+	/**
+	 * add a new item to contract, add this contract to item
+	 * @param itemContract
+	 */
+	public void addNewItem(ItemContract itemContract) {
+		itemContract.setContract(this);
+		this.getItens().add(itemContract);
+	}
+	
     
     //Constructors
     public Contract() {
