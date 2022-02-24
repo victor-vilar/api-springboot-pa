@@ -8,11 +8,14 @@ public class TestClient {
 	public static void main(String[] args) {
 		
 		
-		Client cliente = new Client("INSTITUTO MILITAR DE ENGENHARIA");
-		cliente.setCpfCnpj("08454836000178");
+
 		
 		ClientDao dao = new ClientDao(EntityManagerBuilder.getEntityManager());
-		dao.saveClient(cliente);
+		Client cliente = dao.findClient(1l);
+		
+		System.out.println(cliente.getNameCompanyName());
+		cliente.setNameCompanyName("LANDTEC CONS. AMB. E SERV. DE CONST. CIVIL LTDA");
+		dao.updateClient(cliente);
 		
 		
 		

@@ -34,6 +34,19 @@ public class ClientDao {
         return clients;
     }
 
+	public Client findClient(long l) {
+		return this.em.find(Client.class, l);
+	}
+
+	public void updateClient(Client cliente) {
+		this.em.getTransaction().begin();
+		this.em.merge(cliente);
+		this.em.getTransaction().commit();
+		
+	}
+    
+   
+
 
 
 
