@@ -39,6 +39,10 @@ public class ItemContract {
 	@Column(nullable=false)
 	private double value;
 
+	@ManyToOne
+	private Contract contract;
+	
+	
 	//getters e setters - residue
 	public ResidueType getResidue() {
 		return residue;

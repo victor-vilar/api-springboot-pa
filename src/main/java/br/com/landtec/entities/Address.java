@@ -21,7 +21,9 @@ public class Address {
     private String zipCode;
     private String city;
     private String state;
-
+	
+    @ManyToOne
+	private Client client;
 
     //getters and setters - address name
     public String getAddressName() {

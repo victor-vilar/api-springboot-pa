@@ -3,6 +3,7 @@ package br.com.landtec.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,16 +32,13 @@ public class Client {
 	private String nameCompanyName;
 	private String cpfCnpj;
 	
-	@OneToMany
-	@JoinColumn(name = "client_id")
+	@OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
 	private List<Address> addresses = new ArrayList<Address>();
 
-	@OneToMany
-	@JoinColumn(name = "client_id")
+	@OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
 	private List<Supervisor> supervisors = new ArrayList<Supervisor>();
 	
-	@OneToMany
-	@JoinColumn(name = "client_id")
+	@OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
 	private List<Contract> contracts = new ArrayList<Contract>(); 
 	
 	

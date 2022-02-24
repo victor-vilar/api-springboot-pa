@@ -1,4 +1,4 @@
-package testes.classes;
+package tests.entities;
 
 import br.com.landtec.entities.Equipament;
 
