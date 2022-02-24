@@ -17,9 +17,8 @@ import java.util.List;
 public class ClientDao {
     EntityManager em;
 
-    public ClientDao(){
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("landtec");
-        this.em = emf.createEntityManager();
+    public ClientDao(EntityManager em){
+        this.em = em;
 
     }
 
