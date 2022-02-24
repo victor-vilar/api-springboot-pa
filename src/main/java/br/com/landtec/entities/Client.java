@@ -42,6 +42,39 @@ public class Client {
 	private List<Contract> contracts = new ArrayList<Contract>(); 
 	
 	
+	
+	/**
+	 * Add a new address to client, add this to client of client
+	 * @param address
+	 */
+	public void addNewAddress(Address address) {
+		address.setClient(this);
+		this.getAddresses().add(address);
+	}
+	
+	/**
+	 * Add a new Supervisor to client, add this to supervisor client
+	 * @param supervisor
+	 */
+	public void addNewSupervisor(Supervisor supervisor) {
+		supervisor.setClient(this);
+		this.getSupervisors().add(supervisor);
+	}
+	
+	/**
+	 * Add a new Contract to client, add this to contract client
+	 * @param contract
+	 */
+	
+	public void addNewContract(Contract contract) {
+		contract.setClient(this);
+		this.getContracts().add(contract);
+	}
+	
+	
+	
+	
+	
 	//Constructors
 	public Client() {
 		

@@ -76,6 +76,11 @@ public class Supervisor {
 		this.email = email;
 	}
 	//--------------
+
+	public void setClient(Client client2) {
+		this.client = client2;
+		
+	}
 	
 	
 	

@@ -77,14 +77,14 @@ public class Contract {
 		return itens;
 	}
 
-
-
-
 	public void setItens(List<ItemContract> itens) {
 		this.itens = itens;
 	}
 	//-----------------------
 
-    
+	public void setClient(Client client2) {
+		this.client = client2;
+		
+	}
 
 }
