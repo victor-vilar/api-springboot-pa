@@ -37,7 +37,6 @@ public class Contract {
     private List<ItemContract> itens;
     
 	@ManyToOne
-	@Column(nullable=false)
 	private Client client;
 	
 	/**
