@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="residuo")
+@Table(name="residuos")
 public class ResidueType {
 
 
