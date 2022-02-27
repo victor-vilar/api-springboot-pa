@@ -10,10 +10,14 @@ import javax.persistence.Persistence;
  * @since 2022-02-24
  */
 public abstract class EntityManagerBuilder {
-
+	
+	private static EntityManager em;
+		
 	public static EntityManager getEntityManager() {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("landtec");
-		EntityManager em = emf.createEntityManager();
+		if(em == null) {
+			EntityManagerFactory emf = Persistence.createEntityManagerFactory("landtec");
+			EntityManager em = emf.createEntityManager();
+		}
 		return em;
 	}
 	
