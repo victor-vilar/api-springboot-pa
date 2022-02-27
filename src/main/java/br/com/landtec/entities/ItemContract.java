@@ -44,6 +44,17 @@ public class ItemContract {
 	@JoinColumn(name="contract_id", nullable=false)
 	private Contract contract;
 	
+	public ItemContract() {
+		
+	}
+	
+	public ItemContract(ResidueType residue, Equipament equipament, double qtd, double value) {
+		this.residue = residue;
+		this.equipament = equipament;
+		this.qtdOfResidue = qtd;
+		this.value = value;
+	}
+	
 	//getters e setters - Contract
 	public Contract getContract() {
 		return this.contract;
