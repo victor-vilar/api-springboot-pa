@@ -8,8 +8,6 @@ public class TestClient {
 	public static void main(String[] args) {
 		
 		
-
-		
 		ClientDao dao = new ClientDao(EntityManagerBuilder.getEntityManager());
 		Client cliente = dao.findClient(1l);
 		
