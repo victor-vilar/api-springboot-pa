@@ -27,7 +27,7 @@ public class EquipamentDao {
         this.em.getTransaction().commit();
     }
 
-    public List<Equipament> getAllClients(){
+    public List<Equipament> getAllEquipaments(){
         String sql = "SELECT e From Equipament e";
         List<Equipament> equipaments = this.em.createQuery(sql,Equipament.class).getResultList();
         return equipaments;

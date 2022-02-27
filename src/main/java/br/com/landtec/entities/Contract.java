@@ -89,10 +89,6 @@ public class Contract {
 		return itens;
 	}
 
-	public void setItens(List<ItemContract> itens) {
-		this.itens = itens;
-	}
-	//-----------------------
 
 	//getters e setters - client
 	public void setClient(Client client2) {
