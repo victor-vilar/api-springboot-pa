@@ -1,6 +1,7 @@
 package br.com.landtec.entities;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -34,7 +35,7 @@ public class Contract {
     private LocalDate validity;
     
     @OneToMany(mappedBy = "contract",cascade = CascadeType.ALL)
-    private List<ItemContract> itens;
+    private List<ItemContract> itens = new ArrayList<ItemContract>();
     
 	@ManyToOne
 	private Client client;
@@ -45,7 +46,7 @@ public class Contract {
 	 */
 	public void addNewItem(ItemContract itemContract) {
 		itemContract.setContract(this);
-		this.getItens().add(itemContract);
+		this.itens.add(itemContract);
 	}
 	
     

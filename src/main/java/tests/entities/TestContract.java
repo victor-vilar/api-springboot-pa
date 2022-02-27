@@ -1,5 +1,7 @@
 package tests.entities;
 
+import java.time.LocalDate;
+
 import br.com.landtec.DAO.ClientDao;
 import br.com.landtec.DAO.EquipamentDao;
 import br.com.landtec.DAO.ResidueTypeDao;
@@ -19,6 +21,8 @@ public class TestContract {
 			Equipament equipament;
 			ResidueType residue;
 			Contract contract = new Contract();
+			contract.setNumber("04/2021");
+			contract.setValidity(LocalDate.now());
 		
 			
 			//declaring daos;
