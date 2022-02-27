@@ -16,7 +16,7 @@ public abstract class EntityManagerBuilder {
 	public static EntityManager getEntityManager() {
 		if(em == null) {
 			EntityManagerFactory emf = Persistence.createEntityManagerFactory("landtec");
-			EntityManager em = emf.createEntityManager();
+			em = emf.createEntityManager();
 		}
 		return em;
 	}

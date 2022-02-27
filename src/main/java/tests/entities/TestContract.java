@@ -28,11 +28,20 @@ public class TestContract {
 			
 			//set variables
 			client = clientDao.findClient(1l);
-			equipament = equipamentDao.getAllEquipaments().get(0);
-			residue = residueDao.getAllClients()
 			
+			//item1
+			equipament = equipamentDao.getAllEquipaments().get(0);
+			residue = residueDao.getAllResidues().get(0);
 			contract.addNewItem(new ItemContract(residue,equipament,200.00,157.00));
-			contract.addNewItem(new ItemContract(residue,equipament,200.00,157.00));
+			
+			//item2
+			equipament = equipamentDao.getAllEquipaments().get(1);
+			residue = residueDao.getAllResidues().get(1);
+			contract.addNewItem(new ItemContract(residue,equipament,100.00,800.00));
+			
+			client.addNewContract(contract);
+			
+			clientDao.updateClient(client);
 			
 			
 			
