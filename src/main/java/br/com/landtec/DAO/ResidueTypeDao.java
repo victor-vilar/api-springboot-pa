@@ -27,7 +27,7 @@ public class ResidueTypeDao {
         this.em.getTransaction().commit();
     }
 
-    public List<ResidueType> getAllClients(){
+    public List<ResidueType> getAllResidues(){
         String sql = "SELECT r From ResidueType r";
         List<ResidueType> residues = this.em.createQuery(sql,ResidueType.class).getResultList();
         return residues;
