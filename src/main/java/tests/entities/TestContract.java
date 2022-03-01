@@ -43,8 +43,12 @@ public class TestContract {
 			residue = residueDao.getAllResidues().get(1);
 			contract.addNewItem(new ItemContract(residue,equipament,100.00,800.00));
 			
+			
+			//add new contract to client
 			client.addNewContract(contract);
 			
+			
+			//updating client
 			clientDao.updateClient(client);
 			
 			
