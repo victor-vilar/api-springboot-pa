@@ -29,10 +29,10 @@ public class TestContract2 {
 			contract = contractDao.findContract(1l);
 			
 			//List<Contract> contracts = contractDao.getAllContracts();
+			//System.out.println(contract.getNumber());
+			//System.out.println(contract.getCliente().getNameCompanyName());
 			
-			System.out.println(contract.getCliente().getNameCompanyName());
-			System.out.println(contract.getNumber());
-			//contract.getItens().forEach(e -> System.out.println(e));
+			contract.getItens().forEach(e -> System.out.println(e));
 			 
 		}
 	

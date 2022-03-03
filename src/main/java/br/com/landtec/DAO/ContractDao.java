@@ -52,6 +52,8 @@ public class ContractDao {
 		String jpql = "SELECT c from Contract c JOIN FETCH c.client WHERE c.id = :id";
 		return this.em.createQuery(jpql,Contract.class).setParameter("id", l).getSingleResult();
 	}
+	
+	
     
    
 
