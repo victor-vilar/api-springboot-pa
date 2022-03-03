@@ -2,6 +2,7 @@ package br.com.landtec.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,7 +30,7 @@ public class Address {
     private String city;
     private String state;
 	
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.LAZY)
 	private Client client;
 
     //getters and setters - address name

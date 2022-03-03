@@ -20,8 +20,10 @@ public class TestContract {
 			Client client;
 			Equipament equipament;
 			ResidueType residue;
+			
+			//setting contract
 			Contract contract = new Contract();
-			contract.setNumber("04/2021");
+			contract.setNumber("05/2021 - Teste");
 			contract.setValidity(LocalDate.now());
 		
 			

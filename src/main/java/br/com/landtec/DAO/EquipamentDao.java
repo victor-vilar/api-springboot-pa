@@ -8,7 +8,7 @@ import br.com.landtec.entities.Client;
 import br.com.landtec.entities.Equipament;
 
 /**
- * Class to manager Client in database
+ * Class to manager Equipament in database
  * @since 2022-02-14
  * @author Victor Vilar
  */
