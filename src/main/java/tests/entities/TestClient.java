@@ -11,7 +11,7 @@ public class TestClient {
 		
 		
 		ClientDao dao = new ClientDao(EntityManagerBuilder.getEntityManager());
-		Client cliente = new Client("Teste de Companhia");
+		Client cliente = new Client("Teste de Safadeza");
 		cliente.setCpfCnpj("12525299701");
 		dao.saveClient(cliente);
 		

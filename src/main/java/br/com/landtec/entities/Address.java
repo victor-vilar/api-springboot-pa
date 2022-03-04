@@ -1,13 +1,13 @@
 package br.com.landtec.entities;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import br.com.landtec.embendable.AddressId;
 
 /**
  * Class that represents the address of a Client
@@ -18,13 +18,9 @@ import javax.persistence.Table;
 @Table(name="address")
 public class Address {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(nullable=false)
-    private String addressName;
-    private String addressNumber;
+	@EmbeddedId
+    private AddressId id = new AddressId();
+	
     private String complement;
     private String zipCode;
     private String city;
@@ -35,21 +31,21 @@ public class Address {
 
     //getters and setters - address name
     public String getAddressName() {
-        return addressName;
+        return this.id.getAddressName();
     }
 
     public void setAddressName(String addressName) {
-        this.addressName = addressName;
+        this.id.setAddressName(addressName);
     }
     //------------------------
 
     //getters and setters - address number
     public String getAddressNumber() {
-        return addressNumber;
+        return this.id.getAddressNumber();
     }
 
     public void setAddressNumber(String addressNumber) {
-        this.addressNumber = addressNumber;
+        this.id.setAddressNumber(addressNumber);
     }
 
     //------------------------
