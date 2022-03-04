@@ -6,6 +6,11 @@ import org.hibernate.jpa.boot.spi.EntityManagerFactoryBuilder;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+
 import java.util.List;
 
 /**
@@ -36,6 +41,17 @@ public class ClientDao {
 
 	public Client findClient(long l) {
 		return this.em.find(Client.class, l);
+	}
+	
+	/**
+	 * using criteria
+	 * @param name
+	 * @param id
+	 * @return
+	 */
+	public Client searchClientbyName(String name) {
+		String jpql = "SELECT c FROM Client c where c.nameCompanyName = :name";
+		return this.em.createQuery(jpql, Client.class ).setParameter("name", name).getSingleResult();
 	}
 
 	public void updateClient(Client cliente) {
