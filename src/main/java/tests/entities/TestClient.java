@@ -1,10 +1,10 @@
 package tests.entities;
 
-import br.com.landtec.DAO.ClientDao;
-import br.com.landtec.entities.Client;
-import br.com.landtec.entities.Contract;
-import br.com.landtec.entities.ItemContract;
-import br.com.landtec.util.EntityManagerBuilder;
+import br.com.empresa.DAO.ClientDao;
+import br.com.empresa.entities.Client;
+import br.com.empresa.entities.Contract;
+import br.com.empresa.entities.ItemContract;
+import br.com.empresa.util.EntityManagerBuilder;
 
 public class TestClient {
 	public static void main(String[] args) {

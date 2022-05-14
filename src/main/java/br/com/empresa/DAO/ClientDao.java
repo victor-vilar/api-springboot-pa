@@ -1,7 +1,8 @@
-package br.com.landtec.DAO;
+package br.com.empresa.DAO;
 
-import br.com.landtec.entities.Client;
 import org.hibernate.jpa.boot.spi.EntityManagerFactoryBuilder;
+
+import br.com.empresa.entities.Client;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

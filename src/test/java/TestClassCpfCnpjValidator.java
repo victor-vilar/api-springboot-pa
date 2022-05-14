@@ -1,4 +1,4 @@
-import br.com.landtec.entities.Client;
+import br.com.empresa.entities.Client;
 
 public class TestClassCpfCnpjValidator {
 

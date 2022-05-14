@@ -1,8 +1,7 @@
-import br.com.landtec.DAO.ClientDao;
-import br.com.landtec.entities.Client;
-
-import java.sql.SQLOutput;
 import java.util.List;
+
+import br.com.empresa.DAO.ClientDao;
+import br.com.empresa.entities.Client;
 
 public class TestPersistClientDataBase {
     public static void main(String[] args) {

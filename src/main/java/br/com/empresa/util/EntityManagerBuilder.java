@@ -1,4 +1,4 @@
-package br.com.landtec.util;
+package br.com.empresa.util;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

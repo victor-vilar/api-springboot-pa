@@ -2,15 +2,15 @@ package tests.entities;
 
 import java.time.LocalDate;
 
-import br.com.landtec.DAO.ClientDao;
-import br.com.landtec.DAO.EquipamentDao;
-import br.com.landtec.DAO.ResidueTypeDao;
-import br.com.landtec.entities.Client;
-import br.com.landtec.entities.Contract;
-import br.com.landtec.entities.Equipament;
-import br.com.landtec.entities.ItemContract;
-import br.com.landtec.entities.ResidueType;
-import br.com.landtec.util.EntityManagerBuilder;
+import br.com.empresa.DAO.ClientDao;
+import br.com.empresa.DAO.EquipamentDao;
+import br.com.empresa.DAO.ResidueTypeDao;
+import br.com.empresa.entities.Client;
+import br.com.empresa.entities.Contract;
+import br.com.empresa.entities.Equipament;
+import br.com.empresa.entities.ItemContract;
+import br.com.empresa.entities.ResidueType;
+import br.com.empresa.util.EntityManagerBuilder;
 
 public class TestContract {
 

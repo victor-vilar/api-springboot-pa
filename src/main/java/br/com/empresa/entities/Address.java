@@ -1,4 +1,4 @@
-package br.com.landtec.entities;
+package br.com.empresa.entities;
 
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -7,7 +7,7 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import br.com.landtec.embendable.AddressId;
+import br.com.empresa.embendable.AddressId;
 
 /**
  * Class that represents the address of a Client

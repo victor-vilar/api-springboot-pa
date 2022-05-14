@@ -2,8 +2,8 @@ package tests.entities;
 
 import javax.persistence.EntityManager;
 
-import br.com.landtec.entities.Address;
-import br.com.landtec.util.EntityManagerBuilder;
+import br.com.empresa.entities.Address;
+import br.com.empresa.util.EntityManagerBuilder;
 
 public class TestAddress {
 

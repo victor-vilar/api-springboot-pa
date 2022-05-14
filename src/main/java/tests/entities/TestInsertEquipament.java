@@ -3,9 +3,9 @@ package tests.entities;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.landtec.DAO.EquipamentDao;
-import br.com.landtec.entities.Equipament;
-import br.com.landtec.util.EntityManagerBuilder;
+import br.com.empresa.DAO.EquipamentDao;
+import br.com.empresa.entities.Equipament;
+import br.com.empresa.util.EntityManagerBuilder;
 
 public class TestInsertEquipament {
 

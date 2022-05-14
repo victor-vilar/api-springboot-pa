@@ -1,11 +1,11 @@
-package br.com.landtec.DAO;
+package br.com.empresa.DAO;
 
 import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import br.com.landtec.entities.Client;
-import br.com.landtec.entities.Equipament;
+import br.com.empresa.entities.Client;
+import br.com.empresa.entities.Equipament;
 
 /**
  * Class to manager Equipament in database

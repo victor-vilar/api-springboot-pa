@@ -1,10 +1,10 @@
-package br.com.landtec.util;
-
-import br.com.landtec.exceptions.AllNumbersAreTheSameException;
-import br.com.landtec.exceptions.WrongLengthOfCpfCnpjException;
+package br.com.empresa.util;
 
 import java.util.Arrays;
 import java.util.Optional;
+
+import br.com.empresa.exceptions.AllNumbersAreTheSameException;
+import br.com.empresa.exceptions.WrongLengthOfCpfCnpjException;
 
 /**
  * Created to check if a valid cpf/cnpj

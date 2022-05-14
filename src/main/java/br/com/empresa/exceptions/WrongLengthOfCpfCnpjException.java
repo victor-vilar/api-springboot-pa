@@ -1,4 +1,4 @@
-package br.com.landtec.exceptions;
+package br.com.empresa.exceptions;
 
 public class WrongLengthOfCpfCnpjException extends Exception {
 

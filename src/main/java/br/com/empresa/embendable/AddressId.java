@@ -1,4 +1,4 @@
-package br.com.landtec.embendable;
+package br.com.empresa.embendable;
 
 import java.io.Serializable;
 import java.util.Objects;

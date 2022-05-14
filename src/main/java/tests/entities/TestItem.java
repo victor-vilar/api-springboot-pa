@@ -1,8 +1,8 @@
 package tests.entities;
 
-import br.com.landtec.entities.Equipament;
-import br.com.landtec.entities.ItemContract;
-import br.com.landtec.entities.ResidueType;
+import br.com.empresa.entities.Equipament;
+import br.com.empresa.entities.ItemContract;
+import br.com.empresa.entities.ResidueType;
 
 public class TestItem {
 

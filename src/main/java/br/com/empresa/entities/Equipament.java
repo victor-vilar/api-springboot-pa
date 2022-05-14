@@ -1,4 +1,4 @@
-package br.com.landtec.entities;
+package br.com.empresa.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

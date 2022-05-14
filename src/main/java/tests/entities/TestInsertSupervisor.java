@@ -1,9 +1,9 @@
 package tests.entities;
 
-import br.com.landtec.DAO.ClientDao;
-import br.com.landtec.entities.Client;
-import br.com.landtec.entities.Supervisor;
-import br.com.landtec.util.EntityManagerBuilder;
+import br.com.empresa.DAO.ClientDao;
+import br.com.empresa.entities.Client;
+import br.com.empresa.entities.Supervisor;
+import br.com.empresa.util.EntityManagerBuilder;
 
 public class TestInsertSupervisor {
 

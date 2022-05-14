@@ -1,11 +1,11 @@
-package br.com.landtec.DAO;
+package br.com.empresa.DAO;
 
 import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import br.com.landtec.entities.Client;
-import br.com.landtec.entities.Contract;
+import br.com.empresa.entities.Client;
+import br.com.empresa.entities.Contract;
 
 /**
  * Class to manager Contract in database
