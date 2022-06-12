@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -27,6 +28,7 @@ public class Address {
     private String state;
 	
     @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name = "client_id")
 	private Client client;
 
     //getters and setters - address name
