@@ -28,7 +28,7 @@ public class Address {
     private String state;
 	
     @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name = "client_id")
+    @JoinColumn(name = "client_id", nullable=false)
 	private Client client;
 
     //getters and setters - address name

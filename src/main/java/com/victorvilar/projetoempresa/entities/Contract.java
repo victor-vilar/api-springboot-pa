@@ -40,7 +40,7 @@ public class Contract {
     private List<ItemContract> itens = new ArrayList<ItemContract>();
     
     @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name = "client_id")
+    @JoinColumn(name = "client_id", nullable=false)
 	private Client client;
 	
 	/**
