@@ -1,7 +1,7 @@
 import java.util.List;
 
-import br.com.empresa.DAO.ClientDao;
-import br.com.empresa.entities.Client;
+import com.victorvilar.projetoempresa.DAO.ClientDao;
+import com.victorvilar.projetoempresa.entities.Client;
 
 public class TestPersistClientDataBase {
     public static void main(String[] args) {

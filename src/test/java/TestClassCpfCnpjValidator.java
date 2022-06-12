@@ -1,4 +1,4 @@
-import br.com.empresa.entities.Client;
+import com.victorvilar.projetoempresa.entities.Client;
 
 public class TestClassCpfCnpjValidator {
 
