@@ -26,9 +26,11 @@ public abstract class CpfCnpjValidator {
 			
 		}catch(WrongLengthOfCpfCnpjException e) {
 			System.out.println(e.getMessage());
+			
 		}catch(AllNumbersAreTheSameException e) {
 			System.out.println(e.getMessage());
 		}
+		
 		System.out.println(isValid);
 		return isValid;
 	}
