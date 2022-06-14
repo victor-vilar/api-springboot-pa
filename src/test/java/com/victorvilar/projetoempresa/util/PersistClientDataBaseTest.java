@@ -4,7 +4,7 @@ import java.util.List;
 import com.victorvilar.projetoempresa.DAO.ClientDao;
 import com.victorvilar.projetoempresa.entities.Client;
 
-public class TestPersistClientDataBase {
+public class PersistClientDataBaseTest {
     public static void main(String[] args) {
 
         ClientDao dao = new ClientDao();
