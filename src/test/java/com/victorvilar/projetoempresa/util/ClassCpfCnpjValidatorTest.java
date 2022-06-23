@@ -1,10 +1,10 @@
 package com.victorvilar.projetoempresa.util;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
-import com.victorvilar.projetoempresa.exceptions.AllNumbersAreTheSameException;
-import com.victorvilar.projetoempresa.exceptions.WrongLengthOfCpfCnpjException;
 
+@SpringBootTest
 public class ClassCpfCnpjValidatorTest {
 
 

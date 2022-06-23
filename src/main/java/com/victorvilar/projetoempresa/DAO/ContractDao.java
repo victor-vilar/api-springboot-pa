@@ -12,7 +12,7 @@ import com.victorvilar.projetoempresa.entities.Contract;
  * @since 2022-02-14
  * @author Victor Vilar
  */
-
+@Deprecated
 public class ContractDao {
     EntityManager em;
 

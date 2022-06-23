@@ -12,7 +12,7 @@ import com.victorvilar.projetoempresa.entities.Equipament;
  * @since 2022-02-14
  * @author Victor Vilar
  */
-
+@Deprecated
 public class EquipamentDao {
     EntityManager em;
 

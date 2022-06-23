@@ -12,7 +12,7 @@ import com.victorvilar.projetoempresa.entities.ResidueType;
  * @since 2022-02-14
  * @author Victor Vilar
  */
-
+@Deprecated
 public class ResidueTypeDao {
     EntityManager em;
 
