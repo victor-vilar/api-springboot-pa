@@ -9,6 +9,7 @@ import javax.persistence.Persistence;
  * @author Victor
  * @since 2022-02-24
  */
+@Deprecated
 public abstract class EntityManagerBuilder {
 	
 	private static EntityManager em;
