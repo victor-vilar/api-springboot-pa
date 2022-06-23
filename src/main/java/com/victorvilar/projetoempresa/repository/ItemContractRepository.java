@@ -2,6 +2,8 @@ package com.victorvilar.projetoempresa.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ItemContractRepository extends JpaRepository<Long,ItemContractRepository> {
+import com.victorvilar.projetoempresa.entities.ItemContract;
+
+public interface ItemContractRepository extends JpaRepository<ItemContract,Long> {
 
 }
