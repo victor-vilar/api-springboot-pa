@@ -11,18 +11,26 @@ import com.victorvilar.projetoempresa.repository.ClientRepository;
 @Service
 public class ClientService {
 
-	@Autowired
+	
 	private final ClientRepository repository;
 	
-	
+	@Autowired
 	public ClientService(ClientRepository repository) {
 		this.repository = repository;
 	}
 	
+	/**
+	 * get all clients
+	 * @param as
+	 */
 	public List<Client> getAllClients() {
 		return this.repository.findAll();
 	}
-
+	
+	/**
+	 * Sing in a new Client
+	 * @param as
+	 */
 	public void addNewClient(Client client) {
 		this.repository.save(client);
 		
