@@ -21,7 +21,7 @@ public class ResidueType implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
-	@Column(nullable = false)
+	@Column(name = "residue_type", nullable = false)
 	private String type;
 	private String description;
 	
