@@ -41,6 +41,7 @@ public class ClientService {
 			//upper case client name
 			client.setNameCompanyName(client.getNameCompanyName().toUpperCase());
 			this.repository.save(client);
+			
 		}else {
 			throw new InvalidCpfOrCnpjException("This CPF or CNPJ is Invalid");
 		}

@@ -1,6 +1,7 @@
 package com.victorvilar.projetoempresa.entities;
 
-import javax.persistence.Column;
+import java.io.Serializable;
+
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -17,7 +18,13 @@ import com.victorvilar.projetoempresa.embendable.AddressId;
  */
 @Entity
 @Table(name="address")
-public class Address {
+public class Address implements Serializable{
+
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@EmbeddedId
     private AddressId id = new AddressId();
