@@ -48,5 +48,13 @@ public class ClientService {
 
 		
 	}
+	/**
+	 * Return a client with this id, or return null;
+	 * @param id
+	 * @return
+	 */
+	public Client getClientById(Long id) {
+		return this.repository.findById(id).orElse(null);
+	}
 
 }
