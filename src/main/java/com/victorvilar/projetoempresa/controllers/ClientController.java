@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.victorvilar.projetoempresa.entities.Client;
+import com.victorvilar.projetoempresa.exceptions.InvalidCpfOrCnpjException;
 import com.victorvilar.projetoempresa.services.ClientService;
 
 @RestController
@@ -35,9 +36,14 @@ public class ClientController {
 	 * Sing in a new Client
 	 * @param as
 	 */
-	@PostMapping("/clients/")
+	@PostMapping("/clients")
 	public void addNewClient(@RequestBody Client client) {
-		this.service.addNewClient(client);
-	}
+		
+		try {
+			this.service.addNewClient(client);
+		}catch(InvalidCpfOrCnpjException e) {
+			System.out.println(e.getMessage());
+		}
 	
+	}
 }

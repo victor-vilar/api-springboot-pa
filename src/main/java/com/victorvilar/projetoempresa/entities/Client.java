@@ -96,12 +96,7 @@ public class Client {
 	 * @param cpfCnpj variable that represents a cpf or cnpj number
 	 */
 	public void setCpfCnpj(String cpfCnpj) {
-	if(CpfCnpjValidator.checkIfIsValid(cpfCnpj)) {
 		this.cpfCnpj = cpfCnpj;
-	}else {
-		System.out.println("CPF/CNPJ Invalid");
-	}
-		
 	}
 	//-------------------------------------
 	

@@ -29,8 +29,16 @@ public class ClassCpfCnpjValidatorTest {
 	//passing a invalid cnpj
 	@Test
 	public void checkIfIsValidWrongCnpjMustReturnFalse() {
-		Assertions.assertEquals(false, CpfCnpjValidator.checkIfIsValid("08454836000174"));
+		Assertions.assertEquals(false, CpfCnpjValidator.checkIfIsValid("08454836000170"));
 	}
 	
+	@Test
+	public void checkIfTheRightLenth() {
+		Assertions.assertEquals(false,CpfCnpjValidator.checkIfIsValid("483600"));
+	}
 	
+	@Test
+	public void passingNotANumber() {
+		Assertions.assertEquals(false,CpfCnpjValidator.checkIfIsValid("48ss31"));
+	}
 }
