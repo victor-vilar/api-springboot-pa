@@ -8,13 +8,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.victorvilar.projetoempresa.entities.Client;
+import com.victorvilar.projetoempresa.services.ClientService;
 
 @RestController
 public class ClientController {
 
-	private final ClientService as service;
+	private final ClientService service;
 	
-	public ClientController(ClientService as service) {
+	public ClientController(ClientService service) {
 		this.service = service;
 	}
 	
@@ -23,8 +24,8 @@ public class ClientController {
 	 * @param as
 	 */
 	@GetMapping("/clients")
-	public List<Client> getClients(){
-		
+	public List<Client> getAllClients(){
+		return this.service.getAllClients();
 	}
 	
 	/**
@@ -32,7 +33,7 @@ public class ClientController {
 	 * @param as
 	 */
 	@PostMapping("/clients/")
-	public void addNewClient(@RequestBody Client as client) {
+	public void addNewClient(@RequestBody Client client) {
 		this.service.addNewClient(client);
 	}
 	
