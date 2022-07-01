@@ -38,6 +38,7 @@ public class Contract implements Serializable {
 
     @Column(nullable=false)
     private String number;
+    
     @Column(nullable=false)
     private LocalDate validity;
     
@@ -47,6 +48,7 @@ public class Contract implements Serializable {
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name = "client_id", nullable=false)
 	private Client client;
+      
 	
 	/**
 	 * add a new item to contract, add this contract to item
@@ -83,8 +85,6 @@ public class Contract implements Serializable {
 	public LocalDate getValidity() {
 		return validity;
 	}
-
-
 
 
 	public void setValidity(LocalDate validity) {

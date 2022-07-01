@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,9 +21,7 @@ import javax.persistence.Table;
 @Table(name = "itens_contract")
 public class ItemContract implements Serializable{
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -30,12 +29,12 @@ public class ItemContract implements Serializable{
 	private Long id;
 	
 	//the type of residue(trash) of the item.
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "residue_id", nullable = false)
 	private ResidueType residue;
 	
 	//the equipament that gonna be used to store the trash.
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "equipament_id", nullable = false)
 	private Equipament equipament;
 	
@@ -50,6 +49,8 @@ public class ItemContract implements Serializable{
 	@ManyToOne
 	@JoinColumn(name="contract_id", nullable=false)
 	private Contract contract;
+	
+	
 	
 	public ItemContract() {
 		
@@ -72,9 +73,7 @@ public class ItemContract implements Serializable{
 	}
 	//-----------
 	
-	
-	
-	
+
 	//getters e setters - residue
 	public ResidueType getResidue() {
 		return residue;
@@ -120,9 +119,9 @@ public class ItemContract implements Serializable{
 	public String toString() {
 		StringBuilder string = new StringBuilder();
 		string.append("Item:\n");
-		string.append("Tipo de Resíduo: " + this.residue.getType() + "\n");
+		string.append("Tipo de Resï¿½duo: " + this.residue.getType() + "\n");
 		string.append("Equipamento: " + this.equipament.getEquipamentName()+ "\n");
-		string.append("Valor Unitário: R$" + this.value + "\n");
+		string.append("Valor Unitï¿½rio: R$" + this.value + "\n");
 		string.append("Qtd Anual: " + this.qtdOfResidue + "\n");
 		string.append("Valor Anual: R$" + (Double)this.value * this.qtdOfResidue + "\n" );
 		return string.toString();
