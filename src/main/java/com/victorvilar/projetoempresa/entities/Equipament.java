@@ -13,6 +13,11 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+/**
+ * A class that represents the equipaments available for store the trash
+ * @author Victor
+ * @since 2022-02-21
+ */
 @Entity
 @Table(name="equipaments")
 public class Equipament implements Serializable{

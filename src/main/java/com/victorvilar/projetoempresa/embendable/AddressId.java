@@ -5,6 +5,13 @@ import java.util.Objects;
 
 import javax.persistence.Embeddable;
 
+
+/**
+ * Class that represents id of address.
+ * @author Victor Vilar
+ * @since 2022-01-31
+ *
+ */
 @Embeddable
 public class AddressId implements Serializable{
 	
