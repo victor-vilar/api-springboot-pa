@@ -9,6 +9,10 @@ import com.victorvilar.projetoempresa.entities.Client;
 import com.victorvilar.projetoempresa.exceptions.InvalidCpfOrCnpjException;
 import com.victorvilar.projetoempresa.services.ClientService;
 
+/**
+ * A client contoller
+ * @author Victor Vilar
+ */
 @RestController
 @RequestMapping("/clients")
 public class ClientController {
