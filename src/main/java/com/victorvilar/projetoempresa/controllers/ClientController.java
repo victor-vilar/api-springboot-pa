@@ -3,17 +3,14 @@ package com.victorvilar.projetoempresa.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.victorvilar.projetoempresa.entities.Client;
 import com.victorvilar.projetoempresa.exceptions.InvalidCpfOrCnpjException;
 import com.victorvilar.projetoempresa.services.ClientService;
 
 @RestController
+@RequestMapping("/clients")
 public class ClientController {
 
 	
@@ -23,26 +20,19 @@ public class ClientController {
 	public ClientController(ClientService service) {
 		this.service = service;
 	}
-	
-	/**
-	 * get all clients
-	 * @param as
-	 */
-	@GetMapping("/clients")
+
+
+	@GetMapping("/")
 	public List<Client> getAllClients(){
 		return this.service.getAllClients();
 	}
 	
-	@GetMapping("/clients/{id}")
+	@GetMapping("/{id}")
 	public Client getClientById(@PathVariable Long id) {
 		return this.service.getClientById(id);
 	}
-	
-	/**
-	 * Sing in a new Client
-	 * @param as
-	 */
-	@PostMapping("/clients")
+
+	@PostMapping("/")
 	public void addNewClient(@RequestBody Client client) {
 		
 		try {
