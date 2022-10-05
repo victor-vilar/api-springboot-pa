@@ -46,7 +46,7 @@ public class ItemContract implements Serializable{
 	@Column(nullable=false)
 	private double value;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="contract_id", nullable=false)
 	private Contract contract;
 	
@@ -119,9 +119,9 @@ public class ItemContract implements Serializable{
 	public String toString() {
 		StringBuilder string = new StringBuilder();
 		string.append("Item:\n");
-		string.append("Tipo de Res�duo: " + this.residue.getType() + "\n");
+		string.append("Tipo de Resíduo: " + this.residue.getType() + "\n");
 		string.append("Equipamento: " + this.equipament.getEquipamentName()+ "\n");
-		string.append("Valor Unit�rio: R$" + this.value + "\n");
+		string.append("Valor Unitário: R$" + this.value + "\n");
 		string.append("Qtd Anual: " + this.qtdOfResidue + "\n");
 		string.append("Valor Anual: R$" + (Double)this.value * this.qtdOfResidue + "\n" );
 		return string.toString();
