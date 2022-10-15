@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org>
+<head>
+  <meta charset=" UTF-8">
+<title>Cadastro SpringBoot</title>
+</head>
+<body>
+    <h1>Cadastro de Clientes</h1>
+    <form method="post" action="clients/">
+        <label for="nameCompanyName">Nome:</label>
+        <input type="text" name="nameCompanyName" id="nameCompanyName"><br>
+        <label for="cpfCnpj">CPF/CNPJ:</label>
+        <input type="text" name="cpfCnpj" id="cpfCnpj"><br>
+        <input type="button" id="enviar">
+    </form>
+</body>
+<script>
+
+    let bt = document.getElementById("enviar");
+    bt.addEventListener('click', () =>{
+        let cliente = {
+            nameCompanyName : document.getElementById('nameCompanyName').value,
+            cpfCnpj: document.getElementById('cpfCnpj').value 
+        }
+
+        fetch("http://localhost:8080/clients/", {
+            method:"POST",
+            body:cliente
+        });
+
+        console.log(cliente)
+
+    });
+
+</script>
+</html>
