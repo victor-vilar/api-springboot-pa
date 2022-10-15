@@ -19,13 +19,18 @@
     let bt = document.getElementById("enviar");
     bt.addEventListener('click', () =>{
         let cliente = {
-            nameCompanyName : document.getElementById('nameCompanyName').value,
-            cpfCnpj: document.getElementById('cpfCnpj').value 
+            "nameCompanyName" : document.getElementById('nameCompanyName').value,
+            "cpfCnpj": document.getElementById('cpfCnpj').value 
         }
 
         fetch("http://localhost:8080/clients/", {
             method:"POST",
-            body:cliente
+            body:cliente,
+            headers:new Headers({
+                'Access-Control-Allow-Origin':'*',
+                'Access-Control-Allow-Origin':'http://127.0.0.1:5500',
+                'content-type': 'application/json'
+            })
         });
 
         console.log(cliente)
