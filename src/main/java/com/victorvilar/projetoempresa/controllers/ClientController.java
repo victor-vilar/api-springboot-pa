@@ -15,7 +15,6 @@ import com.victorvilar.projetoempresa.services.ClientService;
  */
 @RestController
 @RequestMapping("/clients")
-@CrossOrigin(origins = "http://localhost:8080")
 public class ClientController {
 
 	
@@ -27,7 +26,7 @@ public class ClientController {
 	}
 
 
-	@GetMapping("/")
+	@GetMapping()
 	public List<Client> getAllClients(){
 		return this.service.getAllClients();
 	}
@@ -37,8 +36,9 @@ public class ClientController {
 		return this.service.getClientById(id);
 	}
 
-	@PostMapping("/")
+	@PostMapping()
 	public void addNewClient(@RequestBody Client client) {
+		System.out.println("mandou");
 		
 		try {
 			this.service.addNewClient(client);
