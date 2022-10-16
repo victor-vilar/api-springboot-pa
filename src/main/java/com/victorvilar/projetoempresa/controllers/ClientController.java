@@ -40,8 +40,7 @@ public class ClientController {
 
 	@PostMapping()
 	public void addNewClient(@RequestBody Client client) {
-		System.out.println("mandou");
-		
+
 		try {
 			this.service.addNewClient(client);
 		}catch(InvalidCpfOrCnpjException e) {
@@ -49,4 +48,7 @@ public class ClientController {
 		}
 	
 	}
+
+
+
 }
