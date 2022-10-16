@@ -15,6 +15,8 @@ import com.victorvilar.projetoempresa.services.ClientService;
  */
 @RestController
 @RequestMapping("/clients")
+@CrossOrigin(origins = {"http://http://127.0.0.1:5500", "http://localhost:8080"})
+
 public class ClientController {
 
 	
