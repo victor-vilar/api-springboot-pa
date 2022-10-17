@@ -30,7 +30,7 @@ public class ContractService {
 
 
     public void addNewContract(Long clientId, List<ItemContract> itens) {
-        Client client = this.clientRepository.findById(clientId).orElseThrow(new ClientNotFoundException("This client don't exist"));
+        Client client = this.clientRepository.findById(clientId).orElseThrow(new ClientNotFoundException("This client doesn't exist"));
         Contract contract = new Contract();
         contract.setClient(client);
         contract.setNumber();

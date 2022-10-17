@@ -2,6 +2,7 @@ package com.victorvilar.projetoempresa.services;
 
 import java.util.List;
 
+import com.victorvilar.projetoempresa.exceptions.ClientNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -54,7 +55,7 @@ public class ClientService {
 	 * @return
 	 */
 	public Client getClientById(Long id) {
-		return this.repository.findById(id).orElse(null);
+		return this.repository.findById(id).orElseThrow(new ClientNotFoundException("This client doesn't exist"));
 	}
 
 }
