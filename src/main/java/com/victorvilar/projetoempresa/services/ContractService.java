@@ -7,9 +7,11 @@ import com.victorvilar.projetoempresa.exceptions.ClientNotFoundException;
 import com.victorvilar.projetoempresa.exceptions.ContractNotFoundException;
 import com.victorvilar.projetoempresa.repository.ClientRepository;
 import com.victorvilar.projetoempresa.repository.ContractRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ContractService {
 
     private final ContractRepository contractRepository;
@@ -36,8 +38,8 @@ public class ContractService {
         contract.setClient(client);
 
         //TODO -> FIGURE OUT HOW TO GET THIS INFORMATION
-        contract.setNumber();
-        contract.setValidity();
+        //contract.setNumber();
+        //contract.setValidity();
 
 
 
