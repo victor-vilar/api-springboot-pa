@@ -3,6 +3,7 @@ package com.victorvilar.projetoempresa.controllers;
 import com.victorvilar.projetoempresa.entities.Contract;
 import com.victorvilar.projetoempresa.entities.ItemContract;
 import com.victorvilar.projetoempresa.exceptions.ClientNotFoundException;
+import com.victorvilar.projetoempresa.exceptions.ContractNotFoundException;
 import com.victorvilar.projetoempresa.services.ClientService;
 import com.victorvilar.projetoempresa.services.ContractService;
 import org.springframework.web.bind.annotation.*;
@@ -38,11 +39,16 @@ public class ContractController {
      * @return contract
      */
     @GetMapping("/{id}")
-    public Contract getContractById(Long id){
-
-        return this.service.getContractById(id);
+    public Contract getContractById(Long id) {
+        try {
+            return this.service.getContractById(id);
+        }catch(ContractNotFoundException e ){
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
 
+    //TODO ->> FIGURE OUT HOW DO I SEND THE ITENS OF THE CONTRACT TO SAVE
     /**
      *
      * add new contract
@@ -50,7 +56,6 @@ public class ContractController {
      * @param itens a list of the itens of the contract
      */
 
-    //TODO ->> FIGURE OUT HOW DO I SEND THE ITENS OF THE CONTRACT TO SAVE
     @PostMapping("/{clientId}")
     public void addNewContract(@PathVariable Long clientId, @RequestBody List<ItemContract> itens) {
         try {
@@ -60,14 +65,17 @@ public class ContractController {
         }
     }
 
+
+    //TODO --> ADD ITEM TO A CONTRACT
     /**
      * add a new item to a contract
      * @param contractId id of a saved contract
      */
-    @PostMapping("/contract/{contractId}")
+    @PostMapping("/add/item/{contractId}")
     public void addNewItemToContract(@PathVariable Long contractId){
         this.service.addNewItemToContract(contractId);
     }
 
-    //TODO --> MAPPING DELETE A ESPECIFIC ITEM OF A CONTRACT
+    //TODO --> DELETE A ITEM OF A CONTRACT
+    //TODO --> DELETE A CONTRACT
 }

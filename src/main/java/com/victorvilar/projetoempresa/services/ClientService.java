@@ -24,7 +24,7 @@ public class ClientService {
 	
 	/**
 	 * get all clients
-	 * @param as
+	 * @param
 	 */
 	public List<Client> getAllClients() {
 		return this.repository.findAll();
@@ -32,7 +32,7 @@ public class ClientService {
 	
 	/**
 	 * Sing in a new Client
-	 * @param as
+	 * @param
 	 */
 	public void addNewClient(Client client) throws InvalidCpfOrCnpjException {
 		

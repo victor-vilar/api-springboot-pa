@@ -4,6 +4,7 @@ import com.victorvilar.projetoempresa.entities.Client;
 import com.victorvilar.projetoempresa.entities.Contract;
 import com.victorvilar.projetoempresa.entities.ItemContract;
 import com.victorvilar.projetoempresa.exceptions.ClientNotFoundException;
+import com.victorvilar.projetoempresa.exceptions.ContractNotFoundException;
 import com.victorvilar.projetoempresa.repository.ClientRepository;
 import com.victorvilar.projetoempresa.repository.ContractRepository;
 
@@ -24,8 +25,8 @@ public class ContractService {
         return this.contractRepository.findAll();
     }
 
-    public Contract getContractById(Long id) {
-        return this.contractRepository.findById(id).orElse();
+    public Contract getContractById(Long id) throws ContractNotFoundException{
+        return this.contractRepository.findById(id).orElseThrow(() -> new ContractNotFoundException("This contract doesn't exist") );
     }
 
 
@@ -33,6 +34,8 @@ public class ContractService {
         Client client = this.clientRepository.findById(clientId).orElseThrow(() -> new ClientNotFoundException("This client doesn't exist"));
         Contract contract = new Contract();
         contract.setClient(client);
+
+        //TODO -> FIGURE OUT HOW TO GET THIS INFORMATION
         contract.setNumber();
         contract.setValidity();
 
