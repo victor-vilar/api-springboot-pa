@@ -54,8 +54,8 @@ public class ClientService {
 	 * @param id
 	 * @return
 	 */
-	public Client getClientById(Long id) {
-		return this.repository.findById(id).orElseThrow(new ClientNotFoundException("This client doesn't exist"));
+	public Client getClientById(Long id) throws ClientNotFoundException{
+		return this.repository.findById(id).orElseThrow(() ->new ClientNotFoundException("This client doesn't exist"));
 	}
 
 }

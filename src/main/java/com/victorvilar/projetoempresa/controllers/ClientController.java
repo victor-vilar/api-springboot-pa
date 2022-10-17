@@ -2,6 +2,7 @@ package com.victorvilar.projetoempresa.controllers;
 
 import java.util.List;
 
+import com.victorvilar.projetoempresa.exceptions.ClientNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,12 +36,17 @@ public class ClientController {
 	
 	@GetMapping("/{id}")
 	public Client getClientById(@PathVariable Long id) {
-		return this.service.getClientById(id);
+		try {
+			return this.service.getClientById(id);
+		} catch (ClientNotFoundException e) {
+			System.out.println(e.getMessage());
+		}
+		return null;
+
 	}
 
 	@PostMapping()
-	public void addNewClient(@RequestBody Client client) {
-
+	public void addNewClient(@RequestBody Client client){
 		try {
 			this.service.addNewClient(client);
 		}catch(InvalidCpfOrCnpjException e) {
