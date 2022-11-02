@@ -71,7 +71,7 @@ public class ContractController {
      * add a new item to a contract
      * @param contractId id of a saved contract
      */
-    @PostMapping("/add/item/{contractId}")
+    @PostMapping("/additem/{contractId}")
     public void addNewItemToContract(@PathVariable Long contractId){
         this.service.addNewItemToContract(contractId);
     }
