@@ -36,23 +36,12 @@ public class ClientController {
 	
 	@GetMapping("/{id}")
 	public Client getClientById(@PathVariable Long id) {
-		try {
 			return this.service.getClientById(id);
-		} catch (ClientNotFoundException e) {
-			System.out.println(e.getMessage());
-		}
-		return null;
-
 	}
 
 	@PostMapping()
 	public void addNewClient(@RequestBody Client client){
-		try {
 			this.service.addNewClient(client);
-		}catch(InvalidCpfOrCnpjException e) {
-			System.out.println(e.getMessage());
-		}
-	
 	}
 
 
