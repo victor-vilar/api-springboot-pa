@@ -1,9 +1,9 @@
 package com.victorvilar.projetoempresa.controllers;
 
-import com.victorvilar.projetoempresa.entities.Contract;
-import com.victorvilar.projetoempresa.entities.ItemContract;
 import com.victorvilar.projetoempresa.exceptions.ClientNotFoundException;
 import com.victorvilar.projetoempresa.exceptions.ContractNotFoundException;
+import com.victorvilar.projetoempresa.model.Contract;
+import com.victorvilar.projetoempresa.model.ItemContract;
 import com.victorvilar.projetoempresa.services.ClientService;
 import com.victorvilar.projetoempresa.services.ContractService;
 import org.springframework.web.bind.annotation.*;

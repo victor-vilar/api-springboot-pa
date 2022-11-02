@@ -1,9 +1,9 @@
 package tests.entities;
 
 import com.victorvilar.projetoempresa.DAO.ClientDao;
-import com.victorvilar.projetoempresa.entities.Client;
-import com.victorvilar.projetoempresa.entities.Contract;
-import com.victorvilar.projetoempresa.entities.ItemContract;
+import com.victorvilar.projetoempresa.model.Client;
+import com.victorvilar.projetoempresa.model.Contract;
+import com.victorvilar.projetoempresa.model.ItemContract;
 import com.victorvilar.projetoempresa.util.EntityManagerBuilder;
 
 public class TestClient {

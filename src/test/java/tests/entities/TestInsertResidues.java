@@ -5,8 +5,8 @@ import java.util.List;
 
 import com.victorvilar.projetoempresa.DAO.EquipamentDao;
 import com.victorvilar.projetoempresa.DAO.ResidueTypeDao;
-import com.victorvilar.projetoempresa.entities.Equipament;
-import com.victorvilar.projetoempresa.entities.ResidueType;
+import com.victorvilar.projetoempresa.model.Equipament;
+import com.victorvilar.projetoempresa.model.ResidueType;
 import com.victorvilar.projetoempresa.util.EntityManagerBuilder;
 
 public class TestInsertResidues {

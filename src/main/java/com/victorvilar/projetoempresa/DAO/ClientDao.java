@@ -2,7 +2,7 @@ package com.victorvilar.projetoempresa.DAO;
 
 import org.hibernate.jpa.boot.spi.EntityManagerFactoryBuilder;
 
-import com.victorvilar.projetoempresa.entities.Client;
+import com.victorvilar.projetoempresa.model.Client;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

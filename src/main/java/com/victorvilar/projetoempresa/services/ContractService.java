@@ -1,10 +1,10 @@
 package com.victorvilar.projetoempresa.services;
 
-import com.victorvilar.projetoempresa.entities.Client;
-import com.victorvilar.projetoempresa.entities.Contract;
-import com.victorvilar.projetoempresa.entities.ItemContract;
 import com.victorvilar.projetoempresa.exceptions.ClientNotFoundException;
 import com.victorvilar.projetoempresa.exceptions.ContractNotFoundException;
+import com.victorvilar.projetoempresa.model.Client;
+import com.victorvilar.projetoempresa.model.Contract;
+import com.victorvilar.projetoempresa.model.ItemContract;
 import com.victorvilar.projetoempresa.repository.ClientRepository;
 import com.victorvilar.projetoempresa.repository.ContractRepository;
 import org.springframework.stereotype.Service;

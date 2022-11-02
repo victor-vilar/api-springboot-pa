@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.victorvilar.projetoempresa.DAO.EquipamentDao;
-import com.victorvilar.projetoempresa.entities.Equipament;
+import com.victorvilar.projetoempresa.model.Equipament;
 import com.victorvilar.projetoempresa.util.EntityManagerBuilder;
 
 public class TestInsertEquipament {

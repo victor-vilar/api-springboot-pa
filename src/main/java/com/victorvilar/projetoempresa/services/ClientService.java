@@ -6,8 +6,8 @@ import com.victorvilar.projetoempresa.exceptions.ClientNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.victorvilar.projetoempresa.entities.Client;
 import com.victorvilar.projetoempresa.exceptions.InvalidCpfOrCnpjException;
+import com.victorvilar.projetoempresa.model.Client;
 import com.victorvilar.projetoempresa.repository.ClientRepository;
 import com.victorvilar.projetoempresa.util.CpfCnpjValidator;
 

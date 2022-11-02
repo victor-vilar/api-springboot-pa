@@ -1,4 +1,4 @@
-package com.victorvilar.projetoempresa.entities;
+package com.victorvilar.projetoempresa.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;

@@ -1,8 +1,8 @@
 package tests.entities;
 
-import com.victorvilar.projetoempresa.entities.Equipament;
-import com.victorvilar.projetoempresa.entities.ItemContract;
-import com.victorvilar.projetoempresa.entities.ResidueType;
+import com.victorvilar.projetoempresa.model.Equipament;
+import com.victorvilar.projetoempresa.model.ItemContract;
+import com.victorvilar.projetoempresa.model.ResidueType;
 
 public class TestItem {
 

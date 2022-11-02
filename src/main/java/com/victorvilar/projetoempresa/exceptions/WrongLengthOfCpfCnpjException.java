@@ -5,7 +5,7 @@ package com.victorvilar.projetoempresa.exceptions;
  * cpf = 11 , cnpj = 14
  * @author Victor Vilar
  */
-public class WrongLengthOfCpfCnpjException extends Exception {
+public class WrongLengthOfCpfCnpjException extends RuntimeException  {
 
 	public WrongLengthOfCpfCnpjException(String errorMessage) {
 		super(errorMessage);
