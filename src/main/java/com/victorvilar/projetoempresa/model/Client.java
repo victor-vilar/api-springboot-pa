@@ -157,11 +157,17 @@ public class Client implements Serializable {
 				'}';
 	}
 
+	//getters and setter - nameCompanyName
 	public String getNameCompanyName() {
 		return nameCompanyName;
 	}
 
 	public void setNameCompanyName(String nameCompanyName) {
 		this.nameCompanyName = nameCompanyName;
+	}
+
+	//get Id
+	public Long getId(){
+		return this.id;
 	}
 }

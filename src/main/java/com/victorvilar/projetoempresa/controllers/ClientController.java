@@ -3,6 +3,7 @@ package com.victorvilar.projetoempresa.controllers;
 import java.util.List;
 
 import com.victorvilar.projetoempresa.controllers.dto.Client.ClientCreateDto;
+import com.victorvilar.projetoempresa.controllers.dto.Client.ClientResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,7 +35,7 @@ public class ClientController {
 	}
 	
 	@GetMapping("/{id}")
-	public Client getClientById(@PathVariable Long id) {
+	public ClientResponseDto getClientById(@PathVariable Long id) {
 			return this.service.getClientById(id);
 	}
 

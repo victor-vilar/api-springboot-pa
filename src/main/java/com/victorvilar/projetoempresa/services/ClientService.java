@@ -3,6 +3,7 @@ package com.victorvilar.projetoempresa.services;
 import java.util.List;
 
 import com.victorvilar.projetoempresa.controllers.dto.Client.ClientCreateDto;
+import com.victorvilar.projetoempresa.controllers.dto.Client.ClientResponseDto;
 import com.victorvilar.projetoempresa.exceptions.ClientNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -58,8 +59,11 @@ public class ClientService {
 	 * @param id
 	 * @return
 	 */
-	public Client getClientById(Long id) throws ClientNotFoundException{
-		return this.repository.findById(id).orElseThrow(() ->new ClientNotFoundException("This client doesn't exist"));
+	public ClientResponseDto getClientById(Long id) throws ClientNotFoundException{
+		ClientResponseDto clientResponseDto= new ClientResponseDto();
+		Client client = this.repository.findById(id).orElseThrow(() ->new ClientNotFoundException("This client doesn't exist"));
+		clientResponseDto.ClientToClientResponseDto(client);
+		return clientResponseDto;
 	}
 
 }
