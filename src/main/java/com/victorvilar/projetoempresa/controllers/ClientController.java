@@ -2,6 +2,7 @@ package com.victorvilar.projetoempresa.controllers;
 
 import java.util.List;
 
+import com.victorvilar.projetoempresa.controllers.dto.ClientCreateDto;
 import com.victorvilar.projetoempresa.exceptions.ClientNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -40,8 +41,8 @@ public class ClientController {
 	}
 
 	@PostMapping()
-	public void addNewClient(@RequestBody Client client){
-			this.service.addNewClient(client);
+	public void addNewClient(@RequestBody ClientCreateDto clientDto){
+			this.service.addNewClient(clientDto);
 	}
 
 

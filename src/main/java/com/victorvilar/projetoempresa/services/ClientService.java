@@ -2,6 +2,7 @@ package com.victorvilar.projetoempresa.services;
 
 import java.util.List;
 
+import com.victorvilar.projetoempresa.controllers.dto.ClientCreateDto;
 import com.victorvilar.projetoempresa.exceptions.ClientNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,8 +35,11 @@ public class ClientService {
 	 * Sing in a new Client
 	 * @param
 	 */
-	public void addNewClient(Client client) throws InvalidCpfOrCnpjException {
-		
+	public void addNewClient(ClientCreateDto clientDto) throws InvalidCpfOrCnpjException {
+
+		//transforming in a client
+		Client client = clientDto.ClientDtoToClient();
+
 		//if the cpf or cnpj is valid, it saves the client
 		if(CpfCnpjValidator.checkIfIsValid(client.getCpfCnpj())) {
 			
