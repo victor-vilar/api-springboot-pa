@@ -1,4 +1,4 @@
-package com.victorvilar.projetoempresa.controllers.dto;
+package com.victorvilar.projetoempresa.controllers.dto.Client;
 
 import com.victorvilar.projetoempresa.model.Client;
 

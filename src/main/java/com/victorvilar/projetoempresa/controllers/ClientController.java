@@ -2,12 +2,10 @@ package com.victorvilar.projetoempresa.controllers;
 
 import java.util.List;
 
-import com.victorvilar.projetoempresa.controllers.dto.ClientCreateDto;
-import com.victorvilar.projetoempresa.exceptions.ClientNotFoundException;
+import com.victorvilar.projetoempresa.controllers.dto.Client.ClientCreateDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import com.victorvilar.projetoempresa.exceptions.InvalidCpfOrCnpjException;
 import com.victorvilar.projetoempresa.model.Client;
 import com.victorvilar.projetoempresa.services.ClientService;
 

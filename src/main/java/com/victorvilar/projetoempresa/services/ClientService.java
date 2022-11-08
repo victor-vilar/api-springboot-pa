@@ -2,7 +2,7 @@ package com.victorvilar.projetoempresa.services;
 
 import java.util.List;
 
-import com.victorvilar.projetoempresa.controllers.dto.ClientCreateDto;
+import com.victorvilar.projetoempresa.controllers.dto.Client.ClientCreateDto;
 import com.victorvilar.projetoempresa.exceptions.ClientNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
