@@ -30,7 +30,7 @@ public class ClientController {
 
 
 	@GetMapping()
-	public List<Client> getAllClients(){
+	public List<ClientResponseDto> getAllClients(){
 		return this.service.getAllClients();
 	}
 	

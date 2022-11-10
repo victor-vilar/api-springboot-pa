@@ -1,6 +1,7 @@
 package com.victorvilar.projetoempresa.services;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.victorvilar.projetoempresa.controllers.dto.Client.ClientCreateDto;
 import com.victorvilar.projetoempresa.controllers.dto.Client.ClientResponseDto;
@@ -25,11 +26,18 @@ public class ClientService {
 	}
 	
 	/**
-	 * get all clients
+	 * get all clients, transform in a clientResponseDto list and return;
 	 * @param
 	 */
-	public List<Client> getAllClients() {
-		return this.repository.findAll();
+	public List<ClientResponseDto> getAllClients() {
+		List<Client> clients = this.repository.findAll();
+		return  clients.stream().map(e ->{
+			ClientResponseDto clientResponseDto = new ClientResponseDto();
+			clientResponseDto.ClientToClientResponseDto(e);
+			return clientResponseDto;
+		} ).collect(Collectors.toList());
+
+
 	}
 	
 	/**
