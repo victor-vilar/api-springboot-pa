@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 import com.victorvilar.projetoempresa.controllers.dto.Client.ClientCreateDto;
 import com.victorvilar.projetoempresa.controllers.dto.Client.ClientResponseDto;
 import com.victorvilar.projetoempresa.exceptions.ClientNotFoundException;
+import com.victorvilar.projetoempresa.exceptions.CpfOrCnpjAlreadyExistsException;
+import com.victorvilar.projetoempresa.exceptions.CpfOrCnpjAlreadyExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,18 +46,19 @@ public class ClientService {
 	 * Sing in a new Client
 	 * @param
 	 */
-	public void addNewClient(ClientCreateDto clientDto) throws InvalidCpfOrCnpjException {
+	public void addNewClient(ClientCreateDto clientDto) throws InvalidCpfOrCnpjException, CpfOrCnpjAlreadyExistsException {
 
 		//transforming in a client
 		Client client = clientDto.ClientDtoToClient();
-
+		boolean isPresent = this.repository.findByCpfCnpj(client.getCpfCnpj()).isPresent();
+		if(isPresent){
+			throw new CpfOrCnpjAlreadyExistsException("This Cpf/Cnpj already exists in database");
+		}
 		//if the cpf or cnpj is valid, it saves the client
 		if(CpfCnpjValidator.checkIfIsValid(client.getCpfCnpj())) {
-			
 			//upper case client name
 			client.setNameCompanyName(client.getNameCompanyName().toUpperCase());
 			this.repository.save(client);
-			
 		}else {
 			throw new InvalidCpfOrCnpjException("This CPF or CNPJ is Invalid");
 		}

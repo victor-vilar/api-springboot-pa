@@ -32,13 +32,12 @@ public class Client implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
+	@Column(nullable = false,unique = true)
+	private String cpfCnpj;
 
 	@Column(nullable=false)
 	private String nameCompanyName;
-	@Column(nullable = false)
-	private String cpfCnpj;
+
 	
 	@OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
 	private List<Address> addresses = new ArrayList<Address>();
@@ -148,7 +147,7 @@ public class Client implements Serializable {
 	@Override
 	public String toString() {
 		return "Client{" +
-				"id=" + id +
+
 				", nameCompanyName='" + nameCompanyName + '\'' +
 				", cpfCnpj='" + cpfCnpj + '\'' +
 				", addresses=" + addresses +
@@ -166,8 +165,4 @@ public class Client implements Serializable {
 		this.nameCompanyName = nameCompanyName;
 	}
 
-	//get Id
-	public Long getId(){
-		return this.id;
-	}
 }

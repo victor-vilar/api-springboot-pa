@@ -7,7 +7,7 @@ import com.victorvilar.projetoempresa.model.Client;
  */
 public class ClientResponseDto {
 
-    private Long id;
+
     private String nameCompanyName;
     private String cpfCnpj;
 
@@ -31,14 +31,8 @@ public class ClientResponseDto {
         this.cpfCnpj = cpfCnpj;
     }
 
-    //getters - Id
-    public Long getId(){
-        return this.id;
-    }
-
 
     public void ClientToClientResponseDto(Client client){
-        this.id = client.getId();
         this.nameCompanyName = client.getNameCompanyName();
         this.cpfCnpj =client.getCpfCnpj();
     }
