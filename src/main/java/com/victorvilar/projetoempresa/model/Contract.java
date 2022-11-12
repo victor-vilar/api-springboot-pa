@@ -1,5 +1,7 @@
 package com.victorvilar.projetoempresa.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -40,6 +42,7 @@ public class Contract implements Serializable {
     private String number;
     
     @Column(nullable=false)
+	@JsonFormat(pattern="dd/MM/yyyy")
     private LocalDate validity;
     
     @OneToMany(mappedBy = "contract",cascade = CascadeType.ALL)
