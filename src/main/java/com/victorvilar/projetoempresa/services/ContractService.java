@@ -32,7 +32,7 @@ public class ContractService {
     }
 
 
-    public void addNewContract(Long clientId, List<ItemContract> itens) throws ClientNotFoundException {
+    public void addNewContract(String clientId, List<ItemContract> itens) throws ClientNotFoundException {
         Client client = this.clientRepository.findById(clientId).orElseThrow(() -> new ClientNotFoundException("This client doesn't exist"));
         Contract contract = new Contract();
         contract.setClient(client);
@@ -45,7 +45,7 @@ public class ContractService {
 
     }
 
-    public void addNewItemToContract(Long contractId) {
+    public void addNewItemToContract(String contractId) {
 
     }
 }

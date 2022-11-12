@@ -30,7 +30,6 @@ public class ClientController {
 		this.service = service;
 	}
 
-
 	@GetMapping()
 	public ResponseEntity<List<ClientResponseDto>> getAllClients(){
 		return new ResponseEntity<>(this.service.getAllClients(), HttpStatus.OK);
@@ -46,6 +45,10 @@ public class ClientController {
 			this.service.addNewClient(clientDto);
 	}
 
-
+	@DeleteMapping("/{id}")
+	public ResponseEntity<?> deleteClientById(@PathVariable String id){
+		this.service.deleteClientById(id);
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
 
 }

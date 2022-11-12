@@ -43,7 +43,7 @@ public class ClientService {
 	
 	/**
 	 * Sing in a new Client
-	 * @param
+	 * @param clientDto, will be transformed a client
 	 */
 	public void addNewClient(ClientCreateDto clientDto) throws InvalidCpfOrCnpjException, CpfOrCnpjAlreadyExistsException {
 
@@ -63,7 +63,6 @@ public class ClientService {
 			throw new InvalidCpfOrCnpjException("This CPF or CNPJ is Invalid");
 		}
 
-		
 	}
 	/**
 	 * Return a client with this id, or return null;
@@ -77,4 +76,13 @@ public class ClientService {
 		return clientResponseDto;
 	}
 
+	/**
+	 * Delete a client of the database
+	 * @param id id of a client
+	 */
+	public void deleteClientById(String id) {
+		//if the id is not found will throw a exception
+		getClientById(id);
+		repository.deleteById(id);
+	}
 }

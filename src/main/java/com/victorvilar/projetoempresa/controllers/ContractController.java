@@ -57,7 +57,7 @@ public class ContractController {
      */
 
     @PostMapping("/{clientId}")
-    public void addNewContract(@PathVariable Long clientId, @RequestBody List<ItemContract> itens) {
+    public void addNewContract(@PathVariable String clientId, @RequestBody List<ItemContract> itens) {
         try {
             this.service.addNewContract(clientId, itens);
         }catch(ClientNotFoundException e){
@@ -72,7 +72,7 @@ public class ContractController {
      * @param contractId id of a saved contract
      */
     @PostMapping("/additem/{contractId}")
-    public void addNewItemToContract(@PathVariable Long contractId){
+    public void addNewItemToContract(@PathVariable String contractId){
         this.service.addNewItemToContract(contractId);
     }
 
