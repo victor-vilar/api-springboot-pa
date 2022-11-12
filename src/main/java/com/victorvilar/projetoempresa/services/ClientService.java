@@ -39,7 +39,6 @@ public class ClientService {
 			return clientResponseDto;
 		} ).collect(Collectors.toList());
 
-
 	}
 	
 	/**
@@ -50,6 +49,7 @@ public class ClientService {
 
 		//transforming in a client
 		Client client = clientDto.ClientDtoToClient();
+		//if client with this cpf or cpjs already exists, throws a new exception
 		boolean isPresent = this.repository.findByCpfCnpj(client.getCpfCnpj()).isPresent();
 		if(isPresent){
 			throw new CpfOrCnpjAlreadyExistsException("This Cpf/Cnpj already exists in database");
@@ -70,9 +70,9 @@ public class ClientService {
 	 * @param id
 	 * @return
 	 */
-	public ClientResponseDto getClientById(Long id) throws ClientNotFoundException{
+	public ClientResponseDto getClientById(String id) throws ClientNotFoundException{
 		ClientResponseDto clientResponseDto= new ClientResponseDto();
-		Client client = this.repository.findById(id).orElseThrow(() ->new ClientNotFoundException("This client doesn't exist"));
+		Client client = this.repository.findByCpfCnpj(id).orElseThrow(() ->new ClientNotFoundException("This client doesn't exist"));
 		clientResponseDto.ClientToClientResponseDto(client);
 		return clientResponseDto;
 	}

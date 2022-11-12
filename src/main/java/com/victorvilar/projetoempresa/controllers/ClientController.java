@@ -35,7 +35,7 @@ public class ClientController {
 	}
 	
 	@GetMapping("/{id}")
-	public ClientResponseDto getClientById(@PathVariable Long id) {
+	public ClientResponseDto getClientById(@PathVariable String id) {
 			return this.service.getClientById(id);
 	}
 
