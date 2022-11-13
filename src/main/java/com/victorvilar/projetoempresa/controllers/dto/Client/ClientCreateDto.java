@@ -47,7 +47,9 @@ public class ClientCreateDto {
         Client client = new Client();
         client.setNameCompanyName(this.nameCompanyName);
         client.setCpfCnpj(this.cpfCnpj);
-        //client.setSupervisor();
+        for(Supervisor supervisor : this.supervisors){
+            client.addNewSupervisor(supervisor);
+        }
         return client;
     }
 
