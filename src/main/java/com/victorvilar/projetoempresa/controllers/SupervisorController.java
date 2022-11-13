@@ -32,7 +32,7 @@ public class SupervisorController {
         return null;
     }
 
-    @GetMapping("{}/{}")
+    //@GetMapping("{}/{}")
     public ResponseEntity<?> getSupervisorByClient(@PathVariable String clientId){
         return null;
     }
