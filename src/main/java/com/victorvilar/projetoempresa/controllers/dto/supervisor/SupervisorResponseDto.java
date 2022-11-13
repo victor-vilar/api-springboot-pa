@@ -1,15 +1,8 @@
 package com.victorvilar.projetoempresa.controllers.dto.supervisor;
 
-import com.victorvilar.projetoempresa.model.Client;
 import com.victorvilar.projetoempresa.model.Supervisor;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.util.List;
-
-public class SupervisorResponseDTo {
+public class SupervisorResponseDto {
 
     private Long id;
     private String name;
@@ -20,7 +13,7 @@ public class SupervisorResponseDTo {
 
 
     //constructors
-    public SupervisorResponseDTo() {
+    public SupervisorResponseDto() {
 
     }
     //-----------

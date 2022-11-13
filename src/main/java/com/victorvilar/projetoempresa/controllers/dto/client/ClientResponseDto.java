@@ -1,8 +1,7 @@
 package com.victorvilar.projetoempresa.controllers.dto.client;
 
-import com.victorvilar.projetoempresa.controllers.dto.supervisor.SupervisorResponseDTo;
+import com.victorvilar.projetoempresa.controllers.dto.supervisor.SupervisorResponseDto;
 import com.victorvilar.projetoempresa.model.Client;
-import com.victorvilar.projetoempresa.model.Supervisor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +15,7 @@ public class ClientResponseDto {
 
     private String nameCompanyName;
     private String cpfCnpj;
-    private List<SupervisorResponseDTo> supervisors = new ArrayList<SupervisorResponseDTo>();
+    private List<SupervisorResponseDto> supervisors = new ArrayList<SupervisorResponseDto>();
 
 
 
@@ -39,10 +38,10 @@ public class ClientResponseDto {
     //-------------
 
     //getters and setters - supervisors
-    public List<SupervisorResponseDTo> getSupervisors(){
+    public List<SupervisorResponseDto> getSupervisors(){
         return this.supervisors;
     }
-    public void setSupervisors(List<SupervisorResponseDTo> supervisors){
+    public void setSupervisors(List<SupervisorResponseDto> supervisors){
         this.supervisors = supervisors;
     }
     //-------------
@@ -54,11 +53,11 @@ public class ClientResponseDto {
 
     }
 
-    private List<SupervisorResponseDTo> toSupervisorsDto(Client client){
+    private List<SupervisorResponseDto> toSupervisorsDto(Client client){
         return
                 client.getSupervisors().stream().map(s ->
                 {
-                    SupervisorResponseDTo  srdto= new SupervisorResponseDTo();
+                    SupervisorResponseDto srdto= new SupervisorResponseDto();
                     srdto.toSupervisorResponseDto(s);
                     return srdto;
                 }).collect(Collectors.toList());
