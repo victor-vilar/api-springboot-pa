@@ -140,7 +140,6 @@ public class Client implements Serializable {
 	public String getNameCompanyName() {
 		return nameCompanyName;
 	}
-
 	public void setNameCompanyName(String nameCompanyName) {
 		this.nameCompanyName = nameCompanyName;
 	}
