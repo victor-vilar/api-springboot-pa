@@ -1,6 +1,8 @@
 package com.victorvilar.projetoempresa.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.victorvilar.projetoempresa.controllers.dto.client.ClientCreateDto;
 import com.victorvilar.projetoempresa.controllers.dto.client.ClientResponseDto;
@@ -29,14 +31,29 @@ public class ClientController {
 		this.service = service;
 	}
 
+
+	/**
+	 * return all clients of repository and transform in a responseDto
+	 * @return a listOfResponseDto
+	 */
 	@GetMapping()
 	public ResponseEntity<List<ClientResponseDto>> getAllClients(){
-		return new ResponseEntity<>(this.service.getAllClients(), HttpStatus.OK);
+		List<ClientResponseDto> listResponseDto = new ArrayList<>();
+		listResponseDto = this.service.getAllClients()
+		.stream().map(e ->{
+			ClientResponseDto clientResponseDto = new ClientResponseDto();
+			clientResponseDto.ClientToClientResponseDto(e);
+			return clientResponseDto;
+		} ).collect(Collectors.toList());
+
+		return new ResponseEntity<>(listResponseDto, HttpStatus.OK);
 	}
 
 	@GetMapping("/{id}")
 	public ResponseEntity<ClientResponseDto> getClientById(@PathVariable String id) {
-			return new ResponseEntity<>(this.service.getClientById(id),HttpStatus.FOUND);
+			ClientResponseDto clientResponseDto = new ClientResponseDto();
+			clientResponseDto.ClientToClientResponseDto(this.service.getClientById(id));
+			return new ResponseEntity<>(clientResponseDto,HttpStatus.FOUND);
 	}
 
 	@PostMapping()

@@ -32,14 +32,8 @@ public class ClientService {
 	 * get all clients, transform in a clientResponseDto list and return;
 	 * @param
 	 */
-	public List<ClientResponseDto> getAllClients() {
-		List<Client> clients = this.repository.findAll();
-		return  clients.stream().map(e ->{
-			ClientResponseDto clientResponseDto = new ClientResponseDto();
-			clientResponseDto.ClientToClientResponseDto(e);
-			return clientResponseDto;
-		} ).collect(Collectors.toList());
-
+	public List<Client> getAllClients() {
+		return this.repository.findAll();
 	}
 	
 	/**
@@ -71,11 +65,8 @@ public class ClientService {
 	 * @param id
 	 * @return
 	 */
-	public ClientResponseDto getClientById(String id) throws ClientNotFoundException{
-		ClientResponseDto clientResponseDto= new ClientResponseDto();
-		Client client = this.repository.findByCpfCnpj(id).orElseThrow(() ->new ClientNotFoundException("This client doesn't exist"));
-		clientResponseDto.ClientToClientResponseDto(client);
-		return clientResponseDto;
+	public Client getClientById(String id) throws ClientNotFoundException{
+		return this.repository.findByCpfCnpj(id).orElseThrow(() ->new ClientNotFoundException("This client doesn't exist"));
 	}
 
 	/**
