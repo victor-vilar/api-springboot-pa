@@ -1,5 +1,8 @@
 package com.victorvilar.projetoempresa.controllers.dto.supervisor;
 
+import com.victorvilar.projetoempresa.model.Supervisor;
+import net.bytebuddy.implementation.bind.annotation.Super;
+
 public class SupervisorCreateDto {
 
     private Long id;
@@ -7,11 +10,19 @@ public class SupervisorCreateDto {
     private String role;
     private String phoneNumber;
     private String email;
-
+    private String clientId;
 
     //constructors
     public SupervisorCreateDto() {
+    }
+    //-----------
 
+    //getters e setters - clientId
+    public String getClientId() {
+        return clientId;
+    }
+    public void setclientId(String id) {
+        this.clientId = id;
     }
     //-----------
 
@@ -50,4 +61,15 @@ public class SupervisorCreateDto {
         this.email = email;
     }
     //--------------
+
+    public Supervisor toSupervisor(){
+        Supervisor su = new Supervisor();
+        su.setName(this.name);
+        su.setRole(this.role);
+        su.setPhoneNumber(this.phoneNumber);
+        su.setEmail(this.email);
+        return su;
+    }
+
+
 }

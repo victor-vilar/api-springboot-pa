@@ -16,11 +16,18 @@ public class SupervisorResponseDTo {
     private String role;
     private String phoneNumber;
     private String email;
+    private String clientId;
 
 
     //constructors
     public SupervisorResponseDTo() {
 
+    }
+    //-----------
+
+    //getters e setters - id
+    public Long getId() {
+        return id;
     }
     //-----------
 
@@ -51,7 +58,6 @@ public class SupervisorResponseDTo {
     }
     //--------------
 
-
     //getters e setters - email
     public String getEmail() {
         return email;
@@ -61,12 +67,22 @@ public class SupervisorResponseDTo {
     }
     //--------------
 
+    //getters e setters - clientId
+    public String getClientId() {
+        return clientId;
+    }
+    public void setClientId(String clientId) {
+        this.clientId = clientId;
+    }
+    //--------------
 
     public void toSupervisorResponseDto(Supervisor supervisor){
         this.setName(supervisor.getName());
         this.setRole(supervisor.getRole());
         this.setPhoneNumber(supervisor.getPhoneNumber());
         this.setEmail(supervisor.getEmail());
+        this.setClientId(supervisor.getCliente().getCpfCnpj());
+
     }
 
 

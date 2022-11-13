@@ -118,8 +118,7 @@ public class Client implements Serializable {
 	}
 	//-------------------------------------
 
-	
-	
+
 	
 	
 	
@@ -143,5 +142,6 @@ public class Client implements Serializable {
 	public void setNameCompanyName(String nameCompanyName) {
 		this.nameCompanyName = nameCompanyName;
 	}
+
 
 }
