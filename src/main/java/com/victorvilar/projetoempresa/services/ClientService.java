@@ -3,10 +3,9 @@ package com.victorvilar.projetoempresa.services;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.victorvilar.projetoempresa.controllers.dto.Client.ClientCreateDto;
-import com.victorvilar.projetoempresa.controllers.dto.Client.ClientResponseDto;
+import com.victorvilar.projetoempresa.controllers.dto.client.ClientCreateDto;
+import com.victorvilar.projetoempresa.controllers.dto.client.ClientResponseDto;
 import com.victorvilar.projetoempresa.exceptions.ClientNotFoundException;
-import com.victorvilar.projetoempresa.exceptions.CpfOrCnpjAlreadyExistsException;
 import com.victorvilar.projetoempresa.exceptions.CpfOrCnpjAlreadyExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

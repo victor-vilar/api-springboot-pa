@@ -1,9 +1,8 @@
-package com.victorvilar.projetoempresa.controllers.dto.Client;
+package com.victorvilar.projetoempresa.controllers.dto.client;
 
 import com.victorvilar.projetoempresa.model.Client;
 import com.victorvilar.projetoempresa.model.Supervisor;
 
-import javax.persistence.Column;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,6 +46,7 @@ public class ClientCreateDto {
         Client client = new Client();
         client.setNameCompanyName(this.nameCompanyName);
         client.setCpfCnpj(this.cpfCnpj);
+        System.out.println(this.supervisors.size());
         for(Supervisor supervisor : this.supervisors){
             client.addNewSupervisor(supervisor);
         }
