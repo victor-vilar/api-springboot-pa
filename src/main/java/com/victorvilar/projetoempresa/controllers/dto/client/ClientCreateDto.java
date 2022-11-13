@@ -13,7 +13,6 @@ public class ClientCreateDto {
 
     private String nameCompanyName;
     private String cpfCnpj;
-    private List<Supervisor> supervisors = new ArrayList<Supervisor>();
 
     //getters and setters - NameCompanyName
     public String getNameCompanyName() {
@@ -32,24 +31,11 @@ public class ClientCreateDto {
     }
     //------
 
-    //getters and setters - supervisors
-    public List<Supervisor> getSupervisors() {
-        return this.supervisors;
-    }
-    public void setSupervisors(List<Supervisor> supervisors) {
-        this.supervisors = supervisors;
-    }
-    //------
-
     //transform this clientDto to a client
     public Client ClientDtoToClient(){
         Client client = new Client();
         client.setNameCompanyName(this.nameCompanyName);
         client.setCpfCnpj(this.cpfCnpj);
-        System.out.println(this.supervisors.size());
-        for(Supervisor supervisor : this.supervisors){
-            client.addNewSupervisor(supervisor);
-        }
         return client;
     }
 
