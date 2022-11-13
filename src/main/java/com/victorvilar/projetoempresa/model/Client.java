@@ -67,23 +67,18 @@ public class Client implements Serializable {
 		supervisor.setClient(this);
 		this.getSupervisors().add(supervisor);
 	}
-	
 	/**
 	 * Add a new Contract to client, add this to contract client
 	 * @param contract
 	 */
-	
 	public void addNewContract(Contract contract) {
 		contract.setClient(this);
 		this.getContracts().add(contract);
 	}
-	
-
 	//Constructors
 	public Client() {
 		
 	}
-	
 	public Client(String nameCompanyName) {
 		this.nameCompanyName = nameCompanyName;
 	}
@@ -104,37 +99,22 @@ public class Client implements Serializable {
 		this.cpfCnpj = cpfCnpj;
 	}
 	//-------------------------------------
-	
-	
+
 	//getters and setters - Addresses
 	public List<Address> getAddresses() {
 		return this.addresses;
 	}
-
-	public void setAddresse(Address address) {
-		this.addresses.add(address);
-	}
 	//-------------------------------------
-	
 
 	//getters and setters - Supervisors
 	public List<Supervisor> getSupervisors() {
 		return this.supervisors;
 	}
-
-	public void setSupervisor(Supervisor supervisor) {
-		this.supervisors.add(supervisor);
-	}
 	//-------------------------------------
-	
-	
+
 	//getters and setters - Contracts
 	public List<Contract> getContracts() {
 		return contracts;
-	}
-
-	public void setContract(Contract contracts) {
-		this.contracts.add(contracts);
 	}
 	//-------------------------------------
 

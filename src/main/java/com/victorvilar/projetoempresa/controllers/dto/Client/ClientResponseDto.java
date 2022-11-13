@@ -37,10 +37,10 @@ public class ClientResponseDto {
     //-------------
 
     //getters and setters - supervisors
-    public List<Supervisor> getAllSupervisors(){
+    public List<Supervisor> getSupervisors(){
         return this.supervisors;
     }
-    public void setListOfSupervisors(List<Supervisor> supervisors){
+    public void setSupervisors(List<Supervisor> supervisors){
         this.supervisors = supervisors;
     }
     //-------------
