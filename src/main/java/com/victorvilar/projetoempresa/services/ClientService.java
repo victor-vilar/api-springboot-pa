@@ -16,6 +16,8 @@ import com.victorvilar.projetoempresa.model.Client;
 import com.victorvilar.projetoempresa.repository.ClientRepository;
 import com.victorvilar.projetoempresa.util.CpfCnpjValidator;
 
+import javax.transaction.Transactional;
+
 @Service
 public class ClientService {
 
@@ -45,6 +47,7 @@ public class ClientService {
 	 * Sing in a new Client
 	 * @param clientDto, will be transformed a client
 	 */
+	@Transactional
 	public void addNewClient(ClientCreateDto clientDto) throws InvalidCpfOrCnpjException, CpfOrCnpjAlreadyExistsException {
 
 		//transforming in a client
@@ -80,6 +83,7 @@ public class ClientService {
 	 * Delete a client of the database
 	 * @param id id of a client
 	 */
+	@Transactional
 	public void deleteClientById(String id) {
 		//if the id is not found will throw a exception
 		getClientById(id);
