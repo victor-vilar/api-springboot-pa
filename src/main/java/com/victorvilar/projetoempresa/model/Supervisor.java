@@ -49,6 +49,11 @@ public class Supervisor implements Serializable {
 		
 	}
 	//-----------
+
+	//getters e setters - id
+	public Long getId() {
+		return id;
+	}
 	
 	//getters e setters - name
 	public String getName() {

@@ -19,8 +19,11 @@ public class SupervisorResponseDto {
     //-----------
 
     //getters e setters - id
+    public void setId(Long id) {
+        this.id = id;
+    }
     public Long getId() {
-        return id;
+        return this.id;
     }
     //-----------
 
@@ -75,6 +78,7 @@ public class SupervisorResponseDto {
         this.setPhoneNumber(supervisor.getPhoneNumber());
         this.setEmail(supervisor.getEmail());
         this.setClientId(supervisor.getCliente().getCpfCnpj());
+        this.setId(supervisor.getId());
 
     }
 
