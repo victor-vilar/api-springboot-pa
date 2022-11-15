@@ -72,15 +72,6 @@ public class SupervisorResponseDto {
     }
     //--------------
 
-    public void toSupervisorResponseDto(Supervisor supervisor){
-        this.setName(supervisor.getName());
-        this.setRole(supervisor.getRole());
-        this.setPhoneNumber(supervisor.getPhoneNumber());
-        this.setEmail(supervisor.getEmail());
-        this.setClientId(supervisor.getCliente().getCpfCnpj());
-        this.setId(supervisor.getId());
-
-    }
 
 
 

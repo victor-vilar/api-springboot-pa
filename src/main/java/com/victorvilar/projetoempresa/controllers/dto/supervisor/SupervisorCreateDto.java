@@ -61,14 +61,6 @@ public class SupervisorCreateDto {
     }
     //--------------
 
-    public Supervisor toSupervisor(){
-        Supervisor su = new Supervisor();
-        su.setName(this.name);
-        su.setRole(this.role);
-        su.setPhoneNumber(this.phoneNumber);
-        su.setEmail(this.email);
-        return su;
-    }
 
 
 }
