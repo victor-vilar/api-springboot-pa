@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.victorvilar.projetoempresa.DAO.EquipamentDao;
-import com.victorvilar.projetoempresa.model.Equipament;
+import com.victorvilar.projetoempresa.domain.Equipament;
 import com.victorvilar.projetoempresa.util.EntityManagerBuilder;
 
 public class TestInsertEquipament {
@@ -18,21 +18,21 @@ public class TestInsertEquipament {
 		
 		//30 meters Container
 		equipamento = new Equipament();
-		equipamento.setEquipamentName("Caçamba de 30m³");
+		equipamento.setEquipamentName("Caï¿½amba de 30mï¿½");
 		equipamento.setSizeInMeterCubic(30);
 		equipamentos.add(equipamento);
 		equipamento = null;
 		
 		//5 meters Container
 		equipamento = new Equipament();
-		equipamento.setEquipamentName("Container 1.2m³");
+		equipamento.setEquipamentName("Container 1.2mï¿½");
 		equipamento.setSizeInMeterCubic(1.2);
 		equipamentos.add(equipamento);
 		equipamento = null;
 		
 		//1.2 meters Container
 		equipamento = new Equipament();
-		equipamento.setEquipamentName("Container 1.2m³");
+		equipamento.setEquipamentName("Container 1.2mï¿½");
 		equipamento.setSizeInMeterCubic(1.2);
 		equipamentos.add(equipamento);
 		equipamento = null;

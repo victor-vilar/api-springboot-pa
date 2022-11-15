@@ -1,8 +1,8 @@
 package tests.entities;
 
-import com.victorvilar.projetoempresa.model.Equipament;
-import com.victorvilar.projetoempresa.model.ItemContract;
-import com.victorvilar.projetoempresa.model.ResidueType;
+import com.victorvilar.projetoempresa.domain.Equipament;
+import com.victorvilar.projetoempresa.domain.ItemContract;
+import com.victorvilar.projetoempresa.domain.ResidueType;
 
 public class TestItem {
 
@@ -13,11 +13,11 @@ public class TestItem {
 		ResidueType residuo = new ResidueType();
 		
 		
-		equipamento.setEquipamentName("Conteiner de 1.2m³");
+		equipamento.setEquipamentName("Conteiner de 1.2mï¿½");
 		equipamento.setSizeInMeterCubic(1.2);
 		
-		residuo.setType("Lixo Extraordinário");
-		residuo.setDescription("Coleta transporte e destinação final de " + residuo.getType() + ".\n"
+		residuo.setType("Lixo Extraordinï¿½rio");
+		residuo.setDescription("Coleta transporte e destinaï¿½ï¿½o final de " + residuo.getType() + ".\n"
 				+ "em caminhoes compactores");
 		
 		ItemContract item = new ItemContract();

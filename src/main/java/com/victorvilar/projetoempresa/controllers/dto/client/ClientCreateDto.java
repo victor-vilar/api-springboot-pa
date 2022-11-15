@@ -1,10 +1,6 @@
 package com.victorvilar.projetoempresa.controllers.dto.client;
 
-import com.victorvilar.projetoempresa.model.Client;
-import com.victorvilar.projetoempresa.model.Supervisor;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.victorvilar.projetoempresa.domain.Client;
 
 /**
  * Class created to not expose the models of the API

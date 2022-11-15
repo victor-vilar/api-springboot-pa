@@ -1,8 +1,8 @@
 package tests.entities;
 
 import com.victorvilar.projetoempresa.DAO.ClientDao;
-import com.victorvilar.projetoempresa.model.Client;
-import com.victorvilar.projetoempresa.model.Supervisor;
+import com.victorvilar.projetoempresa.domain.Client;
+import com.victorvilar.projetoempresa.domain.Supervisor;
 import com.victorvilar.projetoempresa.util.EntityManagerBuilder;
 
 public class TestInsertSupervisor {

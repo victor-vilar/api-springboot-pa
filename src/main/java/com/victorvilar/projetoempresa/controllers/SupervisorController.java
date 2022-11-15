@@ -2,10 +2,8 @@ package com.victorvilar.projetoempresa.controllers;
 
 import com.victorvilar.projetoempresa.controllers.dto.supervisor.SupervisorCreateDto;
 import com.victorvilar.projetoempresa.controllers.dto.supervisor.SupervisorResponseDto;
-import com.victorvilar.projetoempresa.model.Client;
-import com.victorvilar.projetoempresa.model.Supervisor;
-import com.victorvilar.projetoempresa.repository.ClientRepository;
-import com.victorvilar.projetoempresa.repository.SupervisorRepository;
+import com.victorvilar.projetoempresa.domain.Client;
+import com.victorvilar.projetoempresa.domain.Supervisor;
 import com.victorvilar.projetoempresa.services.ClientService;
 import com.victorvilar.projetoempresa.services.SupervisorService;
 import org.springframework.beans.factory.annotation.Autowired;

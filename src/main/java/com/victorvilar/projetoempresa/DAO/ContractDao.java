@@ -4,8 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import com.victorvilar.projetoempresa.model.Client;
-import com.victorvilar.projetoempresa.model.Contract;
+import com.victorvilar.projetoempresa.domain.Contract;
 
 /**
  * Class to manager Contract in database

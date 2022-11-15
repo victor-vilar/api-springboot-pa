@@ -5,11 +5,11 @@ import java.time.LocalDate;
 import com.victorvilar.projetoempresa.DAO.ClientDao;
 import com.victorvilar.projetoempresa.DAO.EquipamentDao;
 import com.victorvilar.projetoempresa.DAO.ResidueTypeDao;
-import com.victorvilar.projetoempresa.model.Client;
-import com.victorvilar.projetoempresa.model.Contract;
-import com.victorvilar.projetoempresa.model.Equipament;
-import com.victorvilar.projetoempresa.model.ItemContract;
-import com.victorvilar.projetoempresa.model.ResidueType;
+import com.victorvilar.projetoempresa.domain.Client;
+import com.victorvilar.projetoempresa.domain.Contract;
+import com.victorvilar.projetoempresa.domain.Equipament;
+import com.victorvilar.projetoempresa.domain.ItemContract;
+import com.victorvilar.projetoempresa.domain.ResidueType;
 import com.victorvilar.projetoempresa.util.EntityManagerBuilder;
 
 public class TestContract {

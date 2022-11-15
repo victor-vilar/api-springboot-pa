@@ -1,12 +1,9 @@
 package tests.entities;
 
-import java.util.List;
-
 import com.victorvilar.projetoempresa.DAO.ClientDao;
 import com.victorvilar.projetoempresa.DAO.ContractDao;
-import com.victorvilar.projetoempresa.model.Client;
-import com.victorvilar.projetoempresa.model.Contract;
-import com.victorvilar.projetoempresa.model.ItemContract;
+import com.victorvilar.projetoempresa.domain.Client;
+import com.victorvilar.projetoempresa.domain.Contract;
 import com.victorvilar.projetoempresa.util.EntityManagerBuilder;
 
 public class TestContract2 {

@@ -3,10 +3,8 @@ package tests.entities;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.victorvilar.projetoempresa.DAO.EquipamentDao;
 import com.victorvilar.projetoempresa.DAO.ResidueTypeDao;
-import com.victorvilar.projetoempresa.model.Equipament;
-import com.victorvilar.projetoempresa.model.ResidueType;
+import com.victorvilar.projetoempresa.domain.ResidueType;
 import com.victorvilar.projetoempresa.util.EntityManagerBuilder;
 
 public class TestInsertResidues {
@@ -19,9 +17,9 @@ public class TestInsertResidues {
 		List<ResidueType> residuos = new ArrayList<ResidueType>();
 		ResidueTypeDao dao = new ResidueTypeDao(EntityManagerBuilder.getEntityManager());
 		
-		//extraordinário
+		//extraordinï¿½rio
 		residuo = new ResidueType();
-		residuo.setType("Classe IIA - Extraordinário");
+		residuo.setType("Classe IIA - Extraordinï¿½rio");
 		residuos.add(residuo);
 		
 		//infectante
@@ -34,14 +32,14 @@ public class TestInsertResidues {
 		residuo.setType("Classe IIB - Entulhos");
 		residuos.add(residuo);
 		
-		//químico
+		//quï¿½mico
 		residuo = new ResidueType();
-		residuo.setType("Classe B - Químicos");
+		residuo.setType("Classe B - Quï¿½micos");
 		residuos.add(residuo);
 		
 		//lampadas
 		residuo = new ResidueType();
-		residuo.setType("Classe I - Lâmpadas");
+		residuo.setType("Classe I - Lï¿½mpadas");
 		residuos.add(residuo);
 		
 		//efluentes

@@ -1,7 +1,7 @@
 package com.victorvilar.projetoempresa.controllers.dto.client;
 
 import com.victorvilar.projetoempresa.controllers.dto.supervisor.SupervisorResponseDto;
-import com.victorvilar.projetoempresa.model.Client;
+import com.victorvilar.projetoempresa.domain.Client;
 
 import java.util.ArrayList;
 import java.util.List;

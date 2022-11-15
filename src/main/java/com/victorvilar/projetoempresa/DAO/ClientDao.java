@@ -1,16 +1,8 @@
 package com.victorvilar.projetoempresa.DAO;
 
-import org.hibernate.jpa.boot.spi.EntityManagerFactoryBuilder;
-
-import com.victorvilar.projetoempresa.model.Client;
+import com.victorvilar.projetoempresa.domain.Client;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
 
 import java.util.List;
 

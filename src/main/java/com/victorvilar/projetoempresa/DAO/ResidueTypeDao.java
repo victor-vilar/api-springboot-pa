@@ -4,8 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import com.victorvilar.projetoempresa.model.Client;
-import com.victorvilar.projetoempresa.model.ResidueType;
+import com.victorvilar.projetoempresa.domain.ResidueType;
 
 /**
  * Class to manager Residues in database

@@ -2,7 +2,7 @@ package com.victorvilar.projetoempresa.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.victorvilar.projetoempresa.model.Equipament;
+import com.victorvilar.projetoempresa.domain.Equipament;
 
 public interface EquipamentRepository extends JpaRepository<Equipament,Long>{
 

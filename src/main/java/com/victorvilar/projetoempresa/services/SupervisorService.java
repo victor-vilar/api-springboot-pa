@@ -1,8 +1,7 @@
 package com.victorvilar.projetoempresa.services;
 
-import com.victorvilar.projetoempresa.model.Supervisor;
+import com.victorvilar.projetoempresa.domain.Supervisor;
 import com.victorvilar.projetoempresa.repository.SupervisorRepository;
-import net.bytebuddy.implementation.bind.annotation.Super;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

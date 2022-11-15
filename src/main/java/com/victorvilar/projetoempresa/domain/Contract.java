@@ -1,4 +1,4 @@
-package com.victorvilar.projetoempresa.model;
+package com.victorvilar.projetoempresa.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 

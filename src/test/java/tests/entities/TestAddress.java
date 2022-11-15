@@ -2,7 +2,7 @@ package tests.entities;
 
 import javax.persistence.EntityManager;
 
-import com.victorvilar.projetoempresa.model.Address;
+import com.victorvilar.projetoempresa.domain.Address;
 import com.victorvilar.projetoempresa.util.EntityManagerBuilder;
 
 public class TestAddress {

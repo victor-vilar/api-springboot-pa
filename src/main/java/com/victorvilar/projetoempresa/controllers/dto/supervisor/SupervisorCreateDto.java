@@ -1,7 +1,6 @@
 package com.victorvilar.projetoempresa.controllers.dto.supervisor;
 
-import com.victorvilar.projetoempresa.model.Supervisor;
-import net.bytebuddy.implementation.bind.annotation.Super;
+import com.victorvilar.projetoempresa.domain.Supervisor;
 
 public class SupervisorCreateDto {
 

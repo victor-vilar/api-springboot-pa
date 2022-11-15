@@ -4,8 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import com.victorvilar.projetoempresa.model.Client;
-import com.victorvilar.projetoempresa.model.Equipament;
+import com.victorvilar.projetoempresa.domain.Equipament;
 
 /**
  * Class to manager Equipament in database
