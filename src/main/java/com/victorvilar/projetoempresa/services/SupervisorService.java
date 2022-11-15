@@ -5,6 +5,8 @@ import com.victorvilar.projetoempresa.repository.SupervisorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class SupervisorService {
 
@@ -23,4 +25,7 @@ public class SupervisorService {
         this.supervisorRespository.save(supervisor);
     }
 
+    public List<Supervisor> getAllSupervisors() {
+        return this.supervisorRespository.findAll();
+    }
 }

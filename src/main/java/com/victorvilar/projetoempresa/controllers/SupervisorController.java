@@ -36,7 +36,10 @@ public class SupervisorController {
      */
     @GetMapping()
     public ResponseEntity<List<SupervisorResponseDto>> getAllSupervisors(){
-        return null;
+        return new ResponseEntity<List<SupervisorResponseDto>>(
+                this.mapper.toSupervisorResponseDtoList(
+                        this.supervisorService.getAllSupervisors()
+                ),HttpStatus.OK);
     }
 
     /**
@@ -49,15 +52,6 @@ public class SupervisorController {
         return null;
     }
 
-    /**
-     * get all supervisor of a client
-     * @param clientId id of a client
-     * @return a list of SupervisorResponseDto of the client
-     */
-    @GetMapping("/{clientId}")
-    public ResponseEntity<?> getSupervisorByClient(@PathVariable String clientId){
-        return null;
-    }
 
     /**
      * Add a new supervisor for a client
