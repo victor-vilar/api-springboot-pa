@@ -41,26 +41,17 @@ public class ClientController {
 	@GetMapping()
 	public ResponseEntity<List<ClientResponseDto>> getAllClients(){
 		List<ClientResponseDto> listResponseDto = new ArrayList<>();
-		listResponseDto = this.service.getAllClients()
-		.stream().map(e ->{
-			ClientResponseDto clientResponseDto = new ClientResponseDto();
-			clientResponseDto.ClientToClientResponseDto(e);
-			return clientResponseDto;
-		} ).collect(Collectors.toList());
-
+		listResponseDto = mapper.toClientResponseDtoList(this.service.getAllClients());
 		return new ResponseEntity<>(listResponseDto, HttpStatus.OK);
 	}
 
 	@GetMapping("/{id}")
 	public ResponseEntity<ClientResponseDto> getClientById(@PathVariable String id) {
-			ClientResponseDto clientResponseDto = new ClientResponseDto();
-			clientResponseDto.ClientToClientResponseDto(this.service.getClientById(id));
-			return new ResponseEntity<>(clientResponseDto,HttpStatus.FOUND);
+			return new ResponseEntity<>(mapper.toClientResponseDto(this.service.getClientById(id)),HttpStatus.FOUND);
 	}
 
 	@PostMapping()
 	public void addNewClient(@RequestBody ClientCreateDto clientDto){
-
 			this.service.addNewClient(mapper.toClient(clientDto));
 	}
 
