@@ -28,6 +28,7 @@ public class SupervisorMapper {
     }
 
     public SupervisorResponseDto toSupervisorResponseDto(Supervisor supervisor){
+
         return this.mapper.map(supervisor,SupervisorResponseDto.class);
     }
 

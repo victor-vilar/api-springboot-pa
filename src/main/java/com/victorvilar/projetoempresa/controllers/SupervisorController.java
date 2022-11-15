@@ -4,6 +4,7 @@ import com.victorvilar.projetoempresa.controllers.dto.supervisor.SupervisorCreat
 import com.victorvilar.projetoempresa.controllers.dto.supervisor.SupervisorResponseDto;
 import com.victorvilar.projetoempresa.domain.Client;
 import com.victorvilar.projetoempresa.domain.Supervisor;
+import com.victorvilar.projetoempresa.mappers.SupervisorMapper;
 import com.victorvilar.projetoempresa.services.ClientService;
 import com.victorvilar.projetoempresa.services.SupervisorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +20,14 @@ public class SupervisorController {
 
     private final SupervisorService supervisorService;
     private final ClientService clientService;
+    private final SupervisorMapper mapper;
 
     @Autowired
-    public SupervisorController(SupervisorService supervisorService, ClientService clientService){
+    public SupervisorController(SupervisorService supervisorService, ClientService clientService,
+                                SupervisorMapper mapper){
         this.supervisorService = supervisorService;
         this.clientService = clientService;
+        this.mapper = mapper;
     }
 
     /**
@@ -63,9 +67,9 @@ public class SupervisorController {
     @PostMapping("/{clientId}")
     public ResponseEntity<?> addNewSupervisor(@PathVariable String clientId, @RequestBody SupervisorCreateDto supervisoCreateDto){
         Client client = this.clientService.getClientById(clientId);
-        Supervisor supervisor = supervisoCreateDto.toSupervisor();
+        Supervisor supervisor = mapper.toSupervisor(supervisoCreateDto);
         supervisor.setClient(client);
         this.supervisorService.addNewSupervisor(supervisor);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }
