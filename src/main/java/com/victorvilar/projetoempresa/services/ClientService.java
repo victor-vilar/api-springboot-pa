@@ -36,13 +36,12 @@ public class ClientService {
 	
 	/**
 	 * Sing in a new Client
-	 * @param clientDto, will be transformed a client
+	 * @param client, a client
 	 */
 	@Transactional
-	public void addNewClient(ClientCreateDto clientDto) throws InvalidCpfOrCnpjException, CpfOrCnpjAlreadyExistsException {
+	public void addNewClient(Client client) throws InvalidCpfOrCnpjException, CpfOrCnpjAlreadyExistsException {
 
-		//transforming in a client
-		Client client = clientDto.ClientDtoToClient();
+
 		//if client with this cpf or cpjs already exists, throws a new exception
 		boolean isPresent = this.repository.findByCpfCnpj(client.getCpfCnpj()).isPresent();
 		if(isPresent){

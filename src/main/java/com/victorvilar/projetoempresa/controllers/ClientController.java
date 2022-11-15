@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import com.victorvilar.projetoempresa.controllers.dto.client.ClientCreateDto;
 import com.victorvilar.projetoempresa.controllers.dto.client.ClientResponseDto;
+import com.victorvilar.projetoempresa.mappers.ClientMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,12 +26,13 @@ public class ClientController {
 
 	
 	private final ClientService service;
+	private final ClientMapper mapper;
 	
 	@Autowired
-	public ClientController(ClientService service) {
+	public ClientController(ClientService service, ClientMapper mapper) {
 		this.service = service;
+		this.mapper = mapper;
 	}
-
 
 	/**
 	 * return all clients of repository and transform in a responseDto
@@ -58,7 +60,8 @@ public class ClientController {
 
 	@PostMapping()
 	public void addNewClient(@RequestBody ClientCreateDto clientDto){
-			this.service.addNewClient(clientDto);
+
+			this.service.addNewClient(mapper.toClient(clientDto));
 	}
 
 	@DeleteMapping("/{id}")
