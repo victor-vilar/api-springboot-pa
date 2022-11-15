@@ -46,22 +46,5 @@ public class ClientResponseDto {
     }
     //-------------
 
-    public void ClientToClientResponseDto(Client client){
-        this.nameCompanyName = client.getNameCompanyName();
-        this.cpfCnpj =client.getCpfCnpj();
-        this.setSupervisors(this.toSupervisorsDto(client));
-
-    }
-
-    private List<SupervisorResponseDto> toSupervisorsDto(Client client){
-        return
-                client.getSupervisors().stream().map(s ->
-                {
-                    SupervisorResponseDto srdto= new SupervisorResponseDto();
-                    srdto.toSupervisorResponseDto(s);
-                    return srdto;
-                }).collect(Collectors.toList());
-    }
-
 
 }

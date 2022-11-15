@@ -27,12 +27,6 @@ public class ClientCreateDto {
     }
     //------
 
-    //transform this clientDto to a client
-    public Client ClientDtoToClient(){
-        Client client = new Client();
-        client.setNameCompanyName(this.nameCompanyName);
-        client.setCpfCnpj(this.cpfCnpj);
-        return client;
-    }
+
 
 }
