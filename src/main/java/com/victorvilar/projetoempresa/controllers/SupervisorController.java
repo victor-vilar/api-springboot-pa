@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @RestController
@@ -23,7 +24,8 @@ public class SupervisorController {
     private final SupervisorMapper mapper;
 
     @Autowired
-    public SupervisorController(SupervisorService supervisorService, ClientService clientService,
+    public SupervisorController(SupervisorService supervisorService,
+                                ClientService clientService,
                                 SupervisorMapper mapper){
         this.supervisorService = supervisorService;
         this.clientService = clientService;
@@ -61,8 +63,10 @@ public class SupervisorController {
      * @return ResponseEntity of SupervisorResponseDto
      */
     @GetMapping("/{supervisorId}")
-    public ResponseEntity<?> getSupervisorById(@PathVariable Long id){
-        return null;
+    public ResponseEntity<SupervisorResponseDto> getSupervisorById(@PathVariable Long id){
+        return new ResponseEntity<SupervisorResponseDto>(
+                mapper.toSupervisorResponseDto(
+                        this.supervisorService.findSupervisorById(id)),HttpStatus.FOUND);
     }
 
 
@@ -80,4 +84,22 @@ public class SupervisorController {
         this.supervisorService.addNewSupervisor(supervisor);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
+
+    @DeleteMapping("{supervisorId}")
+    public ResponseEntity<Void> deleteSupervisor(@PathVariable Long supervisorId){
+        this.supervisorService.deleteById(supervisorId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PutMapping("{supervisorId}")
+    public ResponseEntity<SupervisorResponseDto> updateSupervisor(@PathVariable Long supervisorId,
+                                                                  @RequestBody SupervisorCreateDto supervisorCreateDto){
+        Supervisor supervisor = mapper.toSupervisor(supervisorCreateDto);
+        return new ResponseEntity<SupervisorResponseDto>(
+                mapper.toSupervisorResponseDto(
+                        this.supervisorService.updateSupervisor(supervisor, supervisorId)),HttpStatus.OK);
+
+    }
+
 }
