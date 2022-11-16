@@ -50,7 +50,9 @@ public class SupervisorController {
     @GetMapping("by-client/{clientId}")
     public ResponseEntity<?> getAllSupervisorsByClient(@PathVariable String clientId){
         Client client = this.clientService.getClientById(clientId);
-
+        return new ResponseEntity<>( this.mapper.toSupervisorResponseDtoList(
+                this.supervisorService.findAllByClientId(clientId)
+        ),HttpStatus.FOUND);
     }
 
     /**
@@ -73,7 +75,8 @@ public class SupervisorController {
     public ResponseEntity<?> addNewSupervisor(@PathVariable String clientId, @RequestBody SupervisorCreateDto supervisoCreateDto){
         Client client = this.clientService.getClientById(clientId);
         Supervisor supervisor = mapper.toSupervisor(supervisoCreateDto);
-        supervisor.setClient(client);
+        client.addNewSupervisor(supervisor);
+        //supervisor.setClient(client);
         this.supervisorService.addNewSupervisor(supervisor);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

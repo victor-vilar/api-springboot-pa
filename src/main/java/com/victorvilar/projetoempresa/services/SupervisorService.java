@@ -28,4 +28,8 @@ public class SupervisorService {
     public List<Supervisor> getAllSupervisors() {
         return this.supervisorRespository.findAll();
     }
+
+    public List<Supervisor> findAllByClientId(String clientId) {
+        return this.supervisorRespository.findByClientCpfCnpj(clientId);
+    }
 }
