@@ -44,8 +44,7 @@ public class Client implements Serializable {
 	@OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
 	private List<Contract> contracts = new ArrayList<Contract>(); 
 	
-	
-	
+
 	/**
 	 * Add a new address to client, add this to client of client
 	 * @param address

@@ -4,6 +4,8 @@ import com.victorvilar.projetoempresa.domain.Supervisor;
 
 public class SupervisorCreateDto {
 
+
+    //TODO INCLUDE SPRING IO VALIDATION
     private Long id;
     private String name;
     private String role;

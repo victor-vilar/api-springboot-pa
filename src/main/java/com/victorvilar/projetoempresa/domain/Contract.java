@@ -49,8 +49,6 @@ public class Contract implements Serializable {
 	@JsonFormat(pattern="dd/MM/yyyy")
 	private LocalDate beginDate;
 
-
-
 	@Column(nullable=false)
 	@JsonFormat(pattern="dd/MM/yyyy")
     private LocalDate validity;
@@ -71,8 +69,7 @@ public class Contract implements Serializable {
 		itemContract.setContract(this);
 		this.itens.add(itemContract);
 	}
-	
-    
+
     //Constructors
     public Contract() {
 		

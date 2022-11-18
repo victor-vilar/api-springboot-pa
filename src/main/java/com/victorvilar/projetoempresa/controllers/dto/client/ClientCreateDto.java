@@ -1,5 +1,6 @@
 package com.victorvilar.projetoempresa.controllers.dto.client;
 
+import com.sun.istack.NotNull;
 import com.victorvilar.projetoempresa.domain.Client;
 
 /**
@@ -7,6 +8,7 @@ import com.victorvilar.projetoempresa.domain.Client;
  */
 public class ClientCreateDto {
 
+    //TODO INCLUDE SPRING IO VALIDATION
     private String nameCompanyName;
     private String cpfCnpj;
 
