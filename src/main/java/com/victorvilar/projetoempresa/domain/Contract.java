@@ -38,10 +38,20 @@ public class Contract implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+	/**
+	 * the number of the contract could be a combination of characters and numbers and special characters,
+	 * therefore this is a String
+	 */
     @Column(nullable=false)
     private String number;
-    
-    @Column(nullable=false)
+
+	@Column(nullable=false)
+	@JsonFormat(pattern="dd/MM/yyyy")
+	private LocalDate beginDate;
+
+
+
+	@Column(nullable=false)
 	@JsonFormat(pattern="dd/MM/yyyy")
     private LocalDate validity;
     
@@ -69,51 +79,51 @@ public class Contract implements Serializable {
 	}
     //-----------------------
 
-
+	//getters and setters - id
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	//-----------------------
   //getters and setters - number
 	public String getNumber() {
 		return number;
 	}
-
-
-
-
 	public void setNumber(String number) {
 		this.number = number;
 	}
 	//-----------------------
-
-
+	//getters and setters - beginDate
+	public LocalDate getBeginDate() {
+		return beginDate;
+	}
+	public void setBeginDate(LocalDate beginDate) {
+		this.beginDate = beginDate;
+	}
+	//-----------------------
 	//getters and setters - validity
 	public LocalDate getValidity() {
 		return validity;
 	}
-
-
 	public void setValidity(LocalDate validity) {
 		this.validity = validity;
 	}
 	//-----------------------
-
-
 	//getters and setters - itens
 	public List<ItemContract> getItens() {
 		return itens;
 	}
-
-
+	//--------------
 	//getters e setters - client
 	public void setClient(Client client2) {
 		this.client = client2;
-		
 	}
-	
 	public Client getCliente() {
 		return this.client;
 	}
 	//--------------
-	
 
-	
 
 }
