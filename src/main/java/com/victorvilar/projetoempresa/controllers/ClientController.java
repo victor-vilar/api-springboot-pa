@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 
 import com.victorvilar.projetoempresa.services.ClientService;
 
+import javax.validation.Valid;
+
 /**
  * A client contoller
  * @author Victor Vilar
@@ -51,7 +53,7 @@ public class ClientController {
 	}
 
 	@PostMapping()
-	public void addNewClient(@RequestBody ClientCreateDto clientDto){
+	public void addNewClient(@Valid @RequestBody ClientCreateDto clientDto){
 			this.service.addNewClient(mapper.toClient(clientDto));
 	}
 

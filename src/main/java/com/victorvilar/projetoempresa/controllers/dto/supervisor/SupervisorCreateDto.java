@@ -2,13 +2,17 @@ package com.victorvilar.projetoempresa.controllers.dto.supervisor;
 
 import com.victorvilar.projetoempresa.domain.Supervisor;
 
+import javax.validation.constraints.NotBlank;
+
 public class SupervisorCreateDto {
 
 
     //TODO INCLUDE SPRING IO VALIDATION
     private Long id;
+    @NotBlank(message = "The name of supervisor is required")
     private String name;
     private String role;
+    @NotBlank(message = "The phonenumer of supervisor is required")
     private String phoneNumber;
     private String email;
     private String clientId;

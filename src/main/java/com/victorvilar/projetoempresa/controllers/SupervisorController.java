@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -76,7 +77,7 @@ public class SupervisorController {
      * @return http response
      */
     @PostMapping("/{clientId}")
-    public ResponseEntity<?> addNewSupervisor(@PathVariable String clientId, @RequestBody SupervisorCreateDto supervisoCreateDto){
+    public ResponseEntity<?> addNewSupervisor(@PathVariable String clientId, @Valid  @RequestBody SupervisorCreateDto supervisoCreateDto){
         Client client = this.clientService.getClientById(clientId);
         Supervisor supervisor = mapper.toSupervisor(supervisoCreateDto);
         client.addNewSupervisor(supervisor);
@@ -93,7 +94,7 @@ public class SupervisorController {
     }
 
     @PutMapping("{supervisorId}")
-    public ResponseEntity<SupervisorResponseDto> updateSupervisor(@PathVariable Long supervisorId,
+    public ResponseEntity<SupervisorResponseDto> updateSupervisor(@Valid @PathVariable Long supervisorId,
                                                                   @RequestBody SupervisorCreateDto supervisorCreateDto){
         Supervisor supervisor = mapper.toSupervisor(supervisorCreateDto);
         return new ResponseEntity<SupervisorResponseDto>(
