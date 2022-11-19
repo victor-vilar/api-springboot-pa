@@ -5,12 +5,14 @@ import com.victorvilar.projetoempresa.exceptions.ContractNotFoundException;
 import com.victorvilar.projetoempresa.domain.Contract;
 import com.victorvilar.projetoempresa.domain.ItemContract;
 import com.victorvilar.projetoempresa.services.ContractService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 /**
- *  contract contoller
+ *  contract controller
  * @author Victor Vilar
  */
 @RestController
@@ -19,6 +21,7 @@ public class ContractController {
 
     private final ContractService service;
 
+    @Autowired
     public ContractController(ContractService service){
         this.service = service;
     }
@@ -28,9 +31,18 @@ public class ContractController {
      * @return list of contracts
      */
     @GetMapping()
-    public List<Contract> getAllContracts(){
-
+    public ResponseEntity<List<ContractResponse>> getAllContracts(){
         return this.service.getAllContracts();
+    }
+
+    /**
+     * Get all contracts of a client
+     * @param clientId
+     * @return
+     */
+    @GetMapping("/{clientId}")
+    public ResponseEntity<List<ContractResponse>> getAllContractsByClientId(@PathVariable String clientId){
+        //TODO ------------>
     }
 
     /**
@@ -38,16 +50,11 @@ public class ContractController {
      * @return contract
      */
     @GetMapping("/{id}")
-    public Contract getContractById(Long id) {
-        try {
-            return this.service.getContractById(id);
-        }catch(ContractNotFoundException e ){
-            System.out.println(e.getMessage());
-        }
-        return null;
+    public ResponseEntity<ContractResponse> getContractById(Long id) {
+        //TODO ------------>
     }
 
-    //TODO ->> FIGURE OUT HOW DO I SEND THE ITENS OF THE CONTRACT TO SAVE
+
     /**
      *
      * add new contract
@@ -57,15 +64,10 @@ public class ContractController {
 
     @PostMapping("/{clientId}")
     public void addNewContract(@PathVariable String clientId, @RequestBody List<ItemContract> itens) {
-        try {
-            this.service.addNewContract(clientId, itens);
-        }catch(ClientNotFoundException e){
-            System.out.println(e.getMessage());
-        }
+        //TODO ------------>
     }
 
 
-    //TODO --> ADD ITEM TO A CONTRACT
     /**
      * add a new item to a contract
      * @param contractId id of a saved contract
@@ -75,6 +77,50 @@ public class ContractController {
         this.service.addNewItemToContract(contractId);
     }
 
-    //TODO --> DELETE A ITEM OF A CONTRACT
-    //TODO --> DELETE A CONTRACT
+
+
+    /**
+     * remove a contract from db
+     * @param contractId
+     */
+    @DeleteMapping()
+    public void removeContract(Long contractId ){
+        //TODO ------------>
+    }
+
+    /**
+     * remove a item from a contract
+     * @param contractId
+     * @param itemId
+     */
+    @DeleteMapping()
+    public void removeItemContract(Long contractId, Long itemId){
+        //TODO ------------>
+    }
+
+
+
+    /**
+     * Update contract
+     * @param contractId
+     * @return
+     */
+    @PutMapping()
+    public ResponseEntity<ContractResponse> updateContract(Long contractId){
+        //TODO ------------>
+    }
+
+    /**
+     * update a item of contract
+     * @param contractId
+     * @param itemId
+     * @return
+     */
+    @PutMapping()
+    public ResponseEntity<ContractResponse> updateItemContract(Long contractId, Long itemId){
+        //TODO ------------>
+    }
+
+
+
 }
