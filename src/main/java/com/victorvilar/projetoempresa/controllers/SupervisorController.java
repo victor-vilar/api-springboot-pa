@@ -70,7 +70,6 @@ public class SupervisorController {
                         this.supervisorService.findSupervisorById(id)),HttpStatus.FOUND);
     }
 
-
     /**
      * Add a new supervisor for a client
      * @param clientId string that represent the id of a client
