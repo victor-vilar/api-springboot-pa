@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import com.victorvilar.projetoempresa.controllers.dto.client.ClientCreateDto;
 import com.victorvilar.projetoempresa.controllers.dto.client.ClientResponseDto;
+import com.victorvilar.projetoempresa.domain.Client;
 import com.victorvilar.projetoempresa.mappers.ClientMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -56,6 +57,12 @@ public class ClientController {
 	public void addNewClient(@Valid @RequestBody ClientCreateDto clientDto){
 			this.service.addNewClient(mapper.toClient(clientDto));
 	}
+
+	@PutMapping("/{id}")
+	public ResponseEntity<ClientResponseDto> updateCliente(@PathVariable String id, @RequestBody ClientCreateDto clientDto){
+		return new ResponseEntity<>(this.mapper.toClientResponseDto(this.service.updateClient(id,clientDto)),HttpStatus.OK);
+	}
+
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> deleteClientById(@PathVariable String id){

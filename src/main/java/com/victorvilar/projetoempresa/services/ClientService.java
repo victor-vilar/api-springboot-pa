@@ -76,4 +76,16 @@ public class ClientService {
 		getClientById(id);
 		repository.deleteById(id);
 	}
+
+	/**
+	 * update client
+	 * @param clientId
+	 * @return
+	 */
+	public Client updateClient(String clientId, ClientCreateDto clientCreateDto) {
+		Client client = getClientById(clientId);
+		client.setCpfCnpj(clientCreateDto.getCpfCnpj());
+		client.setNameCompanyName(clientCreateDto.getNameCompanyName());
+		return repository.save(client);
+	}
 }
