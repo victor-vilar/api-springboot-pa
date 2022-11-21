@@ -57,7 +57,7 @@ public class ContractService {
      * creates a new contract
      * @throws ClientNotFoundException
      */
-    public void addNewContract() throws ClientNotFoundException {
+    public void addNewContract(String clientId) throws ClientNotFoundException {
         Client client = this.clientRepository.findById(clientId).orElseThrow(() -> new ClientNotFoundException("This client doesn't exist"));
         Contract contract = new Contract();
         contract.setClient(client);

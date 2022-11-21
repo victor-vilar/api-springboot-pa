@@ -70,6 +70,8 @@ public class SupervisorService {
      * @param supervisor supervisor created at controller that have the new data
      * @param supervisorId id of client to update
      */
+
+    @Transactional
     public Supervisor updateSupervisor(Supervisor supervisor, Long supervisorId) {
         Supervisor supervisorToUpdate = findSupervisorById(supervisorId);
         supervisorToUpdate.setName(supervisor.getName());
