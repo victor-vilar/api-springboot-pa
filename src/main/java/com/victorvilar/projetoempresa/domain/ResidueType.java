@@ -31,8 +31,7 @@ public class ResidueType implements Serializable {
 	
 	private String description;
 	
-	@OneToMany(mappedBy = "residue",cascade = CascadeType.ALL)
-	private List<ItemContract> itens = new ArrayList<>();
+
 	
 	//constructors
 	public ResidueType() {

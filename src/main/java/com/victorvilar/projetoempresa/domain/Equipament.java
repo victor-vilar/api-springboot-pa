@@ -36,13 +36,7 @@ public class Equipament implements Serializable{
 	
 	@Column(nullable = false)
 	private double sizeInMeterCubic;
-	
-	@OneToMany(mappedBy = "equipament",cascade = CascadeType.ALL)
-	private List<ItemContract> itens = new ArrayList<>();
-	
 
-	
-	
 	
 	//constructors
 	public Equipament() {
