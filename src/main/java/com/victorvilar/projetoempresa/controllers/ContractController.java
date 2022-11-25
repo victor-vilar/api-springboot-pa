@@ -1,5 +1,6 @@
 package com.victorvilar.projetoempresa.controllers;
 
+import com.victorvilar.projetoempresa.controllers.dto.contract.ContractResponseDto;
 import com.victorvilar.projetoempresa.exceptions.ClientNotFoundException;
 import com.victorvilar.projetoempresa.exceptions.ContractNotFoundException;
 import com.victorvilar.projetoempresa.domain.Contract;
@@ -31,8 +32,9 @@ public class ContractController {
      * @return list of contracts
      */
     @GetMapping()
-    public ResponseEntity<List<ContractResponse>> getAllContracts(){
-        return this.service.getAllContracts();
+    public ResponseEntity<List<ContractResponseDto>> getAllContracts(){
+        //TODO ------------>
+        return null;
     }
 
     /**
@@ -41,8 +43,9 @@ public class ContractController {
      * @return
      */
     @GetMapping("/{clientId}")
-    public ResponseEntity<List<ContractResponse>> getAllContractsByClientId(@PathVariable String clientId){
+    public ResponseEntity<List<ContractResponseDto>> getAllContractsByClientId(@PathVariable String clientId){
         //TODO ------------>
+        return null;
     }
 
     /**
@@ -50,8 +53,9 @@ public class ContractController {
      * @return contract
      */
     @GetMapping("/{id}")
-    public ResponseEntity<ContractResponse> getContractById(Long id) {
+    public ResponseEntity<ContractResponseDto> getContractById(Long id) {
         //TODO ------------>
+        return null;
     }
 
 
@@ -74,7 +78,7 @@ public class ContractController {
      */
     @PostMapping("/additem/{contractId}")
     public void addNewItemToContract(@PathVariable String contractId){
-        this.service.addNewItemToContract(contractId);
+        //TODO ------------>
     }
 
 
@@ -83,7 +87,7 @@ public class ContractController {
      * remove a contract from db
      * @param contractId
      */
-    @DeleteMapping()
+    @DeleteMapping("/{contractId}")
     public void removeContract(Long contractId ){
         //TODO ------------>
     }
@@ -93,11 +97,10 @@ public class ContractController {
      * @param contractId
      * @param itemId
      */
-    @DeleteMapping()
+    @DeleteMapping("/{contractId}/{itemId}")
     public void removeItemContract(Long contractId, Long itemId){
         //TODO ------------>
     }
-
 
 
     /**
@@ -105,9 +108,10 @@ public class ContractController {
      * @param contractId
      * @return
      */
-    @PutMapping()
-    public ResponseEntity<ContractResponse> updateContract(Long contractId){
+    @PutMapping("/{contractId}")
+    public ResponseEntity<ContractResponseDto> updateContract(Long contractId){
         //TODO ------------>
+        return null;
     }
 
     /**
@@ -116,9 +120,10 @@ public class ContractController {
      * @param itemId
      * @return
      */
-    @PutMapping()
-    public ResponseEntity<ContractResponse> updateItemContract(Long contractId, Long itemId){
+    @PutMapping("/{contractId}/{itemId}")
+    public ResponseEntity<ContractResponseDto> updateItemContract(Long contractId, Long itemId){
         //TODO ------------>
+        return null;
     }
 
 

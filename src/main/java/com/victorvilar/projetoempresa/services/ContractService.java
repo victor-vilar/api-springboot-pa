@@ -40,6 +40,7 @@ public class ContractService {
      */
     public List<Contract> getAllContractsByClientId(String clientId){
         //TODO ------------>
+        return null;
     }
 
     /**
@@ -100,6 +101,7 @@ public class ContractService {
      */
     public Contract updateContract(Long contractId){
         //TODO ------------>
+        return null;
     }
 
     /**
@@ -110,6 +112,7 @@ public class ContractService {
      */
     public Contract updateItemContract(Long contractId, Long itemId){
         //TODO ------------>
+        return null;
     }
 
 }
