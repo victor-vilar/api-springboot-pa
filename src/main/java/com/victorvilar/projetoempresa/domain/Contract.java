@@ -117,7 +117,7 @@ public class Contract implements Serializable {
 	public void setClient(Client client2) {
 		this.client = client2;
 	}
-	public Client getCliente() {
+	public Client getClient() {
 		return this.client;
 	}
 	//--------------
