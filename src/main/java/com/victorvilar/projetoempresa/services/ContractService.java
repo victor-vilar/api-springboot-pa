@@ -16,12 +16,10 @@ import java.util.List;
 public class ContractService {
 
     private final ContractRepository contractRepository;
-    private final ClientRepository   clientRepository;
 
     @Autowired
     public ContractService (ContractRepository repository, ClientRepository clienteRepository){
         this.contractRepository = repository;
-        this.clientRepository = clienteRepository;
     }
 
 
@@ -58,15 +56,8 @@ public class ContractService {
      * creates a new contract
      * @throws ClientNotFoundException
      */
-    public void addNewContract(String clientId) throws ClientNotFoundException {
-        Client client = this.clientRepository.findById(clientId).orElseThrow(() -> new ClientNotFoundException("This client doesn't exist"));
-        Contract contract = new Contract();
-        contract.setClient(client);
-
-        //TODO -> FIGURE OUT HOW TO GET THIS INFORMATION
-        //contract.setNumber();
-        //contract.setValidity();
-
+    public void addNewContract(Contract contract) {
+        this.contractRepository.save(contract);
     }
 
     /**

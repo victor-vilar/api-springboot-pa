@@ -7,7 +7,7 @@ import javax.validation.constraints.NotBlank;
 public class SupervisorCreateDto {
 
 
-    //TODO INCLUDE SPRING IO VALIDATION
+
     private Long id;
     @NotBlank(message = "The name of supervisor is required")
     private String name;

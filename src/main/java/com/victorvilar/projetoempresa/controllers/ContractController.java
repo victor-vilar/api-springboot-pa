@@ -1,12 +1,17 @@
 package com.victorvilar.projetoempresa.controllers;
 
+import com.victorvilar.projetoempresa.controllers.dto.contract.ContractCreateDto;
 import com.victorvilar.projetoempresa.controllers.dto.contract.ContractResponseDto;
+import com.victorvilar.projetoempresa.domain.Client;
 import com.victorvilar.projetoempresa.exceptions.ClientNotFoundException;
 import com.victorvilar.projetoempresa.exceptions.ContractNotFoundException;
 import com.victorvilar.projetoempresa.domain.Contract;
 import com.victorvilar.projetoempresa.domain.ItemContract;
+import com.victorvilar.projetoempresa.mappers.ContractMapper;
+import com.victorvilar.projetoempresa.services.ClientService;
 import com.victorvilar.projetoempresa.services.ContractService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,10 +26,16 @@ import java.util.List;
 public class ContractController {
 
     private final ContractService service;
+    private final ContractMapper mapper;
+    private final ClientService clientService;
 
     @Autowired
-    public ContractController(ContractService service){
+    public ContractController(ContractService service,
+                              ContractMapper mapper,
+                              ClientService clientService){
         this.service = service;
+        this.mapper= mapper;
+        this.clientService = clientService;
     }
 
     /**
@@ -33,8 +44,11 @@ public class ContractController {
      */
     @GetMapping()
     public ResponseEntity<List<ContractResponseDto>> getAllContracts(){
-        //TODO ------------>
-        return null;
+
+        return new ResponseEntity<List<ContractResponseDto>>(
+                this.mapper.toContractResponsDtoList(this.service.getAllContracts()),
+                HttpStatus.OK
+        );
     }
 
     /**
@@ -42,9 +56,9 @@ public class ContractController {
      * @param clientId
      * @return
      */
-    @GetMapping("/{clientId}")
+    @GetMapping("/all/{clientId}")
     public ResponseEntity<List<ContractResponseDto>> getAllContractsByClientId(@PathVariable String clientId){
-        //TODO ------------>
+
         return null;
     }
 
@@ -63,12 +77,16 @@ public class ContractController {
      *
      * add new contract
      * @param clientId id of the client
-     * @param itens a list of the itens of the contract
+     * @param contract a model to contract
      */
 
     @PostMapping("/{clientId}")
-    public void addNewContract(@PathVariable String clientId, @RequestBody List<ItemContract> itens) {
-        //TODO ------------>
+    public ResponseEntity<?> addNewContract(@PathVariable String clientId, @RequestBody ContractCreateDto contract) {
+        Contract contract1 = this.mapper.toContract(contract);
+        Client client = clientService.getClientById(clientId);
+        contract1.setClient(client);
+        this.service.addNewContract(contract1);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
 
