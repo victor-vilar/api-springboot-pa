@@ -31,10 +31,10 @@ public class Equipament implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(nullable = false)
+	@Column(name="equipament",nullable = false)
 	private String equipamentName;
 	
-	@Column(nullable = false)
+	@Column(name="size_cubic",nullable = false)
 	private double sizeInMeterCubic;
 
 	
