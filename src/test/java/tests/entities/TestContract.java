@@ -24,7 +24,7 @@ public class TestContract {
 			//setting contract
 			Contract contract = new Contract();
 			contract.setNumber("05/2021 - Teste");
-			contract.setValidity(LocalDate.now());
+			contract.setEndDate(LocalDate.now());
 		
 			
 			//declaring daos;

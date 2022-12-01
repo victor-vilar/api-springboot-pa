@@ -51,7 +51,7 @@ public class Contract implements Serializable {
 
 	@Column(nullable=false)
 	@JsonFormat(pattern="dd/MM/yyyy")
-    private LocalDate validity;
+    private LocalDate endDate;
     
     @OneToMany(cascade = CascadeType.ALL)
     private List<ItemContract> itens = new ArrayList<ItemContract>();
@@ -101,11 +101,11 @@ public class Contract implements Serializable {
 	}
 	//-----------------------
 	//getters and setters - validity
-	public LocalDate getValidity() {
-		return validity;
+	public LocalDate getEndDate() {
+		return endDate;
 	}
-	public void setValidity(LocalDate validity) {
-		this.validity = validity;
+	public void setEndDate(LocalDate endDate) {
+		this.endDate = endDate;
 	}
 	//-----------------------
 	//getters and setters - itens
