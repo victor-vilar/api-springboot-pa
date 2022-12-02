@@ -29,5 +29,13 @@ public class ResidueService {
         this.residueTypeRepository.save(residueType);
     }
 
+    public ResidueType updateResidue(ResidueType residueType, Long id){
+        ResidueType residue = this.findById(id);
+        residue.setType(residueType.getType());
+        residue.setDescription(residueType.getDescription());
+        return residue;
+
+    }
+
 
 }
