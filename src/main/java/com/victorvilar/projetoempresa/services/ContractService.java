@@ -16,9 +16,14 @@ import java.util.List;
 public class ContractService {
 
     private final ContractRepository contractRepository;
+    //private final ResidueService residueService;
+    //private final EquipamentService equipamentService;
 
     @Autowired
-    public ContractService (ContractRepository repository, ClientRepository clienteRepository){
+    public ContractService (ContractRepository repository,
+                            ClientRepository clienteRepository,
+                            ResidueService residueService,
+                            EquipamentService equipamentService){
         this.contractRepository = repository;
     }
 

@@ -53,7 +53,7 @@ public class Contract implements Serializable {
 	@JsonFormat(pattern="dd/MM/yyyy")
     private LocalDate endDate;
     
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "contract",cascade = CascadeType.ALL)
     private List<ItemContract> itens = new ArrayList<ItemContract>();
     
     @ManyToOne(fetch=FetchType.LAZY)
