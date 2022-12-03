@@ -50,6 +50,12 @@ public class ResidueTypeController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    /**
+     * update a residue
+     * @param id id of a residue
+     * @param residue residue type with data
+     * @return residue updated
+     */
     @PutMapping("/{id}")
     public ResponseEntity<ResidueType> updateResidue(@PathVariable Long id, @RequestBody ResidueType residue){
         return new ResponseEntity<>(this.residueService.updateResidue(residue, id),HttpStatus.OK);
