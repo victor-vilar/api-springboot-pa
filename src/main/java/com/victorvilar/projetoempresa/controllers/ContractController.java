@@ -17,6 +17,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -86,11 +88,11 @@ public class ContractController {
      */
 
     @PostMapping("/{clientId}")
-    public ResponseEntity<?> addNewContract(@PathVariable String clientId, @RequestBody ContractCreateDto contract) {
+    public ResponseEntity<?> addNewContract(@PathVariable String clientId, @Valid @RequestBody ContractCreateDto contract) {
         Contract contract1 = this.mapper.toContract(contract);
         Client client = clientService.getClientById(clientId);
         contract1.setClient(client);
-        //this.service.addNewContract(contract1, clientId);
+        this.service.addNewContract(contract1);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 

@@ -17,16 +17,17 @@ public class ContractCreateDto {
 
     @NotBlank(message ="The contract must have a number")
     private String number;
-    @NotBlank(message = "The contract must have a start date")
+
+    @NotNull(message = "The contract must have a start date")
     @JsonDeserialize(using = LocalDateDeserializer.class)
     private LocalDate beginDate;
+
     @JsonDeserialize(using = LocalDateDeserializer.class)
-    @NotBlank(message = "the contract must have a end date")
+    @NotNull(message = "the contract must have a end date")
     private LocalDate endDate;
-    @NotNull(message = "the contract musta have at least one item")
+
     private List<ItemContract> itens = new ArrayList<ItemContract>();
-    @NotBlank(message ="the contract must have a client")
-    private String clientId;
+
 
     public String getNumber() {
         return number;
@@ -60,11 +61,11 @@ public class ContractCreateDto {
         this.itens = itens;
     }
 
-    public String getClientId() {
-        return clientId;
-    }
-
-    public void setClientId(String clientId) {
-        this.clientId = clientId;
-    }
+//    public String getClientId() {
+//        return clientId;
+//    }
+//
+//    public void setClientId(String clientId) {
+//        this.clientId = clientId;
+//    }
 }
