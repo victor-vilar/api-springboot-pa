@@ -6,6 +6,7 @@ import com.victorvilar.projetoempresa.repository.EquipamentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -40,6 +41,7 @@ public class EquipamentService {
      * save a new equipament
      * @param equipament equipament to save
      */
+    @Transactional
     public void saveEquipament(Equipament equipament){
         this.equipamentRepository.save(equipament);
     }
@@ -62,6 +64,7 @@ public class EquipamentService {
      * delete a equipament
      * @param id id to update
      */
+    @Transactional
     public void deleteEquipament( Long id){
         this.equipamentRepository.delete(this.getEquipamentById(id));
     }

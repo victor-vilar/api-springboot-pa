@@ -10,6 +10,7 @@ import com.victorvilar.projetoempresa.repository.ContractRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -61,6 +62,7 @@ public class ContractService {
      * creates a new contract
      * @throws ClientNotFoundException
      */
+    @Transactional
     public void addNewContract(Contract contract) {
         this.contractRepository.save(contract);
     }
@@ -69,6 +71,7 @@ public class ContractService {
      * add a new item to a contract
      * @param contractId
      */
+    @Transactional
     public void addNewItemToContract(Long contractId) {
         //TODO ------------>
     }
@@ -77,6 +80,7 @@ public class ContractService {
      * remove a contract from db
      * @param contractId
      */
+    @Transactional
     public void removeContract(Long contractId ){
         //TODO ------------>
     }
@@ -86,6 +90,7 @@ public class ContractService {
      * @param contractId
      * @param itemId
      */
+    @Transactional
     public void removeItemContract(Long contractId, Long itemId){
         //TODO ------------>
     }
@@ -95,6 +100,7 @@ public class ContractService {
      * @param contractId
      * @return
      */
+    @Transactional
     public Contract updateContract(Long contractId){
         //TODO ------------>
         return null;
@@ -106,6 +112,7 @@ public class ContractService {
      * @param itemId
      * @return
      */
+    @Transactional
     public Contract updateItemContract(Long contractId, Long itemId){
         //TODO ------------>
         return null;
