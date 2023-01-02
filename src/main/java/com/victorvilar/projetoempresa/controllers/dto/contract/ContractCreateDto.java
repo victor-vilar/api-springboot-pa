@@ -53,9 +53,7 @@ public class ContractCreateDto {
         this.endDate = endDate;
     }
 
-    public List<ItemContract> getItens() {
-        return itens;
-    }
+
 
     public void setItens(List<ItemContract> itens) {
         this.itens = itens;
