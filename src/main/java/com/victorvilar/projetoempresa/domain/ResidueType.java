@@ -28,14 +28,17 @@ public class ResidueType implements Serializable {
 	
 	@Column(name = "residue_type", nullable = false)
 	private String type;
-	
 	private String description;
 	
 
 	
 	//constructors
 	public ResidueType() {
-		
+	}
+
+	public ResidueType(String type, String description){
+		this.type = type;
+		this.description = description;
 	}
 	//-----------
 	
@@ -43,7 +46,6 @@ public class ResidueType implements Serializable {
 	public String getType() {
 		return type;
 	}
-
 	public void setType(String type) {
 		this.type = type;
 	}
@@ -53,7 +55,6 @@ public class ResidueType implements Serializable {
 	public String getDescription() {
 		return description;
 	}
-
 	public void setDescription(String description) {
 		this.description = description;
 	}

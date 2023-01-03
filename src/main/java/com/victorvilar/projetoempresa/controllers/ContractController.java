@@ -86,13 +86,12 @@ public class ContractController {
      * @param clientId id of the client
      * @param contract a model to contract
      */
-
     @PostMapping("/{clientId}")
     public ResponseEntity<?> addNewContract(@PathVariable String clientId, @Valid @RequestBody ContractCreateDto contract) {
         Contract contract1 = this.mapper.toContract(contract);
         Client client = clientService.getClientById(clientId);
         contract1.setClient(client);
-        this.service.addNewContract(contract1);
+        this.service.save(contract1);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
@@ -102,8 +101,9 @@ public class ContractController {
      * @param contractId id of a saved contract
      */
     @PostMapping("/additem/{contractId}")
-    public void addNewItemToContract(@PathVariable String contractId){
-        //TODO ------------>
+    public ResponseEntity<?> addNewItemToContract(@PathVariable Long contractId, @RequestBody ItemContract item){
+        this.service.addNewItemToContract(contractId, item);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 

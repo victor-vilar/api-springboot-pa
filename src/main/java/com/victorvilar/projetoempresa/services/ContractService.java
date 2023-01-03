@@ -63,7 +63,7 @@ public class ContractService {
      * @throws ClientNotFoundException
      */
     @Transactional
-    public void addNewContract(Contract contract) {
+    public void save(Contract contract) {
         this.contractRepository.save(contract);
     }
 
@@ -72,8 +72,10 @@ public class ContractService {
      * @param contractId
      */
     @Transactional
-    public void addNewItemToContract(Long contractId) {
-        //TODO ------------>
+    public void addNewItemToContract(Long contractId, ItemContract item) {
+        Contract contract = this.getContractById(contractId);
+        contract.addNewItem(item);
+        this.save(contract);
     }
 
     /**

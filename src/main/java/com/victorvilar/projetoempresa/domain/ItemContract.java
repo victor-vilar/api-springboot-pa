@@ -29,13 +29,13 @@ public class ItemContract implements Serializable{
 	private Long id;
 	
 	//the type of residue(trash) of the item.
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "residue_id", nullable = false)
+	@ManyToOne
+	@JoinColumn(nullable = false)
 	private ResidueType residue;
 	
 	//the equipament that gonna be used to store the trash.
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "equipament_id", nullable = false)
+	@ManyToOne
+	@JoinColumn(nullable = false)
 	private Equipament equipament;
 	
 	//the quantity estimated for  year
