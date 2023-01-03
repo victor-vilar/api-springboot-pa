@@ -126,8 +126,12 @@ public class ItemContract implements Serializable{
 		string.append("Valor Anual: R$" + (Double)this.itemValue * this.qtdOfResidue + "\n" );
 		return string.toString();
 	}
-	
-	
-	
-	
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 }

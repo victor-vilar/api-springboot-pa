@@ -20,7 +20,7 @@ public class ContractResponseDto {
     private LocalDate beginDate;
 
     @JsonFormat(pattern="dd/MM/yyyy")
-    private LocalDate validity;
+    private LocalDate endDate;
 
     private List<ItemContractResponseDto> itens = new ArrayList<ItemContractResponseDto>();
 
@@ -57,12 +57,12 @@ public class ContractResponseDto {
         this.beginDate = beginDate;
     }
 
-    public LocalDate getValidity() {
-        return validity;
+    public LocalDate getEndDate() {
+        return endDate;
     }
 
-    public void setValidity(LocalDate validity) {
-        this.validity = validity;
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
     }
 
     public List<ItemContractResponseDto> getItens() {
