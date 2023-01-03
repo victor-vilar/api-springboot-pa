@@ -22,7 +22,7 @@ public class ContractResponseDto {
     @JsonFormat(pattern="dd/MM/yyyy")
     private LocalDate validity;
 
-    private List<ItemContract> itens = new ArrayList<ItemContract>();
+    private List<ItemContractResponseDto> itens = new ArrayList<ItemContractResponseDto>();
 
     public Long getId() {
         return id;
@@ -65,11 +65,11 @@ public class ContractResponseDto {
         this.validity = validity;
     }
 
-    public List<ItemContract> getItens() {
+    public List<ItemContractResponseDto> getItens() {
         return itens;
     }
 
-    public void setItens(List<ItemContract> itens) {
+    public void setItens(List<ItemContractResponseDto> itens) {
         this.itens = itens;
     }
 }
