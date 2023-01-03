@@ -32,7 +32,7 @@ public class EquipamentService {
      * @param id id of a equipament
      * @return equipament
      */
-    public Equipament getEquipamentById(Long id){
+    public Equipament findEquipamentById(Long id){
         return this.equipamentRepository.findById(id)
                 .orElseThrow(() -> new EquipamentNotFoundException("this equipament doesn't exist"));
     }
@@ -53,7 +53,7 @@ public class EquipamentService {
      * @return equipament updated
      */
     public Equipament updateEquipament(Equipament equipament, Long id){
-        Equipament equipament2 = this.getEquipamentById(id);
+        Equipament equipament2 = this.findEquipamentById(id);
         equipament2.setEquipamentName(equipament.getEquipamentName());
         equipament2.setSizeInMeterCubic(equipament.getSizeInMeterCubic());
         return equipament2;
@@ -66,7 +66,7 @@ public class EquipamentService {
      */
     @Transactional
     public void deleteEquipament( Long id){
-        this.equipamentRepository.delete(this.getEquipamentById(id));
+        this.equipamentRepository.delete(this.findEquipamentById(id));
     }
 
 

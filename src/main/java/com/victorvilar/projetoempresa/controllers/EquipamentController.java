@@ -36,7 +36,7 @@ public class EquipamentController {
      * @return
      */
     public ResponseEntity<Equipament> getEquipamentById(Long id){
-        return new ResponseEntity<>(this.equipamentService.getEquipamentById(id),HttpStatus.FOUND);
+        return new ResponseEntity<>(this.equipamentService.findEquipamentById(id),HttpStatus.FOUND);
     }
 
     /**

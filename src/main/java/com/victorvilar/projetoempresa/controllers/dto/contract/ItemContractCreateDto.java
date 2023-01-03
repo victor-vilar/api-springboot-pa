@@ -1,27 +1,20 @@
 package com.victorvilar.projetoempresa.controllers.dto.contract;
 
 
-import com.victorvilar.projetoempresa.domain.Contract;
-import com.victorvilar.projetoempresa.domain.Equipament;
-import com.victorvilar.projetoempresa.domain.ResidueType;
-
-import javax.persistence.*;
-
-
-public class ItemContractDto {
+public class ItemContractCreateDto {
     private Long id;
-    private String residue;
-    private String equipament;
+    private Long residue;
+    private Long equipament;
     private Double qtdOfResidue;
     private double itemValue;
     private String contract;
 
 
     //constructors
-    public ItemContractDto() {
+    public ItemContractCreateDto() {
 
     }
-    public ItemContractDto(Long id, String residue, String equipament, Double qtdOfResidue, double itemValue, String contract) {
+    public ItemContractCreateDto(Long id, Long residue, Long equipament, Double qtdOfResidue, double itemValue, String contract) {
         this.id = id;
         this.residue = residue;
         this.equipament = equipament;
@@ -40,19 +33,19 @@ public class ItemContractDto {
         this.id = id;
     }
 
-    public String getResidue() {
+    public Long getResidue() {
         return residue;
     }
 
-    public void setResidue(String residue) {
+    public void setResidue(Long residue) {
         this.residue = residue;
     }
 
-    public String getEquipament() {
+    public Long getEquipament() {
         return equipament;
     }
 
-    public void setEquipament(String equipament) {
+    public void setEquipament(Long equipament) {
         this.equipament = equipament;
     }
 

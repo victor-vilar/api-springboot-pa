@@ -17,14 +17,10 @@ import java.util.List;
 public class ContractService {
 
     private final ContractRepository contractRepository;
-    //private final ResidueService residueService;
-    //private final EquipamentService equipamentService;
 
     @Autowired
     public ContractService (ContractRepository repository,
-                            ClientRepository clienteRepository,
-                            ResidueService residueService,
-                            EquipamentService equipamentService){
+                            ClientRepository clienteRepository){
         this.contractRepository = repository;
     }
 
@@ -74,6 +70,7 @@ public class ContractService {
     @Transactional
     public void addNewItemToContract(Long contractId, ItemContract item) {
         Contract contract = this.getContractById(contractId);
+
         contract.addNewItem(item);
         this.save(contract);
     }

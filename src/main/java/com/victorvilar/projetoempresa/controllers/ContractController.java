@@ -2,12 +2,12 @@ package com.victorvilar.projetoempresa.controllers;
 
 import com.victorvilar.projetoempresa.controllers.dto.contract.ContractCreateDto;
 import com.victorvilar.projetoempresa.controllers.dto.contract.ContractResponseDto;
+import com.victorvilar.projetoempresa.controllers.dto.contract.ItemContractCreateDto;
 import com.victorvilar.projetoempresa.domain.Client;
-import com.victorvilar.projetoempresa.exceptions.ClientNotFoundException;
-import com.victorvilar.projetoempresa.exceptions.ContractNotFoundException;
 import com.victorvilar.projetoempresa.domain.Contract;
 import com.victorvilar.projetoempresa.domain.ItemContract;
 import com.victorvilar.projetoempresa.mappers.ContractMapper;
+import com.victorvilar.projetoempresa.mappers.ItemContractMapper;
 import com.victorvilar.projetoempresa.services.ClientService;
 import com.victorvilar.projetoempresa.services.ContractService;
 import com.victorvilar.projetoempresa.services.EquipamentService;
@@ -32,16 +32,24 @@ public class ContractController {
     private final ContractService service;
     private final ContractMapper mapper;
     private final ClientService clientService;
-
+    private final ItemContractMapper itemContractMapper;
+    private final ResidueService residueService;
+    private final EquipamentService equipamentService;
 
     @Autowired
     public ContractController(ContractService service,
                               ContractMapper mapper,
-                              ClientService clientService
+                              ClientService clientService,
+                              ItemContractMapper itemContractMapper,
+                              ResidueService residueService,
+                              EquipamentService equipamentService
 ){
         this.service = service;
         this.mapper= mapper;
         this.clientService = clientService;
+        this.itemContractMapper = itemContractMapper;
+        this.residueService = residueService;
+        this.equipamentService = equipamentService;
 
     }
 
@@ -51,7 +59,6 @@ public class ContractController {
      */
     @GetMapping()
     public ResponseEntity<List<ContractResponseDto>> getAllContracts(){
-
         return new ResponseEntity<List<ContractResponseDto>>(
                 this.mapper.toContractResponsDtoList(this.service.getAllContracts()),
                 HttpStatus.OK
@@ -65,7 +72,7 @@ public class ContractController {
      */
     @GetMapping("/all/{clientId}")
     public ResponseEntity<List<ContractResponseDto>> getAllContractsByClientId(@PathVariable String clientId){
-
+        //TODO ------------>
         return null;
     }
 
@@ -101,7 +108,10 @@ public class ContractController {
      * @param contractId id of a saved contract
      */
     @PostMapping("/additem/{contractId}")
-    public ResponseEntity<?> addNewItemToContract(@PathVariable Long contractId, @RequestBody ItemContract item){
+    public ResponseEntity<?> addNewItemToContract(@PathVariable Long contractId, @RequestBody ItemContractCreateDto itemDto){
+        ItemContract item = this.itemContractMapper.toItemContract(itemDto);
+        item.setResidue(this.residueService.findById(itemDto.getResidue()));
+        item.setEquipament(this.equipamentService.findEquipamentById(itemDto.getEquipament()));
         this.service.addNewItemToContract(contractId, item);
         return new ResponseEntity<>(HttpStatus.OK);
     }
