@@ -24,7 +24,6 @@ public class ContractService {
         this.contractRepository = repository;
     }
 
-
     /**
      * get all contracts
      * @return
@@ -69,7 +68,6 @@ public class ContractService {
     @Transactional
     public void addNewItemToContract(Long contractId, ItemContract item) {
         Contract contract = this.getContractById(contractId);
-
         contract.addNewItem(item);
         this.save(contract);
     }
@@ -80,7 +78,7 @@ public class ContractService {
      */
     @Transactional
     public void removeContract(Long contractId ){
-        //TODO ------------>
+        this.contractRepository.deleteById(contractId);
     }
 
     /**
