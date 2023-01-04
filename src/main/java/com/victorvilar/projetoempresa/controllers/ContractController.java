@@ -72,8 +72,9 @@ public class ContractController {
      */
     @GetMapping("/all/{clientId}")
     public ResponseEntity<List<ContractResponseDto>> getAllContractsByClientId(@PathVariable String clientId){
-        //TODO ------------>
-        return null;
+        return new ResponseEntity<List<ContractResponseDto>>(
+                this.mapper.toContractResponsDtoList(
+                        this.service.getAllContractsByClientId(clientId)),HttpStatus.OK);
     }
 
     /**

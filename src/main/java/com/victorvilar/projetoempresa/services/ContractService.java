@@ -39,8 +39,7 @@ public class ContractService {
      * @return
      */
     public List<Contract> getAllContractsByClientId(String clientId){
-        //TODO ------------>
-        return null;
+        return this.contractRepository.findByClientCpfCnpj(clientId);
     }
 
     /**
