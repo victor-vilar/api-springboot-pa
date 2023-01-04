@@ -1,13 +1,24 @@
 package com.victorvilar.projetoempresa.controllers.dto.contract;
 
 
+import javax.validation.constraints.NotNull;
+
 public class ItemContractCreateDto {
+
     private Long id;
+
+    @NotNull(message = "The item must have a residue")
     private Long residue;
+
+    @NotNull(message = "the item must have a equipament")
     private Long equipament;
+
+    @NotNull(message = "the item must have a quantity")
     private Double qtdOfResidue;
+
+    @NotNull(message = "the item must have a value")
     private double itemValue;
-    private String contract;
+
 
 
     //constructors
