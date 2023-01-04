@@ -81,9 +81,8 @@ public class ContractController {
      * @return contract
      */
     @GetMapping("/{id}")
-    public ResponseEntity<ContractResponseDto> getContractById(Long id) {
-        //TODO ------------>
-        return null;
+    public ResponseEntity<ContractResponseDto> getContractById(@PathVariable Long id) {
+        return new ResponseEntity<ContractResponseDto>(this.mapper.toContractResponseDto(this.service.getContractById(id)),HttpStatus.FOUND);
     }
 
 
