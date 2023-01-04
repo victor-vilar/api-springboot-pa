@@ -5,6 +5,7 @@ import com.victorvilar.projetoempresa.exceptions.ContractNotFoundException;
 import com.victorvilar.projetoempresa.domain.Client;
 import com.victorvilar.projetoempresa.domain.Contract;
 import com.victorvilar.projetoempresa.domain.ItemContract;
+import com.victorvilar.projetoempresa.exceptions.ItemNotFoundException;
 import com.victorvilar.projetoempresa.repository.ClientRepository;
 import com.victorvilar.projetoempresa.repository.ContractRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,11 +85,18 @@ public class ContractService {
     /**
      * remove a item from a contract
      * @param contractId
-     * @param itemId
+     * @param itemIndex
      */
     @Transactional
-    public void removeItemContract(Long contractId, Long itemId){
-        //TODO ------------>
+    public void removeItemContract(Long contractId, int itemIndex) {
+        Contract contract = this.getContractById(contractId);
+        if (itemIndex <= contract.getItens().size()) {
+            contract.deleteItem(itemIndex);
+            this.save(contract);
+        } else {
+            throw new ItemNotFoundException("This item don't exist");
+
+        }
     }
 
     /**
