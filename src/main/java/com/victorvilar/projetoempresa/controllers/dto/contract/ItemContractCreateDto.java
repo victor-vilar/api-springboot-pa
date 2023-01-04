@@ -31,7 +31,6 @@ public class ItemContractCreateDto {
         this.equipament = equipament;
         this.qtdOfResidue = qtdOfResidue;
         this.itemValue = itemValue;
-        this.contract = contract;
     }
     //----------------------------
 
@@ -76,11 +75,4 @@ public class ItemContractCreateDto {
         this.itemValue = itemValue;
     }
 
-    public String getContract() {
-        return contract;
-    }
-
-    public void setContract(String contract) {
-        this.contract = contract;
-    }
 }

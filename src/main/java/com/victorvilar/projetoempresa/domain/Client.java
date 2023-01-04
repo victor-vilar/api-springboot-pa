@@ -109,7 +109,7 @@ public class Client implements Serializable {
 
 	//getters and setters - Contracts
 	public List<Contract> getContracts() {
-		return contracts;
+		return this.contracts;
 	}
 	//-------------------------------------
 

@@ -18,11 +18,13 @@ import java.util.List;
 public class ContractService {
 
     private final ContractRepository contractRepository;
+    private final ClientService clientService;
 
     @Autowired
     public ContractService (ContractRepository repository,
-                            ClientRepository clienteRepository){
+                            ClientService clienteService){
         this.contractRepository = repository;
+        this.clientService = clienteService;
     }
 
     /**
@@ -93,7 +95,7 @@ public class ContractService {
             contract.deleteItem(itemIndex);
             this.save(contract);
         } else {
-            throw new ItemNotFoundException("This item don't exist");
+            throw new ItemNotFoundException("This item doesn't exist");
         }
     }
 
@@ -103,9 +105,9 @@ public class ContractService {
      * @return
      */
     @Transactional
-    public Contract updateContract(Long contractId, Contract contract){
+    public Contract updateContract(Long contractId, Contract contract, String clienteId){
         Contract contractToUpdate = this.getContractById(contractId);
-        contractToUpdate.setClient(contract.getClient());
+        contractToUpdate.setClient(this.clientService.getClientById(clienteId));
         contractToUpdate.setNumber(contract.getNumber());
         contractToUpdate.setBeginDate(contract.getBeginDate());
         contractToUpdate.setEndDate(contract.getEndDate());

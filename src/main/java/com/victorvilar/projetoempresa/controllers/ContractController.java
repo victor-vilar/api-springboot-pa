@@ -2,6 +2,7 @@ package com.victorvilar.projetoempresa.controllers;
 
 import com.victorvilar.projetoempresa.controllers.dto.contract.ContractCreateDto;
 import com.victorvilar.projetoempresa.controllers.dto.contract.ContractResponseDto;
+import com.victorvilar.projetoempresa.controllers.dto.contract.ContractUpdateDto;
 import com.victorvilar.projetoempresa.controllers.dto.contract.ItemContractCreateDto;
 import com.victorvilar.projetoempresa.domain.Client;
 import com.victorvilar.projetoempresa.domain.Contract;
@@ -97,7 +98,7 @@ public class ContractController {
     public ResponseEntity<?> addNewContract(@PathVariable String clientId, @Valid @RequestBody ContractCreateDto contract) {
         Contract contract1 = this.mapper.toContract(contract);
         Client client = clientService.getClientById(clientId);
-        contract1.setClient(client);
+        client.addNewContract(contract1);
         this.service.save(contract1);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
@@ -108,7 +109,7 @@ public class ContractController {
      * @param contractId id of a saved contract
      */
     @PostMapping("/additem/{contractId}")
-    public ResponseEntity<?> addNewItemToContract(@PathVariable Long contractId, @RequestBody ItemContractCreateDto itemDto){
+    public ResponseEntity<?> addNewItemToContract(@PathVariable Long contractId, @Valid @RequestBody ItemContractCreateDto itemDto){
         ItemContract item = this.itemContractMapper.toItemContract(itemDto);
         item.setResidue(this.residueService.findById(itemDto.getResidue()));
         item.setEquipament(this.equipamentService.findEquipamentById(itemDto.getEquipament()));
@@ -147,11 +148,11 @@ public class ContractController {
      */
     @PutMapping("/{contractId}")
     public ResponseEntity<ContractResponseDto> updateContract(@PathVariable Long contractId,
-                                                              @RequestBody ContractCreateDto contractCreateDto){
-       Contract contract = this.mapper.toContract(contractCreateDto);
+                                                              @RequestBody ContractUpdateDto contractUpdateDto){
+       Contract contract = this.mapper.toContract(contractUpdateDto);
      return new ResponseEntity<ContractResponseDto>(
              this.mapper.toContractResponseDto(
-                     this.service.updateContract(contractId, contract)), HttpStatus.OK);
+                     this.service.updateContract(contractId, contract, contractUpdateDto.getClientId())), HttpStatus.OK);
 
 
     }

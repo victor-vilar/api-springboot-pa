@@ -80,7 +80,6 @@ public class SupervisorController {
         Client client = this.clientService.getClientById(clientId);
         Supervisor supervisor = mapper.toSupervisor(supervisoCreateDto);
         client.addNewSupervisor(supervisor);
-        //supervisor.setClient(client);
         this.supervisorService.addNewSupervisor(supervisor);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

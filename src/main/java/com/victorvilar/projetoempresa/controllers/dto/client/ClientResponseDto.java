@@ -1,7 +1,9 @@
 package com.victorvilar.projetoempresa.controllers.dto.client;
 
+import com.victorvilar.projetoempresa.controllers.dto.contract.ContractResponseDto;
 import com.victorvilar.projetoempresa.controllers.dto.supervisor.SupervisorResponseDto;
 import com.victorvilar.projetoempresa.domain.Client;
+import com.victorvilar.projetoempresa.domain.Contract;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +18,7 @@ public class ClientResponseDto {
     private String nameCompanyName;
     private String cpfCnpj;
     private List<SupervisorResponseDto> supervisors = new ArrayList<SupervisorResponseDto>();
+    private List<ContractResponseDto> contracts = new ArrayList<ContractResponseDto>();
 
 
 
@@ -46,5 +49,13 @@ public class ClientResponseDto {
     }
     //-------------
 
+    //getters and setters - contratos
+    public List<ContractResponseDto> getContracts() {
+        return this.contracts;
+    }
+    public void setContracts(List<ContractResponseDto> contratos) {
+        this.contracts = contratos;
+    }
+    //-----------
 
 }

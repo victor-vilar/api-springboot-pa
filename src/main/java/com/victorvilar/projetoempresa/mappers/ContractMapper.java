@@ -2,6 +2,7 @@ package com.victorvilar.projetoempresa.mappers;
 
 import com.victorvilar.projetoempresa.controllers.dto.contract.ContractCreateDto;
 import com.victorvilar.projetoempresa.controllers.dto.contract.ContractResponseDto;
+import com.victorvilar.projetoempresa.controllers.dto.contract.ContractUpdateDto;
 import com.victorvilar.projetoempresa.domain.Contract;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,10 @@ public class ContractMapper {
 
     public Contract toContract(ContractCreateDto contractCreateDto){
         return this.mapper.map(contractCreateDto, Contract.class);
+    }
+
+    public Contract toContract(ContractUpdateDto contractUpdateDto){
+        return this.mapper.map(contractUpdateDto,Contract.class);
     }
 
     public ContractResponseDto toContractResponseDto(Contract contract){
