@@ -146,9 +146,14 @@ public class ContractController {
      * @return
      */
     @PutMapping("/{contractId}")
-    public ResponseEntity<ContractResponseDto> updateContract(Long contractId){
-        //TODO ------------>
-        return null;
+    public ResponseEntity<ContractResponseDto> updateContract(@PathVariable Long contractId,
+                                                              @RequestBody ContractCreateDto contractCreateDto){
+       Contract contract = this.mapper.toContract(contractCreateDto);
+     return new ResponseEntity<ContractResponseDto>(
+             this.mapper.toContractResponseDto(
+                     this.service.updateContract(contractId, contract)), HttpStatus.OK);
+
+
     }
 
     /**

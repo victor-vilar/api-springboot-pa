@@ -52,7 +52,6 @@ public class ContractService {
         return this.contractRepository.findById(id).orElseThrow(() -> new ContractNotFoundException("This contract doesn't exist") );
     }
 
-
     /**
      * creates a new contract
      * @throws ClientNotFoundException
@@ -95,7 +94,6 @@ public class ContractService {
             this.save(contract);
         } else {
             throw new ItemNotFoundException("This item don't exist");
-
         }
     }
 
@@ -105,9 +103,14 @@ public class ContractService {
      * @return
      */
     @Transactional
-    public Contract updateContract(Long contractId){
-        //TODO ------------>
-        return null;
+    public Contract updateContract(Long contractId, Contract contract){
+        Contract contractToUpdate = this.getContractById(contractId);
+        contractToUpdate.setClient(contract.getClient());
+        contractToUpdate.setNumber(contract.getNumber());
+        contractToUpdate.setBeginDate(contract.getBeginDate());
+        contractToUpdate.setEndDate(contract.getEndDate());
+        this.save(contractToUpdate);
+        return contractToUpdate;
     }
 
     /**

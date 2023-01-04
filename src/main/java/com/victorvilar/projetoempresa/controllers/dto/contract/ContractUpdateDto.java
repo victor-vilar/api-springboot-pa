@@ -1,19 +1,13 @@
 package com.victorvilar.projetoempresa.controllers.dto.contract;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
-import com.victorvilar.projetoempresa.domain.Client;
-import com.victorvilar.projetoempresa.domain.ItemContract;
 
-import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
-public class ContractCreateDto {
+public class ContractUpdateDto {
 
     @NotBlank(message ="The contract must have a number")
     private String number;
@@ -26,7 +20,8 @@ public class ContractCreateDto {
     @NotNull(message = "the contract must have a end date")
     private LocalDate endDate;
 
-
+    @NotNull(message = "the contract must have a client")
+    private String clientId;
 
     public String getNumber() {
         return number;
@@ -52,4 +47,11 @@ public class ContractCreateDto {
         this.endDate = endDate;
     }
 
+    public String getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(String clientId) {
+        this.clientId = clientId;
+    }
 }
