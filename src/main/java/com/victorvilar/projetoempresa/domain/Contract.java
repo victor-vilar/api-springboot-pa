@@ -53,7 +53,7 @@ public class Contract implements Serializable {
 	@JsonFormat(pattern="dd/MM/yyyy")
     private LocalDate endDate;
     
-    @OneToMany(mappedBy = "contract",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "contract",cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ItemContract> itens = new ArrayList<ItemContract>();
     
     @ManyToOne(fetch=FetchType.LAZY)
@@ -121,6 +121,12 @@ public class Contract implements Serializable {
 		return this.client;
 	}
 	//--------------
+
+
+	//delete a item from contract
+	public void deleteItem(int itemIndex){
+		this.itens.remove(itemIndex);
+	}
 
 
 }
