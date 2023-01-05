@@ -1,8 +1,13 @@
 package com.victorvilar.projetoempresa.controllers;
 
+import com.victorvilar.projetoempresa.controllers.dto.adress.AddressCreateDto;
+import com.victorvilar.projetoempresa.controllers.dto.adress.AddressResponseDto;
+import com.victorvilar.projetoempresa.services.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * Address controller
@@ -41,7 +46,7 @@ public class AddressController {
     }
 
     /**
-     * get a address by id
+     * get an address by id
      * @param id
      * @return address
      */
@@ -63,7 +68,7 @@ public class AddressController {
     }
 
     /**
-     * delete a address
+     * delete an address
      * @param id of a address
      * @return
      */
@@ -73,12 +78,13 @@ public class AddressController {
     }
 
     /**
-     * update a address
+     * update an address
      * @param id id of a address
      * @return
      */
     @PutMapping("/{id}")
-    public ResponseEntity<AddressResponseDto> updateAddress(@PathVariable Long id){
+    public ResponseEntity<AddressResponseDto> updateAddress(@PathVariable Long id,
+                                                            @RequestBody AddressCreateDto addressCreateDto){
         return null;
     }
 
