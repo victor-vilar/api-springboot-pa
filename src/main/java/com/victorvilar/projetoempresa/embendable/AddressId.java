@@ -6,6 +6,7 @@ import java.util.Objects;
 import javax.persistence.Embeddable;
 
 
+
 /**
  * Class that represents id of address.
  * @author Victor Vilar
@@ -13,30 +14,16 @@ import javax.persistence.Embeddable;
  *
  */
 @Embeddable
+@Deprecated
 public class AddressId implements Serializable{
 	
-    private String addressName;
-    private String addressNumber;
-    
+
+
     public AddressId () {
     	
     }
 
-	public String getAddressName() {
-		return addressName;
-	}
 
-	public void setAddressName(String addressName) {
-		this.addressName = addressName;
-	}
-
-	public String getAddressNumber() {
-		return addressNumber;
-	}
-
-	public void setAddressNumber(String addressNumber) {
-		this.addressNumber = addressNumber;
-	}
 
 	@Override
 	public int hashCode() {

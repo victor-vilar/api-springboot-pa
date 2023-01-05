@@ -26,44 +26,54 @@ public class Address implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@EmbeddedId
-    private AddressId id = new AddressId();
-	
+    private String addressName;
+    private String addressNumber;
     private String complement;
     private String zipCode;
     private String city;
     private String state;
-	
+
+
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name = "client_id", nullable=false)
 	private Client client;
 
-    //getters and setters - address name
-    public String getAddressName() {
-        return this.id.getAddressName();
+    public Address() {
+
     }
 
+    public Address(String addressName, String addressNumber, String complement, String zipCode, String city, String state, Client client) {
+        this.addressName = addressName;
+        this.addressNumber = addressNumber;
+        this.complement = complement;
+        this.zipCode = zipCode;
+        this.city = city;
+        this.state = state;
+        this.client = client;
+    }
+
+    //getters and setters - address name
+    public String getAddressName() {
+        return this.getAddressName();
+    }
     public void setAddressName(String addressName) {
-        this.id.setAddressName(addressName);
+        this.setAddressName(addressName);
     }
     //------------------------
 
     //getters and setters - address number
     public String getAddressNumber() {
-        return this.id.getAddressNumber();
+        return this.getAddressNumber();
     }
-
     public void setAddressNumber(String addressNumber) {
-        this.id.setAddressNumber(addressNumber);
+        this.setAddressNumber(addressNumber);
     }
-
     //------------------------
 
     //getters and setters - complement
     public String getComplement() {
         return complement;
     }
-
     public void setComplement(String complement) {
         this.complement = complement;
     }
@@ -73,7 +83,6 @@ public class Address implements Serializable{
     public String getZipCode() {
         return zipCode;
     }
-
     public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
     }
@@ -83,7 +92,6 @@ public class Address implements Serializable{
     public String getCity() {
         return city;
     }
-
     public void setCity(String city) {
         this.city = city;
     }
@@ -93,19 +101,15 @@ public class Address implements Serializable{
     public String getState() {
         return state;
     }
-
     public void setState(String state) {
         this.state = state;
     }
     //------------------------
 
-    
 	//getters e setters - client
 	public void setClient(Client client2) {
 		this.client = client2;
-		
 	}
-	
 	public Client getCliente() {
 		return this.client;
 	}
