@@ -8,7 +8,7 @@ import com.victorvilar.projetoempresa.domain.Address;
 
 import java.util.List;
 
-public interface AddressRepository extends JpaRepository<Address,AddressId> {
+public interface AddressRepository extends JpaRepository<Address,Long> {
 
     List<Contract> findByClientCpfCnpj(String clientId);
 }
