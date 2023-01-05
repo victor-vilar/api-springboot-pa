@@ -38,10 +38,10 @@ public class Address implements Serializable{
     @JoinColumn(name = "client_id", nullable=false)
 	private Client client;
 
+    //constructors
     public Address() {
 
     }
-
     public Address(String addressName, String addressNumber, String complement, String zipCode, String city, String state, Client client) {
         this.addressName = addressName;
         this.addressNumber = addressNumber;
@@ -51,13 +51,14 @@ public class Address implements Serializable{
         this.state = state;
         this.client = client;
     }
+    //------------------------
 
     //getters and setters - address name
     public String getAddressName() {
         return this.getAddressName();
     }
     public void setAddressName(String addressName) {
-        this.setAddressName(addressName);
+        this.addressName = addressName;
     }
     //------------------------
 
@@ -66,7 +67,7 @@ public class Address implements Serializable{
         return this.getAddressNumber();
     }
     public void setAddressNumber(String addressNumber) {
-        this.setAddressNumber(addressNumber);
+        this.addressNumber = addressNumber;
     }
     //------------------------
 
@@ -89,11 +90,11 @@ public class Address implements Serializable{
     //------------------------
 
     //getters and setters - city
-    public String getCity() {
-        return city;
-    }
     public void setCity(String city) {
         this.city = city;
+    }
+    public String getCity() {
+        return city;
     }
     //------------------------
 
@@ -110,7 +111,7 @@ public class Address implements Serializable{
 	public void setClient(Client client2) {
 		this.client = client2;
 	}
-	public Client getCliente() {
+	public Client getClient() {
 		return this.client;
 	}
 	//--------------
