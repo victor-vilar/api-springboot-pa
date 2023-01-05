@@ -3,8 +3,10 @@ package com.victorvilar.projetoempresa.controllers;
 import com.victorvilar.projetoempresa.controllers.dto.adress.AddressCreateDto;
 import com.victorvilar.projetoempresa.controllers.dto.adress.AddressResponseDto;
 import com.victorvilar.projetoempresa.domain.Address;
+import com.victorvilar.projetoempresa.domain.Client;
 import com.victorvilar.projetoempresa.mappers.AddressMapper;
 import com.victorvilar.projetoempresa.services.AddressService;
+import com.victorvilar.projetoempresa.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,11 +26,13 @@ public class AddressController {
 
     public AddressService addressService;
     public AddressMapper addressMapper;
+    public ClientService clientService;
 
     @Autowired
-    public AddressController(AddressService service, AddressMapper mapper){
+    public AddressController(AddressService service, AddressMapper mapper,ClientService clientService){
         this.addressService = service;
         this.addressMapper = mapper;
+        this.clientService = clientService;
     }
 
     /**
@@ -48,7 +52,8 @@ public class AddressController {
      */
     @GetMapping("by-client/{clientId}")
     public ResponseEntity<List<AddressResponseDto>> getAllAddressByClient(@PathVariable String clientId){
-        return null;
+        return new ResponseEntity<List<AddressResponseDto>>(this.addressMapper.toAddressResponseDtoList(
+                this.addressService.getAllAddressByClient(clientId)), HttpStatus.OK);
     }
 
     /**
@@ -58,7 +63,11 @@ public class AddressController {
      */
     @GetMapping("/{id}")
     public ResponseEntity<AddressResponseDto> getAddressById(@PathVariable Long id){
-        return null;
+       return new ResponseEntity<AddressResponseDto>(
+               this.addressMapper.toAddressResponseDto(
+                       this.addressService.getAddressById(id)
+               )
+       ,HttpStatus.OK);
     }
 
     /**
@@ -70,7 +79,11 @@ public class AddressController {
     @PostMapping("/{clientId}")
     public ResponseEntity<?> addNewAddress(@RequestBody AddressCreateDto addressCreateDto,
                                           @PathVariable String clientId){
-        return null;
+        Address address = this.addressMapper.toAddress(addressCreateDto);
+        Client client = this.clientService.getClientById(clientId);
+        client.addNewAddress(address);
+        this.addressService.addNewAddress(address);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     /**
@@ -80,7 +93,8 @@ public class AddressController {
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteAddressById(@PathVariable Long id){
-        return null;
+        this.addressService.deleteAddressById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     /**
@@ -91,7 +105,11 @@ public class AddressController {
     @PutMapping("/{id}")
     public ResponseEntity<AddressResponseDto> updateAddress(@PathVariable Long id,
                                                             @RequestBody AddressCreateDto addressCreateDto){
-        return null;
+        Address address = this.addressMapper.toAddress(addressCreateDto);
+        return new ResponseEntity<AddressResponseDto>(
+                this.addressMapper.toAddressResponseDto(
+                    this.addressService.updateAddress(id, address)),HttpStatus.OK);
+
     }
 
 }

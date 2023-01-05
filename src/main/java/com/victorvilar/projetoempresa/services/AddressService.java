@@ -56,7 +56,7 @@ public class AddressService {
      * @param clientId
      * @param address
      */
-    public void addNewAddress(String clientId, Address address){
+    public void addNewAddress(Address address){
         //TODO ----------------->>
     }
 
