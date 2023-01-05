@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ItemContractMapper {
 
-    private ModelMapper mapper;
+    private final ModelMapper mapper;
 
     @Autowired
     public ItemContractMapper(ModelMapper mapper){

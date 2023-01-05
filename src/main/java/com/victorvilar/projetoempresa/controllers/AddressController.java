@@ -2,8 +2,11 @@ package com.victorvilar.projetoempresa.controllers;
 
 import com.victorvilar.projetoempresa.controllers.dto.adress.AddressCreateDto;
 import com.victorvilar.projetoempresa.controllers.dto.adress.AddressResponseDto;
+import com.victorvilar.projetoempresa.domain.Address;
+import com.victorvilar.projetoempresa.mappers.AddressMapper;
 import com.victorvilar.projetoempresa.services.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,11 +22,13 @@ import java.util.List;
 @RequestMapping("/address")
 public class AddressController {
 
-    public AddressService service;
+    public AddressService addressService;
+    public AddressMapper addressMapper;
 
     @Autowired
-    public AddressController(AddressService service){
-        this.service = service;
+    public AddressController(AddressService service, AddressMapper mapper){
+        this.addressService = service;
+        this.addressMapper = mapper;
     }
 
     /**
@@ -32,7 +37,8 @@ public class AddressController {
      */
     @GetMapping()
     public ResponseEntity<List<AddressResponseDto>> getAllAddress(){
-        return null;
+        return new ResponseEntity<List<AddressResponseDto>>(this.addressMapper.toAddressResponseDtoList(
+                this.addressService.getAllAddress()), HttpStatus.OK);
     }
 
     /**

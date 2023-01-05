@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 @Component
 public class ClientMapper {
 
-    private ModelMapper mapper;
+    private final ModelMapper mapper;
 
     @Autowired
     public ClientMapper(ModelMapper map){
