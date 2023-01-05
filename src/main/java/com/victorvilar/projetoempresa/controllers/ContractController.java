@@ -160,13 +160,19 @@ public class ContractController {
     /**
      * update a item of contract
      * @param contractId
-     * @param itemId
+     * @param itemIndex
      * @return
      */
-    @PutMapping("/{contractId}/{itemId}")
-    public ResponseEntity<ContractResponseDto> updateItemContract(Long contractId, Long itemId){
-        //TODO ------------>
-        return null;
+    @PutMapping("/{contractId}/{itemIndex}")
+    public ResponseEntity<ContractResponseDto> updateItemContract(@PathVariable Long contractId,
+                                                                  @PathVariable int itemIndex,
+                                                                  @RequestBody ItemContractCreateDto itemDto){
+        ItemContract item = this.itemContractMapper.toItemContract(itemDto);
+        item.setResidue(this.residueService.findById(itemDto.getResidue()));
+        item.setEquipament(this.equipamentService.findEquipamentById(itemDto.getEquipament()));
+        return new ResponseEntity<ContractResponseDto>(
+        this.mapper.toContractResponseDto(this.service.updateItemContract(contractId,itemIndex,item)),HttpStatus.OK) ;
+
     }
 
 

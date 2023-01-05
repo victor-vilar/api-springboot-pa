@@ -118,13 +118,20 @@ public class ContractService {
     /**
      * update a item of contract
      * @param contractId
-     * @param itemId
+     * @param itemIndex
      * @return
      */
     @Transactional
-    public Contract updateItemContract(Long contractId, Long itemId){
-        //TODO ------------>
-        return null;
+    public Contract updateItemContract(Long contractId, int itemIndex, ItemContract item){
+        Contract contract = this.getContractById(contractId);
+        ItemContract itemToUpdate = contract.getItens().get(itemIndex);
+        itemToUpdate.setEquipament(item.getEquipament());
+        itemToUpdate.setResidue(item.getResidue());
+        itemToUpdate.setQtdOfResidue(item.getQtdOfResidue());
+        itemToUpdate.setValue(item.getValue());
+        this.save(contract);
+
+        return contract;
     }
 
 }
