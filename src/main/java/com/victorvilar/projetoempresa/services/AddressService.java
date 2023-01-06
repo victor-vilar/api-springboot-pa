@@ -1,6 +1,7 @@
 package com.victorvilar.projetoempresa.services;
 
 import com.victorvilar.projetoempresa.domain.Address;
+import com.victorvilar.projetoempresa.exceptions.AddressNotFoundException;
 import com.victorvilar.projetoempresa.repository.AddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,8 +27,7 @@ public class AddressService {
      * @return all address
      */
     public List<Address> getAllAddress(){
-        //TODO ----------------->>
-        return null;
+        return this.addressRepository.findAll();
     }
 
     /**
@@ -36,8 +36,7 @@ public class AddressService {
      * @return
      */
     public List<Address> getAllAddressByClient(String clientId){
-        //TODO ----------------->>
-        return null;
+        return this.addressRepository.findByClientCpfCnpj(clientId);
     }
 
     /**
@@ -46,18 +45,16 @@ public class AddressService {
      * @return
      */
     public Address getAddressById(Long id){
-        //TODO ----------------->>
-        return null;
+        return this.addressRepository.findById(id).orElseThrow(() -> new AddressNotFoundException("This address doesn't exist"));
     }
 
 
     /**
      * create a new address
-     * @param clientId
      * @param address
      */
-    public void addNewAddress(String clientId, Address address){
-        //TODO ----------------->>
+    public void addNewAddress(Address address){
+        this.addressRepository.save(address);
     }
 
 
@@ -66,8 +63,8 @@ public class AddressService {
      * @param id
      */
     public void deleteAddressById(Long id){
-        //TODO ----------------->>
-
+        Address address = this.getAddressById(id);
+        this.addressRepository.deleteById(id);
     }
 
 
@@ -78,7 +75,13 @@ public class AddressService {
      * @return
      */
     public Address updateAddress(Long id, Address address){
-        //TODO ----------------->>
-        return null;
+        Address addressToUpdate = this.getAddressById(id);
+        addressToUpdate.setAddressName(address.getAddressName());
+        addressToUpdate.setAddressNumber(address.getAddressNumber());
+        addressToUpdate.setCity(address.getCity());
+        addressToUpdate.setComplement(address.getComplement());
+        addressToUpdate.setState(address.getState());
+        addressToUpdate.setZipCode(address.getZipCode());
+
     }
 }
