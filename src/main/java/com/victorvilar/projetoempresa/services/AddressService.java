@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 public class AddressService {
 
-    public AddressRepository addressRepository;
+    private final AddressRepository addressRepository;
 
     @Autowired
     //constructor
