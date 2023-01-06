@@ -21,7 +21,6 @@ public class AddressService {
     }
     //------------
 
-
     /**
      * get all address
      * @return all address
@@ -47,7 +46,6 @@ public class AddressService {
     public Address getAddressById(Long id){
         return this.addressRepository.findById(id).orElseThrow(() -> new AddressNotFoundException("This address doesn't exist"));
     }
-
 
     /**
      * create a new address
@@ -82,6 +80,6 @@ public class AddressService {
         addressToUpdate.setComplement(address.getComplement());
         addressToUpdate.setState(address.getState());
         addressToUpdate.setZipCode(address.getZipCode());
-
+        return addressToUpdate;
     }
 }
