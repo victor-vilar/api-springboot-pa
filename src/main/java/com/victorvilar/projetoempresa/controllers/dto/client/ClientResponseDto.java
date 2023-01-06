@@ -1,5 +1,6 @@
 package com.victorvilar.projetoempresa.controllers.dto.client;
 
+import com.victorvilar.projetoempresa.controllers.dto.adress.AddressResponseDto;
 import com.victorvilar.projetoempresa.controllers.dto.contract.ContractResponseDto;
 import com.victorvilar.projetoempresa.controllers.dto.supervisor.SupervisorResponseDto;
 import com.victorvilar.projetoempresa.domain.Client;
@@ -19,6 +20,7 @@ public class ClientResponseDto {
     private String cpfCnpj;
     private List<SupervisorResponseDto> supervisors = new ArrayList<SupervisorResponseDto>();
     private List<ContractResponseDto> contracts = new ArrayList<ContractResponseDto>();
+    private List<AddressResponseDto> addresses = new ArrayList<AddressResponseDto>();
 
 
 
@@ -58,4 +60,12 @@ public class ClientResponseDto {
     }
     //-----------
 
+    //getters and setters - address
+    public List<AddressResponseDto> getAddresses() {
+        return addresses;
+    }
+    public void setAddresses(List<AddressResponseDto> address) {
+        this.addresses = address;
+    }
+    //-----------
 }

@@ -42,7 +42,7 @@ public class Address implements Serializable{
     public Address() {
 
     }
-    public Address(String addressName, String addressNumber, String complement, String zipCode, String city, String state, Client client) {
+    public Address(Long id, String addressName, String addressNumber, String complement, String zipCode, String city, String state, Client client) {
         this.addressName = addressName;
         this.addressNumber = addressNumber;
         this.complement = complement;
@@ -50,12 +50,21 @@ public class Address implements Serializable{
         this.city = city;
         this.state = state;
         this.client = client;
+        this.id = id;
     }
     //------------------------
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     //getters and setters - address name
     public String getAddressName() {
-        return this.getAddressName();
+        return this.addressName;
     }
     public void setAddressName(String addressName) {
         this.addressName = addressName;
@@ -64,7 +73,7 @@ public class Address implements Serializable{
 
     //getters and setters - address number
     public String getAddressNumber() {
-        return this.getAddressNumber();
+        return this.addressNumber;
     }
     public void setAddressNumber(String addressNumber) {
         this.addressNumber = addressNumber;

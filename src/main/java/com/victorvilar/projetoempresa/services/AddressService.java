@@ -52,11 +52,7 @@ public class AddressService {
      * @param address
      */
     public void addNewAddress(Address address){
-<<<<<<< HEAD
-        //TODO ----------------->>
-=======
         this.addressRepository.save(address);
->>>>>>> address
     }
 
 
@@ -84,6 +80,7 @@ public class AddressService {
         addressToUpdate.setComplement(address.getComplement());
         addressToUpdate.setState(address.getState());
         addressToUpdate.setZipCode(address.getZipCode());
+        this.addressRepository.save(addressToUpdate);
         return addressToUpdate;
     }
 }

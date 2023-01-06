@@ -1,8 +1,10 @@
 package com.victorvilar.projetoempresa.configuration;
 
+import com.victorvilar.projetoempresa.controllers.dto.adress.AddressResponseDto;
 import com.victorvilar.projetoempresa.controllers.dto.contract.ContractResponseDto;
 import com.victorvilar.projetoempresa.controllers.dto.contract.ItemContractResponseDto;
 import com.victorvilar.projetoempresa.controllers.dto.supervisor.SupervisorResponseDto;
+import com.victorvilar.projetoempresa.domain.Address;
 import com.victorvilar.projetoempresa.domain.Contract;
 import com.victorvilar.projetoempresa.domain.ItemContract;
 import com.victorvilar.projetoempresa.domain.Supervisor;
@@ -26,6 +28,11 @@ public class ModelMapperConfiguration {
         mapper.typeMap(Contract.class, ContractResponseDto.class)
                 .addMappings(maper ->{
                     maper.map(src -> src.getClient().getCpfCnpj(), ContractResponseDto::setClientId);
+                });
+
+        mapper.typeMap(Address.class, AddressResponseDto.class)
+                .addMappings(maper ->{
+                    maper.map(src -> src.getClient().getCpfCnpj(), AddressResponseDto::setClientId);
                 });
 
         mapper.typeMap(ItemContract.class, ItemContractResponseDto.class)

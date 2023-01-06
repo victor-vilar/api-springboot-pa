@@ -2,6 +2,7 @@ package com.victorvilar.projetoempresa.controllers.dto.adress;
 
 public class AddressResponseDto {
 
+    private Long id;
     private String addressName;
     private String addressNumber;
     private String complement;
@@ -13,7 +14,7 @@ public class AddressResponseDto {
     public AddressResponseDto() {
     }
 
-    public AddressResponseDto(String addressName, String addressNumber, String complement, String zipCode, String city, String state, String clientId) {
+    public AddressResponseDto(Long id,String addressName, String addressNumber, String complement, String zipCode, String city, String state, String clientId) {
         this.addressName = addressName;
         this.addressNumber = addressNumber;
         this.complement = complement;
@@ -21,6 +22,15 @@ public class AddressResponseDto {
         this.city = city;
         this.state = state;
         this.clientId = clientId;
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getAddressName() {

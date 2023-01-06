@@ -17,7 +17,8 @@ import javax.persistence.Embeddable;
 @Deprecated
 public class AddressId implements Serializable{
 	
-
+	private String addressName;
+	private String addressNumber;
 
     public AddressId () {
     	
