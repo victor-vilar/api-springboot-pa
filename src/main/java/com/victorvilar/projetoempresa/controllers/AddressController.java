@@ -24,9 +24,9 @@ import java.util.List;
 @RequestMapping("/address")
 public class AddressController {
 
-    public AddressService addressService;
-    public AddressMapper addressMapper;
-    public ClientService clientService;
+    private final AddressService addressService;
+    private final AddressMapper addressMapper;
+    private final ClientService clientService;
 
     @Autowired
     public AddressController(AddressService service, AddressMapper mapper,ClientService clientService){
@@ -54,6 +54,7 @@ public class AddressController {
     public ResponseEntity<List<AddressResponseDto>> getAllAddressByClient(@PathVariable String clientId){
         return new ResponseEntity<List<AddressResponseDto>>(this.addressMapper.toAddressResponseDtoList(
                 this.addressService.getAllAddressByClient(clientId)), HttpStatus.OK);
+
     }
 
     /**
@@ -63,11 +64,13 @@ public class AddressController {
      */
     @GetMapping("/{id}")
     public ResponseEntity<AddressResponseDto> getAddressById(@PathVariable Long id){
+
        return new ResponseEntity<AddressResponseDto>(
                this.addressMapper.toAddressResponseDto(
                        this.addressService.getAddressById(id)
                )
        ,HttpStatus.OK);
+
     }
 
     /**
@@ -79,10 +82,12 @@ public class AddressController {
     @PostMapping("/{clientId}")
     public ResponseEntity<?> addNewAddress(@RequestBody AddressCreateDto addressCreateDto,
                                           @PathVariable String clientId){
+
         Address address = this.addressMapper.toAddress(addressCreateDto);
         Client client = this.clientService.getClientById(clientId);
         client.addNewAddress(address);
         this.addressService.addNewAddress(address);
+
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
@@ -109,6 +114,7 @@ public class AddressController {
         return new ResponseEntity<AddressResponseDto>(
                 this.addressMapper.toAddressResponseDto(
                     this.addressService.updateAddress(id, address)),HttpStatus.OK);
+
 
     }
 
