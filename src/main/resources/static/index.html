@@ -13,29 +13,51 @@
         <input type="text" name="cpfCnpj" id="cpfCnpj"><br>
         <input type="button" id="enviar" value="Cadastrar">
     </form>
+        <button onclick="exibirClientes()">Mostrar Clientes</button>
 </body>
 <script>
 
-
+    
     let bt = document.getElementById("enviar");
-    bt.addEventListener('click', () =>{
+    bt.addEventListener('click', cadastrar);
+        
+
+    function exibirClientes(){
+        fetch('http://localhost:8080/clients')
+        .then(response => response.json())
+        .then(data => console.log(data));
+    }
+
+    function cadastrar(){
+        
         let cliente = {
             "nameCompanyName" : document.getElementById('nameCompanyName').value,
             "cpfCnpj": document.getElementById('cpfCnpj').value 
         }
 
-        fetch("http://localhost:8080/clients/", {
+        fetch("http://localhost:8080/clients", {
             method:"POST",
-            body:cliente,
-            headers:new Headers({
-                'content-type': 'application/json'
-            }),
-            mode: 'no-cors'
-        });
+            headers:{
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'},
+            body:JSON.stringify(cliente),
+            //mode: 'no-cors'
+        })
+        .then((response) => response.json())
+        .then((json) => console.log(json));
 
-        console.log(cliente)
+        msgTerminado();
 
-    });
+    };
+
+    function msgTerminado(){
+        console.log('Terminei');
+    }
+
+
+    
+    
+    
 
 </script>
 </html>

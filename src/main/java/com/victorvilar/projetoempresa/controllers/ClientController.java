@@ -10,6 +10,7 @@ import com.victorvilar.projetoempresa.domain.Client;
 import com.victorvilar.projetoempresa.mappers.ClientMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +24,7 @@ import javax.validation.Valid;
  */
 @RestController
 @RequestMapping("/clients")
-@CrossOrigin(origins = {"http://http://127.0.0.1:5500", "http://localhost:8080"})
+//@CrossOrigin(origins = {"http://http://127.0.0.1:5500", "http://localhost:8080"})
 
 public class ClientController {
 
@@ -53,7 +54,7 @@ public class ClientController {
 			return new ResponseEntity<>(mapper.toClientResponseDto(this.service.getClientById(id)),HttpStatus.FOUND);
 	}
 
-	@PostMapping()
+	@PostMapping(consumes= MediaType.APPLICATION_JSON_VALUE)
 	public void addNewClient(@Valid @RequestBody ClientCreateDto clientDto){
 			this.service.addNewClient(mapper.toClient(clientDto));
 	}
