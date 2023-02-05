@@ -26,7 +26,7 @@ public class EquipamentController {
      */
     @GetMapping("")
     public ResponseEntity<List<Equipament>> getAllEquipaments(){
-        return new ResponseEntity<List<Equipament>>(this.equipamentService.getAllEquipaments(), HttpStatus.FOUND);
+        return new ResponseEntity<List<Equipament>>(this.equipamentService.getAllEquipaments(), HttpStatus.OK);
 
     }
 
@@ -37,7 +37,7 @@ public class EquipamentController {
      */
     @GetMapping("/{id}")
     public ResponseEntity<Equipament> getEquipamentById(@PathVariable Long id){
-        return new ResponseEntity<>(this.equipamentService.findEquipamentById(id),HttpStatus.FOUND);
+        return new ResponseEntity<>(this.equipamentService.findEquipamentById(id),HttpStatus.OK);
     }
 
     /**
