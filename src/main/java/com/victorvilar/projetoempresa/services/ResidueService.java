@@ -4,9 +4,11 @@ import com.victorvilar.projetoempresa.domain.ResidueType;
 import com.victorvilar.projetoempresa.exceptions.ResidueNotFoundException;
 import com.victorvilar.projetoempresa.repository.ResidueTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 public class ResidueService {
@@ -42,5 +44,7 @@ public class ResidueService {
 
     }
 
-
+    public List<ResidueType> getAll() {
+        return this.residueTypeRepository.findAll();
+    }
 }

@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/residues")
 public class ResidueTypeController {
@@ -29,6 +31,12 @@ public class ResidueTypeController {
     public ResponseEntity<ResidueType> findById(@PathVariable Long id){
         return new ResponseEntity<>(this.residueService.findById(id), HttpStatus.FOUND);
     }
+
+    @GetMapping("/")
+    public ResponseEntity<List<ResidueType>> getAll(){
+        return new ResponseEntity<List<ResidueType>>(this.residueService.getAll(),HttpStatus.OK);
+    }
+
 
     /**
      * delete a residue by id
