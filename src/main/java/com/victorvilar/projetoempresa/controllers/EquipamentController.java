@@ -5,8 +5,7 @@ import com.victorvilar.projetoempresa.services.EquipamentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,6 +24,7 @@ public class EquipamentController {
      * get all equipments
      * @return a list of equiapments
      */
+    @GetMapping("")
     public ResponseEntity<List<Equipament>> getAllEquipaments(){
         return new ResponseEntity<List<Equipament>>(this.equipamentService.getAllEquipaments(), HttpStatus.FOUND);
 
@@ -35,7 +35,8 @@ public class EquipamentController {
      * @param id
      * @return
      */
-    public ResponseEntity<Equipament> getEquipamentById(Long id){
+    @GetMapping("/{id}")
+    public ResponseEntity<Equipament> getEquipamentById(@PathVariable Long id){
         return new ResponseEntity<>(this.equipamentService.findEquipamentById(id),HttpStatus.FOUND);
     }
 
@@ -43,6 +44,7 @@ public class EquipamentController {
      * save a new equipament
      * @param equipament equipament to save
      */
+    @PostMapping("")
     public ResponseEntity<?> saveEquipament(Equipament equipament){
         this.equipamentService.saveEquipament(equipament);
         return new ResponseEntity<>(HttpStatus.OK);
@@ -54,7 +56,8 @@ public class EquipamentController {
      * @param id id of equipament to update
      * @return equipament updated
      */
-    public ResponseEntity<Equipament> updateEquipament(Equipament equipament, Long id){
+    @PutMapping("/{id}")
+    public ResponseEntity<Equipament> updateEquipament(@RequestBody Equipament equipament,@PathVariable Long id){
         return new ResponseEntity<Equipament>(this.equipamentService.updateEquipament(equipament,id),HttpStatus.OK);
     }
 
@@ -62,7 +65,8 @@ public class EquipamentController {
      * delete a equipament
      * @param id id to update
      */
-    public ResponseEntity<?>deleteEquipament( Long id){
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?>deleteEquipament(@PathVariable Long id){
         this.equipamentService.deleteEquipament(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
