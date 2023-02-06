@@ -33,7 +33,6 @@ public class EquipamentController {
         return new ResponseEntity<List<EquipamentResponseDto>>(
                 this.mapper.toEquipamentResponseDtoList(
                 this.equipamentService.getAllEquipaments()), HttpStatus.OK);
-
     }
 
     /**

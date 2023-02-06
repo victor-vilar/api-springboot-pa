@@ -34,7 +34,7 @@ public class ResidueTypeController {
         return new ResponseEntity<>(this.mapper.toResidueTypeResponseDto(this.residueService.findById(id)), HttpStatus.FOUND);
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public ResponseEntity<List<ResidueTypeResponseDto>> getAll(){
         return new ResponseEntity<List<ResidueTypeResponseDto>>(
                 this.mapper.toResidueTypeResponseDtoList(this.residueService.getAll()),HttpStatus.OK);

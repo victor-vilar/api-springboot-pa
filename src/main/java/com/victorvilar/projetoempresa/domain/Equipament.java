@@ -63,8 +63,13 @@ public class Equipament implements Serializable{
 		this.sizeInMeterCubic = sizeInMeterCubic;
 	}
 	//-----------
-	
-	
-	
-	
+
+	//getters e setters - id
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	//-----------
 }

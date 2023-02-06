@@ -24,6 +24,7 @@ public class EquipamentService {
      * @return a list of equiapments
      */
     public List<Equipament> getAllEquipaments(){
+
         return this.equipamentRepository.findAll();
     }
 
@@ -33,7 +34,7 @@ public class EquipamentService {
      * @return equipament
      */
     public Equipament findEquipamentById(Long id){
-        return this.equipamentRepository.findById(id)
+                return this.equipamentRepository.findById(id)
                 .orElseThrow(() -> new EquipamentNotFoundException("this equipament doesn't exist"));
     }
 
