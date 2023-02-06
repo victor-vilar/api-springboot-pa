@@ -4,8 +4,6 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
-import com.victorvilar.projetoempresa.embendable.AddressId;
-
 /**
  * Class that represents the address of a Client
  * @since 2022-02-14
@@ -35,21 +33,21 @@ public class Address implements Serializable{
 
 
     @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name = "client_id", nullable=false)
-	private Client client;
+    @JoinColumn(name = "customer_id", nullable=false)
+	private Customer customer;
 
     //constructors
     public Address() {
 
     }
-    public Address(Long id, String addressName, String addressNumber, String complement, String zipCode, String city, String state, Client client) {
+    public Address(Long id, String addressName, String addressNumber, String complement, String zipCode, String city, String state, Customer customer) {
         this.addressName = addressName;
         this.addressNumber = addressNumber;
         this.complement = complement;
         this.zipCode = zipCode;
         this.city = city;
         this.state = state;
-        this.client = client;
+        this.customer = customer;
         this.id = id;
     }
     //------------------------
@@ -117,11 +115,11 @@ public class Address implements Serializable{
     //------------------------
 
 	//getters e setters - client
-	public void setClient(Client client2) {
-		this.client = client2;
+	public void setClient(Customer customer2) {
+		this.customer = customer2;
 	}
-	public Client getClient() {
-		return this.client;
+	public Customer getClient() {
+		return this.customer;
 	}
 	//--------------
 	

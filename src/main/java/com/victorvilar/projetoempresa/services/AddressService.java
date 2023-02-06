@@ -35,7 +35,7 @@ public class AddressService {
      * @return
      */
     public List<Address> getAllAddressByClient(String clientId){
-        return this.addressRepository.findByClientCpfCnpj(clientId);
+        return this.addressRepository.findByCustomerCpfCnpj(clientId);
     }
 
     /**

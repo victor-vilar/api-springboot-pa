@@ -3,7 +3,7 @@ package com.victorvilar.projetoempresa.controllers;
 import com.victorvilar.projetoempresa.controllers.dto.adress.AddressCreateDto;
 import com.victorvilar.projetoempresa.controllers.dto.adress.AddressResponseDto;
 import com.victorvilar.projetoempresa.domain.Address;
-import com.victorvilar.projetoempresa.domain.Client;
+import com.victorvilar.projetoempresa.domain.Customer;
 import com.victorvilar.projetoempresa.mappers.AddressMapper;
 import com.victorvilar.projetoempresa.services.AddressService;
 import com.victorvilar.projetoempresa.services.ClientService;
@@ -84,8 +84,8 @@ public class AddressController {
                                           @PathVariable String clientId){
 
         Address address = this.addressMapper.toAddress(addressCreateDto);
-        Client client = this.clientService.getClientById(clientId);
-        client.addNewAddress(address);
+        Customer customer = this.clientService.getClientById(clientId);
+        customer.addNewAddress(address);
         this.addressService.addNewAddress(address);
 
         return new ResponseEntity<>(HttpStatus.CREATED);

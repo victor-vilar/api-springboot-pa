@@ -1,6 +1,6 @@
 package com.victorvilar.projetoempresa.DAO;
 
-import com.victorvilar.projetoempresa.domain.Client;
+import com.victorvilar.projetoempresa.domain.Customer;
 
 import javax.persistence.EntityManager;
 
@@ -20,20 +20,20 @@ public class ClientDao {
 
     }
 
-    public void saveClient(Client client){
+    public void saveClient(Customer customer){
         this.em.getTransaction().begin();
-        this.em.persist(client);
+        this.em.persist(customer);
         this.em.getTransaction().commit();
     }
 
-    public List<Client> getAllClients(){
+    public List<Customer> getAllClients(){
         String sql = "SELECT c From Client c";
-        List<Client> clients = this.em.createQuery(sql,Client.class).getResultList();
-        return clients;
+        List<Customer> customers = this.em.createQuery(sql, Customer.class).getResultList();
+        return customers;
     }
 
-	public Client findClient(long l) {
-		return this.em.find(Client.class, l);
+	public Customer findClient(long l) {
+		return this.em.find(Customer.class, l);
 	}
 	
 	/**
@@ -42,12 +42,12 @@ public class ClientDao {
 	 * @param id
 	 * @return
 	 */
-	public Client searchClientbyName(String name) {
+	public Customer searchClientbyName(String name) {
 		String jpql = "SELECT c FROM Client c where c.nameCompanyName = :name";
-		return this.em.createQuery(jpql, Client.class ).setParameter("name", name).getSingleResult();
+		return this.em.createQuery(jpql, Customer.class ).setParameter("name", name).getSingleResult();
 	}
 
-	public void updateClient(Client cliente) {
+	public void updateClient(Customer cliente) {
 		this.em.getTransaction().begin();
 		this.em.merge(cliente);
 		this.em.getTransaction().commit();

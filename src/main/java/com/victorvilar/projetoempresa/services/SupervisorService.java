@@ -53,7 +53,7 @@ public class SupervisorService {
      * @return
      */
     public List<Supervisor> findAllByClientId(String clientId) {
-        return this.supervisorRespository.findByClientCpfCnpj(clientId);
+        return this.supervisorRespository.findByCustomerCpfCnpj(clientId);
     }
 
     /**

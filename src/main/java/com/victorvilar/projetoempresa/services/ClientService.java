@@ -2,15 +2,15 @@ package com.victorvilar.projetoempresa.services;
 
 import java.util.List;
 
-import com.victorvilar.projetoempresa.controllers.dto.client.ClientCreateDto;
-import com.victorvilar.projetoempresa.exceptions.ClientNotFoundException;
+import com.victorvilar.projetoempresa.controllers.dto.customer.CustomerCreateDto;
+import com.victorvilar.projetoempresa.domain.Customer;
+import com.victorvilar.projetoempresa.exceptions.CustomerNotFoundException;
 import com.victorvilar.projetoempresa.exceptions.CpfOrCnpjAlreadyExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.victorvilar.projetoempresa.exceptions.InvalidCpfOrCnpjException;
-import com.victorvilar.projetoempresa.domain.Client;
-import com.victorvilar.projetoempresa.repository.ClientRepository;
+import com.victorvilar.projetoempresa.repository.CustomerRepository;
 import com.victorvilar.projetoempresa.util.CpfCnpjValidator;
 
 import javax.transaction.Transactional;
@@ -19,10 +19,10 @@ import javax.transaction.Transactional;
 public class ClientService {
 
 	
-	private final ClientRepository repository;
+	private final CustomerRepository repository;
 	
 	@Autowired
-	public ClientService(ClientRepository repository) {
+	public ClientService(CustomerRepository repository) {
 		this.repository = repository;
 	}
 	
@@ -30,28 +30,28 @@ public class ClientService {
 	 * get all clients, transform in a clientResponseDto list and return;
 	 * @param
 	 */
-	public List<Client> getAllClients() {
+	public List<Customer> getAllClients() {
 		return this.repository.findAll();
 	}
 	
 	/**
 	 * Sing in a new Client
-	 * @param client, a client
+	 * @param customer, a client
 	 */
 	@Transactional
-	public void addNewClient(Client client) throws InvalidCpfOrCnpjException, CpfOrCnpjAlreadyExistsException {
+	public void addNewClient(Customer customer) throws InvalidCpfOrCnpjException, CpfOrCnpjAlreadyExistsException {
 
 
 		//if client with this cpf or cpjs already exists, throws a new exception
-		boolean isPresent = this.repository.findByCpfCnpj(client.getCpfCnpj()).isPresent();
+		boolean isPresent = this.repository.findByCpfCnpj(customer.getCpfCnpj()).isPresent();
 		if(isPresent){
 			throw new CpfOrCnpjAlreadyExistsException("This Cpf/Cnpj already exists in database");
 		}
 		//if the cpf or cnpj is valid, it saves the client
-		if(CpfCnpjValidator.checkIfIsValid(client.getCpfCnpj())) {
+		if(CpfCnpjValidator.checkIfIsValid(customer.getCpfCnpj())) {
 			//upper case client name
-			client.setNameCompanyName(client.getNameCompanyName().toUpperCase());
-			this.repository.save(client);
+			customer.setNameCompanyName(customer.getNameCompanyName().toUpperCase());
+			this.repository.save(customer);
 		}else {
 			throw new InvalidCpfOrCnpjException("This CPF or CNPJ is Invalid");
 		}
@@ -62,8 +62,8 @@ public class ClientService {
 	 * @param id
 	 * @return
 	 */
-	public Client getClientById(String id) throws ClientNotFoundException{
-		return this.repository.findByCpfCnpj(id).orElseThrow(() ->new ClientNotFoundException("This client doesn't exist"));
+	public Customer getClientById(String id) throws CustomerNotFoundException {
+		return this.repository.findByCpfCnpj(id).orElseThrow(() ->new CustomerNotFoundException("This client doesn't exist"));
 	}
 
 	/**
@@ -82,10 +82,10 @@ public class ClientService {
 	 * @param clientId
 	 * @return
 	 */
-	public Client updateClient(String clientId, ClientCreateDto clientCreateDto) {
-		Client client = getClientById(clientId);
-		client.setCpfCnpj(clientCreateDto.getCpfCnpj());
-		client.setNameCompanyName(clientCreateDto.getNameCompanyName());
-		return repository.save(client);
+	public Customer updateClient(String clientId, CustomerCreateDto customerCreateDto) {
+		Customer customer = getClientById(clientId);
+		customer.setCpfCnpj(customerCreateDto.getCpfCnpj());
+		customer.setNameCompanyName(customerCreateDto.getNameCompanyName());
+		return repository.save(customer);
 	}
 }

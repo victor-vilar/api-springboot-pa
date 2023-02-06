@@ -1,12 +1,10 @@
 package com.victorvilar.projetoempresa.services;
 
-import com.victorvilar.projetoempresa.exceptions.ClientNotFoundException;
+import com.victorvilar.projetoempresa.exceptions.CustomerNotFoundException;
 import com.victorvilar.projetoempresa.exceptions.ContractNotFoundException;
-import com.victorvilar.projetoempresa.domain.Client;
 import com.victorvilar.projetoempresa.domain.Contract;
 import com.victorvilar.projetoempresa.domain.ItemContract;
 import com.victorvilar.projetoempresa.exceptions.ItemNotFoundException;
-import com.victorvilar.projetoempresa.repository.ClientRepository;
 import com.victorvilar.projetoempresa.repository.ContractRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,7 +39,7 @@ public class ContractService {
      * @return
      */
     public List<Contract> getAllContractsByClientId(String clientId){
-        return this.contractRepository.findByClientCpfCnpj(clientId);
+        return this.contractRepository.findByCustomerCpfCnpj(clientId);
     }
 
     /**
@@ -56,7 +54,7 @@ public class ContractService {
 
     /**
      * creates a new contract
-     * @throws ClientNotFoundException
+     * @throws CustomerNotFoundException
      */
     @Transactional
     public void save(Contract contract) {

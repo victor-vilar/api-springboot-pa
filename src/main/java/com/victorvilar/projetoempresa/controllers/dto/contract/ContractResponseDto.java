@@ -1,9 +1,7 @@
 package com.victorvilar.projetoempresa.controllers.dto.contract;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.victorvilar.projetoempresa.domain.ItemContract;
 
-import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,11 +38,11 @@ public class ContractResponseDto {
         this.number = number;
     }
 
-    public String getClientId() {
+    public String getCustomerId() {
         return clientId;
     }
 
-    public void setClientId(String clientId) {
+    public void setCustomerId(String clientId) {
         this.clientId = clientId;
     }
 

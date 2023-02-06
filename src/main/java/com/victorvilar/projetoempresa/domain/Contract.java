@@ -57,8 +57,8 @@ public class Contract implements Serializable {
     private List<ItemContract> itens = new ArrayList<ItemContract>();
     
     @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name = "client_id", nullable=false)
-	private Client client;
+    @JoinColumn(name = "customer_id", nullable=false)
+	private Customer customer;
       
 	
 	/**
@@ -114,11 +114,11 @@ public class Contract implements Serializable {
 	}
 	//--------------
 	//getters e setters - client
-	public void setClient(Client client2) {
-		this.client = client2;
+	public void setClient(Customer customer2) {
+		this.customer = customer2;
 	}
-	public Client getClient() {
-		return this.client;
+	public Customer getClient() {
+		return this.customer;
 	}
 	//--------------
 

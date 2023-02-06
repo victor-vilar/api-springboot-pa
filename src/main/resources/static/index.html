@@ -6,7 +6,7 @@
 </head>
 <body>
     <h1>Cadastro de Clientes</h1>
-    <form method="post" action="clients">
+    <form method="post" action="customers">
         <label for="nameCompanyName">Nome:</label>
         <input type="text" name="nameCompanyName" id="nameCompanyName"><br>
         <label for="cpfCnpj">CPF/CNPJ:</label>
@@ -23,7 +23,7 @@
         
 
     function exibirClientes(){
-        fetch('http://localhost:8080/clients')
+        fetch('http://localhost:8080/customers')
         .then(response => response.json())
         .then(data => console.log(data));
     }
@@ -35,7 +35,7 @@
             "cpfCnpj": document.getElementById('cpfCnpj').value 
         }
 
-        fetch("http://localhost:8080/clients", {
+        fetch("http://localhost:8080/customers", {
             method:"POST",
             headers:{
                 'Accept': 'application/json',

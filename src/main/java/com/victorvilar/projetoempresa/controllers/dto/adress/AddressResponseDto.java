@@ -81,11 +81,11 @@ public class AddressResponseDto {
         this.state = state;
     }
 
-    public String getClientId() {
+    public String getCustomerId() {
         return clientId;
     }
 
-    public void setClientId(String clientId) {
+    public void setCustomerId(String clientId) {
         this.clientId = clientId;
     }
 }

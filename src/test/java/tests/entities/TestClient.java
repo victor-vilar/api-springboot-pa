@@ -1,7 +1,7 @@
 package tests.entities;
 
 import com.victorvilar.projetoempresa.DAO.ClientDao;
-import com.victorvilar.projetoempresa.domain.Client;
+import com.victorvilar.projetoempresa.domain.Customer;
 import com.victorvilar.projetoempresa.util.EntityManagerBuilder;
 
 public class TestClient {
@@ -9,7 +9,7 @@ public class TestClient {
 		
 		
 		ClientDao dao = new ClientDao(EntityManagerBuilder.getEntityManager());
-		Client cliente = new Client("Teste de Safadeza");
+		Customer cliente = new Customer("Teste de Safadeza");
 		cliente.setCpfCnpj("12525299701");
 		dao.saveClient(cliente);
 		

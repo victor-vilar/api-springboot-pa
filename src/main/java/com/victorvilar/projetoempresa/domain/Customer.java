@@ -20,7 +20,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="clients")
-public class Client implements Serializable {
+public class Customer implements Serializable {
 	
 	/**
 	 * 
@@ -35,13 +35,13 @@ public class Client implements Serializable {
 	private String nameCompanyName;
 
 	
-	@OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
 	private List<Address> addresses = new ArrayList<Address>();
 
-	@OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
 	private List<Supervisor> supervisors = new ArrayList<Supervisor>();
 	
-	@OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
 	private List<Contract> contracts = new ArrayList<Contract>(); 
 	
 
@@ -71,10 +71,10 @@ public class Client implements Serializable {
 		this.getContracts().add(contract);
 	}
 	//Constructors
-	public Client() {
+	public Customer() {
 		
 	}
-	public Client(String nameCompanyName) {
+	public Customer(String nameCompanyName) {
 		this.nameCompanyName = nameCompanyName;
 	}
 	//-------------------------------------

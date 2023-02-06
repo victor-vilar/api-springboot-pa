@@ -1,7 +1,7 @@
 package tests.entities;
 
 import com.victorvilar.projetoempresa.DAO.ClientDao;
-import com.victorvilar.projetoempresa.domain.Client;
+import com.victorvilar.projetoempresa.domain.Customer;
 import com.victorvilar.projetoempresa.domain.Supervisor;
 import com.victorvilar.projetoempresa.util.EntityManagerBuilder;
 
@@ -11,7 +11,7 @@ public class TestInsertSupervisor {
 		
 		Supervisor supervisor = new Supervisor();
 		ClientDao clientDao = new ClientDao(EntityManagerBuilder.getEntityManager());
-		Client client = clientDao.findClient(1l);
+		Customer customer = clientDao.findClient(1l);
 		
 		
 		//setting supervisor
@@ -20,9 +20,9 @@ public class TestInsertSupervisor {
 		supervisor.setRole("Tenente");
 		supervisor.setPhoneNumber("2165954121");
 		
-		client.addNewSupervisor(supervisor);
+		customer.addNewSupervisor(supervisor);
 		
-		clientDao.updateClient(client);
+		clientDao.updateClient(customer);
 		
 		
 		

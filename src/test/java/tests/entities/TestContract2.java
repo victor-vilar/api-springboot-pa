@@ -2,7 +2,7 @@ package tests.entities;
 
 import com.victorvilar.projetoempresa.DAO.ClientDao;
 import com.victorvilar.projetoempresa.DAO.ContractDao;
-import com.victorvilar.projetoempresa.domain.Client;
+import com.victorvilar.projetoempresa.domain.Customer;
 import com.victorvilar.projetoempresa.domain.Contract;
 import com.victorvilar.projetoempresa.util.EntityManagerBuilder;
 
@@ -16,7 +16,7 @@ public class TestContract2 {
 		public static void main(String[] args) {
 			
 			//declaring variables
-			Client client;
+			Customer customer;
 			Contract contract;
 			
 			//declaring daos;

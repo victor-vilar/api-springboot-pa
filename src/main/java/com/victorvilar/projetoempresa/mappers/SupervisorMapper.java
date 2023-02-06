@@ -1,10 +1,7 @@
 package com.victorvilar.projetoempresa.mappers;
 
-import com.victorvilar.projetoempresa.controllers.dto.client.ClientCreateDto;
-import com.victorvilar.projetoempresa.controllers.dto.client.ClientResponseDto;
 import com.victorvilar.projetoempresa.controllers.dto.supervisor.SupervisorCreateDto;
 import com.victorvilar.projetoempresa.controllers.dto.supervisor.SupervisorResponseDto;
-import com.victorvilar.projetoempresa.domain.Client;
 import com.victorvilar.projetoempresa.domain.Supervisor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

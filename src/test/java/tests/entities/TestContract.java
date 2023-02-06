@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import com.victorvilar.projetoempresa.DAO.ClientDao;
 import com.victorvilar.projetoempresa.DAO.EquipamentDao;
 import com.victorvilar.projetoempresa.DAO.ResidueTypeDao;
-import com.victorvilar.projetoempresa.domain.Client;
+import com.victorvilar.projetoempresa.domain.Customer;
 import com.victorvilar.projetoempresa.domain.Contract;
 import com.victorvilar.projetoempresa.domain.Equipament;
 import com.victorvilar.projetoempresa.domain.ItemContract;
@@ -17,7 +17,7 @@ public class TestContract {
 		public static void main(String[] args) {
 			
 			//declaring variables
-			Client client;
+			Customer customer;
 			Equipament equipament;
 			ResidueType residue;
 			
@@ -33,7 +33,7 @@ public class TestContract {
 			ResidueTypeDao residueDao = new ResidueTypeDao(EntityManagerBuilder.getEntityManager());
 			
 			//set variables
-			client = clientDao.findClient(1l);
+			customer = clientDao.findClient(1l);
 			
 			//item1
 			equipament = equipamentDao.getAllEquipaments().get(0);
@@ -47,11 +47,11 @@ public class TestContract {
 			
 			
 			//add new contract to client
-			client.addNewContract(contract);
+			customer.addNewContract(contract);
 			
 			
 			//updating client
-			clientDao.updateClient(client);
+			clientDao.updateClient(customer);
 			
 			
 			

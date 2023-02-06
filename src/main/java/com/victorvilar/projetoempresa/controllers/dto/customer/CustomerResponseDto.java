@@ -1,19 +1,16 @@
-package com.victorvilar.projetoempresa.controllers.dto.client;
+package com.victorvilar.projetoempresa.controllers.dto.customer;
 
 import com.victorvilar.projetoempresa.controllers.dto.adress.AddressResponseDto;
 import com.victorvilar.projetoempresa.controllers.dto.contract.ContractResponseDto;
 import com.victorvilar.projetoempresa.controllers.dto.supervisor.SupervisorResponseDto;
-import com.victorvilar.projetoempresa.domain.Client;
-import com.victorvilar.projetoempresa.domain.Contract;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Class created to not expose the models of the API
  */
-public class ClientResponseDto {
+public class CustomerResponseDto {
 
 
     private String nameCompanyName;

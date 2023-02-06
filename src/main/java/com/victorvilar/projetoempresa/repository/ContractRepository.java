@@ -9,5 +9,5 @@ import java.util.List;
 
 public interface ContractRepository extends JpaRepository<Contract,Long> {
 
-    List<Contract> findByClientCpfCnpj(String clientId);
+    List<Contract> findByCustomerCpfCnpj(String clientId);
 }

@@ -41,8 +41,8 @@ public class Supervisor implements Serializable {
 	private String email;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name = "client_id", nullable=false)
-	private Client client;
+	@JoinColumn(name = "customer_id", nullable=false)
+	private Customer customer;
 	
 	//constructors
 	public Supervisor() {
@@ -94,13 +94,13 @@ public class Supervisor implements Serializable {
 	//--------------
 
 	//getters e setters - client
-	public void setClient(Client client2) {
-		this.client = client2;
+	public void setClient(Customer customer2) {
+		this.customer = customer2;
 		
 	}
 	
-	public Client getCliente() {
-		return this.client;
+	public Customer getCliente() {
+		return this.customer;
 	}
 	//--------------
 	

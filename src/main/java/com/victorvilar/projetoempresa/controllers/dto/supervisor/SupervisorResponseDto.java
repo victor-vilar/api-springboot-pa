@@ -1,7 +1,5 @@
 package com.victorvilar.projetoempresa.controllers.dto.supervisor;
 
-import com.victorvilar.projetoempresa.domain.Supervisor;
-
 public class SupervisorResponseDto {
 
     private Long id;
@@ -64,10 +62,10 @@ public class SupervisorResponseDto {
     //--------------
 
     //getters e setters - clientId
-    public String getClientId() {
+    public String getCustomerId() {
         return clientId;
     }
-    public void setClientId(String clientId) {
+    public void setCustomerId(String clientId) {
         this.clientId = clientId;
     }
     //--------------

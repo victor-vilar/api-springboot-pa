@@ -4,7 +4,7 @@ import com.victorvilar.projetoempresa.controllers.dto.contract.ContractCreateDto
 import com.victorvilar.projetoempresa.controllers.dto.contract.ContractResponseDto;
 import com.victorvilar.projetoempresa.controllers.dto.contract.ContractUpdateDto;
 import com.victorvilar.projetoempresa.controllers.dto.contract.ItemContractCreateDto;
-import com.victorvilar.projetoempresa.domain.Client;
+import com.victorvilar.projetoempresa.domain.Customer;
 import com.victorvilar.projetoempresa.domain.Contract;
 import com.victorvilar.projetoempresa.domain.ItemContract;
 import com.victorvilar.projetoempresa.mappers.ContractMapper;
@@ -97,8 +97,8 @@ public class ContractController {
     @PostMapping("/{clientId}")
     public ResponseEntity<?> addNewContract(@PathVariable String clientId, @Valid @RequestBody ContractCreateDto contract) {
         Contract contract1 = this.mapper.toContract(contract);
-        Client client = clientService.getClientById(clientId);
-        client.addNewContract(contract1);
+        Customer customer = clientService.getClientById(clientId);
+        customer.addNewContract(contract1);
         this.service.save(contract1);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

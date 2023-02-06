@@ -1,17 +1,11 @@
 package com.victorvilar.projetoempresa.controllers.dto.contract;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
-import com.victorvilar.projetoempresa.domain.Client;
-import com.victorvilar.projetoempresa.domain.ItemContract;
 
-import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ContractCreateDto {
 

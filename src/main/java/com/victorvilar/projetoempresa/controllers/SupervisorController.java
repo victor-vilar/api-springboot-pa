@@ -2,7 +2,7 @@ package com.victorvilar.projetoempresa.controllers;
 
 import com.victorvilar.projetoempresa.controllers.dto.supervisor.SupervisorCreateDto;
 import com.victorvilar.projetoempresa.controllers.dto.supervisor.SupervisorResponseDto;
-import com.victorvilar.projetoempresa.domain.Client;
+import com.victorvilar.projetoempresa.domain.Customer;
 import com.victorvilar.projetoempresa.domain.Supervisor;
 import com.victorvilar.projetoempresa.mappers.SupervisorMapper;
 import com.victorvilar.projetoempresa.services.ClientService;
@@ -12,7 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -52,7 +51,7 @@ public class SupervisorController {
      */
     @GetMapping("by-client/{clientId}")
     public ResponseEntity<?> getAllSupervisorsByClient(@PathVariable String clientId){
-        Client client = this.clientService.getClientById(clientId);
+        Customer customer = this.clientService.getClientById(clientId);
         return new ResponseEntity<>( this.mapper.toSupervisorResponseDtoList(
                 this.supervisorService.findAllByClientId(clientId)
         ),HttpStatus.FOUND);
@@ -77,9 +76,9 @@ public class SupervisorController {
      */
     @PostMapping("/{clientId}")
     public ResponseEntity<?> addNewSupervisor(@PathVariable String clientId, @Valid  @RequestBody SupervisorCreateDto supervisoCreateDto){
-        Client client = this.clientService.getClientById(clientId);
+        Customer customer = this.clientService.getClientById(clientId);
         Supervisor supervisor = mapper.toSupervisor(supervisoCreateDto);
-        client.addNewSupervisor(supervisor);
+        customer.addNewSupervisor(supervisor);
         this.supervisorService.addNewSupervisor(supervisor);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

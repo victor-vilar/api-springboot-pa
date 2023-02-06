@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface SupervisorRepository extends JpaRepository<Supervisor,Long> {
 
-    List<Supervisor> findByClientCpfCnpj(String clientId);
+    List<Supervisor> findByCustomerCpfCnpj(String clientId);
 
 }
