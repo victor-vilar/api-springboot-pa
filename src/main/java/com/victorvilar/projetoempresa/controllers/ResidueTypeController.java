@@ -1,7 +1,9 @@
 package com.victorvilar.projetoempresa.controllers;
 
+import com.victorvilar.projetoempresa.controllers.dto.residuetype.ResidueTypeResponseDto;
 import com.victorvilar.projetoempresa.domain.ResidueType;
 import com.victorvilar.projetoempresa.exceptions.ResidueNotFoundException;
+import com.victorvilar.projetoempresa.mappers.ResidueTypeMapper;
 import com.victorvilar.projetoempresa.repository.ResidueTypeRepository;
 import com.victorvilar.projetoempresa.services.ResidueService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +18,12 @@ import java.util.List;
 public class ResidueTypeController {
 
     private final ResidueService residueService;
+    private final ResidueTypeMapper mapper;
 
     @Autowired
-    public ResidueTypeController(ResidueService residueService){
+    public ResidueTypeController(ResidueService residueService, ResidueTypeMapper mapper){
         this.residueService = residueService;
+        this.mapper = mapper;
     }
 
     /**
@@ -28,13 +32,14 @@ public class ResidueTypeController {
      * @return residue
      */
     @GetMapping("/{id}")
-    public ResponseEntity<ResidueType> findById(@PathVariable Long id){
-        return new ResponseEntity<>(this.residueService.findById(id), HttpStatus.FOUND);
+    public ResponseEntity<ResidueTypeResponseDto> findById(@PathVariable Long id){
+        return new ResponseEntity<>(this.mapper.toResidueTypeResponseDto(this.residueService.findById(id)), HttpStatus.FOUND);
     }
 
     @GetMapping("/")
-    public ResponseEntity<List<ResidueType>> getAll(){
-        return new ResponseEntity<List<ResidueType>>(this.residueService.getAll(),HttpStatus.OK);
+    public ResponseEntity<List<ResidueTypeResponseDto>> getAll(){
+        return new ResponseEntity<List<ResidueTypeResponseDto>>(
+                this.mapper.toResidueTypeResponseDtoList(this.residueService.getAll()),HttpStatus.OK);
     }
 
 
