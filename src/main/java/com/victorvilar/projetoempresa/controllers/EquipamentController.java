@@ -1,6 +1,8 @@
 package com.victorvilar.projetoempresa.controllers;
 
+import com.victorvilar.projetoempresa.controllers.dto.equipament.EquipamentResponseDto;
 import com.victorvilar.projetoempresa.domain.Equipament;
+import com.victorvilar.projetoempresa.mappers.EquipamentMapper;
 import com.victorvilar.projetoempresa.services.EquipamentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,10 +16,12 @@ import java.util.List;
 public class EquipamentController {
 
     private final EquipamentService equipamentService;
+    private final EquipamentMapper mapper;
 
     @Autowired
-    public EquipamentController(EquipamentService equipamentService){
+    public EquipamentController(EquipamentService equipamentService, EquipamentMapper mapper){
         this.equipamentService = equipamentService;
+        this.mapper = mapper;
     }
 
     /**
@@ -25,8 +29,10 @@ public class EquipamentController {
      * @return a list of equiapments
      */
     @GetMapping("")
-    public ResponseEntity<List<Equipament>> getAllEquipaments(){
-        return new ResponseEntity<List<Equipament>>(this.equipamentService.getAllEquipaments(), HttpStatus.OK);
+    public ResponseEntity<List<EquipamentResponseDto>> getAllEquipaments(){
+        return new ResponseEntity<List<EquipamentResponseDto>>(
+                this.mapper.toEquipamentResponseDtoList(
+                this.equipamentService.getAllEquipaments()), HttpStatus.OK);
 
     }
 
@@ -36,8 +42,10 @@ public class EquipamentController {
      * @return
      */
     @GetMapping("/{id}")
-    public ResponseEntity<Equipament> getEquipamentById(@PathVariable Long id){
-        return new ResponseEntity<>(this.equipamentService.findEquipamentById(id),HttpStatus.OK);
+    public ResponseEntity<EquipamentResponseDto> getEquipamentById(@PathVariable Long id){
+        return new ResponseEntity<EquipamentResponseDto>(
+                this.mapper.toEquipamentResponseDto(
+                this.equipamentService.findEquipamentById(id)),HttpStatus.OK);
     }
 
     /**

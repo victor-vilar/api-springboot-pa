@@ -2,9 +2,7 @@ package com.victorvilar.projetoempresa.controllers;
 
 import com.victorvilar.projetoempresa.controllers.dto.residuetype.ResidueTypeResponseDto;
 import com.victorvilar.projetoempresa.domain.ResidueType;
-import com.victorvilar.projetoempresa.exceptions.ResidueNotFoundException;
 import com.victorvilar.projetoempresa.mappers.ResidueTypeMapper;
-import com.victorvilar.projetoempresa.repository.ResidueTypeRepository;
 import com.victorvilar.projetoempresa.services.ResidueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
