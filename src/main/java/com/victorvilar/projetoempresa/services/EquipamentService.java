@@ -57,6 +57,7 @@ public class EquipamentService {
         Equipament equipament2 = this.findEquipamentById(id);
         equipament2.setEquipamentName(equipament.getEquipamentName());
         equipament2.setSizeInMeterCubic(equipament.getSizeInMeterCubic());
+        this.saveEquipament(equipament2);
         return equipament2;
 
     }

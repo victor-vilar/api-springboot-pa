@@ -52,7 +52,8 @@ public class EquipamentController {
      * @param equipament equipament to save
      */
     @PostMapping("")
-    public ResponseEntity<?> saveEquipament(Equipament equipament){
+    public ResponseEntity<?> saveEquipament(@RequestBody Equipament equipament){
+        System.out.println(equipament);
         this.equipamentService.saveEquipament(equipament);
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -63,7 +64,7 @@ public class EquipamentController {
      * @param id id of equipament to update
      * @return equipament updated
      */
-    @PutMapping("/{id}")
+    @PostMapping("/{id}")
     public ResponseEntity<Equipament> updateEquipament(@RequestBody Equipament equipament,@PathVariable Long id){
         return new ResponseEntity<Equipament>(this.equipamentService.updateEquipament(equipament,id),HttpStatus.OK);
     }
