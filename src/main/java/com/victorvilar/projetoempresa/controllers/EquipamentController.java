@@ -64,7 +64,7 @@ public class EquipamentController {
      * @param id id of equipament to update
      * @return equipament updated
      */
-    @PostMapping("/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Equipament> updateEquipament(@RequestBody Equipament equipament,@PathVariable Long id){
         return new ResponseEntity<Equipament>(this.equipamentService.updateEquipament(equipament,id),HttpStatus.OK);
     }

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/residues")
+@RequestMapping("/residue")
 public class ResidueTypeController {
 
     private final ResidueService residueService;
@@ -31,7 +31,7 @@ public class ResidueTypeController {
      */
     @GetMapping("/{id}")
     public ResponseEntity<ResidueTypeResponseDto> findById(@PathVariable Long id){
-        return new ResponseEntity<>(this.mapper.toResidueTypeResponseDto(this.residueService.findById(id)), HttpStatus.FOUND);
+        return new ResponseEntity<>(this.mapper.toResidueTypeResponseDto(this.residueService.findById(id)), HttpStatus.OK);
     }
 
     @GetMapping("")
@@ -55,7 +55,7 @@ public class ResidueTypeController {
      * add a new residue type
      * @param residueType
      */
-    @PostMapping("/")
+    @PostMapping("")
     public ResponseEntity<?> addNewResidueType(@RequestBody ResidueType residueType){
         this.residueService.addNewResidueType(residueType);
         return new ResponseEntity<>(HttpStatus.OK);
