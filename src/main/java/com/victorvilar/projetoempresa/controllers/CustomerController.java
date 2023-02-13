@@ -21,7 +21,7 @@ import javax.validation.Valid;
  * @author Victor Vilar
  */
 @RestController
-@RequestMapping("/clients")
+@RequestMapping("/customer")
 //@CrossOrigin(origins = {"http://http://127.0.0.1:5500", "http://localhost:8080"})
 
 public class CustomerController {
@@ -49,7 +49,7 @@ public class CustomerController {
 
 	@GetMapping("/{id}")
 	public ResponseEntity<CustomerResponseDto> getClientById(@PathVariable String id) {
-			return new ResponseEntity<>(mapper.toCustomerResponseDto(this.service.getClientById(id)),HttpStatus.FOUND);
+			return new ResponseEntity<>(mapper.toCustomerResponseDto(this.service.getClientById(id)),HttpStatus.OK);
 	}
 
 	@PostMapping(consumes= MediaType.APPLICATION_JSON_VALUE)
