@@ -6,6 +6,7 @@ import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.List;
 
 public class ContractCreateDto {
 
@@ -20,7 +21,15 @@ public class ContractCreateDto {
     @NotNull(message = "the contract must have a end date")
     private LocalDate endDate;
 
+    private List<ItemContractCreateDto> listOfItens;
 
+    public List<ItemContractCreateDto> getListOfItens() {
+        return listOfItens;
+    }
+
+    public void setListOfItens(List<ItemContractCreateDto> listOfItens) {
+        this.listOfItens = listOfItens;
+    }
 
     public String getNumber() {
         return number;

@@ -96,7 +96,7 @@ public class ContractController {
      */
     @PostMapping("/{clientId}")
     public ResponseEntity<ContractResponseDto> addNewContract(@PathVariable String clientId, @Valid @RequestBody ContractCreateDto contract) {
-        System.out.println("Ativei");
+
         Contract contract1 = this.mapper.toContract(contract);
         Customer customer = clientService.getClientById(clientId);
         customer.addNewContract(contract1);
