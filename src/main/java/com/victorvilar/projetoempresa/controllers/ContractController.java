@@ -4,9 +4,7 @@ import com.victorvilar.projetoempresa.controllers.dto.contract.ContractCreateDto
 import com.victorvilar.projetoempresa.controllers.dto.contract.ContractResponseDto;
 import com.victorvilar.projetoempresa.controllers.dto.contract.ContractUpdateDto;
 import com.victorvilar.projetoempresa.controllers.dto.contract.ItemContractCreateDto;
-import com.victorvilar.projetoempresa.domain.Customer;
-import com.victorvilar.projetoempresa.domain.Contract;
-import com.victorvilar.projetoempresa.domain.ItemContract;
+import com.victorvilar.projetoempresa.domain.*;
 import com.victorvilar.projetoempresa.mappers.ContractMapper;
 import com.victorvilar.projetoempresa.mappers.ItemContractMapper;
 import com.victorvilar.projetoempresa.services.ClientService;
@@ -21,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  *  contract controller
@@ -97,9 +96,26 @@ public class ContractController {
     @PostMapping("/{clientId}")
     public ResponseEntity<ContractResponseDto> addNewContract(@PathVariable String clientId, @Valid @RequestBody ContractCreateDto contract) {
 
+        //contractCreateDto to Contract
         Contract contract1 = this.mapper.toContract(contract);
+
+        //getting every item(if exist) from contractCreateDto, transforming in a itemContract and adding in Contract
+        contract.getItens().stream().forEach(
+                e ->{
+                    ItemContract item = this.itemContractMapper.toItemContract(e);
+                    item.setResidue(this.residueService.findById(e.getResidue()));
+                    item.setEquipament(this.equipamentService.findEquipamentById(e.getEquipament()));
+                    contract1.addNewItem(item);
+                }
+        );
+
+        //get client from database
         Customer customer = clientService.getClientById(clientId);
+
+        //add contract to customer
         customer.addNewContract(contract1);
+
+        //return saved contract
         return new ResponseEntity<ContractResponseDto>
                 (this.mapper.toContractResponseDto(this.service.save(contract1)),HttpStatus.OK);
     }
@@ -175,6 +191,7 @@ public class ContractController {
         this.mapper.toContractResponseDto(this.service.updateItemContract(contractId,itemIndex,item)),HttpStatus.OK) ;
 
     }
+
 
 
 

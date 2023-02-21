@@ -21,14 +21,14 @@ public class ContractCreateDto {
     @NotNull(message = "the contract must have a end date")
     private LocalDate endDate;
 
-    private List<ItemContractCreateDto> listOfItens;
+    private List<ItemContractCreateDto> itens;
 
-    public List<ItemContractCreateDto> getListOfItens() {
-        return listOfItens;
+    public List<ItemContractCreateDto> getItens() {
+        return itens;
     }
 
-    public void setListOfItens(List<ItemContractCreateDto> listOfItens) {
-        this.listOfItens = listOfItens;
+    public void setItens(List<ItemContractCreateDto> itens) {
+        this.itens = itens;
     }
 
     public String getNumber() {
