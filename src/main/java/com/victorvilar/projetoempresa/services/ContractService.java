@@ -57,8 +57,8 @@ public class ContractService {
      * @throws CustomerNotFoundException
      */
     @Transactional
-    public void save(Contract contract) {
-        this.contractRepository.save(contract);
+    public Contract save(Contract contract) {
+        return this.contractRepository.save(contract);
     }
 
     /**

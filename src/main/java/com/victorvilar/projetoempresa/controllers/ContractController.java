@@ -95,12 +95,13 @@ public class ContractController {
      * @param contract a model to contract
      */
     @PostMapping("/{clientId}")
-    public ResponseEntity<?> addNewContract(@PathVariable String clientId, @Valid @RequestBody ContractCreateDto contract) {
+    public ResponseEntity<ContractResponseDto> addNewContract(@PathVariable String clientId, @Valid @RequestBody ContractCreateDto contract) {
+        System.out.println("Ativei");
         Contract contract1 = this.mapper.toContract(contract);
         Customer customer = clientService.getClientById(clientId);
         customer.addNewContract(contract1);
-        this.service.save(contract1);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<ContractResponseDto>
+                (this.mapper.toContractResponseDto(this.service.save(contract1)),HttpStatus.OK);
     }
 
 
