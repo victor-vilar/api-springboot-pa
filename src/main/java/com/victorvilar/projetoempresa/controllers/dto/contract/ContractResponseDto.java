@@ -14,10 +14,10 @@ public class ContractResponseDto {
     private String clientId;
 
 
-    @JsonFormat(pattern="dd/MM/yyyy")
+    //@JsonFormat(pattern="dd/MM/yyyy")
     private LocalDate beginDate;
 
-    @JsonFormat(pattern="dd/MM/yyyy")
+    //@JsonFormat(pattern="dd/MM/yyyy")
     private LocalDate endDate;
 
     private List<ItemContractResponseDto> itens = new ArrayList<ItemContractResponseDto>();

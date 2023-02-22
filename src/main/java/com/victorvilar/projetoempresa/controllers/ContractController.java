@@ -83,7 +83,7 @@ public class ContractController {
      */
     @GetMapping("/{id}")
     public ResponseEntity<ContractResponseDto> getContractById(@PathVariable Long id) {
-        return new ResponseEntity<ContractResponseDto>(this.mapper.toContractResponseDto(this.service.getContractById(id)),HttpStatus.FOUND);
+        return new ResponseEntity<ContractResponseDto>(this.mapper.toContractResponseDto(this.service.getContractById(id)),HttpStatus.OK);
     }
 
 
@@ -100,14 +100,16 @@ public class ContractController {
         Contract contract1 = this.mapper.toContract(contract);
 
         //getting every item(if exist) from contractCreateDto, transforming in a itemContract and adding in Contract
-        contract.getItens().stream().forEach(
-                e ->{
-                    ItemContract item = this.itemContractMapper.toItemContract(e);
-                    item.setResidue(this.residueService.findById(e.getResidue()));
-                    item.setEquipament(this.equipamentService.findEquipamentById(e.getEquipament()));
-                    contract1.addNewItem(item);
-                }
-        );
+        if(contract.getItens() != null) {
+            contract.getItens().stream().forEach(
+                    e -> {
+                        ItemContract item = this.itemContractMapper.toItemContract(e);
+                        item.setResidue(this.residueService.findById(e.getResidue()));
+                        item.setEquipament(this.equipamentService.findEquipamentById(e.getEquipament()));
+                        contract1.addNewItem(item);
+                    }
+            );
+        }
 
         //get client from database
         Customer customer = clientService.getClientById(clientId);
