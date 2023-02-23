@@ -102,7 +102,6 @@ public class ContractController {
         //transform itemContractCreateList into a ItemContractList and add to contract
         this.itemContractMapper.toItemContractList(contract.getItens()).stream().forEach(item -> contract1.addNewItem(item));
 
-
         //get client from database
         Customer customer = clientService.getClientById(clientId);
 
@@ -120,14 +119,14 @@ public class ContractController {
      * @param contractId id of a saved contract
      */
     @PostMapping("/additem/{contractId}")
-    public ResponseEntity<?> addNewItemToContract(@PathVariable Long contractId, @Valid @RequestBody ItemContractCreateDto itemDto){
-        ItemContract item = this.itemContractMapper.toItemContract(itemDto);
-        item.setResidue(this.residueService.findById(itemDto.getResidue()));
-        item.setEquipament(this.equipamentService.findEquipamentById(itemDto.getEquipament()));
-        this.service.addNewItemToContract(contractId, item);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
+    public ResponseEntity<ContractResponseDto> addNewItemToContract(@PathVariable Long contractId, @Valid @RequestBody ItemContractCreateDto itemDto){
 
+        ItemContract item = this.itemContractMapper.toItemContract(itemDto);
+        this.service.addNewItemToContract(contractId, item);
+        Contract contract = this.service.getContractById(contractId);
+        return new ResponseEntity<ContractResponseDto>(
+                this.mapper.toContractResponseDto(contract),HttpStatus.OK);
+    }
 
 
     /**

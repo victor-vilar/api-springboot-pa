@@ -6,6 +6,7 @@ import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.List;
 
 public class ContractUpdateDto {
 
@@ -22,6 +23,16 @@ public class ContractUpdateDto {
 
     @NotNull(message = "the contract must have a client")
     private String clientId;
+
+    private List<ItemContractCreateDto> itens;
+
+    public List<ItemContractCreateDto> getItens() {
+        return itens;
+    }
+
+    public void setItens(List<ItemContractCreateDto> itens) {
+        this.itens = itens;
+    }
 
     public String getNumber() {
         return number;
