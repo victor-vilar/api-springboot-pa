@@ -99,17 +99,9 @@ public class ContractController {
         //contractCreateDto to Contract
         Contract contract1 = this.mapper.toContract(contract);
 
-        //getting every item(if exist) from contractCreateDto, transforming in a itemContract and adding in Contract
-        if(contract.getItens() != null) {
-            contract.getItens().stream().forEach(
-                    e -> {
-                        ItemContract item = this.itemContractMapper.toItemContract(e);
-                        item.setResidue(this.residueService.findById(e.getResidue()));
-                        item.setEquipament(this.equipamentService.findEquipamentById(e.getEquipament()));
-                        contract1.addNewItem(item);
-                    }
-            );
-        }
+        //transform itemContractCreateList into a ItemContractList and add to contract
+        this.itemContractMapper.toItemContractList(contract.getItens()).stream().forEach(item -> contract1.addNewItem(item));
+
 
         //get client from database
         Customer customer = clientService.getClientById(clientId);
