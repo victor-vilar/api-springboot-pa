@@ -7,7 +7,7 @@ import com.victorvilar.projetoempresa.DAO.EquipamentDao;
 import com.victorvilar.projetoempresa.DAO.ResidueTypeDao;
 import com.victorvilar.projetoempresa.domain.Customer;
 import com.victorvilar.projetoempresa.domain.Contract;
-import com.victorvilar.projetoempresa.domain.Equipament;
+import com.victorvilar.projetoempresa.domain.Equipment;
 import com.victorvilar.projetoempresa.domain.ItemContract;
 import com.victorvilar.projetoempresa.domain.ResidueType;
 import com.victorvilar.projetoempresa.util.EntityManagerBuilder;
@@ -18,7 +18,7 @@ public class TestContract {
 			
 			//declaring variables
 			Customer customer;
-			Equipament equipament;
+			Equipment equipment;
 			ResidueType residue;
 			
 			//setting contract
@@ -36,14 +36,14 @@ public class TestContract {
 			customer = clientDao.findClient(1l);
 			
 			//item1
-			equipament = equipamentDao.getAllEquipaments().get(0);
+			equipment = equipamentDao.getAllEquipaments().get(0);
 			residue = residueDao.getAllResidues().get(0);
-			contract.addNewItem(new ItemContract(residue,equipament,200.00,157.00));
+			contract.addNewItem(new ItemContract(residue, equipment,200.00,157.00));
 			
 			//item2
-			equipament = equipamentDao.getAllEquipaments().get(1);
+			equipment = equipamentDao.getAllEquipaments().get(1);
 			residue = residueDao.getAllResidues().get(1);
-			contract.addNewItem(new ItemContract(residue,equipament,100.00,800.00));
+			contract.addNewItem(new ItemContract(residue, equipment,100.00,800.00));
 			
 			
 			//add new contract to client

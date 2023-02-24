@@ -4,15 +4,15 @@ public class EquipmentResponseDto {
 
 
     private Long id;
-    private String equipamentName;
+    private String equipmentName;
     private double sizeInMeterCubic;
 
     public EquipmentResponseDto() {
     }
 
-    public EquipmentResponseDto(Long id, String equipamentName, double sizeInMeterCubic) {
+    public EquipmentResponseDto(Long id, String equipmentName, double sizeInMeterCubic) {
         this.id = id;
-        this.equipamentName = equipamentName;
+        this.equipmentName = equipmentName;
         this.sizeInMeterCubic = sizeInMeterCubic;
     }
 
@@ -24,12 +24,12 @@ public class EquipmentResponseDto {
         this.id = id;
     }
 
-    public String getEquipamentName() {
-        return equipamentName;
+    public String getEquipmentName() {
+        return equipmentName;
     }
 
-    public void setEquipamentName(String equipamentName) {
-        this.equipamentName = equipamentName;
+    public void setEquipmentName(String equipmentName) {
+        this.equipmentName = equipmentName;
     }
 
     public double getSizeInMeterCubic() {

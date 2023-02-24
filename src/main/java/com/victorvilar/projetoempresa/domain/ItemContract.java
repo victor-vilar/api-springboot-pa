@@ -36,7 +36,7 @@ public class ItemContract implements Serializable{
 	//the equipament that gonna be used to store the trash.
 	@ManyToOne
 	@JoinColumn(nullable = false)
-	private Equipament equipament;
+	private Equipment equipment;
 	
 	//the quantity estimated for  year
 	@Column(nullable = false, name="max_qtd_year")
@@ -56,9 +56,9 @@ public class ItemContract implements Serializable{
 		
 	}
 	
-	public ItemContract(ResidueType residue, Equipament equipament, double qtd, double value) {
+	public ItemContract(ResidueType residue, Equipment equipment, double qtd, double value) {
 		this.residue = residue;
-		this.equipament = equipament;
+		this.equipment = equipment;
 		this.qtdOfResidue = qtd;
 		this.itemValue = value;
 	}
@@ -85,12 +85,12 @@ public class ItemContract implements Serializable{
 	//-----------
 	
 	//getters e setters - equipament
-	public Equipament getEquipament() {
-		return equipament;
+	public Equipment getEquipament() {
+		return equipment;
 	}
 
-	public void setEquipament(Equipament equipament) {
-		this.equipament = equipament;
+	public void setEquipament(Equipment equipment) {
+		this.equipment = equipment;
 	}
 	//-----------
 	
@@ -120,7 +120,7 @@ public class ItemContract implements Serializable{
 		StringBuilder string = new StringBuilder();
 		string.append("Item:\n");
 		string.append("Tipo de Resíduo: " + this.residue.getType() + "\n");
-		string.append("Equipamento: " + this.equipament.getEquipamentName()+ "\n");
+		string.append("Equipamento: " + this.equipment.getEquipmentName()+ "\n");
 		string.append("Valor Unitário: R$" + this.itemValue + "\n");
 		string.append("Qtd Anual: " + this.qtdOfResidue + "\n");
 		string.append("Valor Anual: R$" + (Double)this.itemValue * this.qtdOfResidue + "\n" );

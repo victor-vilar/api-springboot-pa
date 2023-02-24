@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import com.victorvilar.projetoempresa.domain.Equipament;
+import com.victorvilar.projetoempresa.domain.Equipment;
 
 /**
  * Class to manager Equipament in database
@@ -20,25 +20,25 @@ public class EquipamentDao {
 
     }
 
-    public void saveEquipament(Equipament equipament){
+    public void saveEquipament(Equipment equipment){
         this.em.getTransaction().begin();
-        this.em.persist(equipament);
+        this.em.persist(equipment);
         this.em.getTransaction().commit();
     }
 
-    public List<Equipament> getAllEquipaments(){
+    public List<Equipment> getAllEquipaments(){
         String sql = "SELECT e From Equipament e";
-        List<Equipament> equipaments = this.em.createQuery(sql,Equipament.class).getResultList();
-        return equipaments;
+        List<Equipment> equipment = this.em.createQuery(sql, Equipment.class).getResultList();
+        return equipment;
     }
 
-	public Equipament findEquipament(long l) {
-		return this.em.find(Equipament.class, l);
+	public Equipment findEquipament(long l) {
+		return this.em.find(Equipment.class, l);
 	}
 
-	public void updateEquipament(Equipament equipament) {
+	public void updateEquipament(Equipment equipment) {
 		this.em.getTransaction().begin();
-		this.em.merge(equipament);
+		this.em.merge(equipment);
 		this.em.getTransaction().commit();
 		
 	}

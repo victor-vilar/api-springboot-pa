@@ -1,7 +1,7 @@
 package com.victorvilar.projetoempresa.controllers;
 
 import com.victorvilar.projetoempresa.controllers.dto.equipament.EquipmentResponseDto;
-import com.victorvilar.projetoempresa.domain.Equipament;
+import com.victorvilar.projetoempresa.domain.Equipment;
 import com.victorvilar.projetoempresa.mappers.EquipmentMapper;
 import com.victorvilar.projetoempresa.services.EquipmentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/equipament")
+@RequestMapping("/equipment")
 public class EquipmentController {
 
     private final EquipmentService equipmentService;
@@ -29,10 +29,10 @@ public class EquipmentController {
      * @return a list of equiapments
      */
     @GetMapping("")
-    public ResponseEntity<List<EquipmentResponseDto>> getAllEquipaments(){
+    public ResponseEntity<List<EquipmentResponseDto>> getAllEquipments(){
         return new ResponseEntity<List<EquipmentResponseDto>>(
-                this.mapper.toEquipamentResponseDtoList(
-                this.equipmentService.getAllEquipaments()), HttpStatus.OK);
+                this.mapper.toEquipmentResponseDtoList(
+                this.equipmentService.getAllEquipments()), HttpStatus.OK);
     }
 
     /**
@@ -41,32 +41,32 @@ public class EquipmentController {
      * @return
      */
     @GetMapping("/{id}")
-    public ResponseEntity<EquipmentResponseDto> getEquipamentById(@PathVariable Long id){
+    public ResponseEntity<EquipmentResponseDto> getEquipmentById(@PathVariable Long id){
         return new ResponseEntity<EquipmentResponseDto>(
-                this.mapper.toEquipamentResponseDto(
-                this.equipmentService.findEquipamentById(id)),HttpStatus.OK);
+                this.mapper.toEquipmentResponseDto(
+                this.equipmentService.findEquipmentById(id)),HttpStatus.OK);
     }
 
     /**
      * save a new equipament
-     * @param equipament equipament to save
+     * @param equipment equipament to save
      */
     @PostMapping("")
-    public ResponseEntity<?> saveEquipament(@RequestBody Equipament equipament){
-        System.out.println(equipament);
-        this.equipmentService.saveEquipament(equipament);
+    public ResponseEntity<?> saveEquipment(@RequestBody Equipment equipment){
+        System.out.println(equipment);
+        this.equipmentService.saveEquipment(equipment);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     /**
      * update a equipament
-     * @param equipament equipament instace to get the new data
+     * @param equipment equipament instace to get the new data
      * @param id id of equipament to update
      * @return equipament updated
      */
     @PutMapping("/{id}")
-    public ResponseEntity<Equipament> updateEquipament(@RequestBody Equipament equipament,@PathVariable Long id){
-        return new ResponseEntity<Equipament>(this.equipmentService.updateEquipament(equipament,id),HttpStatus.OK);
+    public ResponseEntity<Equipment> updateEquipment(@RequestBody Equipment equipment, @PathVariable Long id){
+        return new ResponseEntity<Equipment>(this.equipmentService.updateEquipment(equipment,id),HttpStatus.OK);
     }
 
     /**
@@ -74,8 +74,8 @@ public class EquipmentController {
      * @param id id to update
      */
     @DeleteMapping("/{id}")
-    public ResponseEntity<?>deleteEquipament(@PathVariable Long id){
-        this.equipmentService.deleteEquipament(id);
+    public ResponseEntity<?> deleteEquipment(@PathVariable Long id){
+        this.equipmentService.deleteEquipment(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

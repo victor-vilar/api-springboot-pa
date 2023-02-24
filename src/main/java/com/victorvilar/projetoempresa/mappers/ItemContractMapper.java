@@ -31,7 +31,7 @@ public class ItemContractMapper {
     public ItemContract toItemContract(ItemContractCreateDto itemDto){
         ItemContract item = this.mapper.map(itemDto,ItemContract.class);
         item.setResidue(this.residueService.findById(itemDto.getResidue()));
-        item.setEquipament(this.equipmentService.findEquipamentById(itemDto.getEquipament()));
+        item.setEquipament(this.equipmentService.findEquipmentById(itemDto.getEquipament()));
         return item;
 
     }

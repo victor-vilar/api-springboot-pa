@@ -1,6 +1,6 @@
 package com.victorvilar.projetoempresa.services;
 
-import com.victorvilar.projetoempresa.domain.Equipament;
+import com.victorvilar.projetoempresa.domain.Equipment;
 import com.victorvilar.projetoempresa.exceptions.EquipmentNotFoundException;
 import com.victorvilar.projetoempresa.repository.EquipmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class EquipmentService {
      * get all equipments
      * @return a list of equiapments
      */
-    public List<Equipament> getAllEquipaments(){
+    public List<Equipment> getAllEquipments(){
 
         return this.equipmentRepository.findAll();
     }
@@ -33,32 +33,32 @@ public class EquipmentService {
      * @param id id of a equipament
      * @return equipament
      */
-    public Equipament findEquipamentById(Long id){
+    public Equipment findEquipmentById(Long id){
                 return this.equipmentRepository.findById(id)
                 .orElseThrow(() -> new EquipmentNotFoundException("this equipament doesn't exist"));
     }
 
     /**
      * save a new equipament
-     * @param equipament equipament to save
+     * @param equipment equipament to save
      */
     @Transactional
-    public void saveEquipament(Equipament equipament){
-        this.equipmentRepository.save(equipament);
+    public void saveEquipment(Equipment equipment){
+        this.equipmentRepository.save(equipment);
     }
 
     /**
      * update a equipament
-     * @param equipament equipament instace to get the new data
+     * @param equipment equipament instace to get the new data
      * @param id id of equipament to update
      * @return equipament updated
      */
-    public Equipament updateEquipament(Equipament equipament, Long id){
-        Equipament equipament2 = this.findEquipamentById(id);
-        equipament2.setEquipamentName(equipament.getEquipamentName());
-        equipament2.setSizeInMeterCubic(equipament.getSizeInMeterCubic());
-        this.saveEquipament(equipament2);
-        return equipament2;
+    public Equipment updateEquipment(Equipment equipment, Long id){
+        Equipment equipment2 = this.findEquipmentById(id);
+        equipment2.setEquipmentName(equipment.getEquipmentName());
+        equipment2.setSizeInMeterCubic(equipment.getSizeInMeterCubic());
+        this.saveEquipment(equipment2);
+        return equipment2;
 
     }
 
@@ -67,8 +67,8 @@ public class EquipmentService {
      * @param id id to update
      */
     @Transactional
-    public void deleteEquipament( Long id){
-        this.equipmentRepository.delete(this.findEquipamentById(id));
+    public void deleteEquipment(Long id){
+        this.equipmentRepository.delete(this.findEquipmentById(id));
     }
 
 

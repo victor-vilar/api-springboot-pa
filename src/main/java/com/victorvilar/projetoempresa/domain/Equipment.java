@@ -1,26 +1,22 @@
 package com.victorvilar.projetoempresa.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
- * A class that represents the equipaments available for store the trash
+ * A class that represents the equipments available for store the trash
  * @author Victor
  * @since 2022-02-21
  */
 @Entity
-@Table(name="equipaments")
-public class Equipament implements Serializable{
+@Table(name="equipments")
+public class Equipment implements Serializable{
 	
 	/**
 	 * 
@@ -31,26 +27,26 @@ public class Equipament implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name="equipament",nullable = false)
-	private String equipamentName;
+	@Column(name="equipment",nullable = false)
+	private String equipmentName;
 	
 	@Column(name="size_cubic",nullable = false)
 	private double sizeInMeterCubic;
 
 	
 	//constructors
-	public Equipament() {
+	public Equipment() {
 		
 	}
 	//-----------
 	
 	
 	//getters e setters - name
-	public String getEquipamentName() {
-		return equipamentName;
+	public String getEquipmentName() {
+		return equipmentName;
 	}
-	public void setEquipamentName(String equipamentName) {
-		this.equipamentName = equipamentName;
+	public void setEquipmentName(String equipmentName) {
+		this.equipmentName = equipmentName;
 	}
 	//-----------
 	

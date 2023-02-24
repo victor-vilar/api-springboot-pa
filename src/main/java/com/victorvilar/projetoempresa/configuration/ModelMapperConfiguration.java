@@ -38,7 +38,7 @@ public class ModelMapperConfiguration {
         mapper.typeMap(ItemContract.class, ItemContractResponseDto.class)
                 .addMappings(maper ->{
                     maper.map(src-> src.getResidue().getType(), ItemContractResponseDto::setResidue);
-                    maper.map(src-> src.getEquipament().getEquipamentName(),ItemContractResponseDto::setEquipament);
+                    maper.map(src-> src.getEquipament().getEquipmentName(),ItemContractResponseDto::setEquipament);
                 });
 
         return mapper;

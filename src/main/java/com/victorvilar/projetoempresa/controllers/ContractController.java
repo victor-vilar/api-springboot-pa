@@ -183,7 +183,7 @@ public class ContractController {
                                                                   @RequestBody ItemContractCreateDto itemDto){
         ItemContract item = this.itemContractMapper.toItemContract(itemDto);
         item.setResidue(this.residueService.findById(itemDto.getResidue()));
-        item.setEquipament(this.equipmentService.findEquipamentById(itemDto.getEquipament()));
+        item.setEquipament(this.equipmentService.findEquipmentById(itemDto.getEquipament()));
         return new ResponseEntity<ContractResponseDto>(
         this.mapper.toContractResponseDto(this.service.updateItemContract(contractId,itemIndex,item)),HttpStatus.OK) ;
 
