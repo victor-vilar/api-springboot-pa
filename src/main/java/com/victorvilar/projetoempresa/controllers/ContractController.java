@@ -9,7 +9,7 @@ import com.victorvilar.projetoempresa.mappers.ContractMapper;
 import com.victorvilar.projetoempresa.mappers.ItemContractMapper;
 import com.victorvilar.projetoempresa.services.ClientService;
 import com.victorvilar.projetoempresa.services.ContractService;
-import com.victorvilar.projetoempresa.services.EquipamentService;
+import com.victorvilar.projetoempresa.services.EquipmentService;
 import com.victorvilar.projetoempresa.services.ResidueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  *  contract controller
@@ -34,7 +33,7 @@ public class ContractController {
     private final ClientService clientService;
     private final ItemContractMapper itemContractMapper;
     private final ResidueService residueService;
-    private final EquipamentService equipamentService;
+    private final EquipmentService equipmentService;
 
     @Autowired
     public ContractController(ContractService service,
@@ -42,14 +41,14 @@ public class ContractController {
                               ClientService clientService,
                               ItemContractMapper itemContractMapper,
                               ResidueService residueService,
-                              EquipamentService equipamentService
+                              EquipmentService equipmentService
 ){
         this.service = service;
         this.mapper= mapper;
         this.clientService = clientService;
         this.itemContractMapper = itemContractMapper;
         this.residueService = residueService;
-        this.equipamentService = equipamentService;
+        this.equipmentService = equipmentService;
 
     }
 
@@ -159,8 +158,13 @@ public class ContractController {
     @PutMapping("/{contractId}")
     public ResponseEntity<ContractResponseDto> updateContract(@PathVariable Long contractId,
                                                               @RequestBody ContractUpdateDto contractUpdateDto){
-       Contract contract = this.mapper.toContract(contractUpdateDto);
-     return new ResponseEntity<ContractResponseDto>(
+
+        Contract contract = this.mapper.toContract(contractUpdateDto);
+
+        //transform itemContractCreateList into a ItemContractList and add to contract
+        this.itemContractMapper.toItemContractList(contractUpdateDto.getItens()).stream().forEach(item -> contract.addNewItem(item));
+
+       return new ResponseEntity<ContractResponseDto>(
              this.mapper.toContractResponseDto(
                      this.service.updateContract(contractId, contract, contractUpdateDto.getClientId())), HttpStatus.OK);
 
@@ -179,7 +183,7 @@ public class ContractController {
                                                                   @RequestBody ItemContractCreateDto itemDto){
         ItemContract item = this.itemContractMapper.toItemContract(itemDto);
         item.setResidue(this.residueService.findById(itemDto.getResidue()));
-        item.setEquipament(this.equipamentService.findEquipamentById(itemDto.getEquipament()));
+        item.setEquipament(this.equipmentService.findEquipamentById(itemDto.getEquipament()));
         return new ResponseEntity<ContractResponseDto>(
         this.mapper.toContractResponseDto(this.service.updateItemContract(contractId,itemIndex,item)),HttpStatus.OK) ;
 

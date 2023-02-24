@@ -1,8 +1,8 @@
 package com.victorvilar.projetoempresa.services;
 
 import com.victorvilar.projetoempresa.domain.Equipament;
-import com.victorvilar.projetoempresa.exceptions.EquipamentNotFoundException;
-import com.victorvilar.projetoempresa.repository.EquipamentRepository;
+import com.victorvilar.projetoempresa.exceptions.EquipmentNotFoundException;
+import com.victorvilar.projetoempresa.repository.EquipmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,13 +10,13 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
-public class EquipamentService {
+public class EquipmentService {
 
-    private final EquipamentRepository equipamentRepository;
+    private final EquipmentRepository equipmentRepository;
 
     @Autowired
-    public EquipamentService(EquipamentRepository equipamentRepository){
-        this.equipamentRepository = equipamentRepository;
+    public EquipmentService(EquipmentRepository equipmentRepository){
+        this.equipmentRepository = equipmentRepository;
     }
 
     /**
@@ -25,7 +25,7 @@ public class EquipamentService {
      */
     public List<Equipament> getAllEquipaments(){
 
-        return this.equipamentRepository.findAll();
+        return this.equipmentRepository.findAll();
     }
 
     /**
@@ -34,8 +34,8 @@ public class EquipamentService {
      * @return equipament
      */
     public Equipament findEquipamentById(Long id){
-                return this.equipamentRepository.findById(id)
-                .orElseThrow(() -> new EquipamentNotFoundException("this equipament doesn't exist"));
+                return this.equipmentRepository.findById(id)
+                .orElseThrow(() -> new EquipmentNotFoundException("this equipament doesn't exist"));
     }
 
     /**
@@ -44,7 +44,7 @@ public class EquipamentService {
      */
     @Transactional
     public void saveEquipament(Equipament equipament){
-        this.equipamentRepository.save(equipament);
+        this.equipmentRepository.save(equipament);
     }
 
     /**
@@ -68,7 +68,7 @@ public class EquipamentService {
      */
     @Transactional
     public void deleteEquipament( Long id){
-        this.equipamentRepository.delete(this.findEquipamentById(id));
+        this.equipmentRepository.delete(this.findEquipamentById(id));
     }
 
 

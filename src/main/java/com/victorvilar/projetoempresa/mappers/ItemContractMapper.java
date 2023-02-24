@@ -3,7 +3,7 @@ package com.victorvilar.projetoempresa.mappers;
 import com.victorvilar.projetoempresa.controllers.dto.contract.ItemContractCreateDto;
 import com.victorvilar.projetoempresa.controllers.dto.contract.ItemContractResponseDto;
 import com.victorvilar.projetoempresa.domain.ItemContract;
-import com.victorvilar.projetoempresa.services.EquipamentService;
+import com.victorvilar.projetoempresa.services.EquipmentService;
 import com.victorvilar.projetoempresa.services.ResidueService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,21 +17,21 @@ public class ItemContractMapper {
 
     private final ModelMapper mapper;
     private final ResidueService residueService;
-    private final EquipamentService equipamentService;
+    private final EquipmentService equipmentService;
 
     @Autowired
     public ItemContractMapper(ModelMapper mapper,
                               ResidueService residueService,
-                              EquipamentService equipamentService){
+                              EquipmentService equipmentService){
         this.mapper = mapper;
         this.residueService=residueService;
-        this.equipamentService=equipamentService;
+        this.equipmentService = equipmentService;
     }
 
     public ItemContract toItemContract(ItemContractCreateDto itemDto){
         ItemContract item = this.mapper.map(itemDto,ItemContract.class);
         item.setResidue(this.residueService.findById(itemDto.getResidue()));
-        item.setEquipament(this.equipamentService.findEquipamentById(itemDto.getEquipament()));
+        item.setEquipament(this.equipmentService.findEquipamentById(itemDto.getEquipament()));
         return item;
 
     }

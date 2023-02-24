@@ -1,21 +1,16 @@
 package com.victorvilar.projetoempresa.controllers.dto.equipament;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
-public class EquipamentResponseDto {
+public class EquipmentResponseDto {
 
 
     private Long id;
     private String equipamentName;
     private double sizeInMeterCubic;
 
-    public EquipamentResponseDto() {
+    public EquipmentResponseDto() {
     }
 
-    public EquipamentResponseDto(Long id, String equipamentName, double sizeInMeterCubic) {
+    public EquipmentResponseDto(Long id, String equipamentName, double sizeInMeterCubic) {
         this.id = id;
         this.equipamentName = equipamentName;
         this.sizeInMeterCubic = sizeInMeterCubic;
