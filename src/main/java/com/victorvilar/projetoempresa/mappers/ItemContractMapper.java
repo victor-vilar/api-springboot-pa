@@ -2,6 +2,7 @@ package com.victorvilar.projetoempresa.mappers;
 
 import com.victorvilar.projetoempresa.controllers.dto.contract.ItemContractCreateDto;
 import com.victorvilar.projetoempresa.controllers.dto.contract.ItemContractResponseDto;
+import com.victorvilar.projetoempresa.controllers.dto.contract.ItemContractUpdateDto;
 import com.victorvilar.projetoempresa.domain.ItemContract;
 import com.victorvilar.projetoempresa.services.EquipmentService;
 import com.victorvilar.projetoempresa.services.ResidueService;
@@ -31,24 +32,28 @@ public class ItemContractMapper {
     public ItemContract toItemContract(ItemContractCreateDto itemDto){
         ItemContract item = this.mapper.map(itemDto,ItemContract.class);
         item.setResidue(this.residueService.findById(itemDto.getResidue()));
-        item.setEquipament(this.equipmentService.findEquipmentById(itemDto.getEquipament()));
+        item.setEquipament(this.equipmentService.findEquipmentById(itemDto.getEquipment()));
         return item;
+    }
 
+    public ItemContract toItemContract(ItemContractUpdateDto itemDto){
+        ItemContract item = this.mapper.map(itemDto,ItemContract.class);
+        item.setResidue(this.residueService.findById(itemDto.getResidue()));
+        item.setEquipament(this.equipmentService.findEquipmentById(itemDto.getEquipment()));
+        return item;
     }
 
     public ItemContractResponseDto toItemContractResponseDto(ItemContract item){
         return this.mapper.map(item,ItemContractResponseDto.class);
     }
 
-
     //transform all itemContractCreateDto into a ItemContract List
-    public List<ItemContract> toItemContractList(List<ItemContractCreateDto> list){
-           return list.stream().map(
-                    e -> {
-                        return this.toItemContract(e);
-                    }
-            ).collect(Collectors.toList());
+    public List<ItemContract> fromItemContractCreateDtoListToItemContractList(List<ItemContractCreateDto> list){
+           return list.stream().map(e -> this.toItemContract(e)).collect(Collectors.toList());
+    }
 
+    public List<ItemContract> fromItemContractUpdateDtoListToItemContractList(List<ItemContractUpdateDto> listUpdate){
+        return listUpdate.stream().map(e -> this.toItemContract(e)).collect(Collectors.toList());
     }
 
 }

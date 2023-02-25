@@ -11,7 +11,7 @@ public class ItemContractCreateDto {
     private Long residue;
 
     @NotNull(message = "the item must have a equipament")
-    private Long equipament;
+    private Long equipment;
 
     @NotNull(message = "the item must have a quantity")
     private Double qtdOfResidue;
@@ -20,15 +20,14 @@ public class ItemContractCreateDto {
     private double itemValue;
 
 
-
     //constructors
     public ItemContractCreateDto() {
 
     }
-    public ItemContractCreateDto(Long id, Long residue, Long equipament, Double qtdOfResidue, double itemValue, String contract) {
+    public ItemContractCreateDto(Long id, Long residue, Long equipment, Double qtdOfResidue, double itemValue, String contract) {
         this.id = id;
         this.residue = residue;
-        this.equipament = equipament;
+        this.equipment = equipment;
         this.qtdOfResidue = qtdOfResidue;
         this.itemValue = itemValue;
     }
@@ -51,12 +50,12 @@ public class ItemContractCreateDto {
         this.residue = residue;
     }
 
-    public Long getEquipament() {
-        return equipament;
+    public Long getEquipment() {
+        return equipment;
     }
 
-    public void setEquipament(Long equipament) {
-        this.equipament = equipament;
+    public void setEquipment(Long equipament) {
+        this.equipment = equipament;
     }
 
     public Double getQtdOfResidue() {

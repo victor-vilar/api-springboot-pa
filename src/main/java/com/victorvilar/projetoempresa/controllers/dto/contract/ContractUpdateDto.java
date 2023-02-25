@@ -6,6 +6,7 @@ import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ContractUpdateDto {
@@ -24,13 +25,13 @@ public class ContractUpdateDto {
     @NotNull(message = "the contract must have a client")
     private String clientId;
 
-    private List<ItemContractCreateDto> itens;
+    private List<ItemContractUpdateDto> itens  = new ArrayList<>();;
 
-    public List<ItemContractCreateDto> getItens() {
+    public List<ItemContractUpdateDto> getItens() {
         return itens;
     }
 
-    public void setItens(List<ItemContractCreateDto> itens) {
+    public void setItens(List<ItemContractUpdateDto> itens) {
         this.itens = itens;
     }
 

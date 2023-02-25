@@ -6,6 +6,7 @@ import com.victorvilar.projetoempresa.domain.Contract;
 import com.victorvilar.projetoempresa.domain.ItemContract;
 import com.victorvilar.projetoempresa.exceptions.ItemNotFoundException;
 import com.victorvilar.projetoempresa.repository.ContractRepository;
+import com.victorvilar.projetoempresa.repository.ItemContractRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,12 +18,15 @@ public class ContractService {
 
     private final ContractRepository contractRepository;
     private final ClientService clientService;
+    private final ItemContractRepository itemContractRepository;
 
     @Autowired
     public ContractService (ContractRepository repository,
-                            ClientService clienteService){
+                            ClientService clienteService,
+                            ItemContractRepository itemContractRepository){
         this.contractRepository = repository;
         this.clientService = clienteService;
+        this.itemContractRepository = itemContractRepository;
     }
 
     /**
@@ -103,9 +107,9 @@ public class ContractService {
      * @return
      */
     @Transactional
-    public Contract updateContract(Long contractId, Contract contract, String clienteId){
+    public Contract updateContract(Long contractId, Contract contract){
         Contract contractToUpdate = this.getContractById(contractId);
-        contractToUpdate.setClient(this.clientService.getClientById(clienteId));
+        contractToUpdate.setClient(this.clientService.getClientById(contract.getClient().getCpfCnpj()));
         contractToUpdate.setNumber(contract.getNumber());
         contractToUpdate.setBeginDate(contract.getBeginDate());
         contractToUpdate.setEndDate(contract.getEndDate());
@@ -115,20 +119,16 @@ public class ContractService {
 
     /**
      * update a item of contract
-     * @param contractId
-     * @param itemIndex
      * @return
      */
     @Transactional
-    public Contract updateItemContract(Long contractId, int itemIndex, ItemContract item){
-        Contract contract = this.getContractById(contractId);
-        ItemContract itemToUpdate = contract.getItens().get(itemIndex);
+    public Contract updateItemContract(Contract contract, ItemContract item){
+        ItemContract itemToUpdate = this.itemContractRepository.findById(item.getId()).orElseThrow(() -> new RuntimeException("erro"));
         itemToUpdate.setEquipament(item.getEquipament());
         itemToUpdate.setResidue(item.getResidue());
         itemToUpdate.setQtdOfResidue(item.getQtdOfResidue());
         itemToUpdate.setValue(item.getValue());
         this.save(contract);
-
         return contract;
     }
 

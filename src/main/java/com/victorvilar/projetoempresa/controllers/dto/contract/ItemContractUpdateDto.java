@@ -1,25 +1,38 @@
 package com.victorvilar.projetoempresa.controllers.dto.contract;
 
-public class ItemContractResponseDto {
+
+import javax.validation.constraints.NotNull;
+
+public class ItemContractUpdateDto {
+
 
     private Long id;
-    private String residue;
-    private String equipment;
+
+    @NotNull(message = "The item must have a residue")
+    private Long residue;
+
+    @NotNull(message = "the item must have a equipament")
+    private Long equipment;
+
+    @NotNull(message = "the item must have a quantity")
     private Double qtdOfResidue;
+
+    @NotNull(message = "the item must have a value")
     private double itemValue;
-    private String contract;
 
-    public ItemContractResponseDto() {
+
+    //constructors
+    public ItemContractUpdateDto() {
+
     }
-
-    public ItemContractResponseDto(Long id, String residue, String equipment, Double qtdOfResidue, double itemValue, String contract) {
+    public ItemContractUpdateDto(Long id, Long residue, Long equipment, Double qtdOfResidue, double itemValue, String contract) {
         this.id = id;
         this.residue = residue;
         this.equipment = equipment;
         this.qtdOfResidue = qtdOfResidue;
         this.itemValue = itemValue;
-        this.contract = contract;
     }
+    //----------------------------
 
 
     public Long getId() {
@@ -30,19 +43,19 @@ public class ItemContractResponseDto {
         this.id = id;
     }
 
-    public String getResidue() {
+    public Long getResidue() {
         return residue;
     }
 
-    public void setResidue(String residue) {
+    public void setResidue(Long residue) {
         this.residue = residue;
     }
 
-    public String getEquipment() {
+    public Long getEquipment() {
         return equipment;
     }
 
-    public void setEquipment(String equipament) {
+    public void setEquipment(Long equipament) {
         this.equipment = equipament;
     }
 
@@ -61,6 +74,4 @@ public class ItemContractResponseDto {
     public void setItemValue(double itemValue) {
         this.itemValue = itemValue;
     }
-
-
 }

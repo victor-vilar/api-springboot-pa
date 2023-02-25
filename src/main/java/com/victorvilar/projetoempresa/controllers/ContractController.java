@@ -82,7 +82,9 @@ public class ContractController {
      */
     @GetMapping("/{id}")
     public ResponseEntity<ContractResponseDto> getContractById(@PathVariable Long id) {
-        return new ResponseEntity<ContractResponseDto>(this.mapper.toContractResponseDto(this.service.getContractById(id)),HttpStatus.OK);
+        return new ResponseEntity<ContractResponseDto>(
+                this.mapper.toContractResponseDto(
+                        this.service.getContractById(id)),HttpStatus.OK);
     }
 
 
@@ -98,8 +100,12 @@ public class ContractController {
         //contractCreateDto to Contract
         Contract contract1 = this.mapper.toContract(contract);
 
+        if(contract.getItens().isEmpty()){
+            throw new RuntimeException("contract must have at least one item");
+        }
+
         //transform itemContractCreateList into a ItemContractList and add to contract
-        this.itemContractMapper.toItemContractList(contract.getItens()).stream().forEach(item -> contract1.addNewItem(item));
+        this.itemContractMapper.fromItemContractCreateDtoListToItemContractList(contract.getItens()).stream().forEach(item -> contract1.addNewItem(item));
 
         //get client from database
         Customer customer = clientService.getClientById(clientId);
@@ -159,37 +165,34 @@ public class ContractController {
     public ResponseEntity<ContractResponseDto> updateContract(@PathVariable Long contractId,
                                                               @RequestBody ContractUpdateDto contractUpdateDto){
 
+        //creates instance of contract
         Contract contract = this.mapper.toContract(contractUpdateDto);
 
+        //if the contract to update has no itens, throw error
+        if(contractUpdateDto.getItens().isEmpty()){
+            throw new RuntimeException("contract must have at least one item");
+        }
+
+        //update each value of contract
+        this.service.updateContract(contractId, contract);
+
         //transform itemContractCreateList into a ItemContractList and add to contract
-        this.itemContractMapper.toItemContractList(contractUpdateDto.getItens()).stream().forEach(item -> contract.addNewItem(item));
+        List<ItemContract> lista = this.itemContractMapper.fromItemContractUpdateDtoListToItemContractList(contractUpdateDto.getItens());
 
-       return new ResponseEntity<ContractResponseDto>(
-             this.mapper.toContractResponseDto(
-                     this.service.updateContract(contractId, contract, contractUpdateDto.getClientId())), HttpStatus.OK);
+        //loop to insert a new item or update an exist one
+        lista.stream().forEach(item ->{
+            if(item.getId() == null){
+                contract.addNewItem(item);
+            }else{
+                this.service.updateItemContract(contract,item);
+            }
+        });
+
+
+
+       return new ResponseEntity<ContractResponseDto>(this.mapper.toContractResponseDto(this.service.save(contract)), HttpStatus.OK);
 
 
     }
-
-    /**
-     * update a item of contract
-     * @param contractId
-     * @param itemIndex
-     * @return
-     */
-    @PutMapping("/{contractId}/{itemIndex}")
-    public ResponseEntity<ContractResponseDto> updateItemContract(@PathVariable Long contractId,
-                                                                  @PathVariable int itemIndex,
-                                                                  @RequestBody ItemContractCreateDto itemDto){
-        ItemContract item = this.itemContractMapper.toItemContract(itemDto);
-        item.setResidue(this.residueService.findById(itemDto.getResidue()));
-        item.setEquipament(this.equipmentService.findEquipmentById(itemDto.getEquipament()));
-        return new ResponseEntity<ContractResponseDto>(
-        this.mapper.toContractResponseDto(this.service.updateItemContract(contractId,itemIndex,item)),HttpStatus.OK) ;
-
-    }
-
-
-
 
 }
