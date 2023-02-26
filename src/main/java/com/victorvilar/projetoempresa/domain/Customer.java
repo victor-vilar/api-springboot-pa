@@ -67,7 +67,7 @@ public class Customer implements Serializable {
 	 * @param contract
 	 */
 	public void addNewContract(Contract contract) {
-		contract.setClient(this);
+		contract.setCustomer(this);
 		this.getContracts().add(contract);
 	}
 	//Constructors

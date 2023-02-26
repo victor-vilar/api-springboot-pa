@@ -168,13 +168,16 @@ public class ContractController {
         //creates instance of contract
         Contract contract = this.mapper.toContract(contractUpdateDto);
 
+        //find contract's customer
+        contract.setCustomer(this.clientService.getClientById(contractUpdateDto.getCustomerId()));
+
         //if the contract to update has no itens, throw error
         if(contractUpdateDto.getItens().isEmpty()){
             throw new RuntimeException("contract must have at least one item");
         }
 
-        //update each value of contract
-        this.service.updateContract(contractId, contract);
+        //update each value of contract and get savedContract
+        Contract savedContract = this.service.updateContract(contractId, contract);
 
         //transform itemContractCreateList into a ItemContractList and add to contract
         List<ItemContract> lista = this.itemContractMapper.fromItemContractUpdateDtoListToItemContractList(contractUpdateDto.getItens());
@@ -182,15 +185,13 @@ public class ContractController {
         //loop to insert a new item or update an exist one
         lista.stream().forEach(item ->{
             if(item.getId() == null){
-                contract.addNewItem(item);
+                savedContract.addNewItem(item);
             }else{
-                this.service.updateItemContract(contract,item);
+                this.service.updateItemContract(savedContract,item);
             }
         });
 
-
-
-       return new ResponseEntity<ContractResponseDto>(this.mapper.toContractResponseDto(this.service.save(contract)), HttpStatus.OK);
+       return new ResponseEntity<ContractResponseDto>(this.mapper.toContractResponseDto(savedContract), HttpStatus.OK);
 
 
     }

@@ -23,7 +23,7 @@ public class ContractUpdateDto {
     private LocalDate endDate;
 
     @NotNull(message = "the contract must have a client")
-    private String clientId;
+    private String customerId;
 
     private List<ItemContractUpdateDto> itens  = new ArrayList<>();;
 
@@ -59,11 +59,11 @@ public class ContractUpdateDto {
         this.endDate = endDate;
     }
 
-    public String getClientId() {
-        return clientId;
+    public String getCustomerId() {
+        return customerId;
     }
 
-    public void setClientId(String clientId) {
-        this.clientId = clientId;
+    public void setCustomerId(String clientId) {
+        this.customerId = clientId;
     }
 }
