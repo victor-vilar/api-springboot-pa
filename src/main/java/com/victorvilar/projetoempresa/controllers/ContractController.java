@@ -146,13 +146,12 @@ public class ContractController {
 
     /**
      * remove a item from a contract
-     * @param contractId
-     * @param itemIndex
+     * @param itemId
      */
-    @DeleteMapping("/{contractId}/{itemIndex}")
-    public ResponseEntity<?> removeItemContract(@PathVariable Long contractId,@PathVariable int itemIndex){
-        this.service.removeItemContract(contractId,itemIndex);
-        return new ResponseEntity<>(HttpStatus.OK);
+    @DeleteMapping("/{itemId}")
+    public ResponseEntity<ContractResponseDto> removeItemContract(@PathVariable Long itemId){
+        return new ResponseEntity<ContractResponseDto>(
+                this.mapper.toContractResponseDto(this.service.removeItemContract(itemId)),HttpStatus.OK);
     }
 
 

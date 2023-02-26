@@ -4,6 +4,7 @@ import com.victorvilar.projetoempresa.exceptions.CustomerNotFoundException;
 import com.victorvilar.projetoempresa.exceptions.ContractNotFoundException;
 import com.victorvilar.projetoempresa.domain.Contract;
 import com.victorvilar.projetoempresa.domain.ItemContract;
+import com.victorvilar.projetoempresa.exceptions.ItemContractNotFoundException;
 import com.victorvilar.projetoempresa.exceptions.ItemNotFoundException;
 import com.victorvilar.projetoempresa.repository.ContractRepository;
 import com.victorvilar.projetoempresa.repository.ItemContractRepository;
@@ -91,14 +92,13 @@ public class ContractService {
      * @param itemIndex
      */
     @Transactional
-    public void removeItemContract(Long contractId, int itemIndex) {
-        Contract contract = this.getContractById(contractId);
-        if (itemIndex <= contract.getItens().size()) {
-            contract.deleteItem(itemIndex);
-            this.save(contract);
-        } else {
-            throw new ItemNotFoundException("This item doesn't exist");
-        }
+    public Contract removeItemContract( Long itemId) {
+        ItemContract item = this.itemContractRepository.findById(itemId).orElseThrow(()-> new ItemContractNotFoundException("This item doesn't exist"))
+        Contract contract = item.getContract();
+        this.itemContractRepository.delete(item);
+        this.save(contract);
+        return contract;
+
     }
 
     /**
