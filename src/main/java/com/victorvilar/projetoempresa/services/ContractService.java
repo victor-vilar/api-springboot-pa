@@ -88,12 +88,11 @@ public class ContractService {
 
     /**
      * remove a item from a contract
-     * @param contractId
-     * @param itemIndex
+     * @param itemId id of the item
      */
     @Transactional
     public Contract removeItemContract( Long itemId) {
-        ItemContract item = this.itemContractRepository.findById(itemId).orElseThrow(()-> new ItemContractNotFoundException("This item doesn't exist"))
+        ItemContract item = this.itemContractRepository.findById(itemId).orElseThrow(()-> new ItemContractNotFoundException("This item doesn't exist"));
         Contract contract = item.getContract();
         this.itemContractRepository.delete(item);
         this.save(contract);

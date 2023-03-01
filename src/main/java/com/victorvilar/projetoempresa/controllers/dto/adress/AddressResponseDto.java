@@ -9,7 +9,8 @@ public class AddressResponseDto {
     private String zipCode;
     private String city;
     private String state;
-    private String clientId;
+    private String customerId;
+
 
     public AddressResponseDto() {
     }
@@ -21,7 +22,7 @@ public class AddressResponseDto {
         this.zipCode = zipCode;
         this.city = city;
         this.state = state;
-        this.clientId = clientId;
+        this.customerId = clientId;
         this.id = id;
     }
 
@@ -82,10 +83,10 @@ public class AddressResponseDto {
     }
 
     public String getCustomerId() {
-        return clientId;
+        return customerId;
     }
 
     public void setCustomerId(String clientId) {
-        this.clientId = clientId;
+        this.customerId = clientId;
     }
 }

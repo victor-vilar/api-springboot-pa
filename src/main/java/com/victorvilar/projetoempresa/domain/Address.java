@@ -30,6 +30,8 @@ public class Address implements Serializable{
     private String zipCode;
     private String city;
     private String state;
+    private boolean requiresCollection;
+
 
 
     @ManyToOne(fetch=FetchType.LAZY)
@@ -40,7 +42,7 @@ public class Address implements Serializable{
     public Address() {
 
     }
-    public Address(Long id, String addressName, String addressNumber, String complement, String zipCode, String city, String state, Customer customer) {
+    public Address(Long id, String addressName, String addressNumber, String complement, String zipCode, String city, String state, Customer customer, boolean requiresCollection) {
         this.addressName = addressName;
         this.addressNumber = addressNumber;
         this.complement = complement;
@@ -49,6 +51,7 @@ public class Address implements Serializable{
         this.state = state;
         this.customer = customer;
         this.id = id;
+        this.requiresCollection = requiresCollection;
     }
     //------------------------
 
@@ -122,5 +125,13 @@ public class Address implements Serializable{
 		return this.customer;
 	}
 	//--------------
-	
+
+    //getters e setters - requiredCollection
+    public boolean isRequiresCollection() {
+        return requiresCollection;
+    }
+    public void setRequiresCollection(boolean requiresCollection) {
+        this.requiresCollection = requiresCollection;
+    }
+    //--------------
 }

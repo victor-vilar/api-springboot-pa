@@ -8,19 +8,21 @@ public class AddressCreateDto {
     private String zipCode;
     private String city;
     private String state;
+    private boolean requiresCollection;
 
 
     public AddressCreateDto() {
 
     }
 
-    public AddressCreateDto(String addressName, String addressNumber, String complement, String zipCode, String city, String state) {
+    public AddressCreateDto(String addressName, String addressNumber, String complement, String zipCode, String city, String state, boolean requiresCollection) {
         this.addressName = addressName;
         this.addressNumber = addressNumber;
         this.complement = complement;
         this.zipCode = zipCode;
         this.city = city;
         this.state = state;
+        this.requiresCollection = requiresCollection;
     }
 
     public String getAddressName() {
@@ -70,4 +72,13 @@ public class AddressCreateDto {
     public void setState(String state) {
         this.state = state;
     }
+
+    //getters e setters - requiredCollection
+    public boolean isRequiresCollection() {
+        return requiresCollection;
+    }
+    public void setRequiresCollection(boolean requiresCollection) {
+        this.requiresCollection = requiresCollection;
+    }
+    //--------------
 }

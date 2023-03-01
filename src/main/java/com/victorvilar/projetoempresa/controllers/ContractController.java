@@ -148,7 +148,7 @@ public class ContractController {
      * remove a item from a contract
      * @param itemId
      */
-    @DeleteMapping("/{itemId}")
+    @DeleteMapping("/deleteitem/{itemId}")
     public ResponseEntity<ContractResponseDto> removeItemContract(@PathVariable Long itemId){
         return new ResponseEntity<ContractResponseDto>(
                 this.mapper.toContractResponseDto(this.service.removeItemContract(itemId)),HttpStatus.OK);
