@@ -133,5 +133,6 @@ public class Address implements Serializable{
     public void setRequiresCollection(boolean requiresCollection) {
         this.requiresCollection = requiresCollection;
     }
-    //--------------
+
+
 }

@@ -10,12 +10,12 @@ public class AddressResponseDto {
     private String city;
     private String state;
     private String customerId;
-
+    private boolean requiresCollection;
 
     public AddressResponseDto() {
     }
 
-    public AddressResponseDto(Long id,String addressName, String addressNumber, String complement, String zipCode, String city, String state, String clientId) {
+    public AddressResponseDto(Long id,String addressName, String addressNumber, String complement, String zipCode, String city, String state, String clientId, boolean requiresCollection) {
         this.addressName = addressName;
         this.addressNumber = addressNumber;
         this.complement = complement;
@@ -24,6 +24,7 @@ public class AddressResponseDto {
         this.state = state;
         this.customerId = clientId;
         this.id = id;
+        this.requiresCollection = requiresCollection;
     }
 
     public Long getId() {
@@ -88,5 +89,13 @@ public class AddressResponseDto {
 
     public void setCustomerId(String clientId) {
         this.customerId = clientId;
+    }
+
+    public boolean isRequiresCollection() {
+        return requiresCollection;
+    }
+
+    public void setRequiresCollection(boolean requiresCollection) {
+        this.requiresCollection = requiresCollection;
     }
 }

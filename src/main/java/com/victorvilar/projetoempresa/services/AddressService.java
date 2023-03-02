@@ -80,6 +80,7 @@ public class AddressService {
         addressToUpdate.setComplement(address.getComplement());
         addressToUpdate.setState(address.getState());
         addressToUpdate.setZipCode(address.getZipCode());
+        addressToUpdate.setRequiresCollection(address.isRequiresCollection());
         this.addressRepository.save(addressToUpdate);
         return addressToUpdate;
     }

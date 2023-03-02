@@ -50,7 +50,7 @@ public class AddressController {
      * @param clientId id of a client
      * @return a list of address of a client
      */
-    @GetMapping("by-client/{clientId}")
+    @GetMapping("by-customer/{clientId}")
     public ResponseEntity<List<AddressResponseDto>> getAllAddressByClient(@PathVariable String clientId){
         return new ResponseEntity<List<AddressResponseDto>>(this.addressMapper.toAddressResponseDtoList(
                 this.addressService.getAllAddressByClient(clientId)), HttpStatus.OK);
@@ -80,7 +80,7 @@ public class AddressController {
      * @return saved address
      */
     @PostMapping("/{clientId}")
-    public ResponseEntity<?> addNewAddress(@RequestBody AddressCreateDto addressCreateDto,
+    public ResponseEntity<AddressResponseDto> addNewAddress(@RequestBody AddressCreateDto addressCreateDto,
                                           @PathVariable String clientId){
 
         Address address = this.addressMapper.toAddress(addressCreateDto);
@@ -88,7 +88,7 @@ public class AddressController {
         customer.addNewAddress(address);
         this.addressService.addNewAddress(address);
 
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<AddressResponseDto>(this.addressMapper.toAddressResponseDto(address),HttpStatus.OK);
     }
 
     /**
