@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -25,12 +26,12 @@ public class ContractUpdateDto {
     @NotNull(message = "the contract must have a client")
     private String customerId;
 
+    @NotEmpty(message = "A contract must have at least one item")
     private List<ItemContractUpdateDto> itens  = new ArrayList<>();;
 
     public List<ItemContractUpdateDto> getItens() {
         return itens;
     }
-
     public void setItens(List<ItemContractUpdateDto> itens) {
         this.itens = itens;
     }
@@ -38,7 +39,6 @@ public class ContractUpdateDto {
     public String getNumber() {
         return number;
     }
-
     public void setNumber(String number) {
         this.number = number;
     }
@@ -46,7 +46,6 @@ public class ContractUpdateDto {
     public LocalDate getBeginDate() {
         return beginDate;
     }
-
     public void setBeginDate(LocalDate beginDate) {
         this.beginDate = beginDate;
     }
@@ -54,7 +53,6 @@ public class ContractUpdateDto {
     public LocalDate getEndDate() {
         return endDate;
     }
-
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
@@ -62,7 +60,6 @@ public class ContractUpdateDto {
     public String getCustomerId() {
         return customerId;
     }
-
     public void setCustomerId(String clientId) {
         this.customerId = clientId;
     }

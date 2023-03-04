@@ -7,12 +7,16 @@ public class SupervisorCreateDto {
 
 
     private Long id;
+
     @NotBlank(message = "The name of supervisor is required")
     private String name;
     private String role;
+
     @NotBlank(message = "The phonenumer of supervisor is required")
     private String phoneNumber;
     private String email;
+
+    @NotBlank(message= "The customer of supervisor is required")
     private String customerId;
 
     //constructors

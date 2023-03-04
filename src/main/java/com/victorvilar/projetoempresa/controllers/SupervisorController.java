@@ -74,7 +74,7 @@ public class SupervisorController {
      * Add a new supervisor for a client
      * @return http response
      */
-    @PostMapping("/")
+    @PostMapping()
     public ResponseEntity<SupervisorResponseDto> addNewSupervisor(@Valid  @RequestBody SupervisorCreateDto supervisoCreateDto){
         Customer customer = this.clientService.getClientById(supervisoCreateDto.getCustomerId());
         Supervisor supervisor = mapper.toSupervisor(supervisoCreateDto);
