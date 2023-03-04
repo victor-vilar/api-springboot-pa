@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -76,18 +77,15 @@ public class AddressController {
     /**
      *  create a new addresss
      * @param addressCreateDto address body to save
-     * @param clientId client of that address
      * @return saved address
      */
-    @PostMapping("/{clientId}")
-    public ResponseEntity<AddressResponseDto> addNewAddress(@RequestBody AddressCreateDto addressCreateDto,
-                                          @PathVariable String clientId){
+    @PostMapping()
+    public ResponseEntity<AddressResponseDto> addNewAddress(@Valid @RequestBody AddressCreateDto addressCreateDto){
 
         Address address = this.addressMapper.toAddress(addressCreateDto);
-        Customer customer = this.clientService.getClientById(clientId);
+        Customer customer = this.clientService.getClientById(addressCreateDto.getCustomerId());
         customer.addNewAddress(address);
         this.addressService.addNewAddress(address);
-
         return new ResponseEntity<AddressResponseDto>(this.addressMapper.toAddressResponseDto(address),HttpStatus.OK);
     }
 

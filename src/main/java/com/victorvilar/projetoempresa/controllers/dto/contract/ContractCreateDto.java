@@ -12,6 +12,8 @@ import java.util.List;
 
 public class ContractCreateDto {
 
+    private Long id;
+
     @NotBlank(message ="The contract must have a number")
     private String number;
 
@@ -28,6 +30,27 @@ public class ContractCreateDto {
 
     @NotNull(message = "the contract must have a customer")
     private String customerId;
+
+    public ContractCreateDto() {
+    }
+
+    public ContractCreateDto(Long id,String number, LocalDate beginDate, LocalDate endDate, List<ItemContractCreateDto> itens, String customerId) {
+        this.number = number;
+        this.beginDate = beginDate;
+        this.endDate = endDate;
+        this.itens = itens;
+        this.customerId = customerId;
+        this.id = id;
+    }
+
+    //getters e setters - id
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
+    //--------------
 
     public String getCustomerId() {
         return customerId;

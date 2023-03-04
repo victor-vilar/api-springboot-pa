@@ -91,11 +91,11 @@ public class ContractController {
     /**
      *
      * add new contract
-     * @param clientId id of the client
+     *
      * @param contract a model to contract
      */
-    @PostMapping("/{clientId}")
-    public ResponseEntity<ContractResponseDto> addNewContract(@PathVariable String clientId, @Valid @RequestBody ContractCreateDto contract) {
+    @PostMapping()
+    public ResponseEntity<ContractResponseDto> addNewContract(@Valid @RequestBody ContractCreateDto contract) {
 
         //contractCreateDto to Contract
         Contract contract1 = this.mapper.toContract(contract);
@@ -108,7 +108,7 @@ public class ContractController {
         this.itemContractMapper.fromItemContractCreateDtoListToItemContractList(contract.getItens()).stream().forEach(item -> contract1.addNewItem(item));
 
         //get client from database
-        Customer customer = clientService.getClientById(clientId);
+        Customer customer = clientService.getClientById(contract.getCustomerId());
 
         //add contract to customer
         customer.addNewContract(contract1);

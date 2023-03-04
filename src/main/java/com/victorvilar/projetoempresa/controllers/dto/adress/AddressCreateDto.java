@@ -2,6 +2,7 @@ package com.victorvilar.projetoempresa.controllers.dto.adress;
 
 public class AddressCreateDto {
 
+    private Long id;
     private String addressName;
     private String addressNumber;
     private String complement;
@@ -16,7 +17,8 @@ public class AddressCreateDto {
 
     }
 
-    public AddressCreateDto(String addressName,
+    public AddressCreateDto(Long id,
+                            String addressName,
                             String addressNumber,
                             String complement,
                             String zipCode,
@@ -24,6 +26,7 @@ public class AddressCreateDto {
                             String state,
                             boolean requiresCollection,
                             String customerId) {
+        this.id = id;
         this.addressName = addressName;
         this.addressNumber = addressNumber;
         this.complement = complement;
@@ -33,6 +36,15 @@ public class AddressCreateDto {
         this.requiresCollection = requiresCollection;
         this.customerId = customerId;
     }
+
+    //getters e setters - id
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
+    //--------------
 
     //getters e setters - addressName
     public String getAddressName() {
