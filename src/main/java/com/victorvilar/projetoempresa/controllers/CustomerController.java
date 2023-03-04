@@ -41,30 +41,30 @@ public class CustomerController {
 	 * @return a listOfResponseDto
 	 */
 	@GetMapping()
-	public ResponseEntity<List<CustomerResponseDto>> getAllClients(){
+	public ResponseEntity<List<CustomerResponseDto>> getAllCustomer(){
 		List<CustomerResponseDto> listResponseDto = new ArrayList<>();
 		listResponseDto = mapper.toCustomerResponseDtoList(this.service.getAllClients());
 		return new ResponseEntity<>(listResponseDto, HttpStatus.OK);
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<CustomerResponseDto> getClientById(@PathVariable String id) {
+	public ResponseEntity<CustomerResponseDto> getCustomerById(@PathVariable String id) {
 			return new ResponseEntity<>(mapper.toCustomerResponseDto(this.service.getClientById(id)),HttpStatus.OK);
 	}
 
 	@PostMapping(consumes= MediaType.APPLICATION_JSON_VALUE)
-	public void addNewClient(@Valid @RequestBody CustomerCreateDto clientDto){
+	public void addNewCustomer(@Valid @RequestBody CustomerCreateDto clientDto){
 			this.service.addNewClient(mapper.toCustomer(clientDto));
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<CustomerResponseDto> updateCliente(@PathVariable String id, @RequestBody CustomerCreateDto clientDto){
+	public ResponseEntity<CustomerResponseDto> updateCustomer(@PathVariable String id, @RequestBody CustomerCreateDto clientDto){
 		return new ResponseEntity<>(this.mapper.toCustomerResponseDto(this.service.updateClient(id,clientDto)),HttpStatus.OK);
 	}
 
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<?> deleteClientById(@PathVariable String id){
+	public ResponseEntity<?> deleteCustomerById(@PathVariable String id){
 		this.service.deleteClientById(id);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}

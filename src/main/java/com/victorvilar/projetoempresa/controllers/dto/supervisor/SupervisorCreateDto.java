@@ -1,7 +1,5 @@
 package com.victorvilar.projetoempresa.controllers.dto.supervisor;
 
-import com.victorvilar.projetoempresa.domain.Supervisor;
-
 import javax.validation.constraints.NotBlank;
 
 public class SupervisorCreateDto {
@@ -15,7 +13,7 @@ public class SupervisorCreateDto {
     @NotBlank(message = "The phonenumer of supervisor is required")
     private String phoneNumber;
     private String email;
-    private String clientId;
+    private String customerId;
 
     //constructors
     public SupervisorCreateDto() {
@@ -23,11 +21,11 @@ public class SupervisorCreateDto {
     //-----------
 
     //getters e setters - clientId
-    public String getClientId() {
-        return clientId;
+    public String getCustomerId() {
+        return customerId;
     }
-    public void setclientId(String id) {
-        this.clientId = id;
+    public void setCustomerId(String id) {
+        this.customerId = id;
     }
     //-----------
 
