@@ -24,8 +24,9 @@ public class SupervisorService {
      * @param supervisor
      */
     @Transactional
-    public void addNewSupervisor(Supervisor supervisor){
+    public Supervisor addNewSupervisor(Supervisor supervisor){
         this.supervisorRespository.save(supervisor);
+        return supervisor;
     }
 
 

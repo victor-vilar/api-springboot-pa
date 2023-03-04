@@ -50,11 +50,12 @@ public class SupervisorController {
      * @return list of supervisores of that client
      */
     @GetMapping("by-client/{clientId}")
-    public ResponseEntity<?> getAllSupervisorsByClient(@PathVariable String clientId){
+    public ResponseEntity<List<SupervisorResponseDto>> getAllSupervisorsByClient(@PathVariable String clientId){
         Customer customer = this.clientService.getClientById(clientId);
-        return new ResponseEntity<>( this.mapper.toSupervisorResponseDtoList(
+        return new ResponseEntity<List<SupervisorResponseDto>>(
+                this.mapper.toSupervisorResponseDtoList(
                 this.supervisorService.findAllByClientId(clientId)
-        ),HttpStatus.FOUND);
+        ),HttpStatus.OK);
     }
 
     /**
@@ -66,7 +67,7 @@ public class SupervisorController {
     public ResponseEntity<SupervisorResponseDto> getSupervisorById(@PathVariable Long id){
         return new ResponseEntity<SupervisorResponseDto>(
                 mapper.toSupervisorResponseDto(
-                        this.supervisorService.findSupervisorById(id)),HttpStatus.FOUND);
+                        this.supervisorService.findSupervisorById(id)),HttpStatus.OK);
     }
 
     /**
@@ -75,12 +76,13 @@ public class SupervisorController {
      * @return http response
      */
     @PostMapping("/{clientId}")
-    public ResponseEntity<?> addNewSupervisor(@PathVariable String clientId, @Valid  @RequestBody SupervisorCreateDto supervisoCreateDto){
+    public ResponseEntity<SupervisorResponseDto> addNewSupervisor(@PathVariable String clientId, @Valid  @RequestBody SupervisorCreateDto supervisoCreateDto){
         Customer customer = this.clientService.getClientById(clientId);
         Supervisor supervisor = mapper.toSupervisor(supervisoCreateDto);
         customer.addNewSupervisor(supervisor);
-        this.supervisorService.addNewSupervisor(supervisor);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<SupervisorResponseDto>(
+                this.mapper.toSupervisorResponseDto(this.supervisorService.addNewSupervisor(supervisor)),
+                HttpStatus.CREATED);
     }
 
 
