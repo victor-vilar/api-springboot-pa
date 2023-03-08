@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -52,7 +53,7 @@ public class EquipmentController {
      * @param equipment equipament to save
      */
     @PostMapping("")
-    public ResponseEntity<?> saveEquipment(@RequestBody Equipment equipment){
+    public ResponseEntity<?> saveEquipment(@Valid @RequestBody Equipment equipment){
         System.out.println(equipment);
         this.equipmentService.saveEquipment(equipment);
         return new ResponseEntity<>(HttpStatus.OK);
@@ -65,7 +66,7 @@ public class EquipmentController {
      * @return equipament updated
      */
     @PutMapping("/{id}")
-    public ResponseEntity<Equipment> updateEquipment(@RequestBody Equipment equipment, @PathVariable Long id){
+    public ResponseEntity<Equipment> updateEquipment(@Valid @RequestBody Equipment equipment, @PathVariable Long id){
         return new ResponseEntity<Equipment>(this.equipmentService.updateEquipment(equipment,id),HttpStatus.OK);
     }
 
