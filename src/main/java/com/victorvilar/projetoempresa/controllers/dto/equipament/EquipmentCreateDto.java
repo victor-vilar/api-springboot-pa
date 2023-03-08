@@ -1,8 +1,14 @@
 package com.victorvilar.projetoempresa.controllers.dto.equipament;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 public class EquipmentCreateDto {
+
     private Long id;
+    @NotBlank(message="The equipment must have a name")
     private String equipmentName;
+    @NotBlank(message="The equipment must have a size")
     private double sizeInMeterCubic;
 
     public EquipmentCreateDto() {
