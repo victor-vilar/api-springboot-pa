@@ -8,7 +8,7 @@ public class EquipmentCreateDto {
     private Long id;
     @NotBlank(message="The equipment must have a name")
     private String equipmentName;
-    @NotBlank(message="The equipment must have a size")
+    @NotNull(message="The equipment must have a size")
     private double sizeInMeterCubic;
 
     public EquipmentCreateDto() {
