@@ -1,5 +1,6 @@
 package com.victorvilar.projetoempresa.controllers;
 
+import com.victorvilar.projetoempresa.controllers.dto.equipament.EquipmentCreateDto;
 import com.victorvilar.projetoempresa.controllers.dto.equipament.EquipmentResponseDto;
 import com.victorvilar.projetoempresa.domain.Equipment;
 import com.victorvilar.projetoempresa.mappers.EquipmentMapper;
@@ -50,23 +51,24 @@ public class EquipmentController {
 
     /**
      * save a new equipament
-     * @param equipment equipament to save
+     * @param equipmentCreateDto equipamentCreateDto to save
      */
     @PostMapping("")
-    public ResponseEntity<?> saveEquipment(@Valid @RequestBody Equipment equipment){
-        System.out.println(equipment);
+    public ResponseEntity<?> saveEquipment(@Valid @RequestBody EquipmentCreateDto equipmentCreateDto){
+        Equipment equipment = this.mapper.toEquipament(equipmentCreateDto);
         this.equipmentService.saveEquipment(equipment);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     /**
      * update a equipament
-     * @param equipment equipament instace to get the new data
+     * @param equipmentCreateDto equipament instance to get the new data
      * @param id id of equipament to update
      * @return equipament updated
      */
     @PutMapping("/{id}")
-    public ResponseEntity<Equipment> updateEquipment(@Valid @RequestBody Equipment equipment, @PathVariable Long id){
+    public ResponseEntity<Equipment> updateEquipment(@Valid @RequestBody EquipmentCreateDto equipmentCreateDto, @PathVariable Long id){
+        Equipment equipment = this.mapper.toEquipament(equipmentCreateDto);
         return new ResponseEntity<Equipment>(this.equipmentService.updateEquipment(equipment,id),HttpStatus.OK);
     }
 
