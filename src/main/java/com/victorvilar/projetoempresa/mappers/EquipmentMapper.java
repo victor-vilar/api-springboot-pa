@@ -1,5 +1,6 @@
 package com.victorvilar.projetoempresa.mappers;
 
+import com.victorvilar.projetoempresa.controllers.dto.equipament.EquipmentCreateDto;
 import com.victorvilar.projetoempresa.controllers.dto.equipament.EquipmentResponseDto;
 import com.victorvilar.projetoempresa.domain.Equipment;
 import org.modelmapper.ModelMapper;
@@ -17,6 +18,10 @@ public class EquipmentMapper {
     @Autowired
     public EquipmentMapper(ModelMapper map){
         this.mapper = map;
+    }
+
+    public Equipment toEquipament(EquipmentCreateDto equipmentCreateDto){
+        return this.mapper.map(equipmentCreateDto,Equipment.class);
     }
 
     public EquipmentResponseDto toEquipmentResponseDto(Equipment equipment){
