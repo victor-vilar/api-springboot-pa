@@ -11,7 +11,7 @@
 	<groupId>br.com.landtec.cadastro</groupId>
 	<artifactId>cadastro-clientes</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-
+	<packaging>jar</packaging>
 	<properties>
 		<java.version>8</java.version>
 	</properties>
