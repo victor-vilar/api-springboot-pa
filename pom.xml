@@ -8,9 +8,9 @@
 		<version>2.7.0</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>br.com.landtec.cadastro</groupId>
-	<artifactId>cadastro-clientes</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<groupId>victor-vilar/com.github</groupId>
+	<artifactId>api-springboot</artifactId>
+	<version>1.0</version>
 	<packaging>jar</packaging>
 	<properties>
 		<java.version>8</java.version>
