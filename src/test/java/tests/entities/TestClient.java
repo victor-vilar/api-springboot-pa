@@ -8,12 +8,12 @@ public class TestClient {
 	public static void main(String[] args) {
 		
 		
-		ClientDao dao = new ClientDao(EntityManagerBuilder.getEntityManager());
-		Customer cliente = new Customer("Teste de Safadeza");
-		cliente.setCpfCnpj("12525299701");
-		dao.saveClient(cliente);
+	Customer customer = new Customer.CustomerBuilder()
+			.cpfCnpj("12525299701")
+			.nameCompanyName("Victor")
+			.build();
 		
-		
+	System.out.println(customer);
 		
 		
 	}

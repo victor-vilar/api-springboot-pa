@@ -140,5 +140,36 @@ public class Customer implements Serializable {
 
 
 
+	public static class CustomerBuilder{
+
+		private String cpfCnpj;
+		private String nameCompanyName;
+
+		public CustomerBuilder(){
+
+		}
+
+		public CustomerBuilder cpfCnpj(String cpfCnpj){
+			this.cpfCnpj = cpfCnpj;
+			return this;
+		}
+
+		public CustomerBuilder nameCompanyName(String nameCompanyName){
+			this.nameCompanyName = nameCompanyName;
+			return this;
+		}
+
+		public Customer build(){
+			Customer customer = new Customer();
+			customer.setCpfCnpj(this.cpfCnpj);
+			customer.setNameCompanyName(this.nameCompanyName);
+			return customer;
+		}
+
+
+	}
+
+
+
 
 }

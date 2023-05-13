@@ -91,7 +91,7 @@ public class AddressController {
 
     /**
      * delete an address
-     * @param id of a address
+     * @param id of an address
      * @return
      */
     @DeleteMapping("/{id}")
