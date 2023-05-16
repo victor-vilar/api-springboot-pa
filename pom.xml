@@ -8,7 +8,7 @@
 		<version>2.7.0</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>victor-vilar/com.github</groupId>
+	<groupId>victor-vilar.com.github</groupId>
 	<artifactId>api-springboot</artifactId>
 	<version>1.0</version>
 	<packaging>jar</packaging>
