@@ -5,7 +5,7 @@ import com.victorvilar.projetoempresa.controllers.dto.supervisor.SupervisorRespo
 import com.victorvilar.projetoempresa.domain.Customer;
 import com.victorvilar.projetoempresa.domain.Supervisor;
 import com.victorvilar.projetoempresa.mappers.SupervisorMapper;
-import com.victorvilar.projetoempresa.services.ClientService;
+import com.victorvilar.projetoempresa.services.CustomerService;
 import com.victorvilar.projetoempresa.services.SupervisorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,15 +20,15 @@ import java.util.List;
 public class SupervisorController {
 
     private final SupervisorService supervisorService;
-    private final ClientService clientService;
+    private final CustomerService customerService;
     private final SupervisorMapper mapper;
 
     @Autowired
     public SupervisorController(SupervisorService supervisorService,
-                                ClientService clientService,
+                                CustomerService customerService,
                                 SupervisorMapper mapper){
         this.supervisorService = supervisorService;
-        this.clientService = clientService;
+        this.customerService = customerService;
         this.mapper = mapper;
     }
 
@@ -51,7 +51,7 @@ public class SupervisorController {
      */
     @GetMapping("by-customer/{clientId}")
     public ResponseEntity<List<SupervisorResponseDto>> getAllSupervisorsByClient(@PathVariable String clientId){
-        Customer customer = this.clientService.getClientById(clientId);
+        Customer customer = this.customerService.getClientById(clientId);
         return new ResponseEntity<List<SupervisorResponseDto>>(
                 this.mapper.toSupervisorResponseDtoList(
                 this.supervisorService.findAllByClientId(clientId)
@@ -76,7 +76,7 @@ public class SupervisorController {
      */
     @PostMapping()
     public ResponseEntity<SupervisorResponseDto> addNewSupervisor(@Valid  @RequestBody SupervisorCreateDto supervisoCreateDto){
-        Customer customer = this.clientService.getClientById(supervisoCreateDto.getCustomerId());
+        Customer customer = this.customerService.getClientById(supervisoCreateDto.getCustomerId());
         Supervisor supervisor = mapper.toSupervisor(supervisoCreateDto);
         customer.addNewSupervisor(supervisor);
         return new ResponseEntity<SupervisorResponseDto>(

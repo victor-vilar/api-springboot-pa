@@ -7,7 +7,7 @@ import com.victorvilar.projetoempresa.controllers.dto.contract.ItemContractCreat
 import com.victorvilar.projetoempresa.domain.*;
 import com.victorvilar.projetoempresa.mappers.ContractMapper;
 import com.victorvilar.projetoempresa.mappers.ItemContractMapper;
-import com.victorvilar.projetoempresa.services.ClientService;
+import com.victorvilar.projetoempresa.services.CustomerService;
 import com.victorvilar.projetoempresa.services.ContractService;
 import com.victorvilar.projetoempresa.services.EquipmentService;
 import com.victorvilar.projetoempresa.services.ResidueService;
@@ -30,7 +30,7 @@ public class ContractController {
 
     private final ContractService service;
     private final ContractMapper mapper;
-    private final ClientService clientService;
+    private final CustomerService customerService;
     private final ItemContractMapper itemContractMapper;
     private final ResidueService residueService;
     private final EquipmentService equipmentService;
@@ -38,14 +38,14 @@ public class ContractController {
     @Autowired
     public ContractController(ContractService service,
                               ContractMapper mapper,
-                              ClientService clientService,
+                              CustomerService customerService,
                               ItemContractMapper itemContractMapper,
                               ResidueService residueService,
                               EquipmentService equipmentService
 ){
         this.service = service;
         this.mapper= mapper;
-        this.clientService = clientService;
+        this.customerService = customerService;
         this.itemContractMapper = itemContractMapper;
         this.residueService = residueService;
         this.equipmentService = equipmentService;
@@ -108,7 +108,7 @@ public class ContractController {
         this.itemContractMapper.fromItemContractCreateDtoListToItemContractList(contract.getItens()).stream().forEach(item -> contract1.addNewItem(item));
 
         //get client from database
-        Customer customer = clientService.getClientById(contract.getCustomerId());
+        Customer customer = customerService.getClientById(contract.getCustomerId());
 
         //add contract to customer
         customer.addNewContract(contract1);
@@ -168,7 +168,7 @@ public class ContractController {
         Contract contract = this.mapper.toContract(contractUpdateDto);
         System.out.println(contractUpdateDto.getCustomerId());
         //find contract's customer
-        contract.setCustomer(this.clientService.getClientById(contractUpdateDto.getCustomerId()));
+        contract.setCustomer(this.customerService.getClientById(contractUpdateDto.getCustomerId()));
 
         //if the contract to update has no itens, throw error
         if(contractUpdateDto.getItens().isEmpty()){

@@ -6,7 +6,7 @@ import com.victorvilar.projetoempresa.domain.Address;
 import com.victorvilar.projetoempresa.domain.Customer;
 import com.victorvilar.projetoempresa.mappers.AddressMapper;
 import com.victorvilar.projetoempresa.services.AddressService;
-import com.victorvilar.projetoempresa.services.ClientService;
+import com.victorvilar.projetoempresa.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,13 +27,13 @@ public class AddressController {
 
     private final AddressService addressService;
     private final AddressMapper addressMapper;
-    private final ClientService clientService;
+    private final CustomerService customerService;
 
     @Autowired
-    public AddressController(AddressService service, AddressMapper mapper,ClientService clientService){
+    public AddressController(AddressService service, AddressMapper mapper, CustomerService customerService){
         this.addressService = service;
         this.addressMapper = mapper;
-        this.clientService = clientService;
+        this.customerService = customerService;
     }
 
     /**
@@ -83,7 +83,7 @@ public class AddressController {
     public ResponseEntity<AddressResponseDto> addNewAddress(@Valid @RequestBody AddressCreateDto addressCreateDto){
 
         Address address = this.addressMapper.toAddress(addressCreateDto);
-        Customer customer = this.clientService.getClientById(addressCreateDto.getCustomerId());
+        Customer customer = this.customerService.getClientById(addressCreateDto.getCustomerId());
         customer.addNewAddress(address);
         this.addressService.addNewAddress(address);
         return new ResponseEntity<AddressResponseDto>(this.addressMapper.toAddressResponseDto(address),HttpStatus.OK);

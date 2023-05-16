@@ -16,13 +16,13 @@ import com.victorvilar.projetoempresa.util.CpfCnpjValidator;
 import javax.transaction.Transactional;
 
 @Service
-public class ClientService {
+public class CustomerService {
 
 	
 	private final CustomerRepository repository;
 	
 	@Autowired
-	public ClientService(CustomerRepository repository) {
+	public CustomerService(CustomerRepository repository) {
 		this.repository = repository;
 	}
 	
@@ -39,7 +39,7 @@ public class ClientService {
 	 * @param customer, a client
 	 */
 	@Transactional
-	public void addNewClient(Customer customer) throws InvalidCpfOrCnpjException, CpfOrCnpjAlreadyExistsException {
+	public Customer addNewClient(Customer customer) throws InvalidCpfOrCnpjException, CpfOrCnpjAlreadyExistsException {
 
 
 		//if client with this cpf or cpjs already exists, throws a new exception
@@ -51,7 +51,7 @@ public class ClientService {
 		if(CpfCnpjValidator.checkIfIsValid(customer.getCpfCnpj())) {
 			//upper case client name
 			customer.setNameCompanyName(customer.getNameCompanyName().toUpperCase());
-			this.repository.save(customer);
+			return this.repository.save(customer);
 		}else {
 			throw new InvalidCpfOrCnpjException("This CPF or CNPJ is Invalid");
 		}

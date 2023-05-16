@@ -12,7 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.victorvilar.projetoempresa.services.ClientService;
+import com.victorvilar.projetoempresa.services.CustomerService;
 
 import javax.validation.Valid;
 
@@ -27,11 +27,11 @@ import javax.validation.Valid;
 public class CustomerController {
 
 	
-	private final ClientService service;
+	private final CustomerService service;
 	private final CustomerMapper mapper;
 	
 	@Autowired
-	public CustomerController(ClientService service, CustomerMapper mapper) {
+	public CustomerController(CustomerService service, CustomerMapper mapper) {
 		this.service = service;
 		this.mapper = mapper;
 	}

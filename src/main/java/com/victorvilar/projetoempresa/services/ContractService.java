@@ -5,7 +5,6 @@ import com.victorvilar.projetoempresa.exceptions.ContractNotFoundException;
 import com.victorvilar.projetoempresa.domain.Contract;
 import com.victorvilar.projetoempresa.domain.ItemContract;
 import com.victorvilar.projetoempresa.exceptions.ItemContractNotFoundException;
-import com.victorvilar.projetoempresa.exceptions.ItemNotFoundException;
 import com.victorvilar.projetoempresa.repository.ContractRepository;
 import com.victorvilar.projetoempresa.repository.ItemContractRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,15 +17,15 @@ import java.util.List;
 public class ContractService {
 
     private final ContractRepository contractRepository;
-    private final ClientService clientService;
+    private final CustomerService customerService;
     private final ItemContractRepository itemContractRepository;
 
     @Autowired
     public ContractService (ContractRepository repository,
-                            ClientService clienteService,
+                            CustomerService clienteService,
                             ItemContractRepository itemContractRepository){
         this.contractRepository = repository;
-        this.clientService = clienteService;
+        this.customerService = clienteService;
         this.itemContractRepository = itemContractRepository;
     }
 
@@ -108,7 +107,7 @@ public class ContractService {
     @Transactional
     public Contract updateContract(Long contractId, Contract contract){
         Contract contractToUpdate = this.getContractById(contractId);
-        contractToUpdate.setCustomer(this.clientService.getClientById(contract.getCustomer().getCpfCnpj()));
+        contractToUpdate.setCustomer(this.customerService.getClientById(contract.getCustomer().getCpfCnpj()));
         contractToUpdate.setNumber(contract.getNumber());
         contractToUpdate.setBeginDate(contract.getBeginDate());
         contractToUpdate.setEndDate(contract.getEndDate());
