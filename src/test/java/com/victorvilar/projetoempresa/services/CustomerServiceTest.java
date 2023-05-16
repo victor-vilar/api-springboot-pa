@@ -8,8 +8,11 @@ import com.victorvilar.projetoempresa.exceptions.InvalidCpfOrCnpjException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -23,14 +26,14 @@ class CustomerServiceTest {
 
     @Test
     @DisplayName("save when sucessfull when passing cpf")
-    void save_whenSucessfull_WhenPassingCpf(){
+    void save_SaveCustomer_WhenPassingValidCpf(){
         Customer customer = new Customer.CustomerBuilder().nameCompanyName("teste").cpfCnpj("86570192051").build();
         Assertions.assertEquals(customer.getCpfCnpj(),this.customerService.addNewClient(customer).getCpfCnpj());
     }
 
     @Test
     @DisplayName("save when sucessfull when passing cnpj")
-    void save_whenSucessfull_WhenPassingCnpj(){
+    void save_SaveCustomer_WhenPassingValidCnpj(){
         Customer customer = new Customer.CustomerBuilder().nameCompanyName("teste").cpfCnpj("58540613000100").build();
         Assertions.assertEquals(customer.getCpfCnpj(),this.customerService.addNewClient(customer).getCpfCnpj());
     }
@@ -38,7 +41,7 @@ class CustomerServiceTest {
 
     @Test
     @DisplayName("save throws InvalidCpfOrCnpjException when passing a invalid cpf")
-    void save_ThrowsInvalidCpfOrCnpjException_WhenPassAInvalidCpf(){
+    void save_ThrowsInvalidCpfOrCnpjException_WhenPassAnInvalidCpf(){
         Customer customer = new Customer.CustomerBuilder().nameCompanyName("teste").cpfCnpj("12345678912").build();
         Assertions.assertThrows(InvalidCpfOrCnpjException.class,() -> this.customerService.addNewClient(customer));
 
@@ -46,12 +49,25 @@ class CustomerServiceTest {
 
     @Test
     @DisplayName("save throws InvalidCpfOrCnpjException when passing a invalid cnpj")
-    void save_ThrowsInvalidCpfOrCnpjException_WhenPassAInvalidCnpj(){
+    void save_ThrowsInvalidCpfOrCnpjException_WhenPassAnInvalidCnpj(){
         Customer customer = new Customer.CustomerBuilder().nameCompanyName("teste").cpfCnpj("58540613000155").build();
         Assertions.assertThrows(InvalidCpfOrCnpjException.class,() -> this.customerService.addNewClient(customer));
 
     }
 
+    @Test
+    @DisplayName("save throws NullPointerException when passing a null cpf or cnpj")
+    void save_ThrowsNullPointerException_WhenPassAnNullCpfOrCnpj(){
+        Customer customer = new Customer.CustomerBuilder().nameCompanyName("teste").build();
+        Assertions.assertThrows(NullPointerException.class,() -> this.customerService.addNewClient(customer));
+    }
+
+    @Test
+    @DisplayName("save throws NullPointerException when passing a null nameCompanyName")
+    void save_ThrowsNullPointerException_WhenPassAnNullNameCompanyName(){
+        Customer customer = new Customer.CustomerBuilder().cpfCnpj("58540613000100").build();
+        Assertions.assertThrows(NullPointerException.class,() -> this.customerService.addNewClient(customer));
+    }
 
 
     @Test
@@ -66,7 +82,7 @@ class CustomerServiceTest {
 
     @Test
     @DisplayName("delete - delete a customer by id when sucessfull")
-    void delete_WhenSucessfull(){
+    void delete_DeleteCustomer_WhenSucessfull(){
         Customer customer = new Customer.CustomerBuilder().nameCompanyName("teste").cpfCnpj("06752034060").build();
         this.customerService.addNewClient(customer);
         this.customerService.deleteClientById("06752034060");

@@ -11,7 +11,7 @@ public class ClassCpfCnpjValidatorTest {
 	//passing a valid cpf
 	@Test
 	public void checkIfIsValidTestSendingCpfAsParamMustReturnTrue() {
-		Assertions.assertEquals(true, CpfCnpjValidator.checkIfIsValid("12525299701"));
+		Assertions.assertEquals(true, CpfCnpjValidator.checkIfIsValid("86570192051"));
 	}
 	
 	//passing a valid cnpj
@@ -23,7 +23,7 @@ public class ClassCpfCnpjValidatorTest {
 	//passing a invalid cpf
 	@Test
 	public void checkIfIsValidWrongCpfMustReturnFalse() {
-		Assertions.assertEquals(false, CpfCnpjValidator.checkIfIsValid("12525299700"));
+		Assertions.assertEquals(false, CpfCnpjValidator.checkIfIsValid("86570192000"));
 	}
 	
 	//passing a invalid cnpj
