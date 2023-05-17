@@ -74,8 +74,15 @@ public class Contract implements Serializable {
     public Contract() {
 		
 	}
-    //-----------------------
 
+	public Contract(String number, LocalDate beginDate, LocalDate endDate, Customer customer) {
+		this.number = number;
+		this.beginDate = beginDate;
+		this.endDate = endDate;
+		this.customer = customer;
+	}
+
+	//-----------------------
 	//getters and setters - id
 	public Long getId() {
 		return id;
@@ -122,10 +129,48 @@ public class Contract implements Serializable {
 	}
 	//--------------
 
-
 	//delete a item from contract
 	public void deleteItem(int itemIndex){
 		this.itens.remove(itemIndex);
+	}
+
+	public static final class ContractBuilder{
+
+		private String number;
+		private LocalDate beginDate;
+		private LocalDate endDate;
+		private List<ItemContract> itens = new ArrayList<ItemContract>();
+		private Customer customer;
+
+		public ContractBuilder number(String number){
+			this.number = number;
+			return this;
+		}
+
+		public ContractBuilder beginDate(LocalDate beginDate){
+			this.beginDate = beginDate;
+			return this;
+		}
+
+		public ContractBuilder endDate(LocalDate endDate){
+			this.endDate = endDate;
+			return this;
+		}
+
+		public ContractBuilder customer(Customer customer){
+			this.customer = customer;
+			return this;
+		}
+
+		public Contract build(){
+			Contract contract = new Contract();
+			contract.setNumber(this.number);
+			contract.setBeginDate(this.beginDate);
+			contract.setEndDate(this.endDate);
+			contract.setCustomer(this.customer);
+			return contract;
+		}
+
 	}
 
 
