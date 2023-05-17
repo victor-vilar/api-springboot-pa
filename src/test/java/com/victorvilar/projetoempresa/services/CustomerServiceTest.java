@@ -8,13 +8,8 @@ import com.victorvilar.projetoempresa.exceptions.InvalidCpfOrCnpjException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @DisplayName("Customer service tests class")
@@ -25,17 +20,17 @@ class CustomerServiceTest {
 
 
     @Test
-    @DisplayName("save when sucessfull when passing cpf")
-    void save_SaveCustomer_WhenPassingValidCpf(){
+    @DisplayName("save  successfully when passing cpf")
+    void save_Successfully_WhenPassingValidCpf(){
         Customer customer = new Customer.CustomerBuilder().nameCompanyName("teste").cpfCnpj("86570192051").build();
-        Assertions.assertEquals(customer.getCpfCnpj(),this.customerService.addNewClient(customer).getCpfCnpj());
+        Assertions.assertEquals(customer.getCpfCnpj(),this.customerService.addNewCustomer(customer).getCpfCnpj());
     }
 
     @Test
-    @DisplayName("save when sucessfull when passing cnpj")
-    void save_SaveCustomer_WhenPassingValidCnpj(){
+    @DisplayName("save successfully when passing cnpj")
+    void save_Successfully_WhenPassingValidCnpj(){
         Customer customer = new Customer.CustomerBuilder().nameCompanyName("teste").cpfCnpj("58540613000100").build();
-        Assertions.assertEquals(customer.getCpfCnpj(),this.customerService.addNewClient(customer).getCpfCnpj());
+        Assertions.assertEquals(customer.getCpfCnpj(),this.customerService.addNewCustomer(customer).getCpfCnpj());
     }
 
 
@@ -43,7 +38,7 @@ class CustomerServiceTest {
     @DisplayName("save throws InvalidCpfOrCnpjException when passing a invalid cpf")
     void save_ThrowsInvalidCpfOrCnpjException_WhenPassAnInvalidCpf(){
         Customer customer = new Customer.CustomerBuilder().nameCompanyName("teste").cpfCnpj("12345678912").build();
-        Assertions.assertThrows(InvalidCpfOrCnpjException.class,() -> this.customerService.addNewClient(customer));
+        Assertions.assertThrows(InvalidCpfOrCnpjException.class,() -> this.customerService.addNewCustomer(customer));
 
     }
 
@@ -51,7 +46,7 @@ class CustomerServiceTest {
     @DisplayName("save throws InvalidCpfOrCnpjException when passing a invalid cnpj")
     void save_ThrowsInvalidCpfOrCnpjException_WhenPassAnInvalidCnpj(){
         Customer customer = new Customer.CustomerBuilder().nameCompanyName("teste").cpfCnpj("58540613000155").build();
-        Assertions.assertThrows(InvalidCpfOrCnpjException.class,() -> this.customerService.addNewClient(customer));
+        Assertions.assertThrows(InvalidCpfOrCnpjException.class,() -> this.customerService.addNewCustomer(customer));
 
     }
 
@@ -59,14 +54,14 @@ class CustomerServiceTest {
     @DisplayName("save throws NullPointerException when passing a null cpf or cnpj")
     void save_ThrowsNullPointerException_WhenPassAnNullCpfOrCnpj(){
         Customer customer = new Customer.CustomerBuilder().nameCompanyName("teste").build();
-        Assertions.assertThrows(NullPointerException.class,() -> this.customerService.addNewClient(customer));
+        Assertions.assertThrows(NullPointerException.class,() -> this.customerService.addNewCustomer(customer));
     }
 
     @Test
     @DisplayName("save throws NullPointerException when passing a null nameCompanyName")
     void save_ThrowsNullPointerException_WhenPassAnNullNameCompanyName(){
         Customer customer = new Customer.CustomerBuilder().cpfCnpj("58540613000100").build();
-        Assertions.assertThrows(NullPointerException.class,() -> this.customerService.addNewClient(customer));
+        Assertions.assertThrows(NullPointerException.class,() -> this.customerService.addNewCustomer(customer));
     }
 
 
@@ -74,33 +69,33 @@ class CustomerServiceTest {
     @DisplayName("save throws CpfOrCnpjAlreadyExists when already exists")
     void save_ThrowsCpfCnpjAlreadyExistsException_WhenSavesAnAlreadyExistCpfCnpj(){
         Customer customer = new Customer.CustomerBuilder().nameCompanyName("teste").cpfCnpj("33172519058").build();
-        this.customerService.addNewClient(customer);
+        this.customerService.addNewCustomer(customer);
         Customer customer2 = new Customer.CustomerBuilder().nameCompanyName("teste2").cpfCnpj("33172519058").build();
-        Assertions.assertThrows(CpfOrCnpjAlreadyExistsException.class,() -> this.customerService.addNewClient(customer2));
+        Assertions.assertThrows(CpfOrCnpjAlreadyExistsException.class,() -> this.customerService.addNewCustomer(customer2));
 
     }
 
     @Test
-    @DisplayName("delete - delete a customer by id when sucessfull")
-    void delete_DeleteCustomer_WhenSucessfull(){
+    @DisplayName("delete a customer by id when passing a valid cpf or cnpj")
+    void delete_Successfully_WhenPassValidCpfCnpj(){
         Customer customer = new Customer.CustomerBuilder().nameCompanyName("teste").cpfCnpj("06752034060").build();
-        this.customerService.addNewClient(customer);
-        this.customerService.deleteClientById("06752034060");
-        Assertions.assertThrows(CustomerNotFoundException.class,() ->this.customerService.getClientById("06752034060"));
+        this.customerService.addNewCustomer(customer);
+        this.customerService.deleteCustomerById("06752034060");
+        Assertions.assertThrows(CustomerNotFoundException.class,() ->this.customerService.findCustomerById("06752034060"));
     }
 
     @Test
     @DisplayName("delete throw CustomerNotFoundException when cpf/cnpj doesn't exist")
     void delete_ThrowsCustomerNotFoundException_WhenCpfCnpjIsWrong(){
-        Assertions.assertThrows(CustomerNotFoundException.class,() ->this.customerService.deleteClientById("1234"));
+        Assertions.assertThrows(CustomerNotFoundException.class,() ->this.customerService.deleteCustomerById("1234"));
     }
 
 
     @Test
     @DisplayName("find customer by cpfCnpj when successfull")
-    void find_CustomerByCpfCnpj_WhenSucessfull(){
+    void find_Successfully_WhenPassValidCpfCnpj(){
         Customer customer = new Customer.CustomerBuilder().nameCompanyName("teste").cpfCnpj("01216459088").build();
-        Customer savedCustomer = this.customerService.addNewClient(customer);
+        Customer savedCustomer = this.customerService.addNewCustomer(customer);
         Assertions.assertEquals(customer.getCpfCnpj(),savedCustomer.getCpfCnpj());
         Assertions.assertEquals(customer.getNameCompanyName(),savedCustomer.getNameCompanyName());
     }
@@ -108,15 +103,15 @@ class CustomerServiceTest {
     @Test
     @DisplayName("find throw CustomerNotFoundException when cpf/cnpj is wrong")
     void find_ThrowsCustomerNotFoundException_WhenCpfCnpjIsWrong(){
-        Assertions.assertThrows(CustomerNotFoundException.class,() ->this.customerService.getClientById("1234"));
+        Assertions.assertThrows(CustomerNotFoundException.class,() ->this.customerService.findCustomerById("1234"));
     }
 
 
     @Test
     @DisplayName("update customer when successfull")
-    void update_CustomerWhenSuccessfull(){
+    void update_Successfully_WhenPassValidCpfCnpj(){
         Customer customer = new Customer.CustomerBuilder().nameCompanyName("teste").cpfCnpj("58141426001").build();
-        this.customerService.addNewClient(customer);
+        this.customerService.addNewCustomer(customer);
         CustomerCreateDto dto = new CustomerCreateDto();
         dto.setCpfCnpj("61043722017");
         dto.setNameCompanyName("outro Teste");
@@ -125,5 +120,17 @@ class CustomerServiceTest {
         Assertions.assertEquals(updatedCustomer.getNameCompanyName(),dto.getNameCompanyName());
 
     }
+
+    @Test
+    @DisplayName("update throws JpaSystemException when cpf or cnpj is wrong")
+    void update_ThrowsCustomerNotFoundException_WhenCpfCnpjIsWrong(){
+        Customer customer = new Customer.CustomerBuilder().nameCompanyName("teste").cpfCnpj("58141426001").build();
+        this.customerService.addNewCustomer(customer);
+        CustomerCreateDto dto = new CustomerCreateDto();
+        dto.setNameCompanyName("outro Teste");
+        Assertions.assertThrows(CustomerNotFoundException.class,() ->this.customerService.updateClient("58141426000",dto));
+
+    }
+
 
 }

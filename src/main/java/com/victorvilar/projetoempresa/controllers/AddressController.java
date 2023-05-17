@@ -83,7 +83,7 @@ public class AddressController {
     public ResponseEntity<AddressResponseDto> addNewAddress(@Valid @RequestBody AddressCreateDto addressCreateDto){
 
         Address address = this.addressMapper.toAddress(addressCreateDto);
-        Customer customer = this.customerService.getClientById(addressCreateDto.getCustomerId());
+        Customer customer = this.customerService.findCustomerById(addressCreateDto.getCustomerId());
         customer.addNewAddress(address);
         this.addressService.addNewAddress(address);
         return new ResponseEntity<AddressResponseDto>(this.addressMapper.toAddressResponseDto(address),HttpStatus.OK);

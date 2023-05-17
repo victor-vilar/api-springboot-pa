@@ -51,7 +51,7 @@ public class SupervisorController {
      */
     @GetMapping("by-customer/{clientId}")
     public ResponseEntity<List<SupervisorResponseDto>> getAllSupervisorsByClient(@PathVariable String clientId){
-        Customer customer = this.customerService.getClientById(clientId);
+        Customer customer = this.customerService.findCustomerById(clientId);
         return new ResponseEntity<List<SupervisorResponseDto>>(
                 this.mapper.toSupervisorResponseDtoList(
                 this.supervisorService.findAllByClientId(clientId)
@@ -76,7 +76,7 @@ public class SupervisorController {
      */
     @PostMapping()
     public ResponseEntity<SupervisorResponseDto> addNewSupervisor(@Valid  @RequestBody SupervisorCreateDto supervisoCreateDto){
-        Customer customer = this.customerService.getClientById(supervisoCreateDto.getCustomerId());
+        Customer customer = this.customerService.findCustomerById(supervisoCreateDto.getCustomerId());
         Supervisor supervisor = mapper.toSupervisor(supervisoCreateDto);
         customer.addNewSupervisor(supervisor);
         return new ResponseEntity<SupervisorResponseDto>(

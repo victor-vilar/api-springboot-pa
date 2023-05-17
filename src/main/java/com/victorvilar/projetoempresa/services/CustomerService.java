@@ -30,7 +30,7 @@ public class CustomerService {
 	 * get all clients, transform in a clientResponseDto list and return;
 	 * @param
 	 */
-	public List<Customer> getAllClients() {
+	public List<Customer> getAllCustomers() {
 		return this.repository.findAll();
 	}
 	
@@ -39,7 +39,7 @@ public class CustomerService {
 	 * @param customer, a client
 	 */
 	@Transactional
-	public Customer addNewClient(Customer customer) throws InvalidCpfOrCnpjException, CpfOrCnpjAlreadyExistsException {
+	public Customer addNewCustomer(Customer customer) throws InvalidCpfOrCnpjException, CpfOrCnpjAlreadyExistsException {
 
 
 		//if client with this cpf or cpjs already exists, throws a new exception
@@ -62,7 +62,7 @@ public class CustomerService {
 	 * @param id
 	 * @return
 	 */
-	public Customer getClientById(String id) throws CustomerNotFoundException {
+	public Customer findCustomerById(String id) throws CustomerNotFoundException {
 		return this.repository.findByCpfCnpj(id).orElseThrow(() ->new CustomerNotFoundException("This client doesn't exist"));
 	}
 
@@ -71,19 +71,19 @@ public class CustomerService {
 	 * @param id id of a client
 	 */
 	@Transactional
-	public void deleteClientById(String id) {
+	public void deleteCustomerById(String id) {
 		//if the id is not found will throw a exception
-		getClientById(id);
+		findCustomerById(id);
 		repository.deleteById(id);
 	}
 
 	/**
 	 * update client
-	 * @param clientId
+	 * @param customerId
 	 * @return
 	 */
-	public Customer updateClient(String clientId, CustomerCreateDto customerCreateDto) {
-		Customer customer = getClientById(clientId);
+	public Customer updateClient(String customerId, CustomerCreateDto customerCreateDto) {
+		Customer customer = findCustomerById(customerId);
 		customer.setCpfCnpj(customerCreateDto.getCpfCnpj());
 		customer.setNameCompanyName(customerCreateDto.getNameCompanyName());
 		return repository.save(customer);

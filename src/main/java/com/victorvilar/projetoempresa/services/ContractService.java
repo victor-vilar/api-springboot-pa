@@ -107,7 +107,7 @@ public class ContractService {
     @Transactional
     public Contract updateContract(Long contractId, Contract contract){
         Contract contractToUpdate = this.getContractById(contractId);
-        contractToUpdate.setCustomer(this.customerService.getClientById(contract.getCustomer().getCpfCnpj()));
+        contractToUpdate.setCustomer(this.customerService.findCustomerById(contract.getCustomer().getCpfCnpj()));
         contractToUpdate.setNumber(contract.getNumber());
         contractToUpdate.setBeginDate(contract.getBeginDate());
         contractToUpdate.setEndDate(contract.getEndDate());

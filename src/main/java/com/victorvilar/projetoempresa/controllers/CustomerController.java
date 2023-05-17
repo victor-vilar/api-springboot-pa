@@ -43,18 +43,18 @@ public class CustomerController {
 	@GetMapping()
 	public ResponseEntity<List<CustomerResponseDto>> getAllCustomer(){
 		List<CustomerResponseDto> listResponseDto = new ArrayList<>();
-		listResponseDto = mapper.toCustomerResponseDtoList(this.service.getAllClients());
+		listResponseDto = mapper.toCustomerResponseDtoList(this.service.getAllCustomers());
 		return new ResponseEntity<>(listResponseDto, HttpStatus.OK);
 	}
 
 	@GetMapping("/{id}")
 	public ResponseEntity<CustomerResponseDto> getCustomerById(@PathVariable String id) {
-			return new ResponseEntity<>(mapper.toCustomerResponseDto(this.service.getClientById(id)),HttpStatus.OK);
+			return new ResponseEntity<>(mapper.toCustomerResponseDto(this.service.findCustomerById(id)),HttpStatus.OK);
 	}
 
 	@PostMapping(consumes= MediaType.APPLICATION_JSON_VALUE)
 	public void addNewCustomer(@Valid @RequestBody CustomerCreateDto clientDto){
-			this.service.addNewClient(mapper.toCustomer(clientDto));
+			this.service.addNewCustomer(mapper.toCustomer(clientDto));
 	}
 
 	@PutMapping("/{id}")
@@ -65,7 +65,7 @@ public class CustomerController {
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> deleteCustomerById(@PathVariable String id){
-		this.service.deleteClientById(id);
+		this.service.deleteCustomerById(id);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 

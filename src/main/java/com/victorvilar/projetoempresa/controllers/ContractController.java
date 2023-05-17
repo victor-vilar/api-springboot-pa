@@ -108,7 +108,7 @@ public class ContractController {
         this.itemContractMapper.fromItemContractCreateDtoListToItemContractList(contract.getItens()).stream().forEach(item -> contract1.addNewItem(item));
 
         //get client from database
-        Customer customer = customerService.getClientById(contract.getCustomerId());
+        Customer customer = customerService.findCustomerById(contract.getCustomerId());
 
         //add contract to customer
         customer.addNewContract(contract1);
@@ -168,7 +168,7 @@ public class ContractController {
         Contract contract = this.mapper.toContract(contractUpdateDto);
         System.out.println(contractUpdateDto.getCustomerId());
         //find contract's customer
-        contract.setCustomer(this.customerService.getClientById(contractUpdateDto.getCustomerId()));
+        contract.setCustomer(this.customerService.findCustomerById(contractUpdateDto.getCustomerId()));
 
         //if the contract to update has no itens, throw error
         if(contractUpdateDto.getItens().isEmpty()){
