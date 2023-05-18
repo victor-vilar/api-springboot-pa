@@ -30,6 +30,27 @@ public class CustomerCreateDto {
     }
     //------
 
+    public static final class CustomerCreateDtoBuilder{
+        private String nameCompanyName;
+        private String cpfCnpj;
+
+        CustomerCreateDtoBuilder nameCompanyName(String name){
+            nameCompanyName = name;
+            return this;
+        }
+
+        CustomerCreateDtoBuilder cpfCnpj(String cpfCnpj) {
+            this.cpfCnpj = cpfCnpj;
+            return this;
+        }
+
+        CustomerCreateDto build(){
+            CustomerCreateDto dto = new CustomerCreateDto();
+            dto.setNameCompanyName(this.nameCompanyName);
+            dto.setCpfCnpj(this.cpfCnpj);
+            return dto;
+        }
+    }
 
 
 }
