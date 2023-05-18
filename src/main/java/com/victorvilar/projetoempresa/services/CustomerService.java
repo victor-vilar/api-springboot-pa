@@ -41,11 +41,20 @@ public class CustomerService {
 	@Transactional
 	public Customer addNewCustomer(Customer customer) throws InvalidCpfOrCnpjException, CpfOrCnpjAlreadyExistsException {
 
+		//check if customer has a name
+		if(customer.getNameCompanyName() == null){
+			throw new NullPointerException("The customer must have a name");
+		}
+
+		//check if customer has as cpfCnpj
+		if(customer.getCpfCnpj() == null){
+			throw new NullPointerException("The customer must have a cpf or cnpj");
+		}
 
 		//if client with this cpf or cpjs already exists, throws a new exception
 		boolean isPresent = this.repository.findByCpfCnpj(customer.getCpfCnpj()).isPresent();
 		if(isPresent){
-			throw new CpfOrCnpjAlreadyExistsException("This Cpf/Cnpj already exists in database");
+			throw new CpfOrCnpjAlreadyExistsException("This Cpf/Cnpj already exists");
 		}
 		//if the cpf or cnpj is valid, it saves the client
 		if(CpfCnpjValidator.checkIfIsValid(customer.getCpfCnpj())) {

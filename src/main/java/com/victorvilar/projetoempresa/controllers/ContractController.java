@@ -166,7 +166,7 @@ public class ContractController {
 
         //creates instance of contract
         Contract contract = this.mapper.toContract(contractUpdateDto);
-        System.out.println(contractUpdateDto.getCustomerId());
+
         //find contract's customer
         contract.setCustomer(this.customerService.findCustomerById(contractUpdateDto.getCustomerId()));
 
@@ -190,7 +190,7 @@ public class ContractController {
             }
         });
         this.service.save(savedContract);
-       return new ResponseEntity<ContractResponseDto>(this.mapper.toContractResponseDto(savedContract), HttpStatus.OK);
+        return new ResponseEntity<ContractResponseDto>(this.mapper.toContractResponseDto(savedContract), HttpStatus.OK);
 
 
     }

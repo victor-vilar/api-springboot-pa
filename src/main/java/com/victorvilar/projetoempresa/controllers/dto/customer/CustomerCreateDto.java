@@ -30,21 +30,21 @@ public class CustomerCreateDto {
     }
     //------
 
-    public static final class CustomerCreateDtoBuilder{
+    public static class CustomerCreateDtoBuilder{
         private String nameCompanyName;
         private String cpfCnpj;
 
-        CustomerCreateDtoBuilder nameCompanyName(String name){
-            nameCompanyName = name;
+        public CustomerCreateDtoBuilder nameCompanyName(String nameCompanyName){
+            this.nameCompanyName = nameCompanyName;
             return this;
         }
 
-        CustomerCreateDtoBuilder cpfCnpj(String cpfCnpj) {
+        public CustomerCreateDtoBuilder cpfCnpj(String cpfCnpj) {
             this.cpfCnpj = cpfCnpj;
             return this;
         }
 
-        CustomerCreateDto build(){
+        public CustomerCreateDto build(){
             CustomerCreateDto dto = new CustomerCreateDto();
             dto.setNameCompanyName(this.nameCompanyName);
             dto.setCpfCnpj(this.cpfCnpj);
