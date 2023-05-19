@@ -15,7 +15,7 @@ import javax.persistence.Table;
  * 
  * @author Victor Vilar
  * @since 2022-01-31
- * Class that represents a client
+ * Class that represents a customer
  */
 
 @Entity
@@ -113,10 +113,6 @@ public class Customer implements Serializable {
 	}
 	//-------------------------------------
 
-
-
-	
-	
 
 	@Override
 	public String toString() {

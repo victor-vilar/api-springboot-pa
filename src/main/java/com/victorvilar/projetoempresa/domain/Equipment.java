@@ -41,8 +41,7 @@ public class Equipment implements Serializable{
 	//-----------
 
 
-	public Equipment(Long id, String equipmentName, double sizeInMeterCubic) {
-		this.id = id;
+	public Equipment( String equipmentName, double sizeInMeterCubic) {
 		this.equipmentName = equipmentName;
 		this.sizeInMeterCubic = sizeInMeterCubic;
 	}
