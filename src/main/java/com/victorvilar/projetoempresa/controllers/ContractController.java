@@ -105,7 +105,10 @@ public class ContractController {
         }
 
         //transform itemContractCreateList into a ItemContractList and add to contract
-        this.itemContractMapper.fromItemContractCreateDtoListToItemContractList(contract.getItens()).stream().forEach(item -> contract1.addNewItem(item));
+        this.itemContractMapper.fromItemContractCreateDtoListToItemContractList(
+                contract.getItens())
+                .stream()
+                .forEach(item -> contract1.addNewItem(item));
 
         //get client from database
         Customer customer = customerService.findCustomerById(contract.getCustomerId());
