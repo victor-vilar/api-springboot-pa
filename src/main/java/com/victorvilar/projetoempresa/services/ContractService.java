@@ -1,5 +1,6 @@
 package com.victorvilar.projetoempresa.services;
 
+import com.victorvilar.projetoempresa.domain.Customer;
 import com.victorvilar.projetoempresa.exceptions.CustomerNotFoundException;
 import com.victorvilar.projetoempresa.exceptions.ContractNotFoundException;
 import com.victorvilar.projetoempresa.domain.Contract;
@@ -22,10 +23,10 @@ public class ContractService {
 
     @Autowired
     public ContractService (ContractRepository repository,
-                            CustomerService clienteService,
+                            CustomerService customerService,
                             ItemContractRepository itemContractRepository){
         this.contractRepository = repository;
-        this.customerService = clienteService;
+        this.customerService = customerService;
         this.itemContractRepository = itemContractRepository;
     }
 
@@ -62,6 +63,13 @@ public class ContractService {
      */
     @Transactional
     public Contract save(Contract contract) {
+
+        //get client from database
+        Customer customer = customerService.findCustomerById(contract.getCustomer().getCpfCnpj());
+
+        //add contract to customer
+        customer.addNewContract(contract);
+
         return this.contractRepository.save(contract);
     }
 

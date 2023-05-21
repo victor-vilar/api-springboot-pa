@@ -100,21 +100,11 @@ public class ContractController {
         //contractCreateDto to Contract
         Contract contract1 = this.mapper.toContract(contract);
 
-        if(contract.getItens().isEmpty()){
-            throw new RuntimeException("contract must have at least one item");
-        }
-
         //transform itemContractCreateList into a ItemContractList and add to contract
         this.itemContractMapper.fromItemContractCreateDtoListToItemContractList(
                 contract.getItens())
                 .stream()
                 .forEach(item -> contract1.addNewItem(item));
-
-        //get client from database
-        Customer customer = customerService.findCustomerById(contract.getCustomerId());
-
-        //add contract to customer
-        customer.addNewContract(contract1);
 
         //return saved contract
         return new ResponseEntity<ContractResponseDto>
