@@ -161,11 +161,6 @@ public class ContractController {
         //find contract's customer
         contract.setCustomer(this.customerService.findCustomerById(contractUpdateDto.getCustomerId()));
 
-        //if the contract to update has no itens, throw error
-        if(contractUpdateDto.getItens().isEmpty()){
-            throw new RuntimeException("contract must have at least one item");
-        }
-
         //update each value of contract and get savedContract
         Contract savedContract = this.service.updateContract(contractId, contract);
 
@@ -180,7 +175,9 @@ public class ContractController {
                 this.service.updateItemContract(savedContract,item);
             }
         });
+
         this.service.save(savedContract);
+
         return new ResponseEntity<ContractResponseDto>(this.mapper.toContractResponseDto(savedContract), HttpStatus.OK);
 
 
