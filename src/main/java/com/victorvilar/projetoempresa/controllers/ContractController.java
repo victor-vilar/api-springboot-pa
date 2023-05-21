@@ -120,10 +120,8 @@ public class ContractController {
     public ResponseEntity<ContractResponseDto> addNewItemToContract(@PathVariable Long contractId, @Valid @RequestBody ItemContractCreateDto itemDto){
 
         ItemContract item = this.itemContractMapper.toItemContract(itemDto);
-        this.service.addNewItemToContract(contractId, item);
-        Contract contract = this.service.getContractById(contractId);
         return new ResponseEntity<ContractResponseDto>(
-                this.mapper.toContractResponseDto(contract),HttpStatus.OK);
+                this.mapper.toContractResponseDto(this.service.addNewItemToContract(contractId, item)),HttpStatus.OK);
     }
 
 

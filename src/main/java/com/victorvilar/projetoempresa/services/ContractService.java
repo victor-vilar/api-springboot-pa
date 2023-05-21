@@ -78,10 +78,10 @@ public class ContractService {
      * @param contractId
      */
     @Transactional
-    public void addNewItemToContract(Long contractId, ItemContract item) {
+    public Contract addNewItemToContract(Long contractId, ItemContract item) {
         Contract contract = this.getContractById(contractId);
         contract.addNewItem(item);
-        this.save(contract);
+        return this.save(contract);
     }
 
     /**
