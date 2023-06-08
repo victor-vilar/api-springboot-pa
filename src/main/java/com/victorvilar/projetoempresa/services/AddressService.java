@@ -1,11 +1,14 @@
 package com.victorvilar.projetoempresa.services;
 
+import com.victorvilar.projetoempresa.controllers.dto.adress.AddressCreateDto;
+import com.victorvilar.projetoempresa.controllers.dto.adress.AddressResponseDto;
 import com.victorvilar.projetoempresa.domain.Address;
+import com.victorvilar.projetoempresa.domain.Customer;
 import com.victorvilar.projetoempresa.exceptions.AddressNotFoundException;
+import com.victorvilar.projetoempresa.mappers.AddressMapper;
 import com.victorvilar.projetoempresa.repository.AddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -13,11 +16,15 @@ import java.util.List;
 public class AddressService {
 
     private final AddressRepository addressRepository;
+    private final AddressMapper addressMapper;
+    private final CustomerService customerService;
 
     @Autowired
     //constructor
-    public AddressService(AddressRepository addressRepository) {
+    public AddressService(AddressRepository addressRepository, AddressMapper mapper, CustomerService customerService) {
         this.addressRepository = addressRepository;
+        this.addressMapper = mapper;
+        this.customerService = customerService;
     }
     //------------
 
@@ -25,8 +32,8 @@ public class AddressService {
      * get all address
      * @return all address
      */
-    public List<Address> getAllAddress(){
-        return this.addressRepository.findAll();
+    public List<AddressResponseDto> getAllAddress(){
+        return this.addressMapper.toAddressResponseDtoList(this.addressRepository.findAll());
     }
 
     /**
@@ -34,8 +41,16 @@ public class AddressService {
      * @param clientId
      * @return
      */
-    public List<Address> getAllAddressByClient(String clientId){
-        return this.addressRepository.findByCustomerCpfCnpj(clientId);
+    public List<AddressResponseDto> getAllAddressByCustomer(String clientId){
+        return this.addressMapper.toAddressResponseDtoList(this.addressRepository.findByCustomerCpfCnpj(clientId));
+    }
+
+    /**
+     * get a Address Object without mapping
+     * @return Address Object
+     */
+    private Address findAddressById(Long id){
+        return this.addressRepository.findById(id).orElseThrow(() -> new AddressNotFoundException("This address doesn't exist"));
     }
 
     /**
@@ -43,16 +58,19 @@ public class AddressService {
      * @param id
      * @return
      */
-    public Address getAddressById(Long id){
-        return this.addressRepository.findById(id).orElseThrow(() -> new AddressNotFoundException("This address doesn't exist"));
+    public AddressResponseDto getAddressById(Long id){
+        return this.addressMapper.toAddressResponseDto(this.findAddressById(id));
     }
 
     /**
      * create a new address
-     * @param address
+     * @param addressCreateDto
      */
-    public void addNewAddress(Address address){
-        this.addressRepository.save(address);
+    public AddressResponseDto addNewAddress(AddressCreateDto addressCreateDto){
+        Address address = this.addressMapper.toAddress(addressCreateDto);
+        Customer customer = this.customerService.findCustomerById(addressCreateDto.getCustomerId());
+        address.setClient(customer);
+        return this.addressMapper.toAddressResponseDto(this.addressRepository.save(address));
     }
 
 
@@ -61,7 +79,7 @@ public class AddressService {
      * @param id
      */
     public void deleteAddressById(Long id){
-        Address address = this.getAddressById(id);
+        Address address = this.findAddressById(id);
         this.addressRepository.deleteById(id);
     }
 
@@ -69,19 +87,23 @@ public class AddressService {
     /**
      * update an address
      * @param id
-     * @param address
-     * @return
+     * @param addressCreateDto
+     * @return saved contract
      */
-    public Address updateAddress(Long id, Address address){
-        Address addressToUpdate = this.getAddressById(id);
-        addressToUpdate.setAddressName(address.getAddressName());
-        addressToUpdate.setAddressNumber(address.getAddressNumber());
-        addressToUpdate.setCity(address.getCity());
-        addressToUpdate.setComplement(address.getComplement());
-        addressToUpdate.setState(address.getState());
-        addressToUpdate.setZipCode(address.getZipCode());
-        addressToUpdate.setRequiresCollection(address.isRequiresCollection());
+    public AddressResponseDto updateAddress(Long id, AddressCreateDto addressCreateDto){
+        Address addressToUpdate = this.findAddressById(id);
+        addressToUpdate.setAddressName(addressCreateDto.getAddressName());
+        addressToUpdate.setAddressNumber(addressCreateDto.getAddressNumber());
+        addressToUpdate.setCity(addressCreateDto.getCity());
+        addressToUpdate.setComplement(addressCreateDto.getComplement());
+        addressToUpdate.setState(addressCreateDto.getState());
+        addressToUpdate.setZipCode(addressCreateDto.getZipCode());
+        addressToUpdate.setRequiresCollection(addressCreateDto.isRequiresCollection());
         this.addressRepository.save(addressToUpdate);
-        return addressToUpdate;
+        return this.addressMapper.toAddressResponseDto(addressToUpdate);
     }
+
+
+
 }
+

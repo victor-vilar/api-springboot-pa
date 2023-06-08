@@ -4,9 +4,7 @@ import com.victorvilar.projetoempresa.controllers.dto.adress.AddressCreateDto;
 import com.victorvilar.projetoempresa.controllers.dto.adress.AddressResponseDto;
 import com.victorvilar.projetoempresa.domain.Address;
 import com.victorvilar.projetoempresa.domain.Customer;
-import com.victorvilar.projetoempresa.mappers.AddressMapper;
 import com.victorvilar.projetoempresa.services.AddressService;
-import com.victorvilar.projetoempresa.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,14 +24,11 @@ import java.util.List;
 public class AddressController {
 
     private final AddressService addressService;
-    private final AddressMapper addressMapper;
-    private final CustomerService customerService;
+
 
     @Autowired
-    public AddressController(AddressService service, AddressMapper mapper, CustomerService customerService){
+    public AddressController(AddressService service){
         this.addressService = service;
-        this.addressMapper = mapper;
-        this.customerService = customerService;
     }
 
     /**
@@ -42,8 +37,7 @@ public class AddressController {
      */
     @GetMapping()
     public ResponseEntity<List<AddressResponseDto>> getAllAddress(){
-        return new ResponseEntity<List<AddressResponseDto>>(this.addressMapper.toAddressResponseDtoList(
-                this.addressService.getAllAddress()), HttpStatus.OK);
+        return ResponseEntity.status(HttpStatus.OK).body(this.addressService.getAllAddress());
     }
 
     /**
@@ -52,10 +46,8 @@ public class AddressController {
      * @return a list of address of a client
      */
     @GetMapping("by-customer/{clientId}")
-    public ResponseEntity<List<AddressResponseDto>> getAllAddressByClient(@PathVariable String clientId){
-        return new ResponseEntity<List<AddressResponseDto>>(this.addressMapper.toAddressResponseDtoList(
-                this.addressService.getAllAddressByClient(clientId)), HttpStatus.OK);
-
+    public ResponseEntity<List<AddressResponseDto>> getAllAddressByCustomer(@PathVariable String clientId){
+        return ResponseEntity.status(HttpStatus.OK).body(this.addressService.getAllAddressByCustomer(clientId));
     }
 
     /**
@@ -65,13 +57,7 @@ public class AddressController {
      */
     @GetMapping("/{id}")
     public ResponseEntity<AddressResponseDto> getAddressById(@PathVariable Long id){
-
-       return new ResponseEntity<AddressResponseDto>(
-               this.addressMapper.toAddressResponseDto(
-                       this.addressService.getAddressById(id)
-               )
-       ,HttpStatus.OK);
-
+        return ResponseEntity.status(HttpStatus.OK).body(this.addressService.getAddressById(id));
     }
 
     /**
@@ -81,12 +67,7 @@ public class AddressController {
      */
     @PostMapping()
     public ResponseEntity<AddressResponseDto> addNewAddress(@Valid @RequestBody AddressCreateDto addressCreateDto){
-
-        Address address = this.addressMapper.toAddress(addressCreateDto);
-        Customer customer = this.customerService.findCustomerById(addressCreateDto.getCustomerId());
-        customer.addNewAddress(address);
-        this.addressService.addNewAddress(address);
-        return new ResponseEntity<AddressResponseDto>(this.addressMapper.toAddressResponseDto(address),HttpStatus.OK);
+        return ResponseEntity.status(HttpStatus.OK).body(this.addressService.addNewAddress(addressCreateDto));
     }
 
     /**
@@ -108,10 +89,8 @@ public class AddressController {
     @PutMapping("/{id}")
     public ResponseEntity<AddressResponseDto> updateAddress(@PathVariable Long id,
                                                             @RequestBody AddressCreateDto addressCreateDto){
-        Address address = this.addressMapper.toAddress(addressCreateDto);
-        return new ResponseEntity<AddressResponseDto>(
-                this.addressMapper.toAddressResponseDto(
-                    this.addressService.updateAddress(id, address)),HttpStatus.OK);
+
+        return ResponseEntity.status(HttpStatus.OK).body(this.addressService.updateAddress(id,addressCreateDto));
 
 
     }
