@@ -22,8 +22,6 @@ import javax.validation.Valid;
  */
 @RestController
 @RequestMapping("/customer")
-//@CrossOrigin(origins = {"http://http://127.0.0.1:5500", "http://localhost:8080"})
-
 public class CustomerController {
 
 	
