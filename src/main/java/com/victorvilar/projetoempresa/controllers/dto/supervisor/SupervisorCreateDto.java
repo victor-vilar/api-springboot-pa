@@ -1,6 +1,6 @@
 package com.victorvilar.projetoempresa.controllers.dto.supervisor;
 
-import javax.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotBlank;
 
 public class SupervisorCreateDto {
 

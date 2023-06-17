@@ -13,7 +13,7 @@ import com.victorvilar.projetoempresa.exceptions.InvalidCpfOrCnpjException;
 import com.victorvilar.projetoempresa.repository.CustomerRepository;
 import com.victorvilar.projetoempresa.util.CpfCnpjValidator;
 
-import javax.transaction.Transactional;
+import jakarta.transaction.Transactional;
 
 @Service
 public class CustomerService {

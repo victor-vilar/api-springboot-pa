@@ -3,7 +3,7 @@ package com.victorvilar.projetoempresa.embendable;
 import java.io.Serializable;
 import java.util.Objects;
 
-import javax.persistence.Embeddable;
+import jakarta.persistence.Embeddable;
 
 
 

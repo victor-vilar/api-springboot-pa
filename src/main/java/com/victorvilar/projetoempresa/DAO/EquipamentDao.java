@@ -2,7 +2,7 @@ package com.victorvilar.projetoempresa.DAO;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
+import jakarta.persistence.EntityManager;
 
 import com.victorvilar.projetoempresa.domain.Equipment;
 

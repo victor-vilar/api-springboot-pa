@@ -1,6 +1,6 @@
 package com.victorvilar.projetoempresa.controllers.dto.customer;
 
-import javax.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotBlank;
 
 /**
  * Class created to not expose the models of the API

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.victorvilar.projetoempresa.services.CustomerService;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 /**
  * A client contoller

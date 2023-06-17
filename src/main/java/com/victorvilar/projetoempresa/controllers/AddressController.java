@@ -5,12 +5,12 @@ import com.victorvilar.projetoempresa.controllers.dto.adress.AddressResponseDto;
 import com.victorvilar.projetoempresa.domain.Address;
 import com.victorvilar.projetoempresa.domain.Customer;
 import com.victorvilar.projetoempresa.services.AddressService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 /**

@@ -31,8 +31,8 @@ public class SecurityConfiguration {
                 )
 
                 .authorizeHttpRequests(auth -> auth
-                    .requestMatchers("/residue").permitAll()
-                        .anyRequest().permitAll()
+                        .requestMatchers("/residue").permitAll()
+                    .anyRequest().authenticated()
                 )
 
                 .formLogin(Customizer.withDefaults())

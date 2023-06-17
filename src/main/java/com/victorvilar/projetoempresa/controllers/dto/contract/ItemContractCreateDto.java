@@ -1,7 +1,7 @@
 package com.victorvilar.projetoempresa.controllers.dto.contract;
 
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 public class ItemContractCreateDto {
 

@@ -2,7 +2,7 @@ package com.victorvilar.projetoempresa.domain;
 
 import java.io.Serializable;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 /**
  * Class that represents the address of a Client
