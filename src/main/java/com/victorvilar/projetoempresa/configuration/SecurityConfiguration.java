@@ -13,6 +13,8 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.csrf.CsrfTokenRequestAttributeHandler;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -46,12 +48,13 @@ public class SecurityConfiguration {
 
                 //csrf configuration
                 .csrf(csrf -> csrf
-                    .disable()
+                    .csrfTokenRequestHandler(new CsrfTokenRequestAttributeHandler())
+                        .ignoringRequestMatchers(AntPathRequestMatcher.antMatcher("/h2/**"))
                 )
 
                 //end points configuration and roles
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/residue","/h2/**").permitAll()
+                        .requestMatchers("/residue","/h2/*").permitAll()
                     .anyRequest().authenticated()
 
                 )
