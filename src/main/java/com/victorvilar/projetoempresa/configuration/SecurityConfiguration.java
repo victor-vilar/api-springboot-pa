@@ -13,6 +13,7 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.csrf.CsrfTokenRequestAttributeHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
@@ -22,18 +23,7 @@ public class SecurityConfiguration {
 
     @Bean
     public PasswordEncoder passwordEncoder(){
-        return NoOpPasswordEncoder.getInstance();
-    }
-
-
-    @Bean
-    public UserDetailsService userDetails(){
-        UserDetails admin = User.builder()
-                .username("admin")
-                .password("12345")
-                .roles("USER", "ADMIN")
-                .build();
-        return new InMemoryUserDetailsManager(admin);
+        return new BCryptPasswordEncoder();
     }
 
 
@@ -48,13 +38,15 @@ public class SecurityConfiguration {
 
                 //csrf configuration
                 .csrf(csrf -> csrf
-                    .csrfTokenRequestHandler(new CsrfTokenRequestAttributeHandler())
+                        .csrfTokenRequestHandler(new CsrfTokenRequestAttributeHandler())
                         .ignoringRequestMatchers(AntPathRequestMatcher.antMatcher("/h2/**"))
+                        //.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+                        .disable()
                 )
 
                 //end points configuration and roles
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/residue","/h2/*").permitAll()
+                        .requestMatchers("/residue","/h2/**","/login-page").permitAll()
                     .anyRequest().authenticated()
 
                 )
