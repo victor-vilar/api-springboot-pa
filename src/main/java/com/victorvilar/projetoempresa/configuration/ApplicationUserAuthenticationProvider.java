@@ -34,9 +34,9 @@ public class ApplicationUserAuthenticationProvider implements AuthenticationProv
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 
         ApplicationUser user = this.applicationUserRepository.findByUsername(authentication.getName());
+        String encodedPassword = this.passwordEncoder.encode(authentication.getCredentials().toString());
 
-        if(user != null){
-
+        if(user != null && this.passwordEncoder.matches(user.getPassword(),encodedPassword)){
             List<Role> roles = this.rolesRepository.findByApplicationUsers(user);
             List<GrantedAuthority> autorities = new ArrayList<>();
             roles.stream().forEach(role -> autorities.add(new SimpleGrantedAuthority(role.getRoleName())));
