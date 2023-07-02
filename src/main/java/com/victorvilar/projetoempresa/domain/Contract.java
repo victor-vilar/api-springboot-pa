@@ -129,6 +129,10 @@ public class Contract implements Serializable {
 	}
 	//--------------
 
+	public static ContractBuilder builder(){
+		return new ContractBuilder();
+	}
+
 	//delete a item from contract
 	public void deleteItem(int itemIndex){
 		this.itens.remove(itemIndex);

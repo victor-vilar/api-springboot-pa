@@ -1,10 +1,9 @@
 package com.victorvilar.projetoempresa.mappers;
 
-import com.victorvilar.projetoempresa.controllers.dto.applicationuser.ApplicationUserDto;
+import com.victorvilar.projetoempresa.controllers.dto.applicationuser.ApplicationUserCreateDto;
 import com.victorvilar.projetoempresa.domain.ApplicationUser;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.Banner;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -17,11 +16,11 @@ public class ApplicationUserMapper {
         this.mapper = mapper;
     }
 
-    public ApplicationUserDto toApplicationUserDto(ApplicationUser applicationUser){
-        return this.mapper.map(applicationUser, ApplicationUserDto.class);
+    public ApplicationUserCreateDto toApplicationUserDto(ApplicationUser applicationUser){
+        return this.mapper.map(applicationUser, ApplicationUserCreateDto.class);
     }
 
-    public ApplicationUser toApplicationUser(ApplicationUserDto applicationUserDto){
-        return this.mapper.map(applicationUserDto,ApplicationUser.class);
+    public ApplicationUser toApplicationUser(ApplicationUserCreateDto applicationUserCreateDto){
+        return this.mapper.map(applicationUserCreateDto,ApplicationUser.class);
     }
 }

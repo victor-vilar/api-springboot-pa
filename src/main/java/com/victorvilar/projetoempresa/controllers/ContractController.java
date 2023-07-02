@@ -109,6 +109,8 @@ public class ContractController {
         //return saved contract
         return new ResponseEntity<ContractResponseDto>
                 (this.mapper.toContractResponseDto(this.service.save(contract1)),HttpStatus.OK);
+
+
     }
 
 

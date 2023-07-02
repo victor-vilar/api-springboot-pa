@@ -3,6 +3,7 @@ package com.victorvilar.projetoempresa.configuration;
 import com.victorvilar.projetoempresa.configuration.filters.CsrfCookieSessionFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -34,11 +35,12 @@ public class SecurityConfiguration {
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
-                //informa para o spring que é de responsabilidade dele de salvar os dados dentro do SecurityHolder
+                //tell to spring that it has the responsability to save the data inside SecurityHolder
                 .securityContext( security ->{
                     security.requireExplicitSave(false);
                 })
-//                //informa ao spring para sempre gerar o JSessionId
+
+                //tell to spring to generate JSessionId only when required
                 .sessionManagement(session -> session
                     .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
 
@@ -64,7 +66,8 @@ public class SecurityConfiguration {
 
                 //end points configuration and roles
                 .authorizeHttpRequests(auth -> auth
-                    .requestMatchers("/residue","/h2/**","/login-page").permitAll()
+                    .requestMatchers("/h2/**","/login-page").permitAll()
+                    .requestMatchers(HttpMethod.POST,"/auth/**").permitAll()
                     .anyRequest().authenticated()
 
                 )

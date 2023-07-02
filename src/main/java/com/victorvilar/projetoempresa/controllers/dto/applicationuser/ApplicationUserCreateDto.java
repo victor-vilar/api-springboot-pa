@@ -1,15 +1,13 @@
 package com.victorvilar.projetoempresa.controllers.dto.applicationuser;
 
-import com.victorvilar.projetoempresa.domain.Role;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-public class ApplicationUserDto {
+public class ApplicationUserCreateDto {
 
 
     @NotNull(message = "The user must have a username")

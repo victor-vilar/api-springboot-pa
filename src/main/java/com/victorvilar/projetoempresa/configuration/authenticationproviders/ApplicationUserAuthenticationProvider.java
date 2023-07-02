@@ -1,20 +1,17 @@
-package com.victorvilar.projetoempresa.configuration;
+package com.victorvilar.projetoempresa.configuration.authenticationproviders;
 
 import com.victorvilar.projetoempresa.domain.ApplicationUser;
-import com.victorvilar.projetoempresa.domain.Role;
-import com.victorvilar.projetoempresa.repository.RolesRepository;
+import com.victorvilar.projetoempresa.domain.ApplicationUserRole;
+import com.victorvilar.projetoempresa.repository.ApplicationUserRolesRepository;
 import com.victorvilar.projetoempresa.repository.ApplicationUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -27,8 +24,7 @@ public class ApplicationUserAuthenticationProvider implements AuthenticationProv
     private ApplicationUserRepository applicationUserRepository;
 
     @Autowired
-    private RolesRepository rolesRepository;
-    
+    private ApplicationUserRolesRepository rolesRepository;
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
@@ -37,10 +33,8 @@ public class ApplicationUserAuthenticationProvider implements AuthenticationProv
         String encodedPassword = this.passwordEncoder.encode(authentication.getCredentials().toString());
 
         if(user != null && this.passwordEncoder.matches(user.getPassword(),encodedPassword)){
-            List<Role> roles = this.rolesRepository.findByApplicationUsers(user);
-            List<GrantedAuthority> autorities = new ArrayList<>();
-            roles.stream().forEach(role -> autorities.add(new SimpleGrantedAuthority(role.getRoleName())));
-            return new UsernamePasswordAuthenticationToken(authentication.getName(),authentication.getCredentials(),autorities);
+            List<ApplicationUserRole> applicationUserRoles = this.rolesRepository.findByApplicationUsers(user);
+            return new UsernamePasswordAuthenticationToken(authentication.getName(),null,applicationUserRoles);
         }
 
         return null;

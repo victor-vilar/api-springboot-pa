@@ -5,7 +5,7 @@ import java.io.Serializable;
 import jakarta.persistence.*;
 
 /**
- * Class that represents the address of a Client
+ * Class that represents the address of a Customer
  * @since 2022-02-14
  * @author Victor Vilar
  */

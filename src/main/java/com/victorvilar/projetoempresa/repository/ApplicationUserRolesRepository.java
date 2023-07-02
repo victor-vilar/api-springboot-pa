@@ -1,15 +1,14 @@
 package com.victorvilar.projetoempresa.repository;
 
-
 import com.victorvilar.projetoempresa.domain.ApplicationUser;
 import com.victorvilar.projetoempresa.domain.ApplicationUserRole;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface ApplicationUserRepository extends JpaRepository<ApplicationUser,Long> {
+public interface ApplicationUserRolesRepository extends JpaRepository<ApplicationUserRole,Long> {
 
-    public ApplicationUser findByUsername(String user);
-    public List<ApplicationUser> findByApplicationUserRoles(ApplicationUserRole applicationUserRole);
+    List<ApplicationUserRole> findByApplicationUsers(ApplicationUser user);
+    ApplicationUserRole findByRoleName(String role);
 
 }
