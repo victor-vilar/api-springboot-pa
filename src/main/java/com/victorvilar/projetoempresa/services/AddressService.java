@@ -2,8 +2,8 @@ package com.victorvilar.projetoempresa.services;
 
 import com.victorvilar.projetoempresa.controllers.dto.adress.AddressCreateDto;
 import com.victorvilar.projetoempresa.controllers.dto.adress.AddressResponseDto;
-import com.victorvilar.projetoempresa.domain.Address;
-import com.victorvilar.projetoempresa.domain.Customer;
+import com.victorvilar.projetoempresa.domain.customer.Address;
+import com.victorvilar.projetoempresa.domain.customer.Customer;
 import com.victorvilar.projetoempresa.exceptions.AddressNotFoundException;
 import com.victorvilar.projetoempresa.mappers.AddressMapper;
 import com.victorvilar.projetoempresa.repository.AddressRepository;

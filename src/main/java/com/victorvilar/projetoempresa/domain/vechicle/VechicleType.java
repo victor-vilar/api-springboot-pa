@@ -1,4 +1,4 @@
-package com.victorvilar.projetoempresa.enums;
+package com.victorvilar.projetoempresa.domain.vechicle;
 
 public enum VechicleType {
 

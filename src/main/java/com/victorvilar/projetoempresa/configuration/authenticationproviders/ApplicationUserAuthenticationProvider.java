@@ -1,7 +1,7 @@
 package com.victorvilar.projetoempresa.configuration.authenticationproviders;
 
-import com.victorvilar.projetoempresa.domain.ApplicationUser;
-import com.victorvilar.projetoempresa.domain.ApplicationUserRole;
+import com.victorvilar.projetoempresa.domain.applicationuser.ApplicationUser;
+import com.victorvilar.projetoempresa.domain.applicationuser.ApplicationUserRole;
 import com.victorvilar.projetoempresa.repository.ApplicationUserRolesRepository;
 import com.victorvilar.projetoempresa.repository.ApplicationUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

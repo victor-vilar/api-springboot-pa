@@ -1,7 +1,10 @@
-package com.victorvilar.projetoempresa.domain;
+package com.victorvilar.projetoempresa.domain.customer;
 
 import java.io.Serializable;
 
+import com.victorvilar.projetoempresa.domain.Equipment;
+import com.victorvilar.projetoempresa.domain.ResidueType;
+import com.victorvilar.projetoempresa.domain.customer.Contract;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -33,7 +36,7 @@ public class ItemContract implements Serializable{
 	@JoinColumn(nullable = false)
 	private ResidueType residue;
 	
-	//the equipament that gonna be used to store the trash.
+	//the equipment that gonna be used to store the trash.
 	@ManyToOne
 	@JoinColumn(nullable = false)
 	private Equipment equipment;

@@ -1,4 +1,4 @@
-package com.victorvilar.projetoempresa.enums;
+package com.victorvilar.projetoempresa.domain.bill;
 
 public enum BillFrequency {
 

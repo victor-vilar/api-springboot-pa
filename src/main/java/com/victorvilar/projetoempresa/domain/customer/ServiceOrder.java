@@ -1,5 +1,6 @@
-package com.victorvilar.projetoempresa.domain;
+package com.victorvilar.projetoempresa.domain.customer;
 
+import com.victorvilar.projetoempresa.domain.vechicle.Vechicle;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -25,8 +26,8 @@ public class ServiceOrder {
     @Column(nullable = false)
     private ItemContract itemContract;
 
-
     private String observation;
+    private String osFileUrl;
 
 
 

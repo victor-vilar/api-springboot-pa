@@ -1,6 +1,6 @@
 package com.victorvilar.projetoempresa.services;
 
-import com.victorvilar.projetoempresa.domain.Supervisor;
+import com.victorvilar.projetoempresa.domain.customer.Supervisor;
 import com.victorvilar.projetoempresa.exceptions.SupervisorNotFoundException;
 import com.victorvilar.projetoempresa.repository.SupervisorRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.victorvilar.projetoempresa.domain;
+package com.victorvilar.projetoempresa.domain.customer;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 

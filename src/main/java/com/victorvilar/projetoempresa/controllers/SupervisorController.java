@@ -2,8 +2,8 @@ package com.victorvilar.projetoempresa.controllers;
 
 import com.victorvilar.projetoempresa.controllers.dto.supervisor.SupervisorCreateDto;
 import com.victorvilar.projetoempresa.controllers.dto.supervisor.SupervisorResponseDto;
-import com.victorvilar.projetoempresa.domain.Customer;
-import com.victorvilar.projetoempresa.domain.Supervisor;
+import com.victorvilar.projetoempresa.domain.customer.Customer;
+import com.victorvilar.projetoempresa.domain.customer.Supervisor;
 import com.victorvilar.projetoempresa.mappers.SupervisorMapper;
 import com.victorvilar.projetoempresa.services.CustomerService;
 import com.victorvilar.projetoempresa.services.SupervisorService;

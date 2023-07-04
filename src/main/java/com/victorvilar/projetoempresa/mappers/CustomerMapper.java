@@ -2,7 +2,7 @@ package com.victorvilar.projetoempresa.mappers;
 
 import com.victorvilar.projetoempresa.controllers.dto.customer.CustomerCreateDto;
 import com.victorvilar.projetoempresa.controllers.dto.customer.CustomerResponseDto;
-import com.victorvilar.projetoempresa.domain.Customer;
+import com.victorvilar.projetoempresa.domain.customer.Customer;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

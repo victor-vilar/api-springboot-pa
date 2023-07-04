@@ -1,6 +1,6 @@
 package com.victorvilar.projetoempresa.DAO;
 
-import com.victorvilar.projetoempresa.domain.Customer;
+import com.victorvilar.projetoempresa.domain.customer.Customer;
 
 import jakarta.persistence.EntityManager;
 

@@ -1,12 +1,13 @@
-package com.victorvilar.projetoempresa.domain;
+package com.victorvilar.projetoempresa.domain.vechicle;
 
 
-import com.victorvilar.projetoempresa.enums.VechicleType;
+import jakarta.persistence.Column;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.OneToMany;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * REPRESENTAR UM VEICULO -- todo
@@ -17,10 +18,14 @@ public class Vechicle {
     //tipo de Veiculo
     @Enumerated(EnumType.STRING)
     private VechicleType type;
+
     //placa XXXX-XXXX
+    @Column(nullable = false)
     private String plate;
-    //revanam
+
+    //renavam
     private String renavam;
+
     //url do ultimo crlv emitido
     private String validCrlvUrl;
 
@@ -29,7 +34,7 @@ public class Vechicle {
      * ABASTECIMENTOS REALIZADOS
      */
     @OneToMany
-    List<Fill> fills = new ArrayList<>();
+    List<Refueling> fills = new ArrayList<>();
 
     /**
     *DESCARTES REALIZADOS

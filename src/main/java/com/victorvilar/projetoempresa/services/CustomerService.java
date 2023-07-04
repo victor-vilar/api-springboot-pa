@@ -3,7 +3,7 @@ package com.victorvilar.projetoempresa.services;
 import java.util.List;
 
 import com.victorvilar.projetoempresa.controllers.dto.customer.CustomerCreateDto;
-import com.victorvilar.projetoempresa.domain.Customer;
+import com.victorvilar.projetoempresa.domain.customer.Customer;
 import com.victorvilar.projetoempresa.exceptions.CustomerNotFoundException;
 import com.victorvilar.projetoempresa.exceptions.CpfOrCnpjAlreadyExistsException;
 import org.springframework.beans.factory.annotation.Autowired;

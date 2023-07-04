@@ -1,4 +1,4 @@
-package com.victorvilar.projetoempresa.domain;
+package com.victorvilar.projetoempresa.domain.applicationuser;
 
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;

@@ -1,7 +1,8 @@
-package com.victorvilar.projetoempresa.domain;
+package com.victorvilar.projetoempresa.domain.customer;
 
 import java.io.Serializable;
 
+import com.victorvilar.projetoempresa.domain.customer.Customer;
 import jakarta.persistence.*;
 
 /**

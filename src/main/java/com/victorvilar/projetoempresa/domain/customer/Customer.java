@@ -1,4 +1,4 @@
-package com.victorvilar.projetoempresa.domain;
+package com.victorvilar.projetoempresa.domain.customer;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -34,7 +34,10 @@ public class Customer implements Serializable {
 	@Column(nullable=false)
 	private String nameCompanyName;
 
-	
+	private boolean isActive = true;
+
+
+
 	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
 	private List<Address> addresses = new ArrayList<Address>();
 
@@ -42,7 +45,7 @@ public class Customer implements Serializable {
 	private List<Supervisor> supervisors = new ArrayList<Supervisor>();
 	
 	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-	private List<Contract> contracts = new ArrayList<Contract>(); 
+	private List<Contract> contracts = new ArrayList<Contract>();
 	
 
 	/**
@@ -135,11 +138,21 @@ public class Customer implements Serializable {
 	}
 
 
+	//getters and setters - isActive
+	public boolean isActive() {
+		return isActive;
+	}
+	public void setActive(boolean active) {
+		isActive = active;
+	}
+
+
 
 	public static class CustomerBuilder{
 
 		private String cpfCnpj;
 		private String nameCompanyName;
+		private boolean isActive;
 
 		public CustomerBuilder(){
 
@@ -155,10 +168,17 @@ public class Customer implements Serializable {
 			return this;
 		}
 
+		public CustomerBuilder isActive(boolean isActive){
+			this.isActive = isActive;
+			return this;
+
+		}
+
 		public Customer build(){
 			Customer customer = new Customer();
 			customer.setCpfCnpj(this.cpfCnpj);
 			customer.setNameCompanyName(this.nameCompanyName);
+			customer.setActive(this.isActive);
 			return customer;
 		}
 

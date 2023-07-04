@@ -3,7 +3,7 @@ package com.victorvilar.projetoempresa.mappers;
 import com.victorvilar.projetoempresa.controllers.dto.contract.ItemContractCreateDto;
 import com.victorvilar.projetoempresa.controllers.dto.contract.ItemContractResponseDto;
 import com.victorvilar.projetoempresa.controllers.dto.contract.ItemContractUpdateDto;
-import com.victorvilar.projetoempresa.domain.ItemContract;
+import com.victorvilar.projetoempresa.domain.customer.ItemContract;
 import com.victorvilar.projetoempresa.services.EquipmentService;
 import com.victorvilar.projetoempresa.services.ResidueService;
 import org.modelmapper.ModelMapper;

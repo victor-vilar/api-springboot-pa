@@ -4,7 +4,8 @@ import com.victorvilar.projetoempresa.controllers.dto.contract.ContractCreateDto
 import com.victorvilar.projetoempresa.controllers.dto.contract.ContractResponseDto;
 import com.victorvilar.projetoempresa.controllers.dto.contract.ContractUpdateDto;
 import com.victorvilar.projetoempresa.controllers.dto.contract.ItemContractCreateDto;
-import com.victorvilar.projetoempresa.domain.*;
+import com.victorvilar.projetoempresa.domain.customer.Contract;
+import com.victorvilar.projetoempresa.domain.customer.ItemContract;
 import com.victorvilar.projetoempresa.mappers.ContractMapper;
 import com.victorvilar.projetoempresa.mappers.ItemContractMapper;
 import com.victorvilar.projetoempresa.services.CustomerService;
