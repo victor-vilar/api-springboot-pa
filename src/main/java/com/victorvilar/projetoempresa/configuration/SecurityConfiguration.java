@@ -1,6 +1,8 @@
 package com.victorvilar.projetoempresa.configuration;
 
 import com.victorvilar.projetoempresa.configuration.filters.CsrfCookieSessionFilter;
+import com.victorvilar.projetoempresa.configuration.filters.JwtTokenGeneratorFilter;
+import com.victorvilar.projetoempresa.services.JwtService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -42,7 +44,7 @@ public class SecurityConfiguration {
 
                 //tell to spring to generate JSessionId only when required
                 .sessionManagement(session -> session
-                    .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+                    .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
 
                 )
                 //cors configuration
@@ -58,16 +60,18 @@ public class SecurityConfiguration {
                         .ignoringRequestMatchers(AntPathRequestMatcher.antMatcher("/h2/**"))
                         //repository of csrf tokens
                         .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-//                      .disable()
+                        //.disable()
                 )
 
                 //send a csrf token to request after an authentication
                 .addFilterAfter(new CsrfCookieSessionFilter(), BasicAuthenticationFilter.class)
+                .addFilterAfter(new JwtTokenGeneratorFilter(new JwtService()),BasicAuthenticationFilter.class)
 
                 //end points configuration and roles
                 .authorizeHttpRequests(auth -> auth
-                    .requestMatchers("/h2/**","/login-page").permitAll()
-                    .requestMatchers(HttpMethod.POST,"/auth/**").permitAll()
+                    .requestMatchers("/h2/**").permitAll()
+                    .requestMatchers("/customer").permitAll()
+                        .requestMatchers("/residue").permitAll()
                     .anyRequest().authenticated()
 
                 )

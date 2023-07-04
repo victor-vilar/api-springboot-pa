@@ -11,6 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -29,13 +30,15 @@ public class ApplicationUserAuthenticationProvider implements AuthenticationProv
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 
-        ApplicationUser user = this.applicationUserRepository.findByUsername(authentication.getName());
+        ApplicationUser user = this.applicationUserRepository.findByUsername(authentication.getName()).orElseThrow(() ->new RuntimeException("Não há"));
+        System.out.println(user);
         String encodedPassword = this.passwordEncoder.encode(authentication.getCredentials().toString());
 
         if(user != null && this.passwordEncoder.matches(user.getPassword(),encodedPassword)){
-            List<ApplicationUserRole> applicationUserRoles = this.rolesRepository.findByApplicationUsers(user);
-            return new UsernamePasswordAuthenticationToken(authentication.getName(),null,applicationUserRoles);
-        }
+            System.out.println(user);
+            List<ApplicationUserRole> roles = this.rolesRepository.findByApplicationUsers(user);
+            return new UsernamePasswordAuthenticationToken(authentication.getName(),null,roles);
+       }
 
         return null;
     }

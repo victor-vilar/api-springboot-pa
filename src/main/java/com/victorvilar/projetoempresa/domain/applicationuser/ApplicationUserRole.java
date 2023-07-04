@@ -8,7 +8,7 @@ import java.util.*;
 
 @Entity
 @Table(name="roles")
-public class ApplicationUserRole implements Serializable, GrantedAuthority {
+public class ApplicationUserRole implements GrantedAuthority {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,11 +41,10 @@ public class ApplicationUserRole implements Serializable, GrantedAuthority {
     public String getAuthority() {
         return roleName;
     }
-
     public void setRoleName(String roleName) {
         this.roleName = roleName;
     }
-    public String getRoleName(){return this.roleName;}
+
 
     public Set<ApplicationUser> getApplicationUserList() {
         return applicationUsers;
@@ -59,13 +58,8 @@ public class ApplicationUserRole implements Serializable, GrantedAuthority {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ApplicationUserRole applicationUserRole = (ApplicationUserRole) o;
-        return Objects.equals(id, applicationUserRole.id) && Objects.equals(roleName, applicationUserRole.roleName) && Objects.equals(applicationUsers, applicationUserRole.applicationUsers);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, roleName, applicationUsers);
+        ApplicationUserRole that = (ApplicationUserRole) o;
+        return Objects.equals(id, that.id) && Objects.equals(roleName, that.roleName) && Objects.equals(applicationUsers, that.applicationUsers);
     }
 
 

@@ -9,5 +9,6 @@ INSERT INTO roles(role_name)VALUES('CUSTOMER');
 INSERT INTO roles(role_name)VALUES('MANAGER');
 INSERT INTO users_roles(application_user_id,role_id)VALUES(1,1);
 INSERT INTO users_roles(application_user_id,role_id)VALUES(1,3);
-INSERT INTO users_roles(application_user_id,role_id)VALUES(2,2);
-
+INSERT INTO users_roles(application_user_id,role_id)VALUES(2,2);--chaves
+INSERT INTO clients(cpf_cnpj,name_company_name,is_active)VALUES('08454836000178','EMPRESA 1',true);
+INSERT INTO supervisors(name,role,phone_number,email,customer_id)VALUES('TESTE','TESTE','TESTE','TESTE','08454836000178');

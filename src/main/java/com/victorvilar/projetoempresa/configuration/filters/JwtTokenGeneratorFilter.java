@@ -1,18 +1,30 @@
 package com.victorvilar.projetoempresa.configuration.filters;
 
+import com.victorvilar.projetoempresa.services.JwtService;
+import io.jsonwebtoken.Claims;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class JwtTokenGeneratorFilter extends OncePerRequestFilter {
 
     private final String TOKEN_HEADER = "Authorization";
+    private final JwtService jwtService;
+
+    @Autowired
+    public JwtTokenGeneratorFilter(JwtService service){
+        this.jwtService =service;
+    }
 
 
     @Override
@@ -24,12 +36,15 @@ public class JwtTokenGeneratorFilter extends OncePerRequestFilter {
 
             //if authentication != null
             if(authentication != null){
-
-
-
-
+                Map<String,Object> claims = new HashMap<>();
+                claims.put("username",authentication.getName());
+                claims.put("authorities",authentication.getAuthorities().toString());
+                String jwt = this.jwtService.generateJwtToken(claims);
+                response.setHeader(TOKEN_HEADER,jwt);
             }
 
-            System.out.println(token);
+            filterChain.doFilter(request,response);
     }
+
+
 }

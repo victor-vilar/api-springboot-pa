@@ -39,6 +39,6 @@ public class Vechicle {
     /**
     *DESCARTES REALIZADOS
     */
-    @OneToMany
-    List<Tratament> tratamentList = ArrayList<>();
+    // @OneToMany
+    //List<Tratament> tratamentList = ArrayList<>();
 }
