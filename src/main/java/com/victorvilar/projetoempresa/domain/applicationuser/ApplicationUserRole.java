@@ -62,5 +62,11 @@ public class ApplicationUserRole implements GrantedAuthority {
         return Objects.equals(id, that.id) && Objects.equals(roleName, that.roleName) && Objects.equals(applicationUsers, that.applicationUsers);
     }
 
+    @Override
+    public String toString(){
+        return this.getAuthority();
+    }
+
+
 
 }

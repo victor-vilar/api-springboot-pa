@@ -1,5 +1,6 @@
 package com.victorvilar.projetoempresa.services;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.stereotype.Service;
@@ -43,6 +44,15 @@ public class JwtService {
         }catch(Exception e){
                     return false;
         }
+    }
+
+    //get claims from a token
+    public Claims getClaims(String token){
+        Claims claims = Jwts.parserBuilder()
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
+
     }
 
 
