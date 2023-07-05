@@ -1,13 +1,14 @@
-package com.victorvilar.projetoempresa.controllers.dto.applicationuser;
+package com.victorvilar.projetoempresa.domain.applicationuser.dto;
 
 import jakarta.validation.constraints.NotNull;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
-public class ApplicationUserCreateDto {
+public class ApplicationUserDto {
 
 
     @NotNull(message = "The user must have a username")
@@ -38,8 +39,8 @@ public class ApplicationUserCreateDto {
         return roles;
     }
 
-    public void setRoles(Collection<? extends GrantedAuthority> roles) {
-        roles.forEach(role -> this.roles.add(role.getAuthority()));
+    public void setRoles(List<String> roles) {
+        roles.forEach(role -> this.roles.add(role));
 
     }
 }

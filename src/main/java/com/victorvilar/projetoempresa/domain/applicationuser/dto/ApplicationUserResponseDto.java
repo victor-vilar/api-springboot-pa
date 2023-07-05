@@ -1,4 +1,4 @@
-package com.victorvilar.projetoempresa.controllers.dto.applicationuser;
+package com.victorvilar.projetoempresa.domain.applicationuser.dto;
 
 import jakarta.validation.constraints.NotNull;
 

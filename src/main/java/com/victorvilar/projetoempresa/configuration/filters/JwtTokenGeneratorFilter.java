@@ -42,7 +42,7 @@ public class JwtTokenGeneratorFilter extends OncePerRequestFilter {
                 String jwt = this.jwtService.generateJwtToken(claims);
                 response.setHeader(TOKEN_HEADER,jwt);
             }
-
+            System.out.println(request.getServletPath());
             filterChain.doFilter(request,response);
     }
 

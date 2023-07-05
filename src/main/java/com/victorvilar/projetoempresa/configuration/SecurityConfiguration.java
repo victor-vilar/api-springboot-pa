@@ -55,23 +55,22 @@ public class SecurityConfiguration {
                 //csrf configuration
                 .csrf(csrf -> csrf
                         //include de csrf token as attribute of respose
-                        .csrfTokenRequestHandler(new CsrfTokenRequestAttributeHandler())
+                        //.csrfTokenRequestHandler(new CsrfTokenRequestAttributeHandler())
                         //end points that not have a csrf protection
-                        .ignoringRequestMatchers(AntPathRequestMatcher.antMatcher("/h2/**"))
+                        //.ignoringRequestMatchers(AntPathRequestMatcher.antMatcher("/h2/**"))
                         //repository of csrf tokens
-                        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-                        //.disable()
+                        //.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+                        .disable()
                 )
 
                 //send a csrf token to request after an authentication
-                .addFilterAfter(new CsrfCookieSessionFilter(), BasicAuthenticationFilter.class)
+                //.addFilterAfter(new CsrfCookieSessionFilter(), BasicAuthenticationFilter.class)
                 .addFilterAfter(new JwtTokenGeneratorFilter(new JwtService()),BasicAuthenticationFilter.class)
 
                 //end points configuration and roles
                 .authorizeHttpRequests(auth -> auth
                     .requestMatchers("/h2/**").permitAll()
-                    .requestMatchers("/customer").permitAll()
-                        .requestMatchers("/residue").permitAll()
+                    .requestMatchers(HttpMethod.POST,"/v1/login").permitAll()
                     .anyRequest().authenticated()
 
                 )

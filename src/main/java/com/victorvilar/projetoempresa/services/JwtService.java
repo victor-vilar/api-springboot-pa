@@ -52,7 +52,7 @@ public class JwtService {
                 .build()
                 .parseClaimsJws(token)
                 .getBody();
-
+        return claims;
     }
 
 
