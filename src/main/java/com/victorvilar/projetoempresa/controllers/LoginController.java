@@ -21,8 +21,7 @@ public class LoginController {
     private final RegisterUserService registerUserService;
 
     @Autowired
-    public LoginController(RegisterUserService registerUserService,
-                           AuthenticationManager authenticationManager){
+    public LoginController(RegisterUserService registerUserService){
         this.registerUserService = registerUserService;
 
     }
@@ -33,7 +32,7 @@ public class LoginController {
         return ResponseEntity.ok("eee");
     }
 
-    @PostMapping
+    @GetMapping
     public ResponseEntity<ApplicationUserResponseDto> login(Authentication authentication){
 
         if(authentication != null){

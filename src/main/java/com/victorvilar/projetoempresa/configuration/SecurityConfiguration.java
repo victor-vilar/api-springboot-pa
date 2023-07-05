@@ -70,7 +70,7 @@ public class SecurityConfiguration {
                 //end points configuration and roles
                 .authorizeHttpRequests(auth -> auth
                     .requestMatchers("/h2/**").permitAll()
-                    .requestMatchers(HttpMethod.POST,"/v1/login").permitAll()
+                    .requestMatchers(HttpMethod.POST,"/v1/login/**").permitAll()
                     .anyRequest().authenticated()
 
                 )

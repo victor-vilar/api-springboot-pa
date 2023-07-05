@@ -49,7 +49,7 @@ public class ApplicationUserResponseDto {
         }
 
         public ApplicationUserResponseDtoBuilder roles(Collection<? extends GrantedAuthority> roles){
-            this.roles = (Set<String>)roles.stream().map(role -> role.toString()).collect(Collectors.toSet());
+            this.roles = (Set<String>)roles.stream().map(role -> role.getAuthority()).collect(Collectors.toSet());
             return this;
         }
 

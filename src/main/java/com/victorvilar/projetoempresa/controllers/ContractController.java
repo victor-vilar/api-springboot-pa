@@ -5,6 +5,7 @@ import com.victorvilar.projetoempresa.controllers.dto.contract.ContractResponseD
 import com.victorvilar.projetoempresa.controllers.dto.contract.ContractUpdateDto;
 import com.victorvilar.projetoempresa.controllers.dto.contract.ItemContractCreateDto;
 import com.victorvilar.projetoempresa.domain.customer.Contract;
+import com.victorvilar.projetoempresa.domain.customer.Customer;
 import com.victorvilar.projetoempresa.domain.customer.ItemContract;
 import com.victorvilar.projetoempresa.mappers.ContractMapper;
 import com.victorvilar.projetoempresa.mappers.ItemContractMapper;
@@ -35,6 +36,7 @@ public class ContractController {
     private final ItemContractMapper itemContractMapper;
     private final ResidueService residueService;
     private final EquipmentService equipmentService;
+
 
     @Autowired
     public ContractController(ContractService service,
@@ -100,6 +102,12 @@ public class ContractController {
 
         //contractCreateDto to Contract
         Contract contract1 = this.mapper.toContract(contract);
+
+        //find customer by id
+        Customer customer = this.customerService.findCustomerById(contract.getCustomerId());
+
+        //setting customer
+        contract1.setCustomer(customer);
 
         //transform itemContractCreateList into a ItemContractList and add to contract
         this.itemContractMapper.fromItemContractCreateDtoListToItemContractList(

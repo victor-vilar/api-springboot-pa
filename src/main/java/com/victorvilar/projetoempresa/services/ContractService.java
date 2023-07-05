@@ -64,12 +64,6 @@ public class ContractService {
     @Transactional
     public Contract save(Contract contract) {
 
-        //get client from database
-        Customer customer = customerService.findCustomerById(contract.getCustomer().getCpfCnpj());
-
-        //add contract to customer
-        customer.addNewContract(contract);
-
         return this.contractRepository.save(contract);
     }
 
