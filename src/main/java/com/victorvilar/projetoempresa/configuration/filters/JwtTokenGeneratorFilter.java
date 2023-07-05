@@ -26,7 +26,6 @@ public class JwtTokenGeneratorFilter extends OncePerRequestFilter {
         this.jwtService =service;
     }
 
-
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
@@ -42,7 +41,7 @@ public class JwtTokenGeneratorFilter extends OncePerRequestFilter {
                 String jwt = this.jwtService.generateJwtToken(claims);
                 response.setHeader(TOKEN_HEADER,jwt);
             }
-            System.out.println(request.getServletPath());
+
             filterChain.doFilter(request,response);
     }
 
