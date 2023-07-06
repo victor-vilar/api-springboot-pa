@@ -6,6 +6,8 @@ import com.victorvilar.projetoempresa.domain.applicationuser.dto.ApplicationUser
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
+import java.util.stream.Collectors;
+
 @Component
 public class ApplicationUserMapper {
 
@@ -24,7 +26,9 @@ public class ApplicationUserMapper {
     }
 
     public ApplicationUserResponseDto toApplicationUserResponseDto(ApplicationUser applicationUser){
-        return this.mapper.map(applicationUser,ApplicationUserResponseDto.class);
+        ApplicationUserResponseDto dto =  this.mapper.map(applicationUser,ApplicationUserResponseDto.class);
+        dto.setRoles(applicationUser.getAuthorities().stream().map(role -> role.getAuthority()).collect(Collectors.toSet()));
+        return dto;
     }
 
 
