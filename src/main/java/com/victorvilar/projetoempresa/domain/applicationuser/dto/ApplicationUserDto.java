@@ -18,6 +18,15 @@ public class ApplicationUserDto {
     @NotNull(message="the user must have at least one role")
     private Set<String> roles = new HashSet<>();
 
+    private String perfilPhotoUrl;
+
+    public String getPerfilPhotoUrl() {
+        return perfilPhotoUrl;
+    }
+
+    public void setPerfilPhotoUrl(String perfilPhotoUrl) {
+        this.perfilPhotoUrl = perfilPhotoUrl;
+    }
 
     public String getUsername() {
         return username;

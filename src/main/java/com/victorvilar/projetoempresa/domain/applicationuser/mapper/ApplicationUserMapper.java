@@ -2,6 +2,7 @@ package com.victorvilar.projetoempresa.domain.applicationuser.mapper;
 
 import com.victorvilar.projetoempresa.domain.applicationuser.ApplicationUser;
 import com.victorvilar.projetoempresa.domain.applicationuser.dto.ApplicationUserDto;
+import com.victorvilar.projetoempresa.domain.applicationuser.dto.ApplicationUserResponseDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
@@ -20,6 +21,10 @@ public class ApplicationUserMapper {
 
     public ApplicationUserDto toApplicationUserDto(ApplicationUser applicationUser){
         return this.mapper.map(applicationUser, ApplicationUserDto.class);
+    }
+
+    public ApplicationUserResponseDto toApplicationUserResponseDto(ApplicationUser applicationUser){
+        return this.mapper.map(applicationUser,ApplicationUserResponseDto.class);
     }
 
 
