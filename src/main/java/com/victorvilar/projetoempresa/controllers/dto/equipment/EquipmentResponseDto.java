@@ -1,4 +1,4 @@
-package com.victorvilar.projetoempresa.controllers.dto.equipament;
+package com.victorvilar.projetoempresa.controllers.dto.equipment;
 
 public class EquipmentResponseDto {
 

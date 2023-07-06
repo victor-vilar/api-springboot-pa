@@ -1,7 +1,7 @@
 package com.victorvilar.projetoempresa.controllers;
 
-import com.victorvilar.projetoempresa.controllers.dto.equipament.EquipmentCreateDto;
-import com.victorvilar.projetoempresa.controllers.dto.equipament.EquipmentResponseDto;
+import com.victorvilar.projetoempresa.controllers.dto.equipment.EquipmentCreateDto;
+import com.victorvilar.projetoempresa.controllers.dto.equipment.EquipmentResponseDto;
 import com.victorvilar.projetoempresa.domain.Equipment;
 import com.victorvilar.projetoempresa.mappers.EquipmentMapper;
 import com.victorvilar.projetoempresa.services.EquipmentService;

@@ -1,4 +1,4 @@
-package com.victorvilar.projetoempresa.controllers.dto.equipament;
+package com.victorvilar.projetoempresa.controllers.dto.equipment;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
