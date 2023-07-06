@@ -2,8 +2,8 @@ INSERT INTO residues(residue_type,description)VALUES('EXTRAORDINÁRIO','CLASS II
 INSERT INTO residues(residue_type,description)VALUES('ENTULHO','CLASS IIB');
 INSERT INTO equipments(equipment,size_cubic)VALUES('CONTAINER 1.2M³','1.2');
 INSERT INTO equipments(equipment,size_cubic)VALUES('CONTAINER 240L','0.24');
-INSERT INTO application_users(username,password)VALUES('madruga','mama');
-INSERT INTO application_users(username,password)VALUES('chaves','cha');
+INSERT INTO application_users(username,password,profile_photo_url)VALUES('madruga','mama','/assets/madruga-profile.jpg');
+INSERT INTO application_users(username,password,profile_photo_url)VALUES('chaves','cha','/assets/chaves-profile.jpg');
 INSERT INTO roles(role_name)VALUES('ADMIN');
 INSERT INTO roles(role_name)VALUES('CUSTOMER');
 INSERT INTO roles(role_name)VALUES('MANAGER');
