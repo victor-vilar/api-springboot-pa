@@ -1,10 +1,12 @@
 package com.victorvilar.projetoempresa.controllers;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import com.victorvilar.projetoempresa.domain.applicationuser.ApplicationUser;
 import com.victorvilar.projetoempresa.domain.applicationuser.dto.ApplicationUserDto;
 import com.victorvilar.projetoempresa.domain.applicationuser.dto.ApplicationUserResponseDto;
 import com.victorvilar.projetoempresa.domain.applicationuser.mapper.ApplicationUserMapper;
 import com.victorvilar.projetoempresa.repository.ApplicationUserRepository;
+import com.victorvilar.projetoempresa.services.LoginService;
 import com.victorvilar.projetoempresa.services.RegisterUserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,17 +25,15 @@ import org.springframework.web.bind.annotation.*;
 public class LoginController {
 
     private final RegisterUserService registerUserService;
-    private final ApplicationUserMapper mapper;
-    private final ApplicationUserRepository userRepository;
+    private final LoginService loginService;
 
     @Autowired
     public LoginController(
             RegisterUserService registerUserService,
-            ApplicationUserRepository userRepository
-            ,ApplicationUserMapper mapper){
+            LoginService loginService
+            ){
         this.registerUserService = registerUserService;
-        this.userRepository = userRepository;
-        this.mapper = mapper;
+        this.loginService = loginService;
 
     }
 
@@ -47,16 +47,15 @@ public class LoginController {
     public ResponseEntity<ApplicationUserResponseDto> login(Authentication authentication){
 
         if(authentication != null){
-            //get the user information or throws UserNotFoundException
-            ApplicationUser user = this.userRepository.findByUsername(authentication.getName())
-                    .orElseThrow(() -> new UsernameNotFoundException("User not found !"));
-
-            ApplicationUserResponseDto applicationUserResponseDto = this.mapper.toApplicationUserResponseDto(user);
-
-            return ResponseEntity.ok(applicationUserResponseDto);
-        }else{
-            return ResponseEntity.badRequest().build();
+            try {
+                ApplicationUserResponseDto responseDto = this.loginService.getLoggedUserDetails(authentication);
+                return ResponseEntity.ok(responseDto);
+            }catch(UsernameNotFoundException e){
+                System.out.println(e.getMessage());
+            }
         }
+
+        return ResponseEntity.badRequest().build();
 
     }
 
