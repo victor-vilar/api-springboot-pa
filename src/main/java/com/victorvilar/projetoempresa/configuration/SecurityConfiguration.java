@@ -37,7 +37,7 @@ public class SecurityConfiguration {
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
-                //tell to spring that it has the responsability to save the data inside SecurityHolder
+                //tell to spring that it has the responsability to save the authentication inside SecurityHolder
                 .securityContext( security ->{
                     security.requireExplicitSave(false);
                 })
