@@ -19,6 +19,15 @@ public class ApplicationUser implements UserDetails {
     private Long id;
     private String username;
     private String password;
+    private String profilePhotoUrl;
+
+    public String getProfilePhotoUrl() {
+        return profilePhotoUrl;
+    }
+
+    public void setProfilePhotoUrl(String profilePhotoUrl) {
+        this.profilePhotoUrl = profilePhotoUrl;
+    }
 
     @ManyToMany
     @JoinTable(name="users_roles", joinColumns = @JoinColumn(name="application_user_id"),inverseJoinColumns = @JoinColumn(name="role_id"))
