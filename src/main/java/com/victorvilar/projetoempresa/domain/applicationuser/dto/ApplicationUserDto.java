@@ -1,9 +1,7 @@
 package com.victorvilar.projetoempresa.domain.applicationuser.dto;
 
 import jakarta.validation.constraints.NotNull;
-import org.springframework.security.core.GrantedAuthority;
 
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -18,14 +16,14 @@ public class ApplicationUserDto {
     @NotNull(message="the user must have at least one role")
     private Set<String> roles = new HashSet<>();
 
-    private String perfilPhotoUrl;
+    private String profilePhotoUrl;
 
-    public String getPerfilPhotoUrl() {
-        return perfilPhotoUrl;
+    public String getProfilePhotoUrl() {
+        return profilePhotoUrl;
     }
 
-    public void setPerfilPhotoUrl(String perfilPhotoUrl) {
-        this.perfilPhotoUrl = perfilPhotoUrl;
+    public void setProfilePhotoUrl(String profilePhotoUrl) {
+        this.profilePhotoUrl = profilePhotoUrl;
     }
 
     public String getUsername() {

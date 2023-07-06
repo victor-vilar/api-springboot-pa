@@ -1,11 +1,8 @@
 package com.victorvilar.projetoempresa.domain.applicationuser.dto;
 
-import com.victorvilar.projetoempresa.domain.applicationuser.ApplicationUserRole;
-import jakarta.validation.constraints.NotNull;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -15,16 +12,16 @@ public class ApplicationUserResponseDto {
 
     private String username;
     private Set<String> roles = new HashSet<>();
-    private String perfilPhotoUrl;
+    private String profilePhotoUrl;
 
 
 
-    public String getPerfilPhotoUrl(){
-        return this.perfilPhotoUrl;
+    public String getProfilePhotoUrl(){
+        return this.profilePhotoUrl;
     }
 
-    public void setPerfilPhotoUrl(String url){
-        this.perfilPhotoUrl = url;
+    public void setProfilePhotoUrl(String url){
+        this.profilePhotoUrl = url;
     }
 
 
@@ -74,7 +71,7 @@ public class ApplicationUserResponseDto {
             ApplicationUserResponseDto responseDto = new ApplicationUserResponseDto();
             responseDto.setUsername(this.username);
             responseDto.setRoles(this.roles);
-            responseDto.setPerfilPhotoUrl(this.perfilPhotoUrl);
+            responseDto.setProfilePhotoUrl(this.perfilPhotoUrl);
             return responseDto;
         }
 
