@@ -47,7 +47,7 @@ public class SecurityConfiguration {
 
                 //tell to spring to generate JSessionId only when required
                 .sessionManagement(session -> session
-                    .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
+                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 
                 )
                 //cors configuration

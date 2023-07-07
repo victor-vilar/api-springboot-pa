@@ -3,6 +3,7 @@ package com.victorvilar.projetoempresa.services;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
@@ -34,26 +35,18 @@ public class JwtService {
     }
 
     //validate a jwt token
-    public boolean validateJwtToken(String token){
+    public Claims validateJwtToken(String token){
         try{
-            Jwts.parserBuilder()
+            return Jwts.parserBuilder()
                     .setSigningKey(this.encondeKey())
                     .build()
-                    .parseClaimsJws(token);
-                    return true;
+                    .parseClaimsJws(token)
+                    .getBody();
         }catch(Exception e){
-                    return false;
+            throw new BadCredentialsException(("Invalid Token "));
         }
     }
 
-    //get claims from a token
-    public Claims getClaims(String token){
-        Claims claims = Jwts.parserBuilder()
-                .build()
-                .parseClaimsJws(token)
-                .getBody();
-        return claims;
-    }
 
 
 }
