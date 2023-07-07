@@ -2,7 +2,10 @@ package com.victorvilar.projetoempresa.configuration;
 
 import com.victorvilar.projetoempresa.configuration.filters.CsrfCookieSessionFilter;
 import com.victorvilar.projetoempresa.configuration.filters.JwtTokenGeneratorFilter;
+import com.victorvilar.projetoempresa.configuration.filters.JwtTokenValidatorFilter;
 import com.victorvilar.projetoempresa.services.JwtService;
+import io.jsonwebtoken.Jwt;
+import jakarta.persistence.Basic;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -65,6 +68,7 @@ public class SecurityConfiguration {
 
                 //send a csrf token to request after an authentication
                 //.addFilterAfter(new CsrfCookieSessionFilter(), BasicAuthenticationFilter.class)
+                .addFilterBefore(new JwtTokenValidatorFilter(new JwtService()),BasicAuthenticationFilter.class)
                 .addFilterAfter(new JwtTokenGeneratorFilter(new JwtService()),BasicAuthenticationFilter.class)
 
                 //end points configuration and roles
