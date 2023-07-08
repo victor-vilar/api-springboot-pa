@@ -66,7 +66,7 @@ public class SecurityConfiguration {
                         //.disable()
                 )
 
-
+                //validate the token before the http response
                 .addFilterBefore(new JwtTokenValidatorFilter(new JwtService()),BasicAuthenticationFilter.class)
                 //send a csrf token to request after an authentication
                 .addFilterAfter(new CsrfCookieSessionFilter(), BasicAuthenticationFilter.class)
