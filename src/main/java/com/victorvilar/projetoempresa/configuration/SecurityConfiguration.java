@@ -66,9 +66,11 @@ public class SecurityConfiguration {
                         //.disable()
                 )
 
-                //send a csrf token to request after an authentication
-                //.addFilterAfter(new CsrfCookieSessionFilter(), BasicAuthenticationFilter.class)
+
                 .addFilterBefore(new JwtTokenValidatorFilter(new JwtService()),BasicAuthenticationFilter.class)
+                //send a csrf token to request after an authentication
+                .addFilterAfter(new CsrfCookieSessionFilter(), BasicAuthenticationFilter.class)
+                //generates a new jwt token after an authentication
                 .addFilterAfter(new JwtTokenGeneratorFilter(new JwtService()),BasicAuthenticationFilter.class)
 
                 //end points configuration and roles
