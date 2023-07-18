@@ -31,11 +31,9 @@ public class ApplicationUserAuthenticationProvider implements AuthenticationProv
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 
         ApplicationUser user = this.applicationUserRepository.findByUsername(authentication.getName()).orElseThrow(() ->new RuntimeException("Não há"));
-        System.out.println(user);
         String encodedPassword = this.passwordEncoder.encode(authentication.getCredentials().toString());
 
         if(user != null && this.passwordEncoder.matches(user.getPassword(),encodedPassword)){
-            System.out.println(user);
             List<ApplicationUserRole> roles = this.rolesRepository.findByApplicationUsers(user);
             return new UsernamePasswordAuthenticationToken(authentication.getName(),null,roles);
        }
