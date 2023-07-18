@@ -49,8 +49,8 @@ public class ContractService {
      * @param clientId
      * @return
      */
-    public List<Contract> getAllContractsByClientId(String clientId){
-        return this.contractRepository.findByCustomerCpfCnpj(clientId);
+    public List<ContractResponseDto> getAllContractsByClientId(String clientId){
+        return this.contractMapper.toContractResponsDtoList(contractRepository.findByCustomerCpfCnpj(clientId));
     }
 
     /**
