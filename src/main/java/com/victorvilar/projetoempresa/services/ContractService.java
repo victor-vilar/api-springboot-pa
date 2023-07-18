@@ -1,5 +1,6 @@
 package com.victorvilar.projetoempresa.services;
 
+import com.victorvilar.projetoempresa.controllers.dto.contract.ContractCreateDto;
 import com.victorvilar.projetoempresa.controllers.dto.contract.ContractResponseDto;
 import com.victorvilar.projetoempresa.domain.customer.Customer;
 import com.victorvilar.projetoempresa.exceptions.CustomerNotFoundException;
@@ -8,6 +9,7 @@ import com.victorvilar.projetoempresa.domain.customer.Contract;
 import com.victorvilar.projetoempresa.domain.customer.ItemContract;
 import com.victorvilar.projetoempresa.exceptions.ItemContractNotFoundException;
 import com.victorvilar.projetoempresa.mappers.ContractMapper;
+import com.victorvilar.projetoempresa.mappers.ItemContractMapper;
 import com.victorvilar.projetoempresa.repository.ContractRepository;
 import com.victorvilar.projetoempresa.repository.ItemContractRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,16 +25,19 @@ public class ContractService {
     private final CustomerService customerService;
     private final ItemContractRepository itemContractRepository;
     private final ContractMapper contractMapper;
+    private final ItemContractMapper itemContractMapper;
 
     @Autowired
     public ContractService (ContractRepository repository,
                             CustomerService customerService,
                             ItemContractRepository itemContractRepository,
-                            ContractMapper contractMapper){
+                            ContractMapper contractMapper,
+                            ItemContractMapper itemContractMapper){
         this.contractRepository = repository;
         this.customerService = customerService;
         this.itemContractRepository = itemContractRepository;
         this.contractMapper = contractMapper;
+        this.itemContractMapper = itemContractMapper;
     }
 
     /**
@@ -69,9 +74,24 @@ public class ContractService {
      * @throws CustomerNotFoundException
      */
     @Transactional
-    public Contract save(Contract contract) {
+    public ContractResponseDto save(ContractCreateDto contract) {
 
-        return this.contractRepository.save(contract);
+        //contractCreateDto to Contract
+        Contract contract1 = this.contractMapper.toContract(contract);
+
+        //find customer by id
+        Customer customer = this.customerService.findCustomerById(contract.getCustomerId());
+
+        //setting customer
+        contract1.setCustomer(customer);
+
+        //transform itemContractCreateList into a ItemContractList and add to contract
+        this.itemContractMapper.fromItemContractCreateDtoListToItemContractList(
+                        contract.getItens())
+                .stream()
+                .forEach(item -> contract1.addNewItem(item));
+
+        return this.contractMapper.toContractResponseDto(this.contractRepository.save(contract1));
     }
 
     /**

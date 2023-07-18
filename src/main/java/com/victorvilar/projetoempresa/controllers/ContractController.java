@@ -85,34 +85,12 @@ public class ContractController {
 
 
     /**
-     *
      * add new contract
-     *
      * @param contract a model to contract
      */
     @PostMapping()
     public ResponseEntity<ContractResponseDto> addNewContract(@Valid @RequestBody ContractCreateDto contract) {
-
-        //contractCreateDto to Contract
-        Contract contract1 = this.mapper.toContract(contract);
-
-        //find customer by id
-        Customer customer = this.customerService.findCustomerById(contract.getCustomerId());
-
-        //setting customer
-        contract1.setCustomer(customer);
-
-        //transform itemContractCreateList into a ItemContractList and add to contract
-        this.itemContractMapper.fromItemContractCreateDtoListToItemContractList(
-                contract.getItens())
-                .stream()
-                .forEach(item -> contract1.addNewItem(item));
-
-        //return saved contract
-        return new ResponseEntity<ContractResponseDto>
-                (this.mapper.toContractResponseDto(this.service.save(contract1)),HttpStatus.OK);
-
-
+        return ResponseEntity.ok(this.service.save(contract));
     }
 
 
