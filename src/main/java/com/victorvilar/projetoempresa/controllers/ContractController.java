@@ -61,10 +61,7 @@ public class ContractController {
      */
     @GetMapping()
     public ResponseEntity<List<ContractResponseDto>> getAllContracts(){
-        return new ResponseEntity<List<ContractResponseDto>>(
-                this.mapper.toContractResponsDtoList(this.service.getAllContracts()),
-                HttpStatus.OK
-        );
+        return ResponseEntity.ok(this.service.getAllContracts());
     }
 
     /**

@@ -1,11 +1,13 @@
 package com.victorvilar.projetoempresa.services;
 
+import com.victorvilar.projetoempresa.controllers.dto.contract.ContractResponseDto;
 import com.victorvilar.projetoempresa.domain.customer.Customer;
 import com.victorvilar.projetoempresa.exceptions.CustomerNotFoundException;
 import com.victorvilar.projetoempresa.exceptions.ContractNotFoundException;
 import com.victorvilar.projetoempresa.domain.customer.Contract;
 import com.victorvilar.projetoempresa.domain.customer.ItemContract;
 import com.victorvilar.projetoempresa.exceptions.ItemContractNotFoundException;
+import com.victorvilar.projetoempresa.mappers.ContractMapper;
 import com.victorvilar.projetoempresa.repository.ContractRepository;
 import com.victorvilar.projetoempresa.repository.ItemContractRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,22 +22,26 @@ public class ContractService {
     private final ContractRepository contractRepository;
     private final CustomerService customerService;
     private final ItemContractRepository itemContractRepository;
+    private final ContractMapper contractMapper;
 
     @Autowired
     public ContractService (ContractRepository repository,
                             CustomerService customerService,
-                            ItemContractRepository itemContractRepository){
+                            ItemContractRepository itemContractRepository,
+                            ContractMapper contractMapper){
         this.contractRepository = repository;
         this.customerService = customerService;
         this.itemContractRepository = itemContractRepository;
+        this.contractMapper = contractMapper;
     }
 
     /**
      * get all contracts
      * @return
      */
-    public List<Contract> getAllContracts() {
-        return this.contractRepository.findAll();
+    public List<ContractResponseDto> getAllContracts() {
+
+        return this.contractMapper.toContractResponsDtoList(this.contractRepository.findAll());
     }
 
     /**
