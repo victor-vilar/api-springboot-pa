@@ -59,8 +59,9 @@ public class ContractService {
      * @return a contract
      * @throws ContractNotFoundException
      */
-    public Contract getContractById(Long id) throws ContractNotFoundException{
-        return this.contractRepository.findById(id).orElseThrow(() -> new ContractNotFoundException("This contract doesn't exist") );
+    public ContractResponseDto getContractById(Long id) throws ContractNotFoundException{
+        Contract contract = this.contractRepository.findById(id).orElseThrow(() -> new ContractNotFoundException("This contract doesn't exist") );
+        return this.contractMapper.toContractResponseDto(contract);
     }
 
     /**
