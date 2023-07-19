@@ -3,9 +3,11 @@ package com.victorvilar.projetoempresa.services;
 import java.util.List;
 
 import com.victorvilar.projetoempresa.controllers.dto.customer.CustomerCreateDto;
+import com.victorvilar.projetoempresa.controllers.dto.customer.CustomerResponseDto;
 import com.victorvilar.projetoempresa.domain.customer.Customer;
 import com.victorvilar.projetoempresa.exceptions.CustomerNotFoundException;
 import com.victorvilar.projetoempresa.exceptions.CpfOrCnpjAlreadyExistsException;
+import com.victorvilar.projetoempresa.mappers.CustomerMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,19 +22,31 @@ public class CustomerService {
 
 	
 	private final CustomerRepository repository;
+	private final CustomerMapper mapper;
 	
 	@Autowired
-	public CustomerService(CustomerRepository repository) {
+	public CustomerService(CustomerRepository repository, CustomerMapper mapper) {
 		this.repository = repository;
+		this.mapper = mapper;
 	}
 	
 	/**
 	 * get all clients, transform in a clientResponseDto list and return;
 	 * @param
 	 */
-	public List<Customer> getAllCustomers() {
-		return this.repository.findAll();
+	public List<CustomerResponseDto> getAllCustomers() {
+		return this.mapper.toCustomerResponseDtoList(this.repository.findAll());
 	}
+
+	public Customer findCustomerById(String id) throws CustomerNotFoundException {
+		return this.repository.findByCpfCnpj(id).orElseThrow(() ->new CustomerNotFoundException("This client doesn't exist"));
+	}
+
+	public CustomerResponseDto getCustomerById(String id){
+		Customer customer = this.findCustomerById(id);
+		return this.mapper.toCustomerResponseDto(customer);
+	}
+
 	
 	/**
 	 * Sing in a new Client
@@ -71,9 +85,7 @@ public class CustomerService {
 	 * @param id
 	 * @return
 	 */
-	public Customer findCustomerById(String id) throws CustomerNotFoundException {
-		return this.repository.findByCpfCnpj(id).orElseThrow(() ->new CustomerNotFoundException("This client doesn't exist"));
-	}
+
 
 	/**
 	 * Delete a client of the database

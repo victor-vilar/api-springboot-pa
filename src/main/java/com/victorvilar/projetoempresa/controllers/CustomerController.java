@@ -27,28 +27,30 @@ public class CustomerController {
 
 	
 	private final CustomerService service;
-	private final CustomerMapper mapper;
-	
+
 	@Autowired
 	public CustomerController(CustomerService service, CustomerMapper mapper) {
 		this.service = service;
-		this.mapper = mapper;
+
 	}
 
 	/**
-	 * return all clients of repository and transform in a responseDto
+	 * return all clients of repository
 	 * @return a listOfResponseDto
 	 */
 	@GetMapping()
 	public ResponseEntity<List<CustomerResponseDto>> getAllCustomer(){
-		List<CustomerResponseDto> listResponseDto = new ArrayList<>();
-		listResponseDto = mapper.toCustomerResponseDtoList(this.service.getAllCustomers());
-		return new ResponseEntity<>(listResponseDto, HttpStatus.OK);
+		return ResponseEntity.ok(this.service.getAllCustomers());
 	}
 
+	/**
+	 * return a customer by id
+	 * @param id id of the customer
+	 * @return
+	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<CustomerResponseDto> getCustomerById(@PathVariable String id) {
-			return new ResponseEntity<>(mapper.toCustomerResponseDto(this.service.findCustomerById(id)),HttpStatus.OK);
+		return ResponseEntity.ok(this.service.getCustomerById(id));
 	}
 
 	@PostMapping(consumes= MediaType.APPLICATION_JSON_VALUE)
