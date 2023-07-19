@@ -64,9 +64,14 @@ public class CustomerController {
 
 	}
 
-	@PutMapping("/{id}")
-	public ResponseEntity<CustomerResponseDto> updateCustomer(@PathVariable String id, @RequestBody CustomerCreateDto clientDto){
-		return new ResponseEntity<>(this.mapper.toCustomerResponseDto(this.service.updateClient(id,clientDto)),HttpStatus.OK);
+	/**
+	 * Update customer by id
+	 * @param customerDto
+	 * @return
+	 */
+	@PutMapping()
+	public ResponseEntity<CustomerResponseDto> updateCustomer(@PathVariable String id, @RequestBody CustomerCreateDto customerDto){
+		return ResponseEntity.ok(this.service.updateCustomer(customerDto));
 	}
 
 

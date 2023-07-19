@@ -92,6 +92,17 @@ public class CustomerService {
 
 	}
 
+	/**
+	 * update client
+	 * @param customerId
+	 * @return
+	 */
+	public CustomerResponseDto updateCustomer(CustomerCreateDto customerCreateDto) {
+		Customer customer = findCustomerById(customerCreateDto.getCpfCnpj());
+		customer.setCpfCnpj(customerCreateDto.getCpfCnpj());
+		customer.setNameCompanyName(customerCreateDto.getNameCompanyName());
+		return this.mapper.toCustomerResponseDto(repository.save(customer));
+	}
 
 
 	/**
@@ -105,15 +116,5 @@ public class CustomerService {
 		repository.deleteById(id);
 	}
 
-	/**
-	 * update client
-	 * @param customerId
-	 * @return
-	 */
-	public Customer updateClient(String customerId, CustomerCreateDto customerCreateDto) {
-		Customer customer = findCustomerById(customerId);
-		customer.setCpfCnpj(customerCreateDto.getCpfCnpj());
-		customer.setNameCompanyName(customerCreateDto.getNameCompanyName());
-		return repository.save(customer);
-	}
+
 }
