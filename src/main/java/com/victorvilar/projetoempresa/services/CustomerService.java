@@ -37,11 +37,20 @@ public class CustomerService {
 	public List<CustomerResponseDto> getAllCustomers() {
 		return this.mapper.toCustomerResponseDtoList(this.repository.findAll());
 	}
-
+	/**
+	 * Return a client with this id, or return null;
+	 * @param id
+	 * @return
+	 */
 	public Customer findCustomerById(String id) throws CustomerNotFoundException {
 		return this.repository.findByCpfCnpj(id).orElseThrow(() ->new CustomerNotFoundException("This client doesn't exist"));
 	}
 
+	/**
+	 * Return a customerResponseDto
+	 * @param id
+	 * @return
+	 */
 	public CustomerResponseDto getCustomerById(String id){
 		Customer customer = this.findCustomerById(id);
 		return this.mapper.toCustomerResponseDto(customer);
@@ -50,10 +59,12 @@ public class CustomerService {
 	
 	/**
 	 * Sing in a new Client
-	 * @param customer, a client
+	 * @param customerCreateDto, a client
 	 */
 	@Transactional
-	public Customer addNewCustomer(Customer customer) throws InvalidCpfOrCnpjException, CpfOrCnpjAlreadyExistsException {
+	public CustomerResponseDto addNewCustomer(CustomerCreateDto customerCreateDto) throws InvalidCpfOrCnpjException, CpfOrCnpjAlreadyExistsException {
+
+		Customer customer = this.mapper.toCustomer(customerCreateDto);
 
 		//check if customer has a name
 		if(customer.getNameCompanyName() == null){
@@ -74,17 +85,13 @@ public class CustomerService {
 		if(CpfCnpjValidator.checkIfIsValid(customer.getCpfCnpj())) {
 			//upper case client name
 			customer.setNameCompanyName(customer.getNameCompanyName().toUpperCase());
-			return this.repository.save(customer);
+			return this.mapper.toCustomerResponseDto(this.repository.save(customer));
 		}else {
 			throw new InvalidCpfOrCnpjException("This CPF or CNPJ is Invalid");
 		}
 
 	}
-	/**
-	 * Return a client with this id, or return null;
-	 * @param id
-	 * @return
-	 */
+
 
 
 	/**

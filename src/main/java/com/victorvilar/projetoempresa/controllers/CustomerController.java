@@ -53,9 +53,15 @@ public class CustomerController {
 		return ResponseEntity.ok(this.service.getCustomerById(id));
 	}
 
+	/**
+	 * Add new customer
+	 * @param customerDto
+	 * @return
+	 */
 	@PostMapping(consumes= MediaType.APPLICATION_JSON_VALUE)
-	public void addNewCustomer(@Valid @RequestBody CustomerCreateDto clientDto){
-			this.service.addNewCustomer(mapper.toCustomer(clientDto));
+	public ResponseEntity<CustomerResponseDto> addNewCustomer(@Valid @RequestBody CustomerCreateDto customerDto){
+		return ResponseEntity.ok(this.service.addNewCustomer(customerDto));
+
 	}
 
 	@PutMapping("/{id}")
