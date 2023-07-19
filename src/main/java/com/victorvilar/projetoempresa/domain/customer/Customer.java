@@ -77,7 +77,8 @@ public class Customer implements Serializable {
 	public Customer() {
 		
 	}
-	public Customer(String nameCompanyName) {
+	public Customer(String cpfCnpj,String nameCompanyName) {
+		this.cpfCnpj = cpfCnpj;
 		this.nameCompanyName = nameCompanyName;
 	}
 	//-------------------------------------
