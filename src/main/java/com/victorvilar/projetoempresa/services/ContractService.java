@@ -2,6 +2,7 @@ package com.victorvilar.projetoempresa.services;
 
 import com.victorvilar.projetoempresa.controllers.dto.contract.ContractCreateDto;
 import com.victorvilar.projetoempresa.controllers.dto.contract.ContractResponseDto;
+import com.victorvilar.projetoempresa.controllers.dto.contract.ContractUpdateDto;
 import com.victorvilar.projetoempresa.controllers.dto.contract.ItemContractCreateDto;
 import com.victorvilar.projetoempresa.domain.customer.Customer;
 import com.victorvilar.projetoempresa.exceptions.CustomerNotFoundException;
@@ -144,14 +145,31 @@ public class ContractService {
      * @return
      */
     @Transactional
-    public Contract updateContract(Long contractId, Contract contract){
-        Contract contractToUpdate = this.getContractById(contractId);
-        contractToUpdate.setCustomer(this.customerService.findCustomerById(contract.getCustomer().getCpfCnpj()));
-        contractToUpdate.setNumber(contract.getNumber());
-        contractToUpdate.setBeginDate(contract.getBeginDate());
-        contractToUpdate.setEndDate(contract.getEndDate());
-        this.save(contractToUpdate);
-        return contractToUpdate;
+    public ContractResponseDto updateContract(Long contractId, ContractUpdateDto contractUpdateDto){
+
+        //creates instance of contract
+        Contract contract = this.findContractByid(contractId);
+
+        //updating contracting
+        contract.setCustomer(this.customerService.findCustomerById(contractUpdateDto.getCustomerId()));
+        contract.setNumber(contractUpdateDto.getNumber());
+        contract.setBeginDate(contractUpdateDto.getBeginDate());
+        contract.setEndDate(contractUpdateDto.getEndDate());
+
+        //transform itemContractCreateList into a ItemContractList and add to contract
+        List<ItemContract> lista = this.itemContractMapper.fromItemContractUpdateDtoListToItemContractList(contractUpdateDto.getItens());
+
+        //loop to insert a new item or update an exist one
+        lista.stream().forEach(item ->{
+            if(item.getId() == null){
+                contract.addNewItem(item);
+            }else{
+                updateItemContract(contract,item);
+            }
+        });
+
+        this.contractRepository.save(contract);
+        return this.contractMapper.toContractResponseDto(contract);
     }
 
     /**
@@ -159,14 +177,13 @@ public class ContractService {
      * @return
      */
     @Transactional
-    public Contract updateItemContract(Contract contract, ItemContract item){
+    public void updateItemContract(Contract contract, ItemContract item){
         ItemContract itemToUpdate = this.itemContractRepository.findById(item.getId()).orElseThrow(() -> new ItemContractNotFoundException("Item not found"));
         itemToUpdate.setEquipament(item.getEquipament());
         itemToUpdate.setResidue(item.getResidue());
         itemToUpdate.setQtdOfResidue(item.getQtdOfResidue());
         itemToUpdate.setValue(item.getValue());
-        this.save(contract);
-        return contract;
+        this.itemContractRepository.save(itemToUpdate);
     }
 
 }

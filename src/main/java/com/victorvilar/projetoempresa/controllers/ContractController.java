@@ -31,28 +31,10 @@ import java.util.List;
 public class ContractController {
 
     private final ContractService service;
-    private final ContractMapper mapper;
-    private final CustomerService customerService;
-    private final ItemContractMapper itemContractMapper;
-    private final ResidueService residueService;
-    private final EquipmentService equipmentService;
-
 
     @Autowired
-    public ContractController(ContractService service,
-                              ContractMapper mapper,
-                              CustomerService customerService,
-                              ItemContractMapper itemContractMapper,
-                              ResidueService residueService,
-                              EquipmentService equipmentService
-){
+    public ContractController(ContractService service){
         this.service = service;
-        this.mapper= mapper;
-        this.customerService = customerService;
-        this.itemContractMapper = itemContractMapper;
-        this.residueService = residueService;
-        this.equipmentService = equipmentService;
-
     }
 
     /**
@@ -133,31 +115,7 @@ public class ContractController {
     public ResponseEntity<ContractResponseDto> updateContract(@PathVariable Long contractId,
                                                               @RequestBody ContractUpdateDto contractUpdateDto){
 
-        //creates instance of contract
-        Contract contract = this.mapper.toContract(contractUpdateDto);
-
-        //find contract's customer
-        contract.setCustomer(this.customerService.findCustomerById(contractUpdateDto.getCustomerId()));
-
-        //update each value of contract and get savedContract
-        Contract savedContract = this.service.updateContract(contractId, contract);
-
-        //transform itemContractCreateList into a ItemContractList and add to contract
-        List<ItemContract> lista = this.itemContractMapper.fromItemContractUpdateDtoListToItemContractList(contractUpdateDto.getItens());
-
-        //loop to insert a new item or update an exist one
-        lista.stream().forEach(item ->{
-            if(item.getId() == null){
-                savedContract.addNewItem(item);
-            }else{
-                this.service.updateItemContract(savedContract,item);
-            }
-        });
-
-        this.service.save(savedContract);
-
-        return new ResponseEntity<ContractResponseDto>(this.mapper.toContractResponseDto(savedContract), HttpStatus.OK);
-
+        return ResponseEntity.ok(this.service.updateContract(contractId,contractUpdateDto));
 
     }
 
