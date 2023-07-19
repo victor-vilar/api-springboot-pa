@@ -94,7 +94,7 @@ public class CustomerService {
 
 	/**
 	 * update client
-	 * @param customerId
+	 * @param customerCreateDto
 	 * @return
 	 */
 	public CustomerResponseDto updateCustomer(CustomerCreateDto customerCreateDto) {

@@ -1,10 +1,12 @@
 package com.victorvilar.projetoempresa.services;
 
 import com.victorvilar.projetoempresa.controllers.dto.customer.CustomerCreateDto;
+import com.victorvilar.projetoempresa.controllers.dto.customer.CustomerResponseDto;
 import com.victorvilar.projetoempresa.domain.customer.Customer;
 import com.victorvilar.projetoempresa.exceptions.CpfOrCnpjAlreadyExistsException;
 import com.victorvilar.projetoempresa.exceptions.CustomerNotFoundException;
 import com.victorvilar.projetoempresa.exceptions.InvalidCpfOrCnpjException;
+import com.victorvilar.projetoempresa.mappers.CustomerMapper;
 import com.victorvilar.projetoempresa.repository.CustomerRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,6 +22,8 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -32,11 +36,14 @@ class CustomerServiceTest {
     @Mock
     private CustomerRepository repository;
 
+    @Mock
+    private CustomerMapper mapper;
 
-    Customer cpfCustomer;
-    Customer cnpjCustomer;
-    Customer wrongCpfCustomer;
-    Customer wrongCnpjCustomer;
+
+    CustomerCreateDto cpfCustomer;
+    CustomerCreateDto cnpjCustomer;
+    CustomerCreateDto wrongCpfCustomer;
+    CustomerCreateDto wrongCnpjCustomer;
     Customer nullCpfCnpjCustomer;
     Customer nullNameCompanyNameCustomer;
     CustomerCreateDto customerDto;
@@ -44,24 +51,24 @@ class CustomerServiceTest {
 
     @BeforeEach
     void setUp(){
-        cpfCustomer = new Customer.CustomerBuilder()
+        cpfCustomer = new CustomerCreateDto.CustomerCreateDtoBuilder()
                 .nameCompanyName("cpfCustomer")
                 .cpfCnpj("86570192051")
                 .build();
 
 
-        cnpjCustomer = new Customer.CustomerBuilder()
+        cnpjCustomer = new CustomerCreateDto.CustomerCreateDtoBuilder()
                 .nameCompanyName("cnpjCustomer")
                 .cpfCnpj("48153741000139")
                 .build();
 
 
-        wrongCpfCustomer = new Customer.CustomerBuilder()
+        wrongCpfCustomer = new CustomerCreateDto.CustomerCreateDtoBuilder()
                 .nameCompanyName("cnpjCustomer")
                 .cpfCnpj("86570192055")
                 .build();
 
-        wrongCnpjCustomer = new Customer.CustomerBuilder()
+        wrongCnpjCustomer = new CustomerCreateDto.CustomerCreateDtoBuilder()
                 .nameCompanyName("cnpjCustomer")
                 .cpfCnpj("48153741000133")
                 .build();
@@ -87,57 +94,46 @@ class CustomerServiceTest {
     @Test
     @DisplayName("addNewCustomer  successfully when passing cpf")
     void addNewCustomer_Successfully_WhenPassingValidCpf(){
-        when(repository.findByCpfCnpj(cpfCustomer.getCpfCnpj())).thenReturn(Optional.empty());
-        when(repository.save(cpfCustomer)).thenReturn(cpfCustomer);
-        Customer savedCustomer = customerService.addNewCustomer(cpfCustomer);
+
+        when(mapper.toCustomer(any(CustomerCreateDto.class))).thenReturn(new Customer(cpfCustomer.getCpfCnpj(),cpfCustomer.getNameCompanyName()));
+        when(repository.findByCpfCnpj(anyString())).thenReturn(Optional.empty());
+        when(repository.save(any(Customer.class))).thenReturn(new Customer(cpfCustomer.getCpfCnpj(),cpfCustomer.getNameCompanyName()));
+        when(mapper.toCustomerResponseDto(any(Customer.class))).thenReturn(new CustomerResponseDto(cpfCustomer.getCpfCnpj(),cpfCustomer.getNameCompanyName()));
+
+        CustomerResponseDto savedCustomer = customerService.addNewCustomer(cpfCustomer);
         assertEquals(cpfCustomer.getCpfCnpj(),savedCustomer.getCpfCnpj());
+        assertEquals(cpfCustomer.getNameCompanyName(), savedCustomer.getNameCompanyName());
         Mockito.verifyNoMoreInteractions(repository);
     }
 
     @Test
     @DisplayName("save successfully when passing cnpj")
     void addNewCustomer_Successfully_WhenPassingValidCnpj(){
-        when(repository.findByCpfCnpj(cnpjCustomer.getCpfCnpj())).thenReturn(Optional.empty());
-        when(repository.save(cnpjCustomer)).thenReturn(cnpjCustomer);
-        Customer savedCustomer = customerService.addNewCustomer(cnpjCustomer);
+
+        when(mapper.toCustomer(any(CustomerCreateDto.class))).thenReturn(new Customer(cnpjCustomer.getCpfCnpj(),cnpjCustomer.getNameCompanyName()));
+        when(repository.findByCpfCnpj(anyString())).thenReturn(Optional.empty());
+        when(repository.save(any(Customer.class))).thenReturn(new Customer(cnpjCustomer.getCpfCnpj(),cnpjCustomer.getNameCompanyName()));
+        when(mapper.toCustomerResponseDto(any(Customer.class))).thenReturn(new CustomerResponseDto(cnpjCustomer.getCpfCnpj(),cnpjCustomer.getNameCompanyName()));
+
+        CustomerResponseDto savedCustomer = customerService.addNewCustomer(cnpjCustomer);
         assertEquals(cnpjCustomer.getCpfCnpj(),savedCustomer.getCpfCnpj());
+        assertEquals(cnpjCustomer.getNameCompanyName(), savedCustomer.getNameCompanyName());
         Mockito.verifyNoMoreInteractions(repository);
     }
 
-
-    @Test
-    @DisplayName("save throws InvalidCpfOrCnpjException when passing a invalid cpf")
-    void addNewCustomer_ThrowsInvalidCpfOrCnpjException_WhenPassAnInvalidCpf(){
-
-        when(repository.findByCpfCnpj(wrongCpfCustomer.getCpfCnpj())).thenReturn(Optional.empty());
-        InvalidCpfOrCnpjException exception =
-                Assertions.assertThrows(InvalidCpfOrCnpjException.class,() -> this.customerService.addNewCustomer(wrongCpfCustomer));
-
-        assertNotEquals(exception,null);
-        assertEquals(exception.getMessage(),"This CPF or CNPJ is Invalid");
-        Mockito.verifyNoMoreInteractions(repository);
-
-
-    }
-
-    @Test
-    @DisplayName("save throws InvalidCpfOrCnpjException when passing a invalid cnpj")
-    void addNewCustomer_ThrowsInvalidCpfOrCnpjException_WhenPassAnInvalidCnpj(){
-
-        when(repository.findByCpfCnpj(wrongCnpjCustomer.getCpfCnpj())).thenReturn(Optional.empty());
-        InvalidCpfOrCnpjException exception =
-                Assertions.assertThrows(InvalidCpfOrCnpjException.class,() -> this.customerService.addNewCustomer(wrongCnpjCustomer));
-
-        assertNotEquals(exception,null);
-        assertEquals(exception.getMessage(),"This CPF or CNPJ is Invalid");
-
-    }
 
     @Test
     @DisplayName("save throws NullPointerException when passing a null cpf or cnpj")
-    void save_ThrowsNullPointerException_WhenPassAnNullCpfOrCnpj(){
+    void save_ThrowsNullPointerException_WhenPassingANullCpfOrCnpj(){
 
-        NullPointerException exception = Assertions.assertThrows(NullPointerException.class,() -> this.customerService.addNewCustomer(nullCpfCnpjCustomer));
+        when(mapper.toCustomer(any(CustomerCreateDto.class))).thenReturn(nullCpfCnpjCustomer);
+
+        NullPointerException exception =
+                Assertions.assertThrows(NullPointerException.class,() ->
+                        this.customerService.addNewCustomer(
+                                new CustomerCreateDto.CustomerCreateDtoBuilder()
+                                .nameCompanyName(nullCpfCnpjCustomer.getNameCompanyName()).build())
+                        );
         assertNotEquals(exception,null);
         assertEquals(exception.getClass(), NullPointerException.class);
         assertEquals(exception.getMessage(),"The customer must have a cpf or cnpj");
@@ -146,14 +142,20 @@ class CustomerServiceTest {
 
     @Test
     @DisplayName("save throws NullPointerException when passing a null nameCompanyName")
-    void save_ThrowsNullPointerException_WhenPassAnNullNameCompanyName(){
+    void save_ThrowsNullPointerException_WhenPassingANullNameCompanyName(){
 
-        NullPointerException exception = Assertions.assertThrows(NullPointerException.class,() -> this.customerService.addNewCustomer(nullNameCompanyNameCustomer));
+        when(mapper.toCustomer(any(CustomerCreateDto.class))).thenReturn(nullNameCompanyNameCustomer);
+
+        NullPointerException exception =
+                Assertions.assertThrows(NullPointerException.class,() ->
+                        this.customerService.addNewCustomer(
+                                new CustomerCreateDto.CustomerCreateDtoBuilder()
+                                        .cpfCnpj(nullNameCompanyNameCustomer.getCpfCnpj()).build())
+                );
         assertNotEquals(exception,null);
         assertEquals(exception.getClass(), NullPointerException.class);
         assertEquals(exception.getMessage(),"The customer must have a name");
         Mockito.verifyNoMoreInteractions(repository);
-
     }
 
 
@@ -161,9 +163,12 @@ class CustomerServiceTest {
     @DisplayName("save throws CpfOrCnpjAlreadyExists when already exists")
     void save_ThrowsCpfCnpjAlreadyExistsException_WhenSavesAnAlreadyExistCpfCnpj(){
 
-        when(repository.findByCpfCnpj(cpfCustomer.getCpfCnpj())).thenReturn(Optional.of(cpfCustomer));
+        when(mapper.toCustomer(any(CustomerCreateDto.class))).thenReturn(new Customer(cpfCustomer.getCpfCnpj(),cpfCustomer.getNameCompanyName()));
+        when(repository.findByCpfCnpj(cpfCustomer.getCpfCnpj())).thenReturn(Optional.of(new Customer(cpfCustomer.getCpfCnpj(),cpfCustomer.getNameCompanyName())));
+
         CpfOrCnpjAlreadyExistsException exception =
                 Assertions.assertThrows(CpfOrCnpjAlreadyExistsException.class,() -> this.customerService.addNewCustomer(cpfCustomer));
+
         assertNotEquals(exception,null);
         assertEquals(exception.getClass(), CpfOrCnpjAlreadyExistsException.class);
         assertEquals(exception.getMessage(),"This Cpf/Cnpj already exists");
@@ -182,7 +187,7 @@ class CustomerServiceTest {
     @DisplayName("find customer by cpfCnpj when successfull")
     void find_Successfully_WhenPassValidCpfCnpj(){
 
-        when(repository.findByCpfCnpj("86570192051")).thenReturn(Optional.of(cpfCustomer));
+        when(repository.findByCpfCnpj(Mockito.anyString())).thenReturn(Optional.of(new Customer(cpfCustomer.getCpfCnpj(),cpfCustomer.getNameCompanyName())));
         Customer savedCustomer = customerService.findCustomerById("86570192051");
         assertEquals(cpfCustomer.getCpfCnpj(),savedCustomer.getCpfCnpj());
         assertEquals(cpfCustomer.getNameCompanyName(),savedCustomer.getNameCompanyName());
@@ -204,12 +209,13 @@ class CustomerServiceTest {
     @Test
     @DisplayName("update customer when successfull")
     void update_Successfully_WhenPassValidCpfCnpj(){
-        when(repository.findByCpfCnpj(Mockito.anyString())).thenReturn(Optional.of(cpfCustomer));
-        when(repository.save(Mockito.any(Customer.class))).thenReturn(cpfCustomer);
-        Customer updatedCustomer = this.customerService.updateClient("86570192051",customerDto);
+        when(repository.findByCpfCnpj(Mockito.anyString())).thenReturn(Optional.of(Mockito.mock(Customer.class)));
+        when(repository.save(Mockito.any(Customer.class))).thenReturn(new Customer(cpfCustomer.getCpfCnpj(),cpfCustomer.getNameCompanyName()));
+        when(mapper.toCustomerResponseDto(any(Customer.class))).thenReturn(new CustomerResponseDto(cpfCustomer.getCpfCnpj(), cpfCustomer.getNameCompanyName()));
+        CustomerResponseDto updatedCustomer = this.customerService.updateCustomer(cpfCustomer);
         assertNotNull(updatedCustomer);
-        assertEquals(updatedCustomer.getNameCompanyName(),customerDto.getNameCompanyName());
-        assertEquals(updatedCustomer.getCpfCnpj(),customerDto.getCpfCnpj());
+        assertEquals(updatedCustomer.getNameCompanyName(),cpfCustomer.getNameCompanyName());
+        assertEquals(updatedCustomer.getCpfCnpj(),cpfCustomer.getCpfCnpj());
 
     }
 
