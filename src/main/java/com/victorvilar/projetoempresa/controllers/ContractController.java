@@ -100,10 +100,7 @@ public class ContractController {
      */
     @PostMapping("/additem/{contractId}")
     public ResponseEntity<ContractResponseDto> addNewItemToContract(@PathVariable Long contractId, @Valid @RequestBody ItemContractCreateDto itemDto){
-
-        ItemContract item = this.itemContractMapper.toItemContract(itemDto);
-        return new ResponseEntity<ContractResponseDto>(
-                this.mapper.toContractResponseDto(this.service.addNewItemToContract(contractId, item)),HttpStatus.OK);
+        return ResponseEntity.ok(this.service.addNewItemToContract(contractId,itemDto));
     }
 
 

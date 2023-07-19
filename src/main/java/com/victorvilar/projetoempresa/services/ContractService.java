@@ -2,6 +2,7 @@ package com.victorvilar.projetoempresa.services;
 
 import com.victorvilar.projetoempresa.controllers.dto.contract.ContractCreateDto;
 import com.victorvilar.projetoempresa.controllers.dto.contract.ContractResponseDto;
+import com.victorvilar.projetoempresa.controllers.dto.contract.ItemContractCreateDto;
 import com.victorvilar.projetoempresa.domain.customer.Customer;
 import com.victorvilar.projetoempresa.exceptions.CustomerNotFoundException;
 import com.victorvilar.projetoempresa.exceptions.ContractNotFoundException;
@@ -69,6 +70,11 @@ public class ContractService {
         return this.contractMapper.toContractResponseDto(contract);
     }
 
+    private Contract findContractByid(Long id) throws ContractNotFoundException{
+        Contract contract = this.contractRepository.findById(id).orElseThrow(() -> new ContractNotFoundException("This contract doesn't exist") );
+        return contract;
+    }
+
     /**
      * creates a new contract
      * @throws CustomerNotFoundException
@@ -99,10 +105,14 @@ public class ContractService {
      * @param contractId
      */
     @Transactional
-    public Contract addNewItemToContract(Long contractId, ItemContract item) {
-        Contract contract = this.getContractById(contractId);
+    public ContractResponseDto addNewItemToContract(Long contractId, ItemContractCreateDto itemDto) {
+
+        ItemContract item = this.itemContractMapper.toItemContract(itemDto);
+        Contract contract = this.findContractByid(contractId);
         contract.addNewItem(item);
-        return this.save(contract);
+        this.itemContractRepository.save(item);
+        this.contractRepository.save(contract);
+        return this.contractMapper.toContractResponseDto(contract);
     }
 
     /**
