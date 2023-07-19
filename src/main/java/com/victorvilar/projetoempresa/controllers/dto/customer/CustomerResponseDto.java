@@ -19,6 +19,14 @@ public class CustomerResponseDto {
     private List<ContractResponseDto> contracts = new ArrayList<ContractResponseDto>();
     private List<AddressResponseDto> addresses = new ArrayList<AddressResponseDto>();
 
+    public CustomerResponseDto(){
+
+    }
+
+    public CustomerResponseDto(String cpfCnpj, String nameCompanyName){
+        this.cpfCnpj = cpfCnpj;
+        this.nameCompanyName = nameCompanyName;
+    }
 
 
     //getters and setters - NameCompanyName
