@@ -2,6 +2,7 @@ package com.victorvilar.projetoempresa.controllers;
 
 import com.victorvilar.projetoempresa.controllers.dto.adress.AddressCreateDto;
 import com.victorvilar.projetoempresa.controllers.dto.adress.AddressResponseDto;
+import com.victorvilar.projetoempresa.controllers.dto.adress.AddressUpdateDto;
 import com.victorvilar.projetoempresa.services.AddressService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +35,8 @@ public class AddressController {
      * @return list of address
      */
     @GetMapping()
-    public ResponseEntity<List<AddressResponseDto>> getAllAddress(){
-        return ResponseEntity.status(HttpStatus.OK).body(this.addressService.getAllAddress());
+    public ResponseEntity<List<AddressResponseDto>> getAll(){
+        return ResponseEntity.status(HttpStatus.OK).body(this.addressService.getAll());
     }
 
     /**
@@ -44,8 +45,8 @@ public class AddressController {
      * @return a list of address of a client
      */
     @GetMapping("by-customer/{clientId}")
-    public ResponseEntity<List<AddressResponseDto>> getAllAddressByCustomer(@PathVariable String clientId){
-        return ResponseEntity.status(HttpStatus.OK).body(this.addressService.getAllAddressByCustomer(clientId));
+    public ResponseEntity<List<AddressResponseDto>> getAllByCustomerId(@PathVariable String clientId){
+        return ResponseEntity.status(HttpStatus.OK).body(this.addressService.getAllByCustomerId(clientId));
     }
 
     /**
@@ -54,8 +55,8 @@ public class AddressController {
      * @return address
      */
     @GetMapping("/{id}")
-    public ResponseEntity<AddressResponseDto> getAddressById(@PathVariable Long id){
-        return ResponseEntity.status(HttpStatus.OK).body(this.addressService.getAddressById(id));
+    public ResponseEntity<AddressResponseDto> getById(@PathVariable Long id){
+        return ResponseEntity.status(HttpStatus.OK).body(this.addressService.getById(id));
     }
 
     /**
@@ -64,8 +65,8 @@ public class AddressController {
      * @return saved address
      */
     @PostMapping()
-    public ResponseEntity<AddressResponseDto> addNewAddress(@Valid @RequestBody AddressCreateDto addressCreateDto){
-        return ResponseEntity.status(HttpStatus.OK).body(this.addressService.addNewAddress(addressCreateDto));
+    public ResponseEntity<AddressResponseDto> save(@Valid @RequestBody AddressCreateDto addressCreateDto){
+        return ResponseEntity.status(HttpStatus.OK).body(this.addressService.save(addressCreateDto));
     }
 
     /**
@@ -74,21 +75,19 @@ public class AddressController {
      * @return
      */
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteAddressById(@PathVariable Long id){
-        this.addressService.deleteAddressById(id);
+    public ResponseEntity<?> delete(@PathVariable Long id){
+        this.addressService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     /**
      * update an address
-     * @param id id of a address
      * @return
      */
-    @PutMapping("/{id}")
-    public ResponseEntity<AddressResponseDto> updateAddress(@PathVariable Long id,
-                                                            @RequestBody AddressCreateDto addressCreateDto){
+    @PutMapping()
+    public ResponseEntity<AddressResponseDto> update(@RequestBody AddressUpdateDto addressUpdateDto){
 
-        return ResponseEntity.status(HttpStatus.OK).body(this.addressService.updateAddress(id,addressCreateDto));
+        return ResponseEntity.status(HttpStatus.OK).body(this.addressService.update(addressUpdateDto));
 
 
     }
