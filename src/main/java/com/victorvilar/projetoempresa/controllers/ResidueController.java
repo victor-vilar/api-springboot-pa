@@ -1,5 +1,6 @@
 package com.victorvilar.projetoempresa.controllers;
 
+import com.victorvilar.projetoempresa.controllers.dto.residuetype.ResidueCreateDto;
 import com.victorvilar.projetoempresa.controllers.dto.residuetype.ResidueResponseDto;
 import com.victorvilar.projetoempresa.domain.Residue;
 import com.victorvilar.projetoempresa.mappers.ResidueTypeMapper;
@@ -43,6 +44,15 @@ public class ResidueController {
         return ResponseEntity.ok(this.residueService.getResidueById(id));
     }
 
+    /**
+     * add a new residue type
+     * @param residue
+     */
+    @PostMapping("")
+    public ResponseEntity<ResidueResponseDto> save(@RequestBody ResidueCreateDto residue){
+        return ResponseEntity.ok(this.residueService.save(residue));
+
+    }
 
     /**
      * delete a residue by id
@@ -54,15 +64,7 @@ public class ResidueController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    /**
-     * add a new residue type
-     * @param residue
-     */
-    @PostMapping("")
-    public ResponseEntity<?> addNewResidueType(@RequestBody Residue residue){
-        this.residueService.addNewResidueType(residue);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
+
 
     /**
      * update a residue

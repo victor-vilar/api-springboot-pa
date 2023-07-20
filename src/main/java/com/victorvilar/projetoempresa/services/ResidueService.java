@@ -1,5 +1,6 @@
 package com.victorvilar.projetoempresa.services;
 
+import com.victorvilar.projetoempresa.controllers.dto.residuetype.ResidueCreateDto;
 import com.victorvilar.projetoempresa.controllers.dto.residuetype.ResidueResponseDto;
 import com.victorvilar.projetoempresa.domain.Residue;
 import com.victorvilar.projetoempresa.exceptions.ResidueNotFoundException;
@@ -56,19 +57,22 @@ public class ResidueService {
     }
 
     @Transactional
+    public ResidueResponseDto save(ResidueCreateDto residueCreateDto){
+        Residue residue = this.mapper.toResidue(residueCreateDto);
+        return this.mapper.toResidueTypeResponseDto(this.residueRepository.save(residue));
+    }
+
+    @Transactional
     public void deleteByid(Long id){
-        Residue residue = this.findById(id);
+        Residue residue = this.findResidueById(id);
         this.residueRepository.delete(residue);
     }
 
-    @Transactional
-    public void addNewResidueType(Residue residue){
-        this.residueRepository.save(residue);
-    }
+
 
     @Transactional
     public Residue updateResidue(Residue residueType, Long id){
-        Residue residue = this.findById(id);
+        Residue residue = this.findResidueById(id);
         residue.setType(residueType.getType());
         residue.setDescription(residueType.getDescription());
         return residue;

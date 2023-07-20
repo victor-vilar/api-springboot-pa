@@ -1,5 +1,6 @@
 package com.victorvilar.projetoempresa.mappers;
 
+import com.victorvilar.projetoempresa.controllers.dto.residuetype.ResidueCreateDto;
 import com.victorvilar.projetoempresa.controllers.dto.residuetype.ResidueResponseDto;
 import com.victorvilar.projetoempresa.domain.Residue;
 import org.modelmapper.ModelMapper;
@@ -28,4 +29,7 @@ public class ResidueTypeMapper {
         return list.stream().map(e -> this.toResidueTypeResponseDto(e)).collect(Collectors.toList());
     }
 
+    public Residue toResidue(ResidueCreateDto residueCreateDto) {
+        return this.mapper.map(residueCreateDto, Residue.class);
+    }
 }
