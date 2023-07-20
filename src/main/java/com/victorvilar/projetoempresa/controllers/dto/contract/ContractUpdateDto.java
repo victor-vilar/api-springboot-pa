@@ -12,6 +12,9 @@ import java.util.List;
 
 public class ContractUpdateDto {
 
+    @NotBlank(message ="A contract to update must have a number")
+    private Long id;
+
     @NotBlank(message ="The contract must have a number")
     private String number;
 
@@ -28,6 +31,18 @@ public class ContractUpdateDto {
 
     @NotEmpty(message = "A contract must have at least one item")
     private List<ItemContractUpdateDto> itens  = new ArrayList<>();;
+
+    public ContractUpdateDto(Long id, String number, LocalDate beginDate, LocalDate endDate, String customerId, List<ItemContractUpdateDto> itens) {
+        this.id = id;
+        this.number = number;
+        this.beginDate = beginDate;
+        this.endDate = endDate;
+        this.customerId = customerId;
+        this.itens = itens;
+    }
+
+    public ContractUpdateDto() {
+    }
 
     public List<ItemContractUpdateDto> getItens() {
         return itens;
@@ -62,5 +77,13 @@ public class ContractUpdateDto {
     }
     public void setCustomerId(String clientId) {
         this.customerId = clientId;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
