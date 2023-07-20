@@ -1,7 +1,9 @@
 package com.victorvilar.projetoempresa.services;
 
+import com.victorvilar.projetoempresa.controllers.dto.equipment.EquipmentResponseDto;
 import com.victorvilar.projetoempresa.domain.Equipment;
 import com.victorvilar.projetoempresa.exceptions.EquipmentNotFoundException;
+import com.victorvilar.projetoempresa.mappers.EquipmentMapper;
 import com.victorvilar.projetoempresa.repository.EquipmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,19 +15,22 @@ import java.util.List;
 public class EquipmentService {
 
     private final EquipmentRepository equipmentRepository;
+    private final EquipmentMapper equipmentMapper;
 
     @Autowired
-    public EquipmentService(EquipmentRepository equipmentRepository){
+    public EquipmentService(
+            EquipmentRepository equipmentRepository,
+            EquipmentMapper equipmentMapper){
         this.equipmentRepository = equipmentRepository;
+        this.equipmentMapper = equipmentMapper;
     }
 
     /**
      * get all equipments
      * @return a list of equiapments
      */
-    public List<Equipment> getAllEquipments(){
-
-        return this.equipmentRepository.findAll();
+    public List<EquipmentResponseDto> getAllEquipments(){
+        return this.equipmentMapper.toEquipmentResponseDtoList(this.equipmentRepository.findAll());
     }
 
     /**

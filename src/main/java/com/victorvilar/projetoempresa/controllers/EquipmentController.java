@@ -32,9 +32,7 @@ public class EquipmentController {
      */
     @GetMapping("")
     public ResponseEntity<List<EquipmentResponseDto>> getAllEquipments(){
-        return new ResponseEntity<List<EquipmentResponseDto>>(
-                this.mapper.toEquipmentResponseDtoList(
-                this.equipmentService.getAllEquipments()), HttpStatus.OK);
+        return ResponseEntity.ok(this.equipmentService.getAllEquipments());
     }
 
     /**
