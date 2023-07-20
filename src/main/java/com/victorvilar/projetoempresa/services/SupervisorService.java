@@ -2,6 +2,7 @@ package com.victorvilar.projetoempresa.services;
 
 import com.victorvilar.projetoempresa.controllers.dto.supervisor.SupervisorCreateDto;
 import com.victorvilar.projetoempresa.controllers.dto.supervisor.SupervisorResponseDto;
+import com.victorvilar.projetoempresa.controllers.dto.supervisor.SupervisorUpdateDto;
 import com.victorvilar.projetoempresa.domain.customer.Customer;
 import com.victorvilar.projetoempresa.domain.customer.Supervisor;
 import com.victorvilar.projetoempresa.exceptions.SupervisorNotFoundException;
@@ -86,14 +87,6 @@ public class SupervisorService {
         return this.mapper.toSupervisorResponseDto(supervisor);
     }
 
-
-
-
-
-
-
-
-
     /**
      * delete a supervisor
      * @param supervisorId supervisor id
@@ -105,17 +98,17 @@ public class SupervisorService {
 
     /**
      * Update supervisor data
-     * @param supervisor supervisor created at controller that have the new data
-     * @param supervisorId id of client to update
+     * @param supervisorUpdateDto supervisor new data
+     *
      */
 
     @Transactional
-    public Supervisor updateSupervisor(Supervisor supervisor, Long supervisorId) {
-        Supervisor supervisorToUpdate = findSupervisorById(supervisorId);
-        supervisorToUpdate.setName(supervisor.getName());
-        supervisorToUpdate.setRole(supervisor.getRole());
-        supervisorToUpdate.setEmail(supervisor.getEmail());
-        supervisorToUpdate.setPhoneNumber(supervisor.getPhoneNumber());
-        return this.supervisorRespository.save(supervisorToUpdate);
+    public SupervisorResponseDto updateSupervisor(SupervisorUpdateDto supervisorUpdateDto) {
+        Supervisor supervisorToUpdate = findSupervisorById(supervisorUpdateDto.getId());
+        supervisorToUpdate.setName(supervisorUpdateDto.getName());
+        supervisorToUpdate.setRole(supervisorUpdateDto.getRole());
+        supervisorToUpdate.setEmail(supervisorUpdateDto.getEmail());
+        supervisorToUpdate.setPhoneNumber(supervisorUpdateDto.getPhoneNumber());
+        return this.mapper.toSupervisorResponseDto(this.supervisorRespository.save(supervisorToUpdate));
     }
 }

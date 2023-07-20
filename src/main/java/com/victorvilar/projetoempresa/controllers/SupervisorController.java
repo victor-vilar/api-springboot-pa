@@ -2,6 +2,7 @@ package com.victorvilar.projetoempresa.controllers;
 
 import com.victorvilar.projetoempresa.controllers.dto.supervisor.SupervisorCreateDto;
 import com.victorvilar.projetoempresa.controllers.dto.supervisor.SupervisorResponseDto;
+import com.victorvilar.projetoempresa.controllers.dto.supervisor.SupervisorUpdateDto;
 import com.victorvilar.projetoempresa.domain.customer.Customer;
 import com.victorvilar.projetoempresa.domain.customer.Supervisor;
 import com.victorvilar.projetoempresa.mappers.SupervisorMapper;
@@ -79,13 +80,8 @@ public class SupervisorController {
     }
 
     @PutMapping("{supervisorId}")
-    public ResponseEntity<SupervisorResponseDto> updateSupervisor(@Valid @PathVariable Long supervisorId,
-                                                                  @RequestBody SupervisorCreateDto supervisorCreateDto){
-        Supervisor supervisor = mapper.toSupervisor(supervisorCreateDto);
-        return new ResponseEntity<SupervisorResponseDto>(
-                mapper.toSupervisorResponseDto(
-                        this.supervisorService.updateSupervisor(supervisor, supervisorId)),HttpStatus.OK);
-
+    public ResponseEntity<SupervisorResponseDto> updateSupervisor(@Valid @RequestBody SupervisorUpdateDto supervisorUpdateDto){
+        return ResponseEntity.ok(this.supervisorService.updateSupervisor(supervisorUpdateDto));
     }
 
 }
