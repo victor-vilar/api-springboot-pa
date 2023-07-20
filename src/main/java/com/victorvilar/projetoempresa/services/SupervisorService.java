@@ -44,6 +44,26 @@ public class SupervisorService {
         return this.mapper.toSupervisorResponseDtoList(this.supervisorRespository.findByCustomerCpfCnpj(clientId));
     }
 
+    /**
+     * find supervisor by id
+     * @param id id of supervisor
+     * @return
+     */
+    public Supervisor findSupervisorById(Long id){
+        return this.supervisorRespository.findById(id).orElseThrow(() -> new SupervisorNotFoundException("Supervisor Not Found !"));
+    }
+
+    /**
+     * find supervisor by id and return as SupervisorResponseDto
+     * @param id id of supervisor
+     * @return
+     */
+    public SupervisorResponseDto getSupervisorById(Long id){
+        return this.mapper.toSupervisorResponseDto(
+                this.supervisorRespository.findById(id)
+                        .orElseThrow(() -> new SupervisorNotFoundException("Supervisor Not Found !"))
+        );
+    }
 
 
     /**
@@ -57,14 +77,7 @@ public class SupervisorService {
     }
 
 
-    /**
-     * find supervisor by id
-     * @param id id of supervisor
-     * @return
-     */
-    public Supervisor findSupervisorById(Long id){
-       return this.supervisorRespository.findById(id).orElseThrow(() -> new SupervisorNotFoundException("This user doesn't exist"));
-    }
+
 
 
 

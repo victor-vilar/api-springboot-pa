@@ -58,9 +58,7 @@ public class SupervisorController {
      */
     @GetMapping("/{supervisorId}")
     public ResponseEntity<SupervisorResponseDto> getSupervisorById(@PathVariable Long id){
-        return new ResponseEntity<SupervisorResponseDto>(
-                mapper.toSupervisorResponseDto(
-                        this.supervisorService.findSupervisorById(id)),HttpStatus.OK);
+        return ResponseEntity.ok(this.supervisorService.getSupervisorById(id));
     }
 
     /**
