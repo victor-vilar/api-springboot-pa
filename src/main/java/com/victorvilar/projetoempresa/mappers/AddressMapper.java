@@ -3,6 +3,7 @@ package com.victorvilar.projetoempresa.mappers;
 
 import com.victorvilar.projetoempresa.controllers.dto.adress.AddressCreateDto;
 import com.victorvilar.projetoempresa.controllers.dto.adress.AddressResponseDto;
+import com.victorvilar.projetoempresa.controllers.dto.adress.AddressUpdateDto;
 import com.victorvilar.projetoempresa.domain.customer.Address;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,10 @@ public class AddressMapper {
 
     public Address toAddress(AddressCreateDto addressCreateDto){
         return this.mapper.map(addressCreateDto,Address.class);
+    }
+
+    public Address toAddress(AddressUpdateDto addressUpdateDto){
+        return this.mapper.map(addressUpdateDto, Address.class);
     }
 
     public AddressResponseDto toAddressResponseDto(Address address){

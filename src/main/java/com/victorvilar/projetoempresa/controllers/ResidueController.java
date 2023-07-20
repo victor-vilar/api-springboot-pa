@@ -3,8 +3,7 @@ package com.victorvilar.projetoempresa.controllers;
 import com.victorvilar.projetoempresa.controllers.dto.residuetype.ResidueCreateDto;
 import com.victorvilar.projetoempresa.controllers.dto.residuetype.ResidueResponseDto;
 import com.victorvilar.projetoempresa.controllers.dto.residuetype.ResidueUpdateDto;
-import com.victorvilar.projetoempresa.domain.Residue;
-import com.victorvilar.projetoempresa.mappers.ResidueTypeMapper;
+import com.victorvilar.projetoempresa.mappers.ResidueMapper;
 import com.victorvilar.projetoempresa.services.ResidueService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +18,10 @@ import java.util.List;
 public class ResidueController {
 
     private final ResidueService residueService;
-    private final ResidueTypeMapper mapper;
+    private final ResidueMapper mapper;
 
     @Autowired
-    public ResidueController(ResidueService residueService, ResidueTypeMapper mapper){
+    public ResidueController(ResidueService residueService, ResidueMapper mapper){
         this.residueService = residueService;
         this.mapper = mapper;
     }

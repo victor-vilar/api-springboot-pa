@@ -2,6 +2,7 @@ package com.victorvilar.projetoempresa.mappers;
 
 import com.victorvilar.projetoempresa.controllers.dto.residuetype.ResidueCreateDto;
 import com.victorvilar.projetoempresa.controllers.dto.residuetype.ResidueResponseDto;
+import com.victorvilar.projetoempresa.controllers.dto.residuetype.ResidueUpdateDto;
 import com.victorvilar.projetoempresa.domain.Residue;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,13 +12,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class ResidueTypeMapper {
+public class ResidueMapper {
 
 
     private final ModelMapper mapper;
 
     @Autowired
-    public ResidueTypeMapper(ModelMapper mapper){
+    public ResidueMapper(ModelMapper mapper){
         this.mapper = mapper;
     }
 
@@ -31,5 +32,9 @@ public class ResidueTypeMapper {
 
     public Residue toResidue(ResidueCreateDto residueCreateDto) {
         return this.mapper.map(residueCreateDto, Residue.class);
+    }
+
+    public Residue toResidue(ResidueUpdateDto residueUpdateDto){
+        return this.mapper.map(residueUpdateDto, Residue.class);
     }
 }

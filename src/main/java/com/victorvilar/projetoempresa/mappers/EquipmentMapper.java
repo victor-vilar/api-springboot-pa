@@ -2,6 +2,7 @@ package com.victorvilar.projetoempresa.mappers;
 
 import com.victorvilar.projetoempresa.controllers.dto.equipment.EquipmentCreateDto;
 import com.victorvilar.projetoempresa.controllers.dto.equipment.EquipmentResponseDto;
+import com.victorvilar.projetoempresa.controllers.dto.equipment.EquipmentUpdateDto;
 import com.victorvilar.projetoempresa.domain.Equipment;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,10 @@ public class EquipmentMapper {
 
     public Equipment toEquipament(EquipmentCreateDto equipmentCreateDto){
         return this.mapper.map(equipmentCreateDto,Equipment.class);
+    }
+
+    public Equipment toEquipment(EquipmentUpdateDto equipmentUpdateDto){
+        return this.mapper.map(equipmentUpdateDto,Equipment.class);
     }
 
     public EquipmentResponseDto toEquipmentResponseDto(Equipment equipment){
