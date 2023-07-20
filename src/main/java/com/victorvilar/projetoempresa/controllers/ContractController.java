@@ -4,15 +4,7 @@ import com.victorvilar.projetoempresa.controllers.dto.contract.ContractCreateDto
 import com.victorvilar.projetoempresa.controllers.dto.contract.ContractResponseDto;
 import com.victorvilar.projetoempresa.controllers.dto.contract.ContractUpdateDto;
 import com.victorvilar.projetoempresa.controllers.dto.contract.ItemContractCreateDto;
-import com.victorvilar.projetoempresa.domain.customer.Contract;
-import com.victorvilar.projetoempresa.domain.customer.Customer;
-import com.victorvilar.projetoempresa.domain.customer.ItemContract;
-import com.victorvilar.projetoempresa.mappers.ContractMapper;
-import com.victorvilar.projetoempresa.mappers.ItemContractMapper;
-import com.victorvilar.projetoempresa.services.CustomerService;
 import com.victorvilar.projetoempresa.services.ContractService;
-import com.victorvilar.projetoempresa.services.EquipmentService;
-import com.victorvilar.projetoempresa.services.ResidueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,8 +34,8 @@ public class ContractController {
      * @return list of contracts
      */
     @GetMapping()
-    public ResponseEntity<List<ContractResponseDto>> getAllContracts(){
-        return ResponseEntity.ok(this.service.getAllContracts());
+    public ResponseEntity<List<ContractResponseDto>> getAll(){
+        return ResponseEntity.ok(this.service.getAll());
     }
 
     /**
@@ -52,8 +44,8 @@ public class ContractController {
      * @return
      */
     @GetMapping("/all/{clientId}")
-    public ResponseEntity<List<ContractResponseDto>> getAllContractsByClientId(@PathVariable String clientId){
-        return ResponseEntity.ok(this.service.getAllContractsByClientId(clientId));
+    public ResponseEntity<List<ContractResponseDto>> getAllByCustomerId(@PathVariable String clientId){
+        return ResponseEntity.ok(this.service.getAllByCustomerId(clientId));
     }
 
     /**
@@ -61,8 +53,8 @@ public class ContractController {
      * @return contract
      */
     @GetMapping("/{id}")
-    public ResponseEntity<ContractResponseDto> getContractById(@PathVariable Long id) {
-        return ResponseEntity.ok(this.service.getContractById(id));
+    public ResponseEntity<ContractResponseDto> getById(@PathVariable Long id) {
+        return ResponseEntity.ok(this.service.getById(id));
     }
 
 
@@ -71,7 +63,7 @@ public class ContractController {
      * @param contract a model to contract
      */
     @PostMapping()
-    public ResponseEntity<ContractResponseDto> addNewContract(@Valid @RequestBody ContractCreateDto contract) {
+    public ResponseEntity<ContractResponseDto> save(@Valid @RequestBody ContractCreateDto contract) {
         return ResponseEntity.ok(this.service.save(contract));
     }
 
@@ -91,8 +83,8 @@ public class ContractController {
      * @param contractId
      */
     @DeleteMapping("/{contractId}")
-    public ResponseEntity<?> removeContract(@PathVariable Long contractId ){
-        this.service.removeContract(contractId);
+    public ResponseEntity<?> delete(@PathVariable Long contractId ){
+        this.service.delete(contractId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -101,8 +93,8 @@ public class ContractController {
      * @param itemId
      */
     @DeleteMapping("/deleteitem/{itemId}")
-    public ResponseEntity<ContractResponseDto> removeItemContract(@PathVariable Long itemId){
-        return ResponseEntity.ok(this.service.removeItemContract(itemId));
+    public ResponseEntity<ContractResponseDto> deleteItemContract(@PathVariable Long itemId){
+        return ResponseEntity.ok(this.service.deleteItemContract(itemId));
     }
 
 
@@ -112,10 +104,10 @@ public class ContractController {
      * @return
      */
     @PutMapping("/{contractId}")
-    public ResponseEntity<ContractResponseDto> updateContract(@PathVariable Long contractId,
+    public ResponseEntity<ContractResponseDto> update(@PathVariable Long contractId,
                                                               @RequestBody ContractUpdateDto contractUpdateDto){
 
-        return ResponseEntity.ok(this.service.updateContract(contractId,contractUpdateDto));
+        return ResponseEntity.ok(this.service.update(contractId,contractUpdateDto));
 
     }
 

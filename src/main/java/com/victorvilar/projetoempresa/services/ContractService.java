@@ -50,7 +50,7 @@ public class ContractService {
      * get all contracts
      * @return
      */
-    public List<ContractResponseDto> getAllContracts() {
+    public List<ContractResponseDto> getAll() {
 
         return this.contractMapper.toContractResponsDtoList(this.contractRepository.findAll());
     }
@@ -60,7 +60,7 @@ public class ContractService {
      * @param clientId
      * @return
      */
-    public List<ContractResponseDto> getAllContractsByClientId(String clientId){
+    public List<ContractResponseDto> getAllByCustomerId(String clientId){
         return this.contractMapper.toContractResponsDtoList(contractRepository.findByCustomerCpfCnpj(clientId));
     }
 
@@ -70,7 +70,7 @@ public class ContractService {
      * @return a contract
      * @throws ContractNotFoundException
      */
-    public ContractResponseDto getContractById(Long id) throws ContractNotFoundException{
+    public ContractResponseDto getById(Long id) throws ContractNotFoundException{
         Contract contract = this.contractRepository.findById(id).orElseThrow(() -> new ContractNotFoundException("This contract doesn't exist") );
         return this.contractMapper.toContractResponseDto(contract);
     }
@@ -125,7 +125,7 @@ public class ContractService {
      * @param contractId
      */
     @Transactional
-    public void removeContract(Long contractId ){
+    public void delete(Long contractId ){
         this.contractRepository.deleteById(contractId);
     }
 
@@ -134,7 +134,7 @@ public class ContractService {
      * @param itemId id of the item
      */
     @Transactional
-    public ContractResponseDto removeItemContract( Long itemId) {
+    public ContractResponseDto deleteItemContract(Long itemId) {
         ItemContract item = this.itemContractRepository.findById(itemId).orElseThrow(()-> new ItemContractNotFoundException("This item doesn't exist"));
         Contract contract = item.getContract();
         this.itemContractRepository.delete(item);
@@ -149,7 +149,7 @@ public class ContractService {
      * @return
      */
     @Transactional
-    public ContractResponseDto updateContract(Long contractId, ContractUpdateDto contractUpdateDto){
+    public ContractResponseDto update(Long contractId, ContractUpdateDto contractUpdateDto){
 
         //creates instance of contract
         Contract contract = this.findContractByid(contractId);
