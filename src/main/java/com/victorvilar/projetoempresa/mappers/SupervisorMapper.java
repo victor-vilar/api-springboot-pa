@@ -2,6 +2,7 @@ package com.victorvilar.projetoempresa.mappers;
 
 import com.victorvilar.projetoempresa.controllers.dto.supervisor.SupervisorCreateDto;
 import com.victorvilar.projetoempresa.controllers.dto.supervisor.SupervisorResponseDto;
+import com.victorvilar.projetoempresa.controllers.dto.supervisor.SupervisorUpdateDto;
 import com.victorvilar.projetoempresa.domain.customer.Supervisor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +25,15 @@ public class SupervisorMapper {
         return this.mapper.map(supervisorCreateDto, Supervisor.class);
     }
 
+    public Supervisor toSupervisor(SupervisorUpdateDto supervisorUpdateDto){
+        return this.mapper.map(supervisorUpdateDto, Supervisor.class);
+    }
+
     public SupervisorResponseDto toSupervisorResponseDto(Supervisor supervisor){
         return this.mapper.map(supervisor,SupervisorResponseDto.class);
     }
+
+
 
     public List<SupervisorResponseDto> toSupervisorResponseDtoList(List<Supervisor> supervisors){
         return supervisors.stream().map(e -> toSupervisorResponseDto(e)).collect(Collectors.toList());
