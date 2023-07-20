@@ -2,6 +2,7 @@ package com.victorvilar.projetoempresa.services;
 
 import com.victorvilar.projetoempresa.controllers.dto.equipment.EquipmentCreateDto;
 import com.victorvilar.projetoempresa.controllers.dto.equipment.EquipmentResponseDto;
+import com.victorvilar.projetoempresa.controllers.dto.equipment.EquipmentUpdateDto;
 import com.victorvilar.projetoempresa.domain.Equipment;
 import com.victorvilar.projetoempresa.exceptions.EquipmentNotFoundException;
 import com.victorvilar.projetoempresa.mappers.EquipmentMapper;
@@ -30,7 +31,7 @@ public class EquipmentService {
      * get all equipments
      * @return a list of equipments
      */
-    public List<EquipmentResponseDto> getAllEquipments(){
+    public List<EquipmentResponseDto> getAll(){
         return this.equipmentMapper.toEquipmentResponseDtoList(this.equipmentRepository.findAll());
     }
 
@@ -40,7 +41,7 @@ public class EquipmentService {
      * @return EquipmentResponseDto
      */
 
-    public EquipmentResponseDto getEquipmentById(Long id){
+    public EquipmentResponseDto getById(Long id){
         return this.equipmentMapper.toEquipmentResponseDto(
                 this.equipmentRepository.findById(id)
                         .orElseThrow(() -> new EquipmentNotFoundException("Equipment not found !"))
@@ -62,20 +63,20 @@ public class EquipmentService {
      * @param equipmentCreateDto equipment to save
      */
     @Transactional
-    public EquipmentResponseDto saveEquipment(EquipmentCreateDto equipmentCreateDto){
+    public EquipmentResponseDto save(EquipmentCreateDto equipmentCreateDto){
         Equipment equipment = this.equipmentMapper.toEquipament(equipmentCreateDto);
         return this.equipmentMapper.toEquipmentResponseDto(this.equipmentRepository.save(equipment));
     }
 
     /**
      * update a equipment
-     * @param equipmentCreateDto equipment instace to get the new data
+     * @param equipmentUpdateDto equipment instace to get the new data
      * @return equipment updated
      */
-    public EquipmentResponseDto updateEquipment(EquipmentCreateDto equipmentCreateDto){
-        Equipment equipment = this.findEquipmentById(equipmentCreateDto.getId());
-        equipment.setEquipmentName(equipmentCreateDto.getEquipmentName());
-        equipment.setSizeInMeterCubic(equipmentCreateDto.getSizeInMeterCubic());
+    public EquipmentResponseDto update(EquipmentUpdateDto equipmentUpdateDto){
+        Equipment equipment = this.findEquipmentById(equipmentUpdateDto.getId());
+        equipment.setEquipmentName(equipmentUpdateDto.getEquipmentName());
+        equipment.setSizeInMeterCubic(equipmentUpdateDto.getSizeInMeterCubic());
         this.equipmentRepository.save(equipment);
         return this.equipmentMapper.toEquipmentResponseDto(equipment);
 
@@ -86,7 +87,7 @@ public class EquipmentService {
      * @param id id to update
      */
     @Transactional
-    public void deleteEquipment(Long id){
+    public void delete(Long id){
         this.equipmentRepository.delete(this.findEquipmentById(id));
     }
 

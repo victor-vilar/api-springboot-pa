@@ -2,8 +2,7 @@ package com.victorvilar.projetoempresa.controllers;
 
 import com.victorvilar.projetoempresa.controllers.dto.equipment.EquipmentCreateDto;
 import com.victorvilar.projetoempresa.controllers.dto.equipment.EquipmentResponseDto;
-import com.victorvilar.projetoempresa.domain.Equipment;
-import com.victorvilar.projetoempresa.mappers.EquipmentMapper;
+import com.victorvilar.projetoempresa.controllers.dto.equipment.EquipmentUpdateDto;
 import com.victorvilar.projetoempresa.services.EquipmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,8 +29,8 @@ public class EquipmentController {
      * @return a list of equipments
      */
     @GetMapping("")
-    public ResponseEntity<List<EquipmentResponseDto>> getAllEquipments(){
-        return ResponseEntity.ok(this.equipmentService.getAllEquipments());
+    public ResponseEntity<List<EquipmentResponseDto>> getAll(){
+        return ResponseEntity.ok(this.equipmentService.getAll());
     }
 
     /**
@@ -40,8 +39,8 @@ public class EquipmentController {
      * @return
      */
     @GetMapping("/{id}")
-    public ResponseEntity<EquipmentResponseDto> getEquipmentById(@PathVariable Long id){
-        return ResponseEntity.ok(this.equipmentService.getEquipmentById(id));
+    public ResponseEntity<EquipmentResponseDto> getById(@PathVariable Long id){
+        return ResponseEntity.ok(this.equipmentService.getById(id));
     }
 
     /**
@@ -49,18 +48,18 @@ public class EquipmentController {
      * @param equipmentCreateDto equipmentCreateDto to save
      */
     @PostMapping("")
-    public ResponseEntity<EquipmentResponseDto> saveEquipment(@Valid @RequestBody EquipmentCreateDto equipmentCreateDto){
-        return ResponseEntity.ok(this.equipmentService.saveEquipment(equipmentCreateDto));
+    public ResponseEntity<EquipmentResponseDto> save(@Valid @RequestBody EquipmentCreateDto equipmentCreateDto){
+        return ResponseEntity.ok(this.equipmentService.save(equipmentCreateDto));
     }
 
     /**
      * update a equipment
-     * @param equipmentCreateDto equipment instance to get the new data
+     * @param equipmentUpdateDto equipment instance to get the new data
      * @return equipment updated
      */
-    @PutMapping("/{id}")
-    public ResponseEntity<EquipmentResponseDto> updateEquipment(@Valid @RequestBody EquipmentCreateDto equipmentCreateDto){
-        return ResponseEntity.ok(this.equipmentService.updateEquipment(equipmentCreateDto));
+    @PutMapping("")
+    public ResponseEntity<EquipmentResponseDto> update(@Valid @RequestBody EquipmentUpdateDto equipmentUpdateDto){
+        return ResponseEntity.ok(this.equipmentService.update(equipmentUpdateDto));
     }
 
     /**
@@ -68,8 +67,8 @@ public class EquipmentController {
      * @param id id to update
      */
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteEquipment(@PathVariable Long id){
-        this.equipmentService.deleteEquipment(id);
+    public ResponseEntity<?> delete(@PathVariable Long id){
+        this.equipmentService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
