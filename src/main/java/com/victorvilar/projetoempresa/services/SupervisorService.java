@@ -1,7 +1,9 @@
 package com.victorvilar.projetoempresa.services;
 
+import com.victorvilar.projetoempresa.controllers.dto.supervisor.SupervisorResponseDto;
 import com.victorvilar.projetoempresa.domain.customer.Supervisor;
 import com.victorvilar.projetoempresa.exceptions.SupervisorNotFoundException;
+import com.victorvilar.projetoempresa.mappers.SupervisorMapper;
 import com.victorvilar.projetoempresa.repository.SupervisorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,11 +15,27 @@ import java.util.List;
 public class SupervisorService {
 
     private final SupervisorRepository supervisorRespository;
+    private final CustomerService customerService;
+    private final SupervisorMapper mapper;
 
     @Autowired
-    public SupervisorService(SupervisorRepository supervisorRepository){
-        this.supervisorRespository = supervisorRepository;
+    public SupervisorService(SupervisorRepository supervisorRespository,
+                             CustomerService customerService,
+                             SupervisorMapper mapper){
+        this.supervisorRespository = supervisorRespository;
+        this.customerService = customerService;
+        this.mapper = mapper;
     }
+
+    /**
+     * get all supervisors
+     * @return
+     */
+    public List<SupervisorResponseDto> getAllSupervisors() {
+        return this.mapper.toSupervisorResponseDtoList(this.supervisorRespository.findAll());
+    }
+
+
 
     /**
      * add a new supervisor for a client
@@ -40,13 +58,7 @@ public class SupervisorService {
     }
 
 
-    /**
-     * get all supervisors
-     * @return
-     */
-    public List<Supervisor> getAllSupervisors() {
-        return this.supervisorRespository.findAll();
-    }
+
 
     /**
      * get all supervisores of a client

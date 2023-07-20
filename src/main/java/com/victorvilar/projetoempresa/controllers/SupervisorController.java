@@ -38,10 +38,7 @@ public class SupervisorController {
      */
     @GetMapping()
     public ResponseEntity<List<SupervisorResponseDto>> getAllSupervisors(){
-        return new ResponseEntity<List<SupervisorResponseDto>>(
-                this.mapper.toSupervisorResponseDtoList(
-                        this.supervisorService.getAllSupervisors()
-                ),HttpStatus.OK);
+        return ResponseEntity.ok(this.supervisorService.getAllSupervisors());
     }
 
     /**
