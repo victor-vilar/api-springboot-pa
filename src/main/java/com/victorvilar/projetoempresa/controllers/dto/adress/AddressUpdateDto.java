@@ -1,7 +1,10 @@
 package com.victorvilar.projetoempresa.controllers.dto.adress;
 
+import jakarta.validation.constraints.NotBlank;
+
 public class AddressUpdateDto {
 
+    @NotBlank(message="An address to update must have an id")
     private Long id;
     private String addressName;
     private String addressNumber;
@@ -10,6 +13,7 @@ public class AddressUpdateDto {
     private String city;
     private String state;
     private boolean requiresCollection;
+    @NotBlank(message="An address must have a customer")
     private String customerId;
 
     public AddressUpdateDto() {

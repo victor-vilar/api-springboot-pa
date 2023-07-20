@@ -1,5 +1,7 @@
 package com.victorvilar.projetoempresa.controllers.dto.adress;
 
+import jakarta.validation.constraints.NotBlank;
+
 public class AddressCreateDto {
 
 
@@ -10,6 +12,7 @@ public class AddressCreateDto {
     private String city;
     private String state;
     private boolean requiresCollection;
+    @NotBlank(message="An address must have a customer")
     private String customerId;
 
 
