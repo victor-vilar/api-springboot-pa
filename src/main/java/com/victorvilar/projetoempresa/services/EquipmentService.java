@@ -1,5 +1,6 @@
 package com.victorvilar.projetoempresa.services;
 
+import com.victorvilar.projetoempresa.controllers.dto.equipment.EquipmentCreateDto;
 import com.victorvilar.projetoempresa.controllers.dto.equipment.EquipmentResponseDto;
 import com.victorvilar.projetoempresa.domain.Equipment;
 import com.victorvilar.projetoempresa.exceptions.EquipmentNotFoundException;
@@ -58,11 +59,12 @@ public class EquipmentService {
 
     /**
      * save a new equipament
-     * @param equipment equipament to save
+     * @param equipmentCreateDto equipament to save
      */
     @Transactional
-    public void saveEquipment(Equipment equipment){
-        this.equipmentRepository.save(equipment);
+    public EquipmentResponseDto saveEquipment(EquipmentCreateDto equipmentCreateDto){
+        Equipment equipment = this.equipmentMapper.toEquipament(equipmentCreateDto);
+        this.equipmentMapper.toEquipmentResponseDto(this.equipmentRepository.save(equipment));
     }
 
     /**

@@ -50,10 +50,8 @@ public class EquipmentController {
      * @param equipmentCreateDto equipamentCreateDto to save
      */
     @PostMapping("")
-    public ResponseEntity<?> saveEquipment(@Valid @RequestBody EquipmentCreateDto equipmentCreateDto){
-        Equipment equipment = this.mapper.toEquipament(equipmentCreateDto);
-        this.equipmentService.saveEquipment(equipment);
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<EquipmentResponseDto> saveEquipment(@Valid @RequestBody EquipmentCreateDto equipmentCreateDto){
+        return ResponseEntity.ok(this.equipmentService.saveEquipment(equipmentCreateDto));
     }
 
     /**
