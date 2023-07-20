@@ -13,13 +13,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/residue")
-public class ResidueTypeController {
+public class ResidueController {
 
     private final ResidueService residueService;
     private final ResidueTypeMapper mapper;
 
     @Autowired
-    public ResidueTypeController(ResidueService residueService, ResidueTypeMapper mapper){
+    public ResidueController(ResidueService residueService, ResidueTypeMapper mapper){
         this.residueService = residueService;
         this.mapper = mapper;
     }
