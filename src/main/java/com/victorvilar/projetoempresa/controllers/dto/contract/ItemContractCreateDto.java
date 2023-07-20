@@ -5,12 +5,10 @@ import jakarta.validation.constraints.NotNull;
 
 public class ItemContractCreateDto {
 
-    private Long id;
-
     @NotNull(message = "The item must have a residue")
     private Long residue;
 
-    @NotNull(message = "the item must have a equipament")
+    @NotNull(message = "the item must have a equipment")
     private Long equipment;
 
     @NotNull(message = "the item must have a quantity")
@@ -24,8 +22,7 @@ public class ItemContractCreateDto {
     public ItemContractCreateDto() {
 
     }
-    public ItemContractCreateDto(Long id, Long residue, Long equipment, Double qtdOfResidue, double itemValue, String contract) {
-        this.id = id;
+    public ItemContractCreateDto(Long residue, Long equipment, Double qtdOfResidue, double itemValue, String contract) {
         this.residue = residue;
         this.equipment = equipment;
         this.qtdOfResidue = qtdOfResidue;
@@ -33,14 +30,6 @@ public class ItemContractCreateDto {
     }
     //----------------------------
 
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public Long getResidue() {
         return residue;
