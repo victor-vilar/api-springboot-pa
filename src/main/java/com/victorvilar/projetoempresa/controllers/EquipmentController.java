@@ -27,7 +27,7 @@ public class EquipmentController {
 
     /**
      * get all equipments
-     * @return a list of equiapments
+     * @return a list of equipments
      */
     @GetMapping("")
     public ResponseEntity<List<EquipmentResponseDto>> getAllEquipments(){
@@ -35,7 +35,7 @@ public class EquipmentController {
     }
 
     /**
-     * get equipmant by id
+     * get equipment by id
      * @param id
      * @return
      */
@@ -45,8 +45,8 @@ public class EquipmentController {
     }
 
     /**
-     * save a new equipament
-     * @param equipmentCreateDto equipamentCreateDto to save
+     * save a new equipment
+     * @param equipmentCreateDto equipmentCreateDto to save
      */
     @PostMapping("")
     public ResponseEntity<EquipmentResponseDto> saveEquipment(@Valid @RequestBody EquipmentCreateDto equipmentCreateDto){
@@ -54,9 +54,9 @@ public class EquipmentController {
     }
 
     /**
-     * update a equipament
-     * @param equipmentCreateDto equipament instance to get the new data
-     * @return equipament updated
+     * update a equipment
+     * @param equipmentCreateDto equipment instance to get the new data
+     * @return equipment updated
      */
     @PutMapping("/{id}")
     public ResponseEntity<EquipmentResponseDto> updateEquipment(@Valid @RequestBody EquipmentCreateDto equipmentCreateDto){
@@ -64,7 +64,7 @@ public class EquipmentController {
     }
 
     /**
-     * delete a equipament
+     * delete a equipment
      * @param id id to update
      */
     @DeleteMapping("/{id}")
