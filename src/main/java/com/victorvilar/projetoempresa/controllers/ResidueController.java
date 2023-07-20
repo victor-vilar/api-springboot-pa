@@ -1,6 +1,6 @@
 package com.victorvilar.projetoempresa.controllers;
 
-import com.victorvilar.projetoempresa.controllers.dto.residuetype.ResidueTypeResponseDto;
+import com.victorvilar.projetoempresa.controllers.dto.residuetype.ResidueResponseDto;
 import com.victorvilar.projetoempresa.domain.Residue;
 import com.victorvilar.projetoempresa.mappers.ResidueTypeMapper;
 import com.victorvilar.projetoempresa.services.ResidueService;
@@ -25,19 +25,22 @@ public class ResidueController {
     }
 
     /**
+     * get all residues
+     * @return a list of ResidueResponseDto
+     */
+    @GetMapping("")
+    public ResponseEntity<List<ResidueResponseDto>> getAll(){
+        return ResponseEntity.ok(this.residueService.getAll());
+    }
+
+    /**
      * find residue by id
      * @param id id of a residue
      * @return residue
      */
     @GetMapping("/{id}")
-    public ResponseEntity<ResidueTypeResponseDto> findById(@PathVariable Long id){
+    public ResponseEntity<ResidueResponseDto> findById(@PathVariable Long id){
         return new ResponseEntity<>(this.mapper.toResidueTypeResponseDto(this.residueService.findById(id)), HttpStatus.OK);
-    }
-
-    @GetMapping("")
-    public ResponseEntity<List<ResidueTypeResponseDto>> getAll(){
-        return new ResponseEntity<List<ResidueTypeResponseDto>>(
-                this.mapper.toResidueTypeResponseDtoList(this.residueService.getAll()),HttpStatus.OK);
     }
 
 
