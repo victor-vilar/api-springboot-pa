@@ -69,16 +69,15 @@ public class EquipmentService {
 
     /**
      * update a equipament
-     * @param equipment equipament instace to get the new data
-     * @param id id of equipament to update
+     * @param equipmentCreateDto equipament instace to get the new data
      * @return equipament updated
      */
-    public Equipment updateEquipment(Equipment equipment, Long id){
-        Equipment equipment2 = this.findEquipmentById(id);
-        equipment2.setEquipmentName(equipment.getEquipmentName());
-        equipment2.setSizeInMeterCubic(equipment.getSizeInMeterCubic());
-        this.saveEquipment(equipment2);
-        return equipment2;
+    public EquipmentResponseDto updateEquipment(EquipmentCreateDto equipmentCreateDto){
+        Equipment equipment = this.findEquipmentById(equipmentCreateDto.getId());
+        equipment.setEquipmentName(equipmentCreateDto.getEquipmentName());
+        equipment.setSizeInMeterCubic(equipmentCreateDto.getSizeInMeterCubic());
+        this.equipmentRepository.save(equipment);
+        return this.equipmentMapper.toEquipmentResponseDto(equipment);
 
     }
 

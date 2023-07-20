@@ -57,13 +57,11 @@ public class EquipmentController {
     /**
      * update a equipament
      * @param equipmentCreateDto equipament instance to get the new data
-     * @param id id of equipament to update
      * @return equipament updated
      */
     @PutMapping("/{id}")
-    public ResponseEntity<Equipment> updateEquipment(@Valid @RequestBody EquipmentCreateDto equipmentCreateDto, @PathVariable Long id){
-        Equipment equipment = this.mapper.toEquipament(equipmentCreateDto);
-        return new ResponseEntity<Equipment>(this.equipmentService.updateEquipment(equipment,id),HttpStatus.OK);
+    public ResponseEntity<EquipmentResponseDto> updateEquipment(@Valid @RequestBody EquipmentCreateDto equipmentCreateDto){
+        return ResponseEntity.ok(this.equipmentService.updateEquipment(equipmentCreateDto));
     }
 
     /**
