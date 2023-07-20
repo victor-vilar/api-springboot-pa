@@ -41,8 +41,8 @@ public class ResidueController {
      * @return residue
      */
     @GetMapping("/{id}")
-    public ResponseEntity<ResidueResponseDto> getResidueById(@PathVariable Long id){
-        return ResponseEntity.ok(this.residueService.getResidueById(id));
+    public ResponseEntity<ResidueResponseDto> getById(@PathVariable Long id){
+        return ResponseEntity.ok(this.residueService.getById(id));
     }
 
     /**
@@ -60,8 +60,8 @@ public class ResidueController {
      * @param id if of a residue
      */
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteByid(@PathVariable Long id){
-        this.residueService.deleteByid(id);
+    public ResponseEntity<?> delete(@PathVariable Long id){
+        this.residueService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -72,9 +72,9 @@ public class ResidueController {
      * @param residue residue type with data
      * @return residue updated
      */
-    @PutMapping("/{id}")
-    public ResponseEntity<ResidueResponseDto> updateResidue(@Valid @RequestBody ResidueUpdateDto residue){
-        return new ResponseEntity<>(this.residueService.updateResidue(residue),HttpStatus.OK);
+    @PutMapping("")
+    public ResponseEntity<ResidueResponseDto> udpate(@Valid @RequestBody ResidueUpdateDto residue){
+        return new ResponseEntity<>(this.residueService.udpate(residue),HttpStatus.OK);
     }
 
 

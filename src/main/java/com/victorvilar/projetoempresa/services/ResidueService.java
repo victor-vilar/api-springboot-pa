@@ -40,7 +40,7 @@ public class ResidueService {
      * ResidueResponseDto
      * @return ResidueResponseDto
      */
-    public ResidueResponseDto getResidueById(Long id){
+    public ResidueResponseDto getById(Long id){
         return this.mapper.toResidueTypeResponseDto(
                 this.residueRepository.findById(id)
                         .orElseThrow(() -> new ResidueNotFoundException("Residue Not Found !"))
@@ -64,7 +64,7 @@ public class ResidueService {
     }
 
     @Transactional
-    public void deleteByid(Long id){
+    public void delete(Long id){
         Residue residue = this.findResidueById(id);
         this.residueRepository.delete(residue);
     }
@@ -72,7 +72,7 @@ public class ResidueService {
 
 
     @Transactional
-    public ResidueResponseDto updateResidue(ResidueUpdateDto residueCreateDto){
+    public ResidueResponseDto udpate(ResidueUpdateDto residueCreateDto){
         Residue residue = this.findResidueById(residueCreateDto.getId());
         residue.setType(residueCreateDto.getType());
         residue.setDescription(residueCreateDto.getDescription());
