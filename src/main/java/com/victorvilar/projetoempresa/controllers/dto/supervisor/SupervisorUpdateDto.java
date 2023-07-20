@@ -1,13 +1,17 @@
 package com.victorvilar.projetoempresa.controllers.dto.supervisor;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
-public class SupervisorCreateDto {
+public class SupervisorUpdateDto {
 
+    @NotNull(message="A supervisor to update needs to have a id number")
+    private Long id;
 
     @NotBlank(message = "The name of supervisor is required")
     private String name;
     private String role;
+
     @NotBlank(message = "The phonenumer of supervisor is required")
     private String phoneNumber;
     @NotBlank(message = "the email of supervisor is required")
@@ -16,56 +20,63 @@ public class SupervisorCreateDto {
     @NotBlank(message= "The customer of supervisor is required")
     private String customerId;
 
-    //constructors
-    public SupervisorCreateDto() {
+    public SupervisorUpdateDto() {
     }
-    //-----------
 
-    //getters e setters - clientId
-    public String getCustomerId() {
-        return customerId;
+    public SupervisorUpdateDto(Long id, String name, String role, String phoneNumber, String email, String customerId) {
+        this.id = id;
+        this.name = name;
+        this.role = role;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.customerId = customerId;
     }
-    public void setCustomerId(String id) {
-        this.customerId = id;
-    }
-    //-----------
 
-    //getters e setters - name
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
-    //-----------
 
-    //getters e setters - role
     public String getRole() {
         return role;
     }
+
     public void setRole(String role) {
         this.role = role;
     }
-    //-------------
 
-    //getters e setters = phoneNumber
     public String getPhoneNumber() {
         return phoneNumber;
     }
+
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-    //--------------
 
-    //getters e setters - email
     public String getEmail() {
         return email;
     }
+
     public void setEmail(String email) {
         this.email = email;
     }
-    //--------------
 
+    public String getCustomerId() {
+        return customerId;
+    }
 
-
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
+    }
 }
