@@ -18,12 +18,11 @@ import java.util.List;
 public class EquipmentController {
 
     private final EquipmentService equipmentService;
-    private final EquipmentMapper mapper;
 
     @Autowired
-    public EquipmentController(EquipmentService equipmentService, EquipmentMapper mapper){
+    public EquipmentController(EquipmentService equipmentService){
         this.equipmentService = equipmentService;
-        this.mapper = mapper;
+
     }
 
     /**
