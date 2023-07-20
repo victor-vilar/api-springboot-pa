@@ -1,9 +1,12 @@
 package com.victorvilar.projetoempresa.services;
 
+import com.victorvilar.projetoempresa.controllers.dto.supervisor.SupervisorCreateDto;
 import com.victorvilar.projetoempresa.controllers.dto.supervisor.SupervisorResponseDto;
+import com.victorvilar.projetoempresa.domain.customer.Customer;
 import com.victorvilar.projetoempresa.domain.customer.Supervisor;
 import com.victorvilar.projetoempresa.exceptions.SupervisorNotFoundException;
 import com.victorvilar.projetoempresa.mappers.SupervisorMapper;
+import com.victorvilar.projetoempresa.repository.CustomerRepository;
 import com.victorvilar.projetoempresa.repository.SupervisorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,14 +19,17 @@ public class SupervisorService {
 
     private final SupervisorRepository supervisorRespository;
     private final CustomerService customerService;
+    private final CustomerRepository customerRepository;
     private final SupervisorMapper mapper;
 
     @Autowired
     public SupervisorService(SupervisorRepository supervisorRespository,
                              CustomerService customerService,
-                             SupervisorMapper mapper){
+                             SupervisorMapper mapper,
+                             CustomerRepository customerRepository){
         this.supervisorRespository = supervisorRespository;
         this.customerService = customerService;
+        this.customerRepository = customerRepository;
         this.mapper = mapper;
     }
 
@@ -68,12 +74,16 @@ public class SupervisorService {
 
     /**
      * add a new supervisor for a client
-     * @param supervisor
+     * @param supervisorCreateDto
      */
     @Transactional
-    public Supervisor addNewSupervisor(Supervisor supervisor){
+    public SupervisorResponseDto save(SupervisorCreateDto supervisorCreateDto){
+        Customer customer = this.customerService.findCustomerById(supervisorCreateDto.getCustomerId());
+        Supervisor supervisor = mapper.toSupervisor(supervisorCreateDto);
+        customer.addNewSupervisor(supervisor);
+        this.customerRepository.save(customer);
         this.supervisorRespository.save(supervisor);
-        return supervisor;
+        return this.mapper.toSupervisorResponseDto(supervisor);
     }
 
 

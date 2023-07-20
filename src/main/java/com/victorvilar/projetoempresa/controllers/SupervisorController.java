@@ -66,13 +66,9 @@ public class SupervisorController {
      * @return http response
      */
     @PostMapping()
-    public ResponseEntity<SupervisorResponseDto> addNewSupervisor(@Valid  @RequestBody SupervisorCreateDto supervisoCreateDto){
-        Customer customer = this.customerService.findCustomerById(supervisoCreateDto.getCustomerId());
-        Supervisor supervisor = mapper.toSupervisor(supervisoCreateDto);
-        customer.addNewSupervisor(supervisor);
-        return new ResponseEntity<SupervisorResponseDto>(
-                this.mapper.toSupervisorResponseDto(this.supervisorService.addNewSupervisor(supervisor)),
-                HttpStatus.CREATED);
+    public ResponseEntity<SupervisorResponseDto> save(@Valid  @RequestBody SupervisorCreateDto supervisoCreateDto){
+        return ResponseEntity.ok(this.supervisorService.save(supervisoCreateDto));
+
     }
 
 
