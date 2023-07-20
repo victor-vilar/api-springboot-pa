@@ -35,6 +35,15 @@ public class SupervisorService {
         return this.mapper.toSupervisorResponseDtoList(this.supervisorRespository.findAll());
     }
 
+    /**
+     * get all supervisores of a client
+     * @param clientId id of a client
+     * @return
+     */
+    public List<SupervisorResponseDto> getAllByCustomerCpfCnpj(String clientId) {
+        return this.mapper.toSupervisorResponseDtoList(this.supervisorRespository.findByCustomerCpfCnpj(clientId));
+    }
+
 
 
     /**
@@ -60,14 +69,7 @@ public class SupervisorService {
 
 
 
-    /**
-     * get all supervisores of a client
-     * @param clientId id of a client
-     * @return
-     */
-    public List<Supervisor> findAllByClientId(String clientId) {
-        return this.supervisorRespository.findByCustomerCpfCnpj(clientId);
-    }
+
 
     /**
      * delete a supervisor

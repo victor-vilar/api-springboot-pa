@@ -43,16 +43,12 @@ public class SupervisorController {
 
     /**
      * get all supervisores by client id
-      * @param clientId client id
+      * @param customerId client id
      * @return list of supervisores of that client
      */
     @GetMapping("by-customer/{clientId}")
-    public ResponseEntity<List<SupervisorResponseDto>> getAllSupervisorsByClient(@PathVariable String clientId){
-        Customer customer = this.customerService.findCustomerById(clientId);
-        return new ResponseEntity<List<SupervisorResponseDto>>(
-                this.mapper.toSupervisorResponseDtoList(
-                this.supervisorService.findAllByClientId(clientId)
-        ),HttpStatus.OK);
+    public ResponseEntity<List<SupervisorResponseDto>> getAllSupervisorsByClient(@PathVariable String customerId){
+        return ResponseEntity.ok(this.supervisorService.getAllByCustomerCpfCnpj(customerId));
     }
 
     /**
