@@ -1,11 +1,6 @@
 package com.victorvilar.projetoempresa.controllers.dto.residuetype;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-
-public class ResidueTypeResponseDto {
+public class ResidueResponseDto {
 
 
     private Long id;
@@ -13,10 +8,10 @@ public class ResidueTypeResponseDto {
     private String description;
 
 
-    public ResidueTypeResponseDto() {
+    public ResidueResponseDto() {
     }
 
-    public ResidueTypeResponseDto(Long id, String type, String description) {
+    public ResidueResponseDto(Long id, String type, String description) {
         this.id = id;
         this.type = type;
         this.description = description;
