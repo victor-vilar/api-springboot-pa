@@ -33,9 +33,26 @@ public class ResidueService {
         return this.mapper.toResidueTypeResponseDtoList(this.residueRepository.findAll());
     }
 
+    /**
+     * get Residue from repository and return as
+     * ResidueResponseDto
+     * @return ResidueResponseDto
+     */
+    public ResidueResponseDto getResidueById(Long id){
+        return this.mapper.toResidueTypeResponseDto(
+                this.residueRepository.findById(id)
+                        .orElseThrow(() -> new ResidueNotFoundException("Residue Not Found !"))
+        );
+    }
 
-    public Residue findById(Long id){
-        return this.residueRepository.findById(id).orElseThrow(() -> new ResidueNotFoundException("This residue doesn't exist"));
+    /**
+     * get Residue from repository
+     * @return Residue
+     */
+    public Residue findResidueById(Long id){
+        return this.residueRepository
+                .findById(id)
+                .orElseThrow(() -> new ResidueNotFoundException("Residue Not Found !"));
     }
 
     @Transactional

@@ -39,8 +39,8 @@ public class ResidueController {
      * @return residue
      */
     @GetMapping("/{id}")
-    public ResponseEntity<ResidueResponseDto> findById(@PathVariable Long id){
-        return new ResponseEntity<>(this.mapper.toResidueTypeResponseDto(this.residueService.findById(id)), HttpStatus.OK);
+    public ResponseEntity<ResidueResponseDto> getResidueById(@PathVariable Long id){
+        return ResponseEntity.ok(this.residueService.getResidueById(id));
     }
 
 
