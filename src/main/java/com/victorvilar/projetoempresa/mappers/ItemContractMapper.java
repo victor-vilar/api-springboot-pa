@@ -31,14 +31,14 @@ public class ItemContractMapper {
 
     public ItemContract toItemContract(ItemContractCreateDto itemDto){
         ItemContract item = this.mapper.map(itemDto,ItemContract.class);
-        item.setResidue(this.residueService.findById(itemDto.getResidue()));
+        item.setResidue(this.residueService.findResidueById(itemDto.getResidue()));
         item.setEquipament(this.equipmentService.findEquipmentById(itemDto.getEquipment()));
         return item;
     }
 
     public ItemContract toItemContract(ItemContractUpdateDto itemDto){
         ItemContract item = this.mapper.map(itemDto,ItemContract.class);
-        item.setResidue(this.residueService.findById(itemDto.getResidue()));
+        item.setResidue(this.residueService.findResidueById(itemDto.getResidue()));
         item.setEquipament(this.equipmentService.findEquipmentById(itemDto.getEquipment()));
         return item;
     }
