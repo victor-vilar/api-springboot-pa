@@ -13,6 +13,7 @@ import com.victorvilar.projetoempresa.exceptions.ItemContractNotFoundException;
 import com.victorvilar.projetoempresa.mappers.ContractMapper;
 import com.victorvilar.projetoempresa.mappers.ItemContractMapper;
 import com.victorvilar.projetoempresa.repository.ContractRepository;
+import com.victorvilar.projetoempresa.repository.CustomerRepository;
 import com.victorvilar.projetoempresa.repository.ItemContractRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,7 @@ public class ContractService {
 
     private final ContractRepository contractRepository;
     private final CustomerService customerService;
+    private final CustomerRepository customerRepository;
     private final ItemContractRepository itemContractRepository;
     private final ContractMapper contractMapper;
     private final ItemContractMapper itemContractMapper;
@@ -34,12 +36,14 @@ public class ContractService {
                             CustomerService customerService,
                             ItemContractRepository itemContractRepository,
                             ContractMapper contractMapper,
-                            ItemContractMapper itemContractMapper){
+                            ItemContractMapper itemContractMapper,
+                            CustomerRepository customerRepository){
         this.contractRepository = repository;
         this.customerService = customerService;
         this.itemContractRepository = itemContractRepository;
         this.contractMapper = contractMapper;
         this.itemContractMapper = itemContractMapper;
+        this.customerRepository = customerRepository;
     }
 
     /**
@@ -97,7 +101,7 @@ public class ContractService {
                         contract.getItens())
                 .stream()
                 .forEach(item -> contract1.addNewItem(item));
-
+        this.customerRepository.save(customer);
         return this.contractMapper.toContractResponseDto(this.contractRepository.save(contract1));
     }
 
