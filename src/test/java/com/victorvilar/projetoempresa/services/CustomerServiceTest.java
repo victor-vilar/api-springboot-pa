@@ -5,7 +5,6 @@ import com.victorvilar.projetoempresa.controllers.dto.customer.CustomerResponseD
 import com.victorvilar.projetoempresa.domain.customer.Customer;
 import com.victorvilar.projetoempresa.exceptions.CpfOrCnpjAlreadyExistsException;
 import com.victorvilar.projetoempresa.exceptions.CustomerNotFoundException;
-import com.victorvilar.projetoempresa.exceptions.InvalidCpfOrCnpjException;
 import com.victorvilar.projetoempresa.mappers.CustomerMapper;
 import com.victorvilar.projetoempresa.repository.CustomerRepository;
 import org.junit.jupiter.api.Assertions;
@@ -100,7 +99,7 @@ class CustomerServiceTest {
         when(repository.save(any(Customer.class))).thenReturn(new Customer(cpfCustomer.getCpfCnpj(),cpfCustomer.getNameCompanyName()));
         when(mapper.toCustomerResponseDto(any(Customer.class))).thenReturn(new CustomerResponseDto(cpfCustomer.getCpfCnpj(),cpfCustomer.getNameCompanyName()));
 
-        CustomerResponseDto savedCustomer = customerService.addNewCustomer(cpfCustomer);
+        CustomerResponseDto savedCustomer = customerService.save(cpfCustomer);
         assertEquals(cpfCustomer.getCpfCnpj(),savedCustomer.getCpfCnpj());
         assertEquals(cpfCustomer.getNameCompanyName(), savedCustomer.getNameCompanyName());
         Mockito.verifyNoMoreInteractions(repository);
@@ -115,7 +114,7 @@ class CustomerServiceTest {
         when(repository.save(any(Customer.class))).thenReturn(new Customer(cnpjCustomer.getCpfCnpj(),cnpjCustomer.getNameCompanyName()));
         when(mapper.toCustomerResponseDto(any(Customer.class))).thenReturn(new CustomerResponseDto(cnpjCustomer.getCpfCnpj(),cnpjCustomer.getNameCompanyName()));
 
-        CustomerResponseDto savedCustomer = customerService.addNewCustomer(cnpjCustomer);
+        CustomerResponseDto savedCustomer = customerService.save(cnpjCustomer);
         assertEquals(cnpjCustomer.getCpfCnpj(),savedCustomer.getCpfCnpj());
         assertEquals(cnpjCustomer.getNameCompanyName(), savedCustomer.getNameCompanyName());
         Mockito.verifyNoMoreInteractions(repository);
@@ -130,7 +129,7 @@ class CustomerServiceTest {
 
         NullPointerException exception =
                 Assertions.assertThrows(NullPointerException.class,() ->
-                        this.customerService.addNewCustomer(
+                        this.customerService.save(
                                 new CustomerCreateDto.CustomerCreateDtoBuilder()
                                 .nameCompanyName(nullCpfCnpjCustomer.getNameCompanyName()).build())
                         );
@@ -148,7 +147,7 @@ class CustomerServiceTest {
 
         NullPointerException exception =
                 Assertions.assertThrows(NullPointerException.class,() ->
-                        this.customerService.addNewCustomer(
+                        this.customerService.save(
                                 new CustomerCreateDto.CustomerCreateDtoBuilder()
                                         .cpfCnpj(nullNameCompanyNameCustomer.getCpfCnpj()).build())
                 );
@@ -167,7 +166,7 @@ class CustomerServiceTest {
         when(repository.findByCpfCnpj(cpfCustomer.getCpfCnpj())).thenReturn(Optional.of(new Customer(cpfCustomer.getCpfCnpj(),cpfCustomer.getNameCompanyName())));
 
         CpfOrCnpjAlreadyExistsException exception =
-                Assertions.assertThrows(CpfOrCnpjAlreadyExistsException.class,() -> this.customerService.addNewCustomer(cpfCustomer));
+                Assertions.assertThrows(CpfOrCnpjAlreadyExistsException.class,() -> this.customerService.save(cpfCustomer));
 
         assertNotEquals(exception,null);
         assertEquals(exception.getClass(), CpfOrCnpjAlreadyExistsException.class);
@@ -179,7 +178,7 @@ class CustomerServiceTest {
     @Test
     @DisplayName("delete throw CustomerNotFoundException when cpf/cnpj doesn't exist")
     void delete_ThrowsCustomerNotFoundException_WhenCpfCnpjIsWrong(){
-        Assertions.assertThrows(CustomerNotFoundException.class,() ->this.customerService.deleteCustomerById("1234"));
+        Assertions.assertThrows(CustomerNotFoundException.class,() ->this.customerService.delete("1234"));
     }
 
 
@@ -212,7 +211,7 @@ class CustomerServiceTest {
         when(repository.findByCpfCnpj(Mockito.anyString())).thenReturn(Optional.of(Mockito.mock(Customer.class)));
         when(repository.save(Mockito.any(Customer.class))).thenReturn(new Customer(cpfCustomer.getCpfCnpj(),cpfCustomer.getNameCompanyName()));
         when(mapper.toCustomerResponseDto(any(Customer.class))).thenReturn(new CustomerResponseDto(cpfCustomer.getCpfCnpj(), cpfCustomer.getNameCompanyName()));
-        CustomerResponseDto updatedCustomer = this.customerService.updateCustomer(cpfCustomer);
+        CustomerResponseDto updatedCustomer = this.customerService.update(cpfCustomer);
         assertNotNull(updatedCustomer);
         assertEquals(updatedCustomer.getNameCompanyName(),cpfCustomer.getNameCompanyName());
         assertEquals(updatedCustomer.getCpfCnpj(),cpfCustomer.getCpfCnpj());

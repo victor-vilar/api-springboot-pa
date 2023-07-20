@@ -34,7 +34,7 @@ public class CustomerService {
 	 * get all clients, transform in a clientResponseDto list and return;
 	 * @param
 	 */
-	public List<CustomerResponseDto> getAllCustomers() {
+	public List<CustomerResponseDto> getAll() {
 		return this.mapper.toCustomerResponseDtoList(this.repository.findAll());
 	}
 	/**
@@ -43,7 +43,7 @@ public class CustomerService {
 	 * @return
 	 */
 	public Customer findCustomerById(String id) throws CustomerNotFoundException {
-		return this.repository.findByCpfCnpj(id).orElseThrow(() ->new CustomerNotFoundException("This client doesn't exist"));
+		return this.repository.findByCpfCnpj(id).orElseThrow(() ->new CustomerNotFoundException("Customer Not Found !"));
 	}
 
 	/**
@@ -51,7 +51,7 @@ public class CustomerService {
 	 * @param id
 	 * @return
 	 */
-	public CustomerResponseDto getCustomerById(String id){
+	public CustomerResponseDto getById(String id){
 		Customer customer = this.findCustomerById(id);
 		return this.mapper.toCustomerResponseDto(customer);
 	}
@@ -62,7 +62,7 @@ public class CustomerService {
 	 * @param customerCreateDto, a client
 	 */
 	@Transactional
-	public CustomerResponseDto addNewCustomer(CustomerCreateDto customerCreateDto) throws InvalidCpfOrCnpjException, CpfOrCnpjAlreadyExistsException {
+	public CustomerResponseDto save(CustomerCreateDto customerCreateDto) throws InvalidCpfOrCnpjException, CpfOrCnpjAlreadyExistsException {
 
 		Customer customer = this.mapper.toCustomer(customerCreateDto);
 
@@ -97,7 +97,7 @@ public class CustomerService {
 	 * @param customerCreateDto
 	 * @return
 	 */
-	public CustomerResponseDto updateCustomer(CustomerCreateDto customerCreateDto) {
+	public CustomerResponseDto update(CustomerCreateDto customerCreateDto) {
 		Customer customer = findCustomerById(customerCreateDto.getCpfCnpj());
 		customer.setCpfCnpj(customerCreateDto.getCpfCnpj());
 		customer.setNameCompanyName(customerCreateDto.getNameCompanyName());
@@ -110,7 +110,7 @@ public class CustomerService {
 	 * @param id id of a client
 	 */
 	@Transactional
-	public void deleteCustomerById(String id) {
+	public void delete(String id) {
 		//if the id is not found will throw a exception
 		findCustomerById(id);
 		repository.deleteById(id);

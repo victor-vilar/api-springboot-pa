@@ -1,11 +1,9 @@
 package com.victorvilar.projetoempresa.controllers;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.victorvilar.projetoempresa.controllers.dto.customer.CustomerCreateDto;
 import com.victorvilar.projetoempresa.controllers.dto.customer.CustomerResponseDto;
-import com.victorvilar.projetoempresa.domain.customer.Customer;
 import com.victorvilar.projetoempresa.mappers.CustomerMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -39,8 +37,8 @@ public class CustomerController {
 	 * @return a listOfResponseDto
 	 */
 	@GetMapping()
-	public ResponseEntity<List<CustomerResponseDto>> getAllCustomer(){
-		return ResponseEntity.ok(this.service.getAllCustomers());
+	public ResponseEntity<List<CustomerResponseDto>> getAll(){
+		return ResponseEntity.ok(this.service.getAll());
 	}
 
 	/**
@@ -49,8 +47,8 @@ public class CustomerController {
 	 * @return
 	 */
 	@GetMapping("/{id}")
-	public ResponseEntity<CustomerResponseDto> getCustomerById(@PathVariable String id) {
-		return ResponseEntity.ok(this.service.getCustomerById(id));
+	public ResponseEntity<CustomerResponseDto> getById(@PathVariable String id) {
+		return ResponseEntity.ok(this.service.getById(id));
 	}
 
 	/**
@@ -59,8 +57,8 @@ public class CustomerController {
 	 * @return
 	 */
 	@PostMapping(consumes= MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<CustomerResponseDto> addNewCustomer(@Valid @RequestBody CustomerCreateDto customerDto){
-		return ResponseEntity.ok(this.service.addNewCustomer(customerDto));
+	public ResponseEntity<CustomerResponseDto> save(@Valid @RequestBody CustomerCreateDto customerDto){
+		return ResponseEntity.ok(this.service.save(customerDto));
 
 	}
 
@@ -70,14 +68,14 @@ public class CustomerController {
 	 * @return
 	 */
 	@PutMapping()
-	public ResponseEntity<CustomerResponseDto> updateCustomer(@PathVariable String id, @RequestBody CustomerCreateDto customerDto){
-		return ResponseEntity.ok(this.service.updateCustomer(customerDto));
+	public ResponseEntity<CustomerResponseDto> update(@RequestBody CustomerCreateDto customerDto){
+		return ResponseEntity.ok(this.service.update(customerDto));
 	}
 
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<?> deleteCustomerById(@PathVariable String id){
-		this.service.deleteCustomerById(id);
+	public ResponseEntity<?> delete(@PathVariable String id){
+		this.service.delete(id);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
