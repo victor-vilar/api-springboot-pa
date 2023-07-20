@@ -28,7 +28,7 @@ public class EquipmentService {
 
     /**
      * get all equipments
-     * @return a list of equiapments
+     * @return a list of equipments
      */
     public List<EquipmentResponseDto> getAllEquipments(){
         return this.equipmentMapper.toEquipmentResponseDtoList(this.equipmentRepository.findAll());
@@ -36,7 +36,7 @@ public class EquipmentService {
 
     /**
      * get equipment by id
-     * @param id
+     * @param id id of a equipment
      * @return EquipmentResponseDto
      */
 
@@ -48,9 +48,9 @@ public class EquipmentService {
     }
 
     /**
-     * get equipament by id
-     * @param id id of a equipament
-     * @return equipament
+     * get equipment by id
+     * @param id id of a equipment
+     * @return equipment
      */
     public Equipment findEquipmentById(Long id){
                 return this.equipmentRepository.findById(id)
@@ -58,19 +58,19 @@ public class EquipmentService {
     }
 
     /**
-     * save a new equipament
-     * @param equipmentCreateDto equipament to save
+     * save a new equipment
+     * @param equipmentCreateDto equipment to save
      */
     @Transactional
     public EquipmentResponseDto saveEquipment(EquipmentCreateDto equipmentCreateDto){
         Equipment equipment = this.equipmentMapper.toEquipament(equipmentCreateDto);
-        this.equipmentMapper.toEquipmentResponseDto(this.equipmentRepository.save(equipment));
+        return this.equipmentMapper.toEquipmentResponseDto(this.equipmentRepository.save(equipment));
     }
 
     /**
-     * update a equipament
-     * @param equipmentCreateDto equipament instace to get the new data
-     * @return equipament updated
+     * update a equipment
+     * @param equipmentCreateDto equipment instace to get the new data
+     * @return equipment updated
      */
     public EquipmentResponseDto updateEquipment(EquipmentCreateDto equipmentCreateDto){
         Equipment equipment = this.findEquipmentById(equipmentCreateDto.getId());
@@ -82,7 +82,7 @@ public class EquipmentService {
     }
 
     /**
-     * delete a equipament
+     * delete a equipment
      * @param id id to update
      */
     @Transactional
