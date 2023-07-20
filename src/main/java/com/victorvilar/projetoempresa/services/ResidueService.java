@@ -2,7 +2,7 @@ package com.victorvilar.projetoempresa.services;
 
 import com.victorvilar.projetoempresa.domain.Residue;
 import com.victorvilar.projetoempresa.exceptions.ResidueNotFoundException;
-import com.victorvilar.projetoempresa.repository.ResidueTypeRepository;
+import com.victorvilar.projetoempresa.repository.ResidueRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,26 +12,26 @@ import java.util.List;
 @Service
 public class ResidueService {
 
-    private final ResidueTypeRepository residueTypeRepository;
+    private final ResidueRepository residueRepository;
 
     @Autowired
-    public ResidueService(ResidueTypeRepository residueTypeRepository){
-        this.residueTypeRepository = residueTypeRepository;
+    public ResidueService(ResidueRepository residueRepository){
+        this.residueRepository = residueRepository;
     }
 
     public Residue findById(Long id){
-        return this.residueTypeRepository.findById(id).orElseThrow(() -> new ResidueNotFoundException("This residue doesn't exist"));
+        return this.residueRepository.findById(id).orElseThrow(() -> new ResidueNotFoundException("This residue doesn't exist"));
     }
 
     @Transactional
     public void deleteByid(Long id){
         Residue residue = this.findById(id);
-        this.residueTypeRepository.delete(residue);
+        this.residueRepository.delete(residue);
     }
 
     @Transactional
     public void addNewResidueType(Residue residue){
-        this.residueTypeRepository.save(residue);
+        this.residueRepository.save(residue);
     }
 
     @Transactional
@@ -44,6 +44,6 @@ public class ResidueService {
     }
 
     public List<Residue> getAll() {
-        return this.residueTypeRepository.findAll();
+        return this.residueRepository.findAll();
     }
 }
