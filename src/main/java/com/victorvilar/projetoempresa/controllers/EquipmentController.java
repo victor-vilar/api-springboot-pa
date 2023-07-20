@@ -42,9 +42,7 @@ public class EquipmentController {
      */
     @GetMapping("/{id}")
     public ResponseEntity<EquipmentResponseDto> getEquipmentById(@PathVariable Long id){
-        return new ResponseEntity<EquipmentResponseDto>(
-                this.mapper.toEquipmentResponseDto(
-                this.equipmentService.findEquipmentById(id)),HttpStatus.OK);
+        return ResponseEntity.ok(this.equipmentService.getEquipmentById(id));
     }
 
     /**

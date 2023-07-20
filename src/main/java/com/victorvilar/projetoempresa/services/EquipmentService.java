@@ -34,13 +34,26 @@ public class EquipmentService {
     }
 
     /**
+     * get equipment by id
+     * @param id
+     * @return EquipmentResponseDto
+     */
+
+    public EquipmentResponseDto getEquipmentById(Long id){
+        return this.equipmentMapper.toEquipmentResponseDto(
+                this.equipmentRepository.findById(id)
+                        .orElseThrow(() -> new EquipmentNotFoundException("Equipment not found !"))
+        );
+    }
+
+    /**
      * get equipament by id
      * @param id id of a equipament
      * @return equipament
      */
     public Equipment findEquipmentById(Long id){
                 return this.equipmentRepository.findById(id)
-                .orElseThrow(() -> new EquipmentNotFoundException("this equipament doesn't exist"));
+                .orElseThrow(() -> new EquipmentNotFoundException("Equipment not found !"));
     }
 
     /**
