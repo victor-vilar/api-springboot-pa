@@ -1,7 +1,7 @@
 package com.victorvilar.projetoempresa.controllers;
 
 import com.victorvilar.projetoempresa.controllers.dto.residuetype.ResidueTypeResponseDto;
-import com.victorvilar.projetoempresa.domain.ResidueType;
+import com.victorvilar.projetoempresa.domain.Residue;
 import com.victorvilar.projetoempresa.mappers.ResidueTypeMapper;
 import com.victorvilar.projetoempresa.services.ResidueService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,11 +53,11 @@ public class ResidueTypeController {
 
     /**
      * add a new residue type
-     * @param residueType
+     * @param residue
      */
     @PostMapping("")
-    public ResponseEntity<?> addNewResidueType(@RequestBody ResidueType residueType){
-        this.residueService.addNewResidueType(residueType);
+    public ResponseEntity<?> addNewResidueType(@RequestBody Residue residue){
+        this.residueService.addNewResidueType(residue);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -68,7 +68,7 @@ public class ResidueTypeController {
      * @return residue updated
      */
     @PutMapping("/{id}")
-    public ResponseEntity<ResidueType> updateResidue(@PathVariable Long id, @RequestBody ResidueType residue){
+    public ResponseEntity<Residue> updateResidue(@PathVariable Long id, @RequestBody Residue residue){
         return new ResponseEntity<>(this.residueService.updateResidue(residue, id),HttpStatus.OK);
     }
 

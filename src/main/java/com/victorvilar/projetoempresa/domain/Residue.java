@@ -1,21 +1,17 @@
 package com.victorvilar.projetoempresa.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name="residues")
-public class ResidueType implements Serializable {
+public class Residue implements Serializable {
 
 	/**
 	 * 
@@ -26,17 +22,17 @@ public class ResidueType implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name = "residue_type", nullable = false)
+	@Column(nullable = false)
 	private String type;
 	private String description;
 	
 
 	
 	//constructors
-	public ResidueType() {
+	public Residue() {
 	}
 
-	public ResidueType(String type, String description){
+	public Residue(String type, String description){
 		this.type = type;
 		this.description = description;
 	}

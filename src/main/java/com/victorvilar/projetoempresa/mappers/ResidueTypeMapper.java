@@ -1,7 +1,7 @@
 package com.victorvilar.projetoempresa.mappers;
 
 import com.victorvilar.projetoempresa.controllers.dto.residuetype.ResidueTypeResponseDto;
-import com.victorvilar.projetoempresa.domain.ResidueType;
+import com.victorvilar.projetoempresa.domain.Residue;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -20,11 +20,11 @@ public class ResidueTypeMapper {
         this.mapper = mapper;
     }
 
-    public ResidueTypeResponseDto toResidueTypeResponseDto(ResidueType residue){
+    public ResidueTypeResponseDto toResidueTypeResponseDto(Residue residue){
         return this.mapper.map(residue,ResidueTypeResponseDto.class);
     }
 
-    public List<ResidueTypeResponseDto> toResidueTypeResponseDtoList(List<ResidueType> list){
+    public List<ResidueTypeResponseDto> toResidueTypeResponseDtoList(List<Residue> list){
         return list.stream().map(e -> this.toResidueTypeResponseDto(e)).collect(Collectors.toList());
     }
 

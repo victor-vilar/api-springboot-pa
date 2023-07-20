@@ -3,8 +3,7 @@ package com.victorvilar.projetoempresa.domain.customer;
 import java.io.Serializable;
 
 import com.victorvilar.projetoempresa.domain.Equipment;
-import com.victorvilar.projetoempresa.domain.ResidueType;
-import com.victorvilar.projetoempresa.domain.customer.Contract;
+import com.victorvilar.projetoempresa.domain.Residue;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -34,7 +33,7 @@ public class ItemContract implements Serializable{
 	//the type of residue(trash) of the item.
 	@ManyToOne
 	@JoinColumn(nullable = false)
-	private ResidueType residue;
+	private Residue residue;
 	
 	//the equipment that gonna be used to store the trash.
 	@ManyToOne
@@ -59,7 +58,7 @@ public class ItemContract implements Serializable{
 		
 	}
 	
-	public ItemContract(ResidueType residue, Equipment equipment, double qtd, double value) {
+	public ItemContract(Residue residue, Equipment equipment, double qtd, double value) {
 		this.residue = residue;
 		this.equipment = equipment;
 		this.qtdOfResidue = qtd;
@@ -78,11 +77,11 @@ public class ItemContract implements Serializable{
 	
 
 	//getters e setters - residue
-	public ResidueType getResidue() {
+	public Residue getResidue() {
 		return residue;
 	}
 
-	public void setResidue(ResidueType residue) {
+	public void setResidue(Residue residue) {
 		this.residue = residue;
 	}
 	//-----------

@@ -11,11 +11,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.dao.DataIntegrityViolationException;
 
 import java.time.LocalDate;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
 @DisplayName("Contract service tests class")
@@ -35,13 +32,13 @@ class ContractServiceTest {
     Contract contractWithOutCustomer;
     Contract wrongContract;
     Customer customer;
-    ResidueType residueType;
+    Residue residue;
     Equipment equipment;
 
     @BeforeEach
     void setUp(){
 
-        residueType = new ResidueType("residue 1","residue 1");
+        residue = new Residue("residue 1","residue 1");
         equipment = new Equipment("equipment 1",10);
 
 
@@ -52,8 +49,8 @@ class ContractServiceTest {
                 .customer(customer)
                 .build();
 
-        contract.addNewItem(new ItemContract(residueType,equipment,10,10));
-        contract.addNewItem(new ItemContract(residueType,equipment,20,20));
+        contract.addNewItem(new ItemContract(residue,equipment,10,10));
+        contract.addNewItem(new ItemContract(residue,equipment,20,20));
 
         contractWithOutCustomer = new Contract.ContractBuilder()
                 .number("1000")
@@ -61,8 +58,8 @@ class ContractServiceTest {
                 .endDate(LocalDate.of(2024,11,11))
                 .build();
 
-        contractWithOutCustomer.addNewItem(new ItemContract(residueType,equipment,10,10));
-        contractWithOutCustomer.addNewItem(new ItemContract(residueType,equipment,20,20));
+        contractWithOutCustomer.addNewItem(new ItemContract(residue,equipment,10,10));
+        contractWithOutCustomer.addNewItem(new ItemContract(residue,equipment,20,20));
 
         customer = new Customer.CustomerBuilder()
                 .cpfCnpj("58141426001")

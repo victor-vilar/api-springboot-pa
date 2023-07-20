@@ -4,7 +4,7 @@ import java.util.List;
 
 import jakarta.persistence.EntityManager;
 
-import com.victorvilar.projetoempresa.domain.ResidueType;
+import com.victorvilar.projetoempresa.domain.Residue;
 
 /**
  * Class to manager Residues in database
@@ -20,23 +20,23 @@ public class ResidueTypeDao {
 
     }
 
-    public void saveResidue(ResidueType residuo){
+    public void saveResidue(Residue residuo){
         this.em.getTransaction().begin();
         this.em.persist(residuo);
         this.em.getTransaction().commit();
     }
 
-    public List<ResidueType> getAllResidues(){
+    public List<Residue> getAllResidues(){
         String sql = "SELECT r From ResidueType r";
-        List<ResidueType> residues = this.em.createQuery(sql,ResidueType.class).getResultList();
+        List<Residue> residues = this.em.createQuery(sql, Residue.class).getResultList();
         return residues;
     }
 
-	public ResidueType findClient(long l) {
-		return this.em.find(ResidueType.class, l);
+	public Residue findClient(long l) {
+		return this.em.find(Residue.class, l);
 	}
 
-	public void updateClient(ResidueType residuo) {
+	public void updateClient(Residue residuo) {
 		this.em.getTransaction().begin();
 		this.em.merge(residuo);
 		this.em.getTransaction().commit();
