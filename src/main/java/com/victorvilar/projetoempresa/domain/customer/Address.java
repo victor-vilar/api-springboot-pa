@@ -135,7 +135,7 @@ public class Address implements Serializable{
         this.requiresCollection = requiresCollection;
     }
 
-    public AddressBuilder builder(){
+    public static AddressBuilder builder(){
         return new AddressBuilder();
     }
 

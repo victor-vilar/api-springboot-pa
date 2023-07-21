@@ -54,8 +54,8 @@ public class AddressService {
      * get a Address Object without mapping
      * @return Address Object
      */
-    private Address findAddressById(Long id){
-        return this.addressRepository.findById(id).orElseThrow(() -> new AddressNotFoundException("This address doesn't exist"));
+    public Address findAddressById(Long id){
+        return this.addressRepository.findById(id).orElseThrow(() -> new AddressNotFoundException("Address Not found"));
     }
 
     /**
@@ -96,7 +96,7 @@ public class AddressService {
      * @return saved contract
      */
     public AddressResponseDto update(AddressUpdateDto addressUpdateDto){
-        Address addressToUpdate = this.findAddressById(addressUpdateDto.getId());
+        Address addressToUpdate = this.addressRepository.findById(addressUpdateDto.getId()).orElseThrow(() -> new AddressNotFoundException("Address Not found"));
         addressToUpdate.setAddressName(addressUpdateDto.getAddressName());
         addressToUpdate.setAddressNumber(addressUpdateDto.getAddressNumber());
         addressToUpdate.setCity(addressUpdateDto.getCity());
