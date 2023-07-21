@@ -135,5 +135,66 @@ public class Address implements Serializable{
         this.requiresCollection = requiresCollection;
     }
 
+    public AddressBuilder builder(){
+        return new AddressBuilder();
+    }
+
+    public static class AddressBuilder{
+
+        private String addressName;
+        private String addressNumber;
+        private String complement;
+        private String zipCode;
+        private String city;
+        private String state;
+        private boolean requiresCollection;
+
+        public AddressBuilder addressName(String addressName){
+            this.addressName = addressName;
+            return this;
+        }
+
+        public AddressBuilder addressNumber(String addressNumber){
+            this.addressNumber = addressNumber;
+            return this;
+        }
+
+        public AddressBuilder complement(String complement){
+            this.complement = complement;
+            return this;
+        }
+
+        public AddressBuilder zipCode(String zipCode){
+            this.zipCode = zipCode;
+            return this;
+        }
+
+        public AddressBuilder city(String city){
+            this.city = city;
+            return this;
+        }
+
+        public AddressBuilder state(String state){
+            this.state = state;
+            return this;
+        }
+
+        public AddressBuilder requiresCollection(boolean requiresCollection){
+            this.requiresCollection = requiresCollection;
+            return this;
+        }
+
+        public Address build(){
+            Address address= new Address();
+            address.setAddressName(this.addressName);
+            address.setAddressNumber(this.addressNumber);
+            address.setComplement(this.complement);
+            address.setZipCode(this.zipCode);
+            address.setCity(this.city);
+            address.setState(this.state);
+            address.setRequiresCollection(this.requiresCollection);
+            return address;
+        }
+    }
 
 }
