@@ -116,6 +116,7 @@ public class AddressUpdateDto {
         private String city;
         private String state;
         private boolean requiresCollection;
+        private String customerId;
 
         public AddressUpdateDtoBuilder addressName(String addressName){
             this.addressName = addressName;
@@ -152,6 +153,11 @@ public class AddressUpdateDto {
             return this;
         }
 
+        public AddressUpdateDtoBuilder customerId(String customerId){
+            this.customerId = customerId;
+            return this;
+        }
+
         public AddressUpdateDto build(){
             AddressUpdateDto address= new AddressUpdateDto();
             address.setAddressName(this.addressName);
@@ -161,6 +167,7 @@ public class AddressUpdateDto {
             address.setCity(this.city);
             address.setState(this.state);
             address.setRequiresCollection(this.requiresCollection);
+            address.setCustomerId(this.customerId);
             return address;
         }
     }

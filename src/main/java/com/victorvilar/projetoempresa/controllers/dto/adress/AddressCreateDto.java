@@ -127,6 +127,7 @@ public class AddressCreateDto {
         private String city;
         private String state;
         private boolean requiresCollection;
+        private String customerId;
 
         public AddressCreateBuilder addressName(String addressName){
             this.addressName = addressName;
@@ -163,6 +164,11 @@ public class AddressCreateDto {
             return this;
         }
 
+        public AddressCreateBuilder customerId(String customerId){
+            this.customerId = customerId;
+            return this;
+        }
+
         public AddressCreateDto build(){
             AddressCreateDto address= new AddressCreateDto();
             address.setAddressName(this.addressName);
@@ -172,6 +178,7 @@ public class AddressCreateDto {
             address.setCity(this.city);
             address.setState(this.state);
             address.setRequiresCollection(this.requiresCollection);
+            address.setCustomerId(this.customerId);
             return address;
         }
     }
