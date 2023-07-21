@@ -102,4 +102,67 @@ public class AddressUpdateDto {
     public void setCustomerId(String customerId) {
         this.customerId = customerId;
     }
+
+    public AddressUpdateDtoBuilder builder(){
+        return new AddressUpdateDtoBuilder();
+    }
+
+    public static class AddressUpdateDtoBuilder{
+
+        private String addressName;
+        private String addressNumber;
+        private String complement;
+        private String zipCode;
+        private String city;
+        private String state;
+        private boolean requiresCollection;
+
+        public AddressUpdateDtoBuilder addressName(String addressName){
+            this.addressName = addressName;
+            return this;
+        }
+
+        public AddressUpdateDtoBuilder addressNumber(String addressNumber){
+            this.addressNumber = addressNumber;
+            return this;
+        }
+
+        public AddressUpdateDtoBuilder complement(String complement){
+            this.complement = complement;
+            return this;
+        }
+
+        public AddressUpdateDtoBuilder zipCode(String zipCode){
+            this.zipCode = zipCode;
+            return this;
+        }
+
+        public AddressUpdateDtoBuilder city(String city){
+            this.city = city;
+            return this;
+        }
+
+        public AddressUpdateDtoBuilder state(String state){
+            this.state = state;
+            return this;
+        }
+
+        public AddressUpdateDtoBuilder requiresCollection(boolean requiresCollection){
+            this.requiresCollection = requiresCollection;
+            return this;
+        }
+
+        public AddressUpdateDto build(){
+            AddressUpdateDto address= new AddressUpdateDto();
+            address.setAddressName(this.addressName);
+            address.setAddressNumber(this.addressNumber);
+            address.setComplement(this.complement);
+            address.setZipCode(this.zipCode);
+            address.setCity(this.city);
+            address.setState(this.state);
+            address.setRequiresCollection(this.requiresCollection);
+            return address;
+        }
+    }
+
 }

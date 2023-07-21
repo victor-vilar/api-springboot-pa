@@ -1,5 +1,6 @@
 package com.victorvilar.projetoempresa.controllers.dto.adress;
 
+import com.victorvilar.projetoempresa.domain.customer.Address;
 import jakarta.validation.constraints.NotBlank;
 
 public class AddressCreateDto {
@@ -112,4 +113,68 @@ public class AddressCreateDto {
         this.customerId = customerId;
     }
     //--------------
+
+    public static AddressCreateBuilder builder(){
+        return new AddressCreateBuilder();
+    }
+
+    public static class AddressCreateBuilder{
+
+        private String addressName;
+        private String addressNumber;
+        private String complement;
+        private String zipCode;
+        private String city;
+        private String state;
+        private boolean requiresCollection;
+
+        public AddressCreateBuilder addressName(String addressName){
+            this.addressName = addressName;
+            return this;
+        }
+
+        public AddressCreateBuilder addressNumber(String addressNumber){
+            this.addressNumber = addressNumber;
+            return this;
+        }
+
+        public AddressCreateBuilder complement(String complement){
+            this.complement = complement;
+            return this;
+        }
+
+        public AddressCreateBuilder zipCode(String zipCode){
+            this.zipCode = zipCode;
+            return this;
+        }
+
+        public AddressCreateBuilder city(String city){
+            this.city = city;
+            return this;
+        }
+
+        public AddressCreateBuilder state(String state){
+            this.state = state;
+            return this;
+        }
+
+        public AddressCreateBuilder requiresCollection(boolean requiresCollection){
+            this.requiresCollection = requiresCollection;
+            return this;
+        }
+
+        public AddressCreateDto build(){
+            AddressCreateDto address= new AddressCreateDto();
+            address.setAddressName(this.addressName);
+            address.setAddressNumber(this.addressNumber);
+            address.setComplement(this.complement);
+            address.setZipCode(this.zipCode);
+            address.setCity(this.city);
+            address.setState(this.state);
+            address.setRequiresCollection(this.requiresCollection);
+            return address;
+        }
+    }
+
+
 }
