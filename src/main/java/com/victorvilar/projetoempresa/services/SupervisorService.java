@@ -38,7 +38,7 @@ public class SupervisorService {
      * get all supervisors
      * @return
      */
-    public List<SupervisorResponseDto> getAllSupervisors() {
+    public List<SupervisorResponseDto> getAll() {
         return this.mapper.toSupervisorResponseDtoList(this.supervisorRespository.findAll());
     }
 
@@ -47,7 +47,7 @@ public class SupervisorService {
      * @param clientId id of a client
      * @return
      */
-    public List<SupervisorResponseDto> getAllByCustomerCpfCnpj(String clientId) {
+    public List<SupervisorResponseDto> getAllByCustomer(String clientId) {
         return this.mapper.toSupervisorResponseDtoList(this.supervisorRespository.findByCustomerCpfCnpj(clientId));
     }
 
@@ -65,7 +65,7 @@ public class SupervisorService {
      * @param id id of supervisor
      * @return
      */
-    public SupervisorResponseDto getSupervisorById(Long id){
+    public SupervisorResponseDto getById(Long id){
         return this.mapper.toSupervisorResponseDto(
                 this.supervisorRespository.findById(id)
                         .orElseThrow(() -> new SupervisorNotFoundException("Supervisor Not Found !"))
@@ -92,7 +92,7 @@ public class SupervisorService {
      * @param supervisorId supervisor id
      */
     @Transactional
-    public void deleteById(Long supervisorId) {
+    public void delete(Long supervisorId) {
         this.supervisorRespository.deleteById(supervisorId);
     }
 
@@ -103,7 +103,7 @@ public class SupervisorService {
      */
 
     @Transactional
-    public SupervisorResponseDto updateSupervisor(SupervisorUpdateDto supervisorUpdateDto) {
+    public SupervisorResponseDto update(SupervisorUpdateDto supervisorUpdateDto) {
         Supervisor supervisorToUpdate = findSupervisorById(supervisorUpdateDto.getId());
         supervisorToUpdate.setName(supervisorUpdateDto.getName());
         supervisorToUpdate.setRole(supervisorUpdateDto.getRole());

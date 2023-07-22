@@ -3,8 +3,6 @@ package com.victorvilar.projetoempresa.controllers;
 import com.victorvilar.projetoempresa.controllers.dto.supervisor.SupervisorCreateDto;
 import com.victorvilar.projetoempresa.controllers.dto.supervisor.SupervisorResponseDto;
 import com.victorvilar.projetoempresa.controllers.dto.supervisor.SupervisorUpdateDto;
-import com.victorvilar.projetoempresa.domain.customer.Customer;
-import com.victorvilar.projetoempresa.domain.customer.Supervisor;
 import com.victorvilar.projetoempresa.mappers.SupervisorMapper;
 import com.victorvilar.projetoempresa.services.CustomerService;
 import com.victorvilar.projetoempresa.services.SupervisorService;
@@ -38,8 +36,8 @@ public class SupervisorController {
      * @return return a list of supervisorResponseDTo
      */
     @GetMapping()
-    public ResponseEntity<List<SupervisorResponseDto>> getAllSupervisors(){
-        return ResponseEntity.ok(this.supervisorService.getAllSupervisors());
+    public ResponseEntity<List<SupervisorResponseDto>> getAll(){
+        return ResponseEntity.ok(this.supervisorService.getAll());
     }
 
     /**
@@ -48,8 +46,8 @@ public class SupervisorController {
      * @return list of supervisores of that client
      */
     @GetMapping("by-customer/{clientId}")
-    public ResponseEntity<List<SupervisorResponseDto>> getAllSupervisorsByClient(@PathVariable String customerId){
-        return ResponseEntity.ok(this.supervisorService.getAllByCustomerCpfCnpj(customerId));
+    public ResponseEntity<List<SupervisorResponseDto>> getAllByCustomer(@PathVariable String customerId){
+        return ResponseEntity.ok(this.supervisorService.getAllByCustomer(customerId));
     }
 
     /**
@@ -58,8 +56,8 @@ public class SupervisorController {
      * @return ResponseEntity of SupervisorResponseDto
      */
     @GetMapping("/{supervisorId}")
-    public ResponseEntity<SupervisorResponseDto> getSupervisorById(@PathVariable Long id){
-        return ResponseEntity.ok(this.supervisorService.getSupervisorById(id));
+    public ResponseEntity<SupervisorResponseDto> getById(@PathVariable Long id){
+        return ResponseEntity.ok(this.supervisorService.getById(id));
     }
 
     /**
@@ -74,14 +72,14 @@ public class SupervisorController {
 
 
     @DeleteMapping("{supervisorId}")
-    public ResponseEntity<Void> deleteSupervisor(@PathVariable Long supervisorId){
-        this.supervisorService.deleteById(supervisorId);
+    public ResponseEntity<Void> delete(@PathVariable Long supervisorId){
+        this.supervisorService.delete(supervisorId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PutMapping("{supervisorId}")
-    public ResponseEntity<SupervisorResponseDto> updateSupervisor(@Valid @RequestBody SupervisorUpdateDto supervisorUpdateDto){
-        return ResponseEntity.ok(this.supervisorService.updateSupervisor(supervisorUpdateDto));
+    public ResponseEntity<SupervisorResponseDto> update(@Valid @RequestBody SupervisorUpdateDto supervisorUpdateDto){
+        return ResponseEntity.ok(this.supervisorService.update(supervisorUpdateDto));
     }
 
 }
