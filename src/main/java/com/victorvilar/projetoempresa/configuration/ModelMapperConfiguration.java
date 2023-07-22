@@ -22,7 +22,7 @@ public class ModelMapperConfiguration {
         ModelMapper mapper = new ModelMapper();
         mapper.typeMap(Supervisor.class, SupervisorResponseDto.class).
                 addMappings(maper -> {
-                    maper.map(src -> src.getCliente().getCpfCnpj(),SupervisorResponseDto::setCustomerId);
+                    maper.map(src -> src.getCustomer().getCpfCnpj(),SupervisorResponseDto::setCustomerId);
                 });
 
         mapper.typeMap(Contract.class, ContractResponseDto.class)

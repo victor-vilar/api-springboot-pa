@@ -62,7 +62,7 @@ public class Customer implements Serializable {
 	 * @param supervisor
 	 */
 	public void addNewSupervisor(Supervisor supervisor) {
-		supervisor.setClient(this);
+		supervisor.setCustomer(this);
 		this.getSupervisors().add(supervisor);
 	}
 	/**

@@ -2,7 +2,7 @@ package com.victorvilar.projetoempresa.domain.customer;
 
 import java.io.Serializable;
 
-import com.victorvilar.projetoempresa.domain.customer.Customer;
+import com.victorvilar.projetoempresa.controllers.dto.supervisor.Supervisor;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -95,15 +95,64 @@ public class Supervisor implements Serializable {
 	//--------------
 
 	//getters e setters - client
-	public void setClient(Customer customer2) {
+	public void setCustomer(Customer customer2) {
 		this.customer = customer2;
 		
 	}
 	
-	public Customer getCliente() {
+	public Customer getCustomer() {
 		return this.customer;
 	}
 	//--------------
+	
+	public static SupervisorBuilder build(){
+		return new SupervisorBuilder();
+	}
+	
+	public static class SupervisorBuilder {
+
+		private String name;
+		private String role;
+		private String phoneNumber;
+		private String email;
+		private String customerId;
+		private Customer customer;
+
+		public SupervisorBuilder name(String name){
+			this.name =name;
+			return this;
+		}
+
+		public SupervisorBuilder role(String role){
+			this.role = role;
+			return this;
+		}
+
+		public SupervisorBuilder phoneNumber(String phoneNumber){
+			this.phoneNumber = phoneNumber;
+			return this;
+		}
+
+		public SupervisorBuilder email(String email){
+			this.email = email;
+			return this;
+		}
+
+		public SupervisorBuilder customerId(Customer customer){
+			this.customer = customer;
+			return this;
+		}
+
+		public Supervisor build(){
+			Supervisor supervisor = new Supervisor();
+			supervisor.setName(this.name);
+			supervisor.setRole(this.role);
+			supervisor.setPhoneNumber(this.phoneNumber);
+			supervisor.setEmail(this.email);
+			supervisor.setCustomer(this.customer);
+			return supervisor;
+		}
+	}
 	
 	
 }
