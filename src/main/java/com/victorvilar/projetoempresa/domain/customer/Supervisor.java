@@ -2,7 +2,6 @@ package com.victorvilar.projetoempresa.domain.customer;
 
 import java.io.Serializable;
 
-import com.victorvilar.projetoempresa.controllers.dto.supervisor.Supervisor;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -105,7 +104,7 @@ public class Supervisor implements Serializable {
 	}
 	//--------------
 	
-	public static SupervisorBuilder build(){
+	public static SupervisorBuilder builder(){
 		return new SupervisorBuilder();
 	}
 	
@@ -138,7 +137,7 @@ public class Supervisor implements Serializable {
 			return this;
 		}
 
-		public SupervisorBuilder customerId(Customer customer){
+		public SupervisorBuilder customer(Customer customer){
 			this.customer = customer;
 			return this;
 		}
