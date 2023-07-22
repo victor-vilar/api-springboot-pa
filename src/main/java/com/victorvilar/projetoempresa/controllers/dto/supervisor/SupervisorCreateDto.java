@@ -66,6 +66,58 @@ public class SupervisorCreateDto {
     }
     //--------------
 
+    public SupervisorCreateDtoBuilder builder(){
+        return new SupervisorCreateDtoBuilder();
+    }
+
+    public static class SupervisorCreateDtoBuilder{
+
+        private String name;
+        private String role;
+        private String phoneNumber;
+        private String email;
+        private String customerId;
+
+        private SupervisorCreateDtoBuilder name(String name){
+            this.name =name;
+            return this;
+        }
+
+        private SupervisorCreateDtoBuilder role(String role){
+            this.role = role;
+            return this;
+        }
+
+        private SupervisorCreateDtoBuilder phoneNumber(String phoneNumber){
+            this.phoneNumber = phoneNumber;
+            return this;
+        }
+
+        private SupervisorCreateDtoBuilder email(String email){
+            this.email = email;
+            return this;
+        }
+
+        private SupervisorCreateDtoBuilder customerId(String customerId){
+            this.customerId = customerId;
+            return this;
+        }
+
+        private SupervisorCreateDto build(){
+            SupervisorCreateDto supervisor = new SupervisorCreateDto();
+            supervisor.setName(this.name);
+            supervisor.setRole(this.role);
+            supervisor.setPhoneNumber(this.phoneNumber);
+            supervisor.setEmail(this.email);
+            supervisor.setCustomerId(this.customerId);
+            return supervisor;
+        }
+
+
+
+
+    }
+
 
 
 }

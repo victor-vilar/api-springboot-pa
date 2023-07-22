@@ -79,4 +79,64 @@ public class SupervisorUpdateDto {
     public void setCustomerId(String customerId) {
         this.customerId = customerId;
     }
+
+    public SupervisorUpdateDtoBuilder builder(){
+        return new SupervisorUpdateDtoBuilder();
+    }
+
+    public static class SupervisorUpdateDtoBuilder{
+
+        private Long id;
+        private String name;
+        private String role;
+        private String phoneNumber;
+        private String email;
+        private String customerId;
+
+        private SupervisorUpdateDtoBuilder id(Long id){
+            this.id = id;
+            return this;
+        }
+
+        private SupervisorUpdateDtoBuilder name(String name){
+            this.name =name;
+            return this;
+        }
+
+        private SupervisorUpdateDtoBuilder role(String role){
+            this.role = role;
+            return this;
+        }
+
+        private SupervisorUpdateDtoBuilder phoneNumber(String phoneNumber){
+            this.phoneNumber = phoneNumber;
+            return this;
+        }
+
+        private SupervisorUpdateDtoBuilder email(String email){
+            this.email = email;
+            return this;
+        }
+
+        private SupervisorUpdateDtoBuilder customerId(String customerId){
+            this.customerId = customerId;
+            return this;
+        }
+
+        private SupervisorUpdateDto build(){
+            SupervisorUpdateDto supervisor = new SupervisorUpdateDto();
+            supervisor.setId(this.id);
+            supervisor.setName(this.name);
+            supervisor.setRole(this.role);
+            supervisor.setPhoneNumber(this.phoneNumber);
+            supervisor.setEmail(this.email);
+            supervisor.setCustomerId(this.customerId);
+            return supervisor;
+        }
+
+
+
+    }
+
+
 }
