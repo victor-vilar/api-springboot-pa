@@ -80,7 +80,7 @@ public class SupervisorUpdateDto {
         this.customerId = customerId;
     }
 
-    public SupervisorUpdateDtoBuilder builder(){
+    public static SupervisorUpdateDtoBuilder builder(){
         return new SupervisorUpdateDtoBuilder();
     }
 
@@ -93,37 +93,37 @@ public class SupervisorUpdateDto {
         private String email;
         private String customerId;
 
-        private SupervisorUpdateDtoBuilder id(Long id){
+        public SupervisorUpdateDtoBuilder id(Long id){
             this.id = id;
             return this;
         }
 
-        private SupervisorUpdateDtoBuilder name(String name){
+        public SupervisorUpdateDtoBuilder name(String name){
             this.name =name;
             return this;
         }
 
-        private SupervisorUpdateDtoBuilder role(String role){
+        public SupervisorUpdateDtoBuilder role(String role){
             this.role = role;
             return this;
         }
 
-        private SupervisorUpdateDtoBuilder phoneNumber(String phoneNumber){
+        public SupervisorUpdateDtoBuilder phoneNumber(String phoneNumber){
             this.phoneNumber = phoneNumber;
             return this;
         }
 
-        private SupervisorUpdateDtoBuilder email(String email){
+        public SupervisorUpdateDtoBuilder email(String email){
             this.email = email;
             return this;
         }
 
-        private SupervisorUpdateDtoBuilder customerId(String customerId){
+        public SupervisorUpdateDtoBuilder customerId(String customerId){
             this.customerId = customerId;
             return this;
         }
 
-        private SupervisorUpdateDto build(){
+        public SupervisorUpdateDto build(){
             SupervisorUpdateDto supervisor = new SupervisorUpdateDto();
             supervisor.setId(this.id);
             supervisor.setName(this.name);
