@@ -198,8 +198,8 @@ class SupervisorServiceTest {
     }
 
     @Test
-    @DisplayName("get by id when not found")
-    public void getById_whenNotFound(){
+    @DisplayName("get by id throws SupervisorNotFoundException when supervisor not found")
+    public void getById_throwsSupervisorNotFound(){
         when(this.supervisorRepository.findById(1L))
                 .thenThrow(new SupervisorNotFoundException("Supervisor Not Found !"));
         SupervisorNotFoundException exception =

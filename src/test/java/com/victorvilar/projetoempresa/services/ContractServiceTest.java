@@ -5,6 +5,8 @@ import com.victorvilar.projetoempresa.domain.*;
 import com.victorvilar.projetoempresa.domain.customer.Contract;
 import com.victorvilar.projetoempresa.domain.customer.Customer;
 import com.victorvilar.projetoempresa.domain.customer.ItemContract;
+import com.victorvilar.projetoempresa.exceptions.ContractNotFoundException;
+import com.victorvilar.projetoempresa.exceptions.SupervisorNotFoundException;
 import com.victorvilar.projetoempresa.mappers.ContractMapper;
 import com.victorvilar.projetoempresa.mappers.ItemContractMapper;
 import com.victorvilar.projetoempresa.repository.ContractRepository;
@@ -20,7 +22,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -78,19 +82,10 @@ class ContractServiceTest {
         residue = new Residue("residue 1","residue 1");
         equipment = new Equipment("equipment 1",10);
 
-
         this.setUpContracts();
         this.setUpContractCreate();
         this.setUpContractUpdate();
         this.setUpContractResponse();
-
-
-
-
-
-
-
-
 
     }
 
@@ -98,7 +93,77 @@ class ContractServiceTest {
     @DisplayName("Get all when successfully")
     public void getAll_WhenSuccessfull(){
         when(this.contractRepository.findAll()).thenReturn(List.of(contract1,contract2));
-        when(this.contractMapper.toContractResponsDtoList(Mockito.anyList())).thenReturn(List.of())
+        when(this.contractMapper.toContractResponseDtoList(Mockito.anyList())).thenReturn(List.of(contractResponseDto1,contractResponseDto1));
+        List<ContractResponseDto> list = this.contractService.getAll();
+        Assertions.assertNotNull(list);
+        Assertions.assertEquals(2,list.size());
+
+    }
+
+    @Test
+    @DisplayName("Get all by customer id when successfully")
+    public void getAllByCustomer_WhenSuccessfull() {
+        when(this.contractRepository.findByCustomerCpfCnpj(anyString())).thenReturn(anyList());
+        when(this.contractMapper.toContractResponseDtoList(List.of(contract1,contract2))).thenReturn(List.of(contractResponseDto1,contractResponseDto2));
+        List<ContractResponseDto> list = this.contractService.getAllByCustomerId(customer.getCpfCnpj());
+        Assertions.assertNotNull(list);
+        Assertions.assertEquals(2,list.size());
+        Assertions.assertEquals("1000",list.get(0).getNumber());
+        Assertions.assertEquals("2000",list.get(1).getNumber());
+    }
+
+    @Test
+    @DisplayName("Get all by customer id when customer not found")
+    public void getAllByCustomer_ReturnEmpty_WhenCustomerNotFound(){
+        when(contractRepository.findByCustomerCpfCnpj(anyString())).thenReturn(anyList());
+        List<ContractResponseDto> list = this.contractService.getAllByCustomerId(customer.getCpfCnpj());
+        Assertions.assertTrue(list.isEmpty());
+    }
+
+    @Test
+    @DisplayName("Get contract by id when successfully")
+    public void getById_WhenSuccessfull() {
+        when(this.contractRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(contract1));
+        when(this.contractMapper.toContractResponseDto(any(Contract.class))).thenReturn(contractResponseDto1);
+
+        ContractResponseDto contractResponseDto = this.contractService.getById(2L);
+        Assertions.assertEquals(contract1.getId(),contractResponseDto.getId());
+        Assertions.assertEquals(contract1.getBeginDate(),contractResponseDto.getBeginDate());
+        Assertions.assertEquals(contract1.getEndDate(),contractResponseDto.getEndDate());
+
+    }
+
+    @Test
+    @DisplayName("get by id throws ContractNotFoundException when contract not found")
+    public void getById_throwsContractNotFoundException() {
+        when(this.contractRepository.findById(1L))
+                .thenThrow(new ContractNotFoundException("Contract Not Found !"));
+        ContractNotFoundException exception =
+                Assertions.assertThrows(ContractNotFoundException.class,() ->
+                        this.contractService.getById(1L));
+        Assertions.assertEquals(exception.getClass(), ContractNotFoundException.class);
+        Assertions.assertEquals("Contract Not Found !",exception.getMessage());
+    }
+
+    @Test
+    @DisplayName("find by id when successfull")
+    public void findByContractId_WhenSuccessfull(){
+        when(this.contractRepository.findById(anyLong())).thenReturn(Optional.of(contract1));
+        Contract contract = this.contractService.findByContractId(1L);
+        Assertions.assertEquals(contract1.getId(),contract.getId());
+        Assertions.assertEquals(contract1.getNumber(),contract.getNumber());
+    }
+
+    @Test
+    @DisplayName("find throws ContractNotFoundException when contract not found")
+    public void findByContractId_throwsContractNotFoundException() {
+        when(this.contractRepository.findById(1L))
+                .thenThrow(new ContractNotFoundException("Contract Not Found !"));
+        ContractNotFoundException exception =
+                Assertions.assertThrows(ContractNotFoundException.class,() ->
+                        this.contractService.findByContractId(1L));
+        Assertions.assertEquals(exception.getClass(), ContractNotFoundException.class);
+        Assertions.assertEquals("Contract Not Found !",exception.getMessage());
     }
 
 
@@ -182,14 +247,14 @@ class ContractServiceTest {
                         new ItemContractUpdateDto(2L,residue.getId(),equipment.getId(),20d,20d)));
 
 
-        contractUpdateDto1 = ContractUpdateDto.builder()
+        contractUpdateDto2 = ContractUpdateDto.builder()
                 .number("2000")
                 .beginDate(LocalDate.of(2023,11,11))
                 .endDate(LocalDate.of(2024,11,11))
                 .customer(customer.getCpfCnpj())
                 .build();
 
-        contractUpdateDto1.setItens(
+        contractUpdateDto2.setItens(
                 Arrays.asList(
                         new ItemContractUpdateDto(3L,residue.getId(),equipment.getId(),10d,10d),
                         new ItemContractUpdateDto(4L,residue.getId(),equipment.getId(),20d,20d)));
@@ -209,7 +274,7 @@ class ContractServiceTest {
                         new ItemContractResponseDto(2L,residue.getType(),equipment.getEquipmentName(),10d,10d)));
 
         contractResponseDto2 = ContractResponseDto.builder()
-                .number("1000")
+                .number("2000")
                 .beginDate(LocalDate.of(2023,11,11))
                 .endDate(LocalDate.of(2024,11,11))
                 .customer(customer.getCpfCnpj())

@@ -75,7 +75,7 @@ public class ContractService {
         return this.contractMapper.toContractResponseDto(contract);
     }
 
-    private Contract findContractByid(Long id) throws ContractNotFoundException{
+    public Contract findByContractId(Long id) throws ContractNotFoundException{
         Contract contract = this.contractRepository.findById(id).orElseThrow(() -> new ContractNotFoundException("This contract doesn't exist") );
         return contract;
     }
@@ -113,7 +113,7 @@ public class ContractService {
     public ContractResponseDto addNewItemToContract(Long contractId, ItemContractCreateDto itemDto) {
 
         ItemContract item = this.itemContractMapper.toItemContract(itemDto);
-        Contract contract = this.findContractByid(contractId);
+        Contract contract = this.findByContractId(contractId);
         contract.addNewItem(item);
         this.itemContractRepository.save(item);
         this.contractRepository.save(contract);
@@ -152,7 +152,7 @@ public class ContractService {
     public ContractResponseDto update(Long contractId, ContractUpdateDto contractUpdateDto){
 
         //creates instance of contract
-        Contract contract = this.findContractByid(contractId);
+        Contract contract = this.findByContractId(contractId);
 
         //updating contracting
         contract.setCustomer(this.customerService.findCustomerById(contractUpdateDto.getCustomerId()));
