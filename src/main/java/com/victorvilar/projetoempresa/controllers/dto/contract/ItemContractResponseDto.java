@@ -12,13 +12,12 @@ public class ItemContractResponseDto {
     public ItemContractResponseDto() {
     }
 
-    public ItemContractResponseDto(Long id, String residue, String equipment, Double qtdOfResidue, double itemValue, String contract) {
+    public ItemContractResponseDto(Long id, String residue, String equipment, Double qtdOfResidue, Double itemValue) {
         this.id = id;
         this.residue = residue;
         this.equipment = equipment;
         this.qtdOfResidue = qtdOfResidue;
         this.itemValue = itemValue;
-        this.contract = contract;
     }
 
 
