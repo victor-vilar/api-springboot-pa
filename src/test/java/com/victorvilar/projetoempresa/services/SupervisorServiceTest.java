@@ -155,7 +155,9 @@ class SupervisorServiceTest {
     @Test
     @DisplayName("get all by customer id when customer id not found")
     public void getAllByCustomer_ReturnEmpty_whenNotFoundCustomer(){
-        List<SupervisorResponseDto> list = this.supervisorService.getAll();
+        when(this.supervisorRepository.findByCustomerCpfCnpj(cpfCustomer.getCpfCnpj()))
+                .thenReturn(anyList());
+        List<SupervisorResponseDto> list = this.supervisorService.getAllByCustomer(cpfCustomer.getCpfCnpj());
         Assertions.assertTrue(list.isEmpty());
     }
 
