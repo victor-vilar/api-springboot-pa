@@ -1,4 +1,4 @@
-package com.victorvilar.projetoempresa.domain.applicationuser.mapper;
+package com.victorvilar.projetoempresa.mappers;
 
 import com.victorvilar.projetoempresa.domain.applicationuser.ApplicationUser;
 import com.victorvilar.projetoempresa.domain.applicationuser.dto.ApplicationUserDto;

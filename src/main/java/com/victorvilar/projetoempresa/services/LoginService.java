@@ -2,10 +2,9 @@ package com.victorvilar.projetoempresa.services;
 
 import com.victorvilar.projetoempresa.domain.applicationuser.ApplicationUser;
 import com.victorvilar.projetoempresa.domain.applicationuser.dto.ApplicationUserResponseDto;
-import com.victorvilar.projetoempresa.domain.applicationuser.mapper.ApplicationUserMapper;
+import com.victorvilar.projetoempresa.mappers.ApplicationUserMapper;
 import com.victorvilar.projetoempresa.repository.ApplicationUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
