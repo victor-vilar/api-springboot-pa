@@ -6,7 +6,7 @@ public class ItemContractResponseDto {
     private String residue;
     private String equipment;
     private Double qtdOfResidue;
-    private double itemValue;
+    private Double itemValue;
     private String contract;
 
     public ItemContractResponseDto() {
