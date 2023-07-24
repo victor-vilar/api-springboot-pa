@@ -17,17 +17,17 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
 import java.util.Optional;
 
 
-import static org.mockito.Mockito.when;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 @DisplayName("Contract service tests class")
@@ -177,6 +177,15 @@ class AddressServiceTest {
         Assertions.assertEquals(updatedAddress.getClass(),addressResponseDto1.getClass());
         Assertions.assertEquals(updatedAddress.getAddressName(),addressResponseDto1.getAddressName());
 
+    }
+
+    @Test
+    @DisplayName("Delete when successfull")
+    public void delete_WhenSuccessfull(){
+        address1.setId(1L);
+        when(this.repository.findById(anyLong())).thenReturn(Optional.of(address1));
+        this.addressService.delete(2L);
+        verify(this.repository,times(1)).deleteById(2L);
     }
 
 }
