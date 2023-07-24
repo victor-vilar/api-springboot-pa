@@ -18,14 +18,14 @@ public class ItemContractUpdateDto {
     private Double qtdOfResidue;
 
     @NotNull(message = "the item must have a value")
-    private double itemValue;
+    private Double itemValue;
 
 
     //constructors
     public ItemContractUpdateDto() {
 
     }
-    public ItemContractUpdateDto(Long id, Long residue, Long equipment, Double qtdOfResidue, double itemValue, String contract) {
+    public ItemContractUpdateDto(Long id, Long residue, Long equipment, Double qtdOfResidue, Double itemValue) {
         this.id = id;
         this.residue = residue;
         this.equipment = equipment;
