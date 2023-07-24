@@ -25,9 +25,9 @@ import java.util.List;
 public class ContractService {
 
     private final ContractRepository contractRepository;
-    private final CustomerService customerService;
-    private final CustomerRepository customerRepository;
     private final ItemContractRepository itemContractRepository;
+    private final CustomerRepository customerRepository;
+    private final CustomerService customerService;
     private final ContractMapper contractMapper;
     private final ItemContractMapper itemContractMapper;
 
