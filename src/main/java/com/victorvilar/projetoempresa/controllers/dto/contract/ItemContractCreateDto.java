@@ -15,14 +15,14 @@ public class ItemContractCreateDto {
     private Double qtdOfResidue;
 
     @NotNull(message = "the item must have a value")
-    private double itemValue;
+    private Double itemValue;
 
 
     //constructors
     public ItemContractCreateDto() {
 
     }
-    public ItemContractCreateDto(Long residue, Long equipment, Double qtdOfResidue, double itemValue, String contract) {
+    public ItemContractCreateDto(Long residue, Long equipment, Double qtdOfResidue, Double itemValue) {
         this.residue = residue;
         this.equipment = equipment;
         this.qtdOfResidue = qtdOfResidue;
