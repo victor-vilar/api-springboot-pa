@@ -3,6 +3,7 @@ package com.victorvilar.projetoempresa.controllers.dto.contract;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 
+import com.victorvilar.projetoempresa.domain.customer.ItemContract;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -86,4 +87,49 @@ public class ContractUpdateDto {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public static ContractUpdateDtoBuilder builder(){
+        return new ContractUpdateDtoBuilder();
+    }
+
+    public static final class ContractUpdateDtoBuilder{
+
+        private String number;
+        private LocalDate beginDate;
+        private LocalDate endDate;
+        private List<ItemContractUpdateDto> itens = new ArrayList<ItemContractUpdateDto>();
+        private String customerId;
+
+        public ContractUpdateDtoBuilder number(String number){
+            this.number = number;
+            return this;
+        }
+
+        public ContractUpdateDtoBuilder beginDate(LocalDate beginDate){
+            this.beginDate = beginDate;
+            return this;
+        }
+
+        public ContractUpdateDtoBuilder endDate(LocalDate endDate){
+            this.endDate = endDate;
+            return this;
+        }
+
+        public ContractUpdateDtoBuilder customer(String customer){
+            this.customerId = customer;
+            return this;
+        }
+
+        public ContractUpdateDto build(){
+            ContractUpdateDto contract = new ContractUpdateDto();
+            contract.setNumber(this.number);
+            contract.setBeginDate(this.beginDate);
+            contract.setEndDate(this.endDate);
+            contract.setCustomerId(this.customerId);
+            return contract;
+        }
+
+    }
+    
+    
 }

@@ -3,6 +3,9 @@ package com.victorvilar.projetoempresa.controllers.dto.contract;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 
+import com.victorvilar.projetoempresa.domain.customer.Contract;
+import com.victorvilar.projetoempresa.domain.customer.Customer;
+import com.victorvilar.projetoempresa.domain.customer.ItemContract;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -79,4 +82,47 @@ public class ContractCreateDto {
         this.endDate = endDate;
     }
 
+    public static ContractCreateDtoBuilder builder(){
+        return new ContractCreateDtoBuilder();
+    }
+
+    public static final class ContractCreateDtoBuilder{
+
+        private String number;
+        private LocalDate beginDate;
+        private LocalDate endDate;
+        private List<ItemContractCreateDto> itens = new ArrayList<ItemContractCreateDto>();
+        private String customerId;
+
+        public ContractCreateDtoBuilder number(String number){
+            this.number = number;
+            return this;
+        }
+
+        public ContractCreateDtoBuilder beginDate(LocalDate beginDate){
+            this.beginDate = beginDate;
+            return this;
+        }
+
+        public ContractCreateDtoBuilder endDate(LocalDate endDate){
+            this.endDate = endDate;
+            return this;
+        }
+
+        public ContractCreateDtoBuilder customer(String customer){
+            this.customerId = customer;
+            return this;
+        }
+
+        public ContractResponseDto build(){
+            ContractResponseDto contract = new ContractResponseDto();
+            contract.setNumber(this.number);
+            contract.setBeginDate(this.beginDate);
+            contract.setEndDate(this.endDate);
+            contract.setCustomerId(this.customerId);
+            return contract;
+        }
+
+    }
+    
 }
