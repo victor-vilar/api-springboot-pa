@@ -228,23 +228,40 @@ class SupervisorServiceTest {
 
     @Test
     @DisplayName("save when customer id not found")
-    public void save_WhenCustomerIdNotFound(){}
+    public void save_WhenCustomerIdNotFound(){
+        when(this.supervisorRepository.findById(1L))
+                .thenThrow(new SupervisorNotFoundException("Supervisor Not Found !"));
+        SupervisorNotFoundException exception =
+                Assertions.assertThrows(SupervisorNotFoundException.class,() ->
+                        this.supervisorService.getById(1L));
+        Assertions.assertEquals(exception.getClass(), SupervisorNotFoundException.class);
+        Assertions.assertEquals(exception.getMessage(),"Supervisor Not Found !");
+    }
 
     @Test
     @DisplayName("delete when successfull")
-    public void delete_WhenSuccessfull(){}
-
-    @Test
-    @DisplayName("delete when successfull")
-    public void delete_WhenSupervisorIdNotFound(){}
+    public void delete_WhenSuccessfull(){
+        this.supervisorService.delete(anyLong());
+        verify(this.supervisorRepository,times(1)).deleteById(anyLong());
+    }
 
     @Test
     @DisplayName("update when successfull")
-    public void update_WhenSuccessfull(){}
+    public void update_WhenSuccessfull(){
 
-    @Test
-    @DisplayName("update when supervisor id not found")
-    public void update_WhenSupervisorIdNotFound(){}
+        when(this.supervisorRepository.findById(anyLong())).thenReturn(Optional.of(supervisor1));
+        when(this.supervisorRepository.save(any(Supervisor.class))).thenReturn(supervisor1);
+        when(this.mapper.toSupervisorResponseDto(any(Supervisor.class))).thenReturn(supervisorResponseDto1);
+
+        SupervisorResponseDto spr = this.supervisorService.update(supervisorUpdateDto1);
+        verify(this.supervisorRepository,times(1)).save(any(Supervisor.class));
+        assertEquals(spr.getCustomerId(), supervisorUpdateDto1.getCustomerId());
+        assertEquals(spr.getName(), supervisorResponseDto1.getName());
+
+
+    }
+
+
 
 
 
