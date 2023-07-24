@@ -35,7 +35,7 @@ public class ContractMapper {
         return this.mapper.map(contract,ContractResponseDto.class);
     }
 
-    public List<ContractResponseDto> toContractResponsDtoList(List<Contract> contracts){
+    public List<ContractResponseDto> toContractResponseDtoList(List<Contract> contracts){
         return contracts.stream().map(c ->this.toContractResponseDto(c)).collect(Collectors.toList());
 
     }

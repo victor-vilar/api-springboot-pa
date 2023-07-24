@@ -52,7 +52,7 @@ public class ContractService {
      */
     public List<ContractResponseDto> getAll() {
 
-        return this.contractMapper.toContractResponsDtoList(this.contractRepository.findAll());
+        return this.contractMapper.toContractResponseDtoList(this.contractRepository.findAll());
     }
 
     /**
@@ -61,7 +61,7 @@ public class ContractService {
      * @return
      */
     public List<ContractResponseDto> getAllByCustomerId(String clientId){
-        return this.contractMapper.toContractResponsDtoList(contractRepository.findByCustomerCpfCnpj(clientId));
+        return this.contractMapper.toContractResponseDtoList(contractRepository.findByCustomerCpfCnpj(clientId));
     }
 
     /**
