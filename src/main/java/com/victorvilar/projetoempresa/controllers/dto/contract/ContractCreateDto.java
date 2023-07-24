@@ -114,8 +114,8 @@ public class ContractCreateDto {
             return this;
         }
 
-        public ContractResponseDto build(){
-            ContractResponseDto contract = new ContractResponseDto();
+        public ContractCreateDto build(){
+            ContractCreateDto contract = new ContractCreateDto();
             contract.setNumber(this.number);
             contract.setBeginDate(this.beginDate);
             contract.setEndDate(this.endDate);
