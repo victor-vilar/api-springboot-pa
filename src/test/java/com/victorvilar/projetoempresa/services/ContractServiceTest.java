@@ -74,21 +74,20 @@ class ContractServiceTest {
     List<ItemContractCreateDto> itensCreateDto = new ArrayList<>();
 
 
-
     Customer customer;
     Residue residue;
     Equipment equipment;
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
 
         customer = new Customer.CustomerBuilder()
                 .cpfCnpj("58141426001")
                 .nameCompanyName("teste")
                 .build();
 
-        residue = new Residue("residue 1","residue 1");
-        equipment = new Equipment("equipment 1",10);
+        residue = new Residue("residue 1", "residue 1");
+        equipment = new Equipment("equipment 1", 10);
 
         this.setUpContracts();
         this.setUpContractCreate();
@@ -100,12 +99,12 @@ class ContractServiceTest {
 
     @Test
     @DisplayName("Get all when successfully")
-    public void getAll_WhenSuccessfull(){
-        when(this.contractRepository.findAll()).thenReturn(List.of(contract1,contract2));
-        when(this.contractMapper.toContractResponseDtoList(Mockito.anyList())).thenReturn(List.of(contractResponseDto1,contractResponseDto1));
+    public void getAll_WhenSuccessfull() {
+        when(this.contractRepository.findAll()).thenReturn(List.of(contract1, contract2));
+        when(this.contractMapper.toContractResponseDtoList(Mockito.anyList())).thenReturn(List.of(contractResponseDto1, contractResponseDto1));
         List<ContractResponseDto> list = this.contractService.getAll();
         Assertions.assertNotNull(list);
-        Assertions.assertEquals(2,list.size());
+        Assertions.assertEquals(2, list.size());
 
     }
 
@@ -113,17 +112,17 @@ class ContractServiceTest {
     @DisplayName("Get all by customer id when successfully")
     public void getAllByCustomer_WhenSuccessfull() {
         when(this.contractRepository.findByCustomerCpfCnpj(anyString())).thenReturn(anyList());
-        when(this.contractMapper.toContractResponseDtoList(List.of(contract1,contract2))).thenReturn(List.of(contractResponseDto1,contractResponseDto2));
+        when(this.contractMapper.toContractResponseDtoList(List.of(contract1, contract2))).thenReturn(List.of(contractResponseDto1, contractResponseDto2));
         List<ContractResponseDto> list = this.contractService.getAllByCustomerId(customer.getCpfCnpj());
         Assertions.assertNotNull(list);
-        Assertions.assertEquals(2,list.size());
-        Assertions.assertEquals("1000",list.get(0).getNumber());
-        Assertions.assertEquals("2000",list.get(1).getNumber());
+        Assertions.assertEquals(2, list.size());
+        Assertions.assertEquals("1000", list.get(0).getNumber());
+        Assertions.assertEquals("2000", list.get(1).getNumber());
     }
 
     @Test
     @DisplayName("Get all by customer id when customer not found")
-    public void getAllByCustomer_ReturnEmpty_WhenCustomerNotFound(){
+    public void getAllByCustomer_ReturnEmpty_WhenCustomerNotFound() {
         when(contractRepository.findByCustomerCpfCnpj(anyString())).thenReturn(anyList());
         List<ContractResponseDto> list = this.contractService.getAllByCustomerId(customer.getCpfCnpj());
         Assertions.assertTrue(list.isEmpty());
@@ -136,9 +135,9 @@ class ContractServiceTest {
         when(this.contractMapper.toContractResponseDto(any(Contract.class))).thenReturn(contractResponseDto1);
 
         ContractResponseDto contractResponseDto = this.contractService.getById(2L);
-        Assertions.assertEquals(contract1.getId(),contractResponseDto.getId());
-        Assertions.assertEquals(contract1.getBeginDate(),contractResponseDto.getBeginDate());
-        Assertions.assertEquals(contract1.getEndDate(),contractResponseDto.getEndDate());
+        Assertions.assertEquals(contract1.getId(), contractResponseDto.getId());
+        Assertions.assertEquals(contract1.getBeginDate(), contractResponseDto.getBeginDate());
+        Assertions.assertEquals(contract1.getEndDate(), contractResponseDto.getEndDate());
 
     }
 
@@ -148,19 +147,19 @@ class ContractServiceTest {
         when(this.contractRepository.findById(1L))
                 .thenThrow(new ContractNotFoundException("Contract Not Found !"));
         ContractNotFoundException exception =
-                Assertions.assertThrows(ContractNotFoundException.class,() ->
+                Assertions.assertThrows(ContractNotFoundException.class, () ->
                         this.contractService.getById(1L));
         Assertions.assertEquals(exception.getClass(), ContractNotFoundException.class);
-        Assertions.assertEquals("Contract Not Found !",exception.getMessage());
+        Assertions.assertEquals("Contract Not Found !", exception.getMessage());
     }
 
     @Test
     @DisplayName("find by id when successfull")
-    public void findByContractId_WhenSuccessfull(){
+    public void findByContractId_WhenSuccessfull() {
         when(this.contractRepository.findById(anyLong())).thenReturn(Optional.of(contract1));
         Contract contract = this.contractService.findByContractId(1L);
-        Assertions.assertEquals(contract1.getId(),contract.getId());
-        Assertions.assertEquals(contract1.getNumber(),contract.getNumber());
+        Assertions.assertEquals(contract1.getId(), contract.getId());
+        Assertions.assertEquals(contract1.getNumber(), contract.getNumber());
     }
 
     @Test
@@ -169,16 +168,16 @@ class ContractServiceTest {
         when(this.contractRepository.findById(1L))
                 .thenThrow(new ContractNotFoundException("Contract Not Found !"));
         ContractNotFoundException exception =
-                Assertions.assertThrows(ContractNotFoundException.class,() ->
+                Assertions.assertThrows(ContractNotFoundException.class, () ->
                         this.contractService.findByContractId(1L));
         Assertions.assertEquals(exception.getClass(), ContractNotFoundException.class);
-        Assertions.assertEquals("Contract Not Found !",exception.getMessage());
+        Assertions.assertEquals("Contract Not Found !", exception.getMessage());
     }
 
 
     @Test
     @DisplayName("save successfully when pass a valid contract")
-    void save_Successfully_WhenPassAValidContract(){
+    void save_Successfully_WhenPassAValidContract() {
 
         when(this.contractMapper.toContract(any(ContractCreateDto.class)))
                 .thenReturn(contract1);
@@ -193,9 +192,9 @@ class ContractServiceTest {
 
         ContractResponseDto contractResponseDto = this.contractService.save(contractCreateDto1);
 
-        verify(this.customerRepository,times(1)).save(any(Customer.class));
-        Assertions.assertEquals(contract1.getNumber(),contractResponseDto.getNumber());
-        Assertions.assertEquals(contract1.getItens().size(),contractResponseDto.getItens().size());
+        verify(this.customerRepository, times(1)).save(any(Customer.class));
+        Assertions.assertEquals(contract1.getNumber(), contractResponseDto.getNumber());
+        Assertions.assertEquals(contract1.getItens().size(), contractResponseDto.getItens().size());
 
     }
 
@@ -209,13 +208,32 @@ class ContractServiceTest {
         when(this.contractMapper.toContractResponseDto(any(Contract.class)))
                 .thenReturn(contractResponseDto1);
 
-        ContractResponseDto contractResponseDto = this.contractService.addNewItemToContract(1L,itemContractCreateDto1);
+        ContractResponseDto contractResponseDto = this.contractService.addNewItemToContract(1L, itemContractCreateDto1);
 
 
-        Assertions.assertEquals(contractResponseDto1.getNumber(),contractResponseDto.getNumber());
-        Assertions.assertEquals(contractResponseDto1.getItens().size(),contractResponseDto.getItens().size());
-        verify(itemContractRepository,times(1)).save(any(ItemContract.class));
-        verify(contractRepository,times(1)).save(any(Contract.class));
+        Assertions.assertEquals(contractResponseDto1.getNumber(), contractResponseDto.getNumber());
+        Assertions.assertEquals(contractResponseDto1.getItens().size(), contractResponseDto.getItens().size());
+        verify(itemContractRepository, times(1)).save(any(ItemContract.class));
+        verify(contractRepository, times(1)).save(any(Contract.class));
+    }
+
+    @Test
+    @DisplayName("Delete a item from contract")
+    void deleteItemContract_whenSuccessfull() {
+        when(this.itemContractRepository.findById(anyLong()))
+                .thenReturn(Optional.of(itemContract1));
+        when(this.contractMapper.toContractResponseDto(any()))
+                .thenReturn(contractResponseDto1);
+
+        ContractResponseDto contractResponseDto = this.contractService.deleteItemContract(1L);
+
+        verify(this.itemContractRepository,times(1)).delete(any());
+        verify(this.contractRepository,times(1)).save(any());
+
+        Assertions.assertEquals(contractResponseDto.getNumber(), contractResponseDto1.getNumber());
+        
+
+
     }
 
 
