@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotNull;
 
 public class ItemContractUpdateDto {
 
-    @NotNull(message = "An item to update  must have an id")
+
     private Long id;
 
     @NotNull(message = "The item must have a residue")
