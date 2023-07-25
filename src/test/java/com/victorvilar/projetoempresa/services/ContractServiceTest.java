@@ -219,6 +219,15 @@ class ContractServiceTest {
 
     @Test
     @DisplayName("Delete a item from contract")
+    void delete_whenSuccessfull() {
+        this.contractService.delete(1L);
+        verify(this.contractRepository,times(1)).deleteById(any());
+    }
+
+
+
+    @Test
+    @DisplayName("Delete a item from contract")
     void deleteItemContract_whenSuccessfull() {
         when(this.itemContractRepository.findById(anyLong()))
                 .thenReturn(Optional.of(itemContract1));
@@ -231,10 +240,11 @@ class ContractServiceTest {
         verify(this.contractRepository,times(1)).save(any());
 
         Assertions.assertEquals(contractResponseDto.getNumber(), contractResponseDto1.getNumber());
-        
-
-
     }
+
+    @Test
+    @DisplayName("Delete a item from contract")
+    void UpdateItemContract_whenSuccessfull() {}
 
 
     private void setUpContracts(){
