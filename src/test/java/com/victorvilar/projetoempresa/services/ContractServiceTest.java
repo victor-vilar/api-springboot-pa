@@ -73,7 +73,6 @@ class ContractServiceTest {
     ItemContractCreateDto itemContractCreateDto2;
     List<ItemContractCreateDto> itensCreateDto = new ArrayList<>();
 
-
     Customer customer;
     Residue residue;
     Equipment equipment;
@@ -174,7 +173,6 @@ class ContractServiceTest {
         Assertions.assertEquals("Contract Not Found !", exception.getMessage());
     }
 
-
     @Test
     @DisplayName("save successfully when pass a valid contract")
     void save_Successfully_WhenPassAValidContract() {
@@ -224,8 +222,6 @@ class ContractServiceTest {
         verify(this.contractRepository,times(1)).deleteById(any());
     }
 
-
-
     @Test
     @DisplayName("Delete a item from contract")
     void deleteItemContract_whenSuccessfull() {
@@ -243,8 +239,71 @@ class ContractServiceTest {
     }
 
     @Test
+    @DisplayName("Update contract adding new items ")
+    void UpdateContract_whenAddingNewItens() {
+        List<ItemContract> list = contract1.getItens().stream().toList();
+
+        //passing a contract without items to check
+        when(this.contractRepository.findById(1L))
+                .thenReturn(Optional.of(contract2));
+
+        when(this.customerService.findCustomerById(anyString()))
+                .thenReturn(customer);
+        when(this.itemContractMapper.fromItemContractUpdateDtoListToItemContractList(anyList()))
+                .thenReturn(list);
+        when(this.contractMapper.toContractResponseDto(any()))
+                .thenReturn(contractResponseDto1);
+        ContractResponseDto contractResponseDto = this.contractService.update(1L,contractUpdateDto1);
+        verify(this.itemContractRepository,times(2)).save(any());
+        verify(this.contractRepository,times(1)).save(any());
+        Assertions.assertFalse(contractResponseDto.getItens().isEmpty());
+        Assertions.assertEquals(contract1.getItens().size(),contractResponseDto.getItens().size());
+        Assertions.assertEquals(contract1.getItens().get(0).getValue(),contractResponseDto.getItens().get(0).getValue());
+
+
+    }
+
+
+    @Test
+    @DisplayName("Update contract updating existent items with an id  ")
+    void UpdateContract_whenUpdatingExistentItems() {
+        List<ItemContract> list = contract1.getItens().stream().toList();
+        list.get(0).setId(1L);
+        list.get(1).setId(2L);
+
+
+        when(this.contractRepository.findById(1L))
+                .thenReturn(Optional.of(contract1));
+
+        when(this.customerService.findCustomerById(anyString()))
+                .thenReturn(customer);
+
+        when(this.itemContractMapper.fromItemContractUpdateDtoListToItemContractList(anyList()))
+                .thenReturn(list);
+        when(this.contractMapper.toContractResponseDto(any()))
+                .thenReturn(contractResponseDto1);
+
+        when(this.itemContractRepository.findById(any()))
+                .thenReturn(Optional.of(new ItemContract()));
+
+        ContractResponseDto contractResponseDto = this.contractService.update(1L,contractUpdateDto1);
+        verify(this.itemContractRepository,times(2)).save(any());
+        verify(this.contractRepository,times(1)).save(any());
+
+        Assertions.assertFalse(contractResponseDto.getItens().isEmpty());
+        Assertions.assertEquals(contract1.getItens().size(),contractResponseDto.getItens().size());
+        Assertions.assertEquals(contract1.getItens().get(0).getValue(),contractResponseDto.getItens().get(0).getValue());
+
+
+    }
+
+
+
+    @Test
     @DisplayName("Delete a item from contract")
-    void UpdateItemContract_whenSuccessfull() {}
+    void UpdateItemContract_whenSuccessfull() {
+
+    }
 
 
     private void setUpContracts(){
@@ -271,9 +330,6 @@ class ContractServiceTest {
                 .customer(customer)
                 .build();
 
-        //add item to contract 2
-        contract2.addNewItem(new ItemContract(residue,equipment,10,10));
-        contract2.addNewItem(new ItemContract(residue,equipment,20,20));
     }
     private void setUpContractCreate(){
 
@@ -315,8 +371,8 @@ class ContractServiceTest {
 
         contractUpdateDto1.setItens(
                 Arrays.asList(
-                        new ItemContractUpdateDto(1L,residue.getId(),equipment.getId(),10d,10d),
-                        new ItemContractUpdateDto(2L,residue.getId(),equipment.getId(),20d,20d)));
+                        new ItemContractUpdateDto(null,residue.getId(),equipment.getId(),10d,10d),
+                        new ItemContractUpdateDto(null,residue.getId(),equipment.getId(),20d,20d)));
 
 
         contractUpdateDto2 = ContractUpdateDto.builder()
