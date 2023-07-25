@@ -170,6 +170,7 @@ public class ContractService {
             }else{
                 updateItemContract(contract,item);
             }
+            this.itemContractRepository.save(item);
         });
 
         this.contractRepository.save(contract);
@@ -187,7 +188,6 @@ public class ContractService {
         itemToUpdate.setResidue(item.getResidue());
         itemToUpdate.setQtdOfResidue(item.getQtdOfResidue());
         itemToUpdate.setValue(item.getValue());
-        this.itemContractRepository.save(itemToUpdate);
     }
 
 }
