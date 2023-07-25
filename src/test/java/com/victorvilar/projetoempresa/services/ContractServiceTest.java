@@ -20,12 +20,13 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 @DisplayName("Contract service tests class")
@@ -64,6 +65,10 @@ class ContractServiceTest {
     ContractResponseDto contractResponseDto2;
     ContractResponseDto contractResponseDto1;
 
+    ItemContract itemContract1;
+    ItemContract itemContract2;
+
+    List<ItemContract> itens = new ArrayList<>();
 
 
 
@@ -171,9 +176,26 @@ class ContractServiceTest {
     @DisplayName("save successfully when pass a valid contract")
     void save_Successfully_WhenPassAValidContract(){
 
+        when(this.contractMapper.toContract(any(ContractCreateDto.class)))
+                .thenReturn(contract1);
+        when(this.customerService.findCustomerById(anyString()))
+                .thenReturn(customer);
+        when(this.itemContractMapper.fromItemContractCreateDtoListToItemContractList(anyList()))
+                .thenReturn(itens);
+        when(this.contractRepository.save(any(Contract.class)))
+                .thenReturn(contract1);
+        when(this.contractMapper.toContractResponseDto(contract1))
+                .thenReturn(contractResponseDto1);
 
+        ContractResponseDto contractResponseDto = this.contractService.save(contractCreateDto1);
+
+        verify(this.customerRepository,times(1)).save(any(Customer.class));
+        Assertions.assertEquals(contract1.getNumber(),contractResponseDto.getNumber());
+        Assertions.assertEquals(contract1.getItens().size(),contractResponseDto.getItens().size());
 
     }
+
+    
 
     private void setUpContracts(){
         //contract 1
@@ -285,6 +307,11 @@ class ContractServiceTest {
                         new ItemContractResponseDto(1L,residue.getType(),equipment.getEquipmentName(),10d,10d),
                         new ItemContractResponseDto(2L,residue.getType(),equipment.getEquipmentName(),10d,10d)));
 
+    }
+    private void setUpItemContract(){
+        itemContract1 = new ItemContract(residue,equipment,10d,10d);
+        itemContract2 = new ItemContract(residue,equipment,20d,20d);
+        itens.addAll(Arrays.asList(itemContract1,itemContract2));
     }
 
 
