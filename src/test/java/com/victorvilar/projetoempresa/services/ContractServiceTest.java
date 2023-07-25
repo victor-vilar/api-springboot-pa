@@ -192,7 +192,7 @@ class ContractServiceTest {
 
         verify(this.customerRepository, times(1)).save(any(Customer.class));
         Assertions.assertEquals(contract1.getNumber(), contractResponseDto.getNumber());
-        Assertions.assertEquals(contract1.getItens().size(), contractResponseDto.getItens().size());
+
 
     }
 

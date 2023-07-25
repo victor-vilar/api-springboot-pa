@@ -11,6 +11,10 @@ import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.Map;
 
+/**
+ * Jwt service to create jwt tokens e validate jwt tokens.
+ * Used with JwtTokenValidatorFilter and JwtTokenGeneratorFilter
+ */
 @Service
 public class JwtService {
 
@@ -18,7 +22,10 @@ public class JwtService {
     private final String SIGNATURE_KEY = "lmoybqnycrQtzhhq6F3HEovlVWEnAPzoMOmv6GgpCBM";
 
 
-
+    /**
+     * crates a SecretKey
+     * @return
+     */
     private SecretKey encondeKey(){
         return Keys.hmacShaKeyFor(SIGNATURE_KEY.getBytes(StandardCharsets.UTF_8));
     }
