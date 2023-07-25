@@ -67,8 +67,11 @@ class ContractServiceTest {
 
     ItemContract itemContract1;
     ItemContract itemContract2;
-
     List<ItemContract> itens = new ArrayList<>();
+
+    ItemContractCreateDto itemContractCreateDto1;
+    ItemContractCreateDto itemContractCreateDto2;
+    List<ItemContractCreateDto> itensCreateDto = new ArrayList<>();
 
 
 
@@ -91,6 +94,7 @@ class ContractServiceTest {
         this.setUpContractCreate();
         this.setUpContractUpdate();
         this.setUpContractResponse();
+        this.setUpItemContract();
 
     }
 
@@ -195,7 +199,25 @@ class ContractServiceTest {
 
     }
 
-    
+    @Test
+    @DisplayName("add new item to contract whe successfull")
+    void addNewItemToContract_whenSuccessfull() {
+        when(this.itemContractMapper.toItemContract(itemContractCreateDto1))
+                .thenReturn(itemContract1);
+        when(this.contractRepository.findById(1L))
+                .thenReturn(Optional.of(contract1));
+        when(this.contractMapper.toContractResponseDto(any(Contract.class)))
+                .thenReturn(contractResponseDto1);
+
+        ContractResponseDto contractResponseDto = this.contractService.addNewItemToContract(1L,itemContractCreateDto1);
+
+
+        Assertions.assertEquals(contractResponseDto1.getNumber(),contractResponseDto.getNumber());
+        Assertions.assertEquals(contractResponseDto1.getItens().size(),contractResponseDto.getItens().size());
+        verify(itemContractRepository,times(1)).save(any(ItemContract.class));
+        verify(contractRepository,times(1)).save(any(Contract.class));
+    }
+
 
     private void setUpContracts(){
         //contract 1
@@ -311,6 +333,10 @@ class ContractServiceTest {
     private void setUpItemContract(){
         itemContract1 = new ItemContract(residue,equipment,10d,10d);
         itemContract2 = new ItemContract(residue,equipment,20d,20d);
+        itens.addAll(Arrays.asList(itemContract1,itemContract2));
+
+        itemContractCreateDto1 = new ItemContractCreateDto(residue.getId(),equipment.getId(),10d,10d);
+        itemContractCreateDto2 = new ItemContractCreateDto(residue.getId(),equipment.getId(),20d,20d);
         itens.addAll(Arrays.asList(itemContract1,itemContract2));
     }
 
