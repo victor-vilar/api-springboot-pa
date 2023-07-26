@@ -1,14 +1,14 @@
 package com.victorvilar.projetoempresa.services;
 
-import com.victorvilar.projetoempresa.controllers.dto.contract.ContractCreateDto;
-import com.victorvilar.projetoempresa.controllers.dto.contract.ContractResponseDto;
-import com.victorvilar.projetoempresa.controllers.dto.contract.ContractUpdateDto;
-import com.victorvilar.projetoempresa.controllers.dto.contract.ItemContractCreateDto;
-import com.victorvilar.projetoempresa.domain.customer.Customer;
+import com.victorvilar.projetoempresa.dto.contract.ContractCreateDto;
+import com.victorvilar.projetoempresa.dto.contract.ContractResponseDto;
+import com.victorvilar.projetoempresa.dto.contract.ContractUpdateDto;
+import com.victorvilar.projetoempresa.dto.contract.ItemContractCreateDto;
+import com.victorvilar.projetoempresa.domain.Customer;
 import com.victorvilar.projetoempresa.exceptions.CustomerNotFoundException;
 import com.victorvilar.projetoempresa.exceptions.ContractNotFoundException;
-import com.victorvilar.projetoempresa.domain.customer.Contract;
-import com.victorvilar.projetoempresa.domain.customer.ItemContract;
+import com.victorvilar.projetoempresa.domain.Contract;
+import com.victorvilar.projetoempresa.domain.ItemContract;
 import com.victorvilar.projetoempresa.exceptions.ItemContractNotFoundException;
 import com.victorvilar.projetoempresa.mappers.ContractMapper;
 import com.victorvilar.projetoempresa.mappers.ItemContractMapper;

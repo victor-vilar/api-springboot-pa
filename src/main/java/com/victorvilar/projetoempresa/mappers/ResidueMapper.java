@@ -1,8 +1,8 @@
 package com.victorvilar.projetoempresa.mappers;
 
-import com.victorvilar.projetoempresa.controllers.dto.residuetype.ResidueCreateDto;
-import com.victorvilar.projetoempresa.controllers.dto.residuetype.ResidueResponseDto;
-import com.victorvilar.projetoempresa.controllers.dto.residuetype.ResidueUpdateDto;
+import com.victorvilar.projetoempresa.dto.residuetype.ResidueCreateDto;
+import com.victorvilar.projetoempresa.dto.residuetype.ResidueResponseDto;
+import com.victorvilar.projetoempresa.dto.residuetype.ResidueUpdateDto;
 import com.victorvilar.projetoempresa.domain.Residue;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

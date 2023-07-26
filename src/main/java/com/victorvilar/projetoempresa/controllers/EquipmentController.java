@@ -1,8 +1,8 @@
 package com.victorvilar.projetoempresa.controllers;
 
-import com.victorvilar.projetoempresa.controllers.dto.equipment.EquipmentCreateDto;
-import com.victorvilar.projetoempresa.controllers.dto.equipment.EquipmentResponseDto;
-import com.victorvilar.projetoempresa.controllers.dto.equipment.EquipmentUpdateDto;
+import com.victorvilar.projetoempresa.dto.equipment.EquipmentCreateDto;
+import com.victorvilar.projetoempresa.dto.equipment.EquipmentResponseDto;
+import com.victorvilar.projetoempresa.dto.equipment.EquipmentUpdateDto;
 import com.victorvilar.projetoempresa.services.EquipmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

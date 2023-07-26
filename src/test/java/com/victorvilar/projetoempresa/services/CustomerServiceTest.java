@@ -1,8 +1,8 @@
 package com.victorvilar.projetoempresa.services;
 
-import com.victorvilar.projetoempresa.controllers.dto.customer.CustomerCreateDto;
-import com.victorvilar.projetoempresa.controllers.dto.customer.CustomerResponseDto;
-import com.victorvilar.projetoempresa.domain.customer.Customer;
+import com.victorvilar.projetoempresa.dto.customer.CustomerCreateDto;
+import com.victorvilar.projetoempresa.dto.customer.CustomerResponseDto;
+import com.victorvilar.projetoempresa.domain.Customer;
 import com.victorvilar.projetoempresa.exceptions.CpfOrCnpjAlreadyExistsException;
 import com.victorvilar.projetoempresa.exceptions.CustomerNotFoundException;
 import com.victorvilar.projetoempresa.mappers.CustomerMapper;
@@ -198,7 +198,7 @@ class CustomerServiceTest {
     void find_ThrowsCustomerNotFoundException_WhenCpfCnpjIsWrong(){
         when(repository.findByCpfCnpj(Mockito.anyString())).thenReturn(Optional.empty());
         CustomerNotFoundException exception = Assertions.assertThrows(CustomerNotFoundException.class,() ->this.customerService.findCustomerById("86570192051"));
-        assertEquals(exception.getMessage(),"This client doesn't exist");
+        assertEquals(exception.getMessage(),"Customer Not Found !");
         assertNotEquals(exception,null);
         assertEquals(exception.getClass(), CustomerNotFoundException.class);
         Mockito.verifyNoMoreInteractions(repository);

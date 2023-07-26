@@ -2,8 +2,8 @@ package com.victorvilar.projetoempresa.controllers;
 
 import java.util.List;
 
-import com.victorvilar.projetoempresa.controllers.dto.customer.CustomerCreateDto;
-import com.victorvilar.projetoempresa.controllers.dto.customer.CustomerResponseDto;
+import com.victorvilar.projetoempresa.dto.customer.CustomerCreateDto;
+import com.victorvilar.projetoempresa.dto.customer.CustomerResponseDto;
 import com.victorvilar.projetoempresa.mappers.CustomerMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

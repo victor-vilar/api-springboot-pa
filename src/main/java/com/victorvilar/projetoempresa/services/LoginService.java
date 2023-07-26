@@ -1,7 +1,7 @@
 package com.victorvilar.projetoempresa.services;
 
-import com.victorvilar.projetoempresa.domain.applicationuser.ApplicationUser;
-import com.victorvilar.projetoempresa.domain.applicationuser.dto.ApplicationUserResponseDto;
+import com.victorvilar.projetoempresa.domain.ApplicationUser;
+import com.victorvilar.projetoempresa.dto.applicationuser.ApplicationUserResponseDto;
 import com.victorvilar.projetoempresa.mappers.ApplicationUserMapper;
 import com.victorvilar.projetoempresa.repository.ApplicationUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

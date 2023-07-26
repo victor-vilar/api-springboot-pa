@@ -1,8 +1,8 @@
 package com.victorvilar.projetoempresa.mappers;
 
-import com.victorvilar.projetoempresa.domain.applicationuser.ApplicationUser;
-import com.victorvilar.projetoempresa.domain.applicationuser.dto.ApplicationUserDto;
-import com.victorvilar.projetoempresa.domain.applicationuser.dto.ApplicationUserResponseDto;
+import com.victorvilar.projetoempresa.domain.ApplicationUser;
+import com.victorvilar.projetoempresa.dto.applicationuser.ApplicationUserDto;
+import com.victorvilar.projetoempresa.dto.applicationuser.ApplicationUserResponseDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 

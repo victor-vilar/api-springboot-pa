@@ -2,7 +2,7 @@ package com.victorvilar.projetoempresa.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.victorvilar.projetoempresa.domain.customer.Supervisor;
+import com.victorvilar.projetoempresa.domain.Supervisor;
 
 import java.util.List;
 

@@ -1,13 +1,13 @@
 package com.victorvilar.projetoempresa.configuration;
 
-import com.victorvilar.projetoempresa.controllers.dto.adress.AddressResponseDto;
-import com.victorvilar.projetoempresa.controllers.dto.contract.ContractResponseDto;
-import com.victorvilar.projetoempresa.controllers.dto.contract.ItemContractResponseDto;
-import com.victorvilar.projetoempresa.controllers.dto.supervisor.SupervisorResponseDto;
-import com.victorvilar.projetoempresa.domain.customer.Address;
-import com.victorvilar.projetoempresa.domain.customer.Contract;
-import com.victorvilar.projetoempresa.domain.customer.ItemContract;
-import com.victorvilar.projetoempresa.domain.customer.Supervisor;
+import com.victorvilar.projetoempresa.dto.adress.AddressResponseDto;
+import com.victorvilar.projetoempresa.dto.contract.ContractResponseDto;
+import com.victorvilar.projetoempresa.dto.contract.ItemContractResponseDto;
+import com.victorvilar.projetoempresa.dto.supervisor.SupervisorResponseDto;
+import com.victorvilar.projetoempresa.domain.Address;
+import com.victorvilar.projetoempresa.domain.Contract;
+import com.victorvilar.projetoempresa.domain.ItemContract;
+import com.victorvilar.projetoempresa.domain.Supervisor;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

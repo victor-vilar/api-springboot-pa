@@ -1,15 +1,13 @@
 package com.victorvilar.projetoempresa.services;
 
-import com.victorvilar.projetoempresa.controllers.dto.adress.AddressCreateDto;
-import com.victorvilar.projetoempresa.controllers.dto.adress.AddressResponseDto;
-import com.victorvilar.projetoempresa.controllers.dto.adress.AddressUpdateDto;
-import com.victorvilar.projetoempresa.domain.customer.Address;
-import com.victorvilar.projetoempresa.domain.customer.Customer;
+import com.victorvilar.projetoempresa.dto.adress.AddressCreateDto;
+import com.victorvilar.projetoempresa.dto.adress.AddressResponseDto;
+import com.victorvilar.projetoempresa.dto.adress.AddressUpdateDto;
+import com.victorvilar.projetoempresa.domain.Address;
+import com.victorvilar.projetoempresa.domain.Customer;
 import com.victorvilar.projetoempresa.mappers.AddressMapper;
-import com.victorvilar.projetoempresa.mappers.CustomerMapper;
 import com.victorvilar.projetoempresa.repository.AddressRepository;
 import com.victorvilar.projetoempresa.repository.CustomerRepository;
-import io.jsonwebtoken.lang.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -17,16 +15,13 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
 import java.util.Optional;
 
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)

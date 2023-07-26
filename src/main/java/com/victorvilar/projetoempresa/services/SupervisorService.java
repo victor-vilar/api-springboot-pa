@@ -1,10 +1,10 @@
 package com.victorvilar.projetoempresa.services;
 
-import com.victorvilar.projetoempresa.controllers.dto.supervisor.SupervisorCreateDto;
-import com.victorvilar.projetoempresa.controllers.dto.supervisor.SupervisorResponseDto;
-import com.victorvilar.projetoempresa.controllers.dto.supervisor.SupervisorUpdateDto;
-import com.victorvilar.projetoempresa.domain.customer.Customer;
-import com.victorvilar.projetoempresa.domain.customer.Supervisor;
+import com.victorvilar.projetoempresa.dto.supervisor.SupervisorCreateDto;
+import com.victorvilar.projetoempresa.dto.supervisor.SupervisorResponseDto;
+import com.victorvilar.projetoempresa.dto.supervisor.SupervisorUpdateDto;
+import com.victorvilar.projetoempresa.domain.Customer;
+import com.victorvilar.projetoempresa.domain.Supervisor;
 import com.victorvilar.projetoempresa.exceptions.SupervisorNotFoundException;
 import com.victorvilar.projetoempresa.mappers.SupervisorMapper;
 import com.victorvilar.projetoempresa.repository.CustomerRepository;
@@ -82,8 +82,8 @@ public class SupervisorService {
         Customer customer = this.customerService.findCustomerById(supervisorCreateDto.getCustomerId());
         Supervisor supervisor = mapper.toSupervisor(supervisorCreateDto);
         customer.addNewSupervisor(supervisor);
-        this.customerRepository.save(customer);
         this.supervisorRespository.save(supervisor);
+        this.customerRepository.save(customer);
         return this.mapper.toSupervisorResponseDto(supervisor);
     }
 

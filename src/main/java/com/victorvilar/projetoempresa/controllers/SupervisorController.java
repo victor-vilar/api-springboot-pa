@@ -1,8 +1,8 @@
 package com.victorvilar.projetoempresa.controllers;
 
-import com.victorvilar.projetoempresa.controllers.dto.supervisor.SupervisorCreateDto;
-import com.victorvilar.projetoempresa.controllers.dto.supervisor.SupervisorResponseDto;
-import com.victorvilar.projetoempresa.controllers.dto.supervisor.SupervisorUpdateDto;
+import com.victorvilar.projetoempresa.dto.supervisor.SupervisorCreateDto;
+import com.victorvilar.projetoempresa.dto.supervisor.SupervisorResponseDto;
+import com.victorvilar.projetoempresa.dto.supervisor.SupervisorUpdateDto;
 import com.victorvilar.projetoempresa.mappers.SupervisorMapper;
 import com.victorvilar.projetoempresa.services.CustomerService;
 import com.victorvilar.projetoempresa.services.SupervisorService;
@@ -45,7 +45,7 @@ public class SupervisorController {
       * @param customerId client id
      * @return list of supervisores of that client
      */
-    @GetMapping("by-customer/{clientId}")
+    @GetMapping("by-customer/{customerId}")
     public ResponseEntity<List<SupervisorResponseDto>> getAllByCustomer(@PathVariable String customerId){
         return ResponseEntity.ok(this.supervisorService.getAllByCustomer(customerId));
     }
@@ -55,13 +55,13 @@ public class SupervisorController {
      * @param id of a supervisor
      * @return ResponseEntity of SupervisorResponseDto
      */
-    @GetMapping("/{supervisorId}")
+    @GetMapping("/{id}")
     public ResponseEntity<SupervisorResponseDto> getById(@PathVariable Long id){
         return ResponseEntity.ok(this.supervisorService.getById(id));
     }
 
     /**
-     * Add a new supervisor for a client
+     * Add a new supervisor for a customer
      * @return http response
      */
     @PostMapping()
@@ -77,7 +77,7 @@ public class SupervisorController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PutMapping("{supervisorId}")
+    @PutMapping()
     public ResponseEntity<SupervisorResponseDto> update(@Valid @RequestBody SupervisorUpdateDto supervisorUpdateDto){
         return ResponseEntity.ok(this.supervisorService.update(supervisorUpdateDto));
     }

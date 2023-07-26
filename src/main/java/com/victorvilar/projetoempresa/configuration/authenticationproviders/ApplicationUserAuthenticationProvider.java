@@ -1,7 +1,7 @@
 package com.victorvilar.projetoempresa.configuration.authenticationproviders;
 
-import com.victorvilar.projetoempresa.domain.applicationuser.ApplicationUser;
-import com.victorvilar.projetoempresa.domain.applicationuser.ApplicationUserRole;
+import com.victorvilar.projetoempresa.domain.ApplicationUser;
+import com.victorvilar.projetoempresa.domain.ApplicationUserRole;
 import com.victorvilar.projetoempresa.repository.ApplicationUserRolesRepository;
 import com.victorvilar.projetoempresa.repository.ApplicationUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,11 +11,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Component
+//@Component
 public class ApplicationUserAuthenticationProvider implements AuthenticationProvider {
 
     @Autowired

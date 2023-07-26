@@ -1,9 +1,9 @@
 package com.victorvilar.projetoempresa.mappers;
 
-import com.victorvilar.projetoempresa.controllers.dto.supervisor.SupervisorCreateDto;
-import com.victorvilar.projetoempresa.controllers.dto.supervisor.SupervisorResponseDto;
-import com.victorvilar.projetoempresa.controllers.dto.supervisor.SupervisorUpdateDto;
-import com.victorvilar.projetoempresa.domain.customer.Supervisor;
+import com.victorvilar.projetoempresa.dto.supervisor.SupervisorCreateDto;
+import com.victorvilar.projetoempresa.dto.supervisor.SupervisorResponseDto;
+import com.victorvilar.projetoempresa.dto.supervisor.SupervisorUpdateDto;
+import com.victorvilar.projetoempresa.domain.Supervisor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

@@ -1,8 +1,8 @@
 package com.victorvilar.projetoempresa.controllers;
 
-import com.victorvilar.projetoempresa.controllers.dto.residuetype.ResidueCreateDto;
-import com.victorvilar.projetoempresa.controllers.dto.residuetype.ResidueResponseDto;
-import com.victorvilar.projetoempresa.controllers.dto.residuetype.ResidueUpdateDto;
+import com.victorvilar.projetoempresa.dto.residuetype.ResidueCreateDto;
+import com.victorvilar.projetoempresa.dto.residuetype.ResidueResponseDto;
+import com.victorvilar.projetoempresa.dto.residuetype.ResidueUpdateDto;
 import com.victorvilar.projetoempresa.mappers.ResidueMapper;
 import com.victorvilar.projetoempresa.services.ResidueService;
 import jakarta.validation.Valid;

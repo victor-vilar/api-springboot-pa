@@ -1,12 +1,11 @@
 package com.victorvilar.projetoempresa.services;
 
-import com.victorvilar.projetoempresa.controllers.dto.contract.*;
 import com.victorvilar.projetoempresa.domain.*;
-import com.victorvilar.projetoempresa.domain.customer.Contract;
-import com.victorvilar.projetoempresa.domain.customer.Customer;
-import com.victorvilar.projetoempresa.domain.customer.ItemContract;
+import com.victorvilar.projetoempresa.domain.Contract;
+import com.victorvilar.projetoempresa.domain.Customer;
+import com.victorvilar.projetoempresa.domain.ItemContract;
+import com.victorvilar.projetoempresa.dto.contract.*;
 import com.victorvilar.projetoempresa.exceptions.ContractNotFoundException;
-import com.victorvilar.projetoempresa.exceptions.SupervisorNotFoundException;
 import com.victorvilar.projetoempresa.mappers.ContractMapper;
 import com.victorvilar.projetoempresa.mappers.ItemContractMapper;
 import com.victorvilar.projetoempresa.repository.ContractRepository;

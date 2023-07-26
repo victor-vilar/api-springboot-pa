@@ -1,7 +1,7 @@
 package com.victorvilar.projetoempresa.controllers;
 
-import com.victorvilar.projetoempresa.domain.applicationuser.dto.ApplicationUserDto;
-import com.victorvilar.projetoempresa.domain.applicationuser.dto.ApplicationUserResponseDto;
+import com.victorvilar.projetoempresa.dto.applicationuser.ApplicationUserDto;
+import com.victorvilar.projetoempresa.dto.applicationuser.ApplicationUserResponseDto;
 import com.victorvilar.projetoempresa.services.LoginService;
 import com.victorvilar.projetoempresa.services.RegisterUserService;
 import jakarta.validation.Valid;

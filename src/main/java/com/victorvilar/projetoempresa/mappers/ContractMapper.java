@@ -1,9 +1,9 @@
 package com.victorvilar.projetoempresa.mappers;
 
-import com.victorvilar.projetoempresa.controllers.dto.contract.ContractCreateDto;
-import com.victorvilar.projetoempresa.controllers.dto.contract.ContractResponseDto;
-import com.victorvilar.projetoempresa.controllers.dto.contract.ContractUpdateDto;
-import com.victorvilar.projetoempresa.domain.customer.Contract;
+import com.victorvilar.projetoempresa.dto.contract.ContractCreateDto;
+import com.victorvilar.projetoempresa.dto.contract.ContractResponseDto;
+import com.victorvilar.projetoempresa.dto.contract.ContractUpdateDto;
+import com.victorvilar.projetoempresa.domain.Contract;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

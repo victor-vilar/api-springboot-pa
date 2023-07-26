@@ -1,8 +1,8 @@
 package com.victorvilar.projetoempresa.services;
 
-import com.victorvilar.projetoempresa.controllers.dto.equipment.EquipmentCreateDto;
-import com.victorvilar.projetoempresa.controllers.dto.equipment.EquipmentResponseDto;
-import com.victorvilar.projetoempresa.controllers.dto.equipment.EquipmentUpdateDto;
+import com.victorvilar.projetoempresa.dto.equipment.EquipmentCreateDto;
+import com.victorvilar.projetoempresa.dto.equipment.EquipmentResponseDto;
+import com.victorvilar.projetoempresa.dto.equipment.EquipmentUpdateDto;
 import com.victorvilar.projetoempresa.domain.Equipment;
 import com.victorvilar.projetoempresa.exceptions.EquipmentNotFoundException;
 import com.victorvilar.projetoempresa.mappers.EquipmentMapper;

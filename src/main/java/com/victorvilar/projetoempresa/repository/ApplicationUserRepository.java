@@ -1,8 +1,8 @@
 package com.victorvilar.projetoempresa.repository;
 
 
-import com.victorvilar.projetoempresa.domain.applicationuser.ApplicationUser;
-import com.victorvilar.projetoempresa.domain.applicationuser.ApplicationUserRole;
+import com.victorvilar.projetoempresa.domain.ApplicationUser;
+import com.victorvilar.projetoempresa.domain.ApplicationUserRole;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

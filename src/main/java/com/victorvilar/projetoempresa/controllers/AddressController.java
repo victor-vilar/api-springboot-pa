@@ -1,8 +1,8 @@
 package com.victorvilar.projetoempresa.controllers;
 
-import com.victorvilar.projetoempresa.controllers.dto.adress.AddressCreateDto;
-import com.victorvilar.projetoempresa.controllers.dto.adress.AddressResponseDto;
-import com.victorvilar.projetoempresa.controllers.dto.adress.AddressUpdateDto;
+import com.victorvilar.projetoempresa.dto.adress.AddressCreateDto;
+import com.victorvilar.projetoempresa.dto.adress.AddressResponseDto;
+import com.victorvilar.projetoempresa.dto.adress.AddressUpdateDto;
 import com.victorvilar.projetoempresa.services.AddressService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
