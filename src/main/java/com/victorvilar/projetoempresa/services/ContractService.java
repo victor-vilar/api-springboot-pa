@@ -125,7 +125,8 @@ public class ContractService {
         ItemContract item = this.itemContractMapper.toItemContract(itemDto);
         Contract contract = this.findByContractId(contractId);
 
-        contract.addNewItem(item);
+        item.setContract(contract);
+        itemContractRepository.save(item);
 
         contract = this.contractRepository.save(contract);
         return this.contractMapper.toContractResponseDto(contract);
@@ -177,15 +178,14 @@ public class ContractService {
         //loop to insert a new item or update an exist one
         lista.stream().forEach(item ->{
             if(item.getId() == null){
-                contract.addNewItem(item);
+                item.setContract(contract);
+                itemContractRepository.save(item);
             }else{
                 updateItemContract(contract,item);
             }
 
         });
-
-        this.contractRepository.save(contract);
-        return this.contractMapper.toContractResponseDto(contract);
+        return this.contractMapper.toContractResponseDto(this.contractRepository.save(contract));
     }
 
     /**
@@ -199,6 +199,7 @@ public class ContractService {
         itemToUpdate.setResidue(item.getResidue());
         itemToUpdate.setQtdOfResidue(item.getQtdOfResidue());
         itemToUpdate.setValue(item.getValue());
+        itemContractRepository.save(item);
     }
 
 }

@@ -74,7 +74,8 @@ public class ContractController {
      */
     @PostMapping("/additem/{contractId}")
     public ResponseEntity<ContractResponseDto> addNewItemToContract(@PathVariable Long contractId, @Valid @RequestBody ItemContractCreateDto itemDto){
-        return ResponseEntity.ok(this.service.addNewItemToContract(contractId,itemDto));
+        ContractResponseDto contractResponseDto = this.service.addNewItemToContract(contractId,itemDto);
+        return ResponseEntity.ok(contractResponseDto);
     }
 
 
