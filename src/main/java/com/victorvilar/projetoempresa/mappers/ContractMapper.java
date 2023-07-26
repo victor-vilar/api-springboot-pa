@@ -24,7 +24,9 @@ public class ContractMapper {
 
 
     public Contract toContract(ContractCreateDto contractCreateDto){
-        return this.mapper.map(contractCreateDto, Contract.class);
+        Contract contract = this.mapper.map(contractCreateDto, Contract.class);
+        contract.setId(null);
+        return contract;
     }
 
     public Contract toContract(ContractUpdateDto contractUpdateDto){

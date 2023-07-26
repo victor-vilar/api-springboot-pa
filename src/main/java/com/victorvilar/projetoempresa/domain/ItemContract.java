@@ -1,6 +1,7 @@
 package com.victorvilar.projetoempresa.domain;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import com.victorvilar.projetoempresa.domain.Contract;
 import com.victorvilar.projetoempresa.domain.Equipment;
@@ -136,5 +137,18 @@ public class ItemContract implements Serializable{
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		ItemContract that = (ItemContract) o;
+		return id.equals(that.id);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
 	}
 }

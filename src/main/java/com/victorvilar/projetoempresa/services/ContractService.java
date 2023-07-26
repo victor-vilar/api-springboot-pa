@@ -96,13 +96,23 @@ public class ContractService {
         //setting customer
         contract1.setCustomer(customer);
 
-        //transform itemContractCreateList into a ItemContractList and add to contract
-        this.itemContractMapper.fromItemContractCreateDtoListToItemContractList(
-                        contract.getItens())
-                .stream()
-                .forEach(item -> contract1.addNewItem(item));
+        //transform itemContractCreate list into a ItemContract list and add to contract
+        List<ItemContract> list =
+        this.itemContractMapper.fromItemContractCreateDtoListToItemContractList
+                (contract.getItens())
+                .stream().toList();
+
+        //add list of itens to contract
+        list.stream().forEach(item -> contract1.addNewItem(item));
+
+        //parsisting customer;
         this.customerRepository.save(customer);
-        return this.contractMapper.toContractResponseDto(this.contractRepository.save(contract1));
+
+        //persisting contract
+        this.contractRepository.save(contract1);
+
+        //returning persisted contract
+        return this.contractMapper.toContractResponseDto(contract1);
     }
 
     /**
@@ -114,9 +124,10 @@ public class ContractService {
 
         ItemContract item = this.itemContractMapper.toItemContract(itemDto);
         Contract contract = this.findByContractId(contractId);
+
         contract.addNewItem(item);
-        this.itemContractRepository.save(item);
-        this.contractRepository.save(contract);
+
+        contract = this.contractRepository.save(contract);
         return this.contractMapper.toContractResponseDto(contract);
     }
 
@@ -170,7 +181,7 @@ public class ContractService {
             }else{
                 updateItemContract(contract,item);
             }
-            this.itemContractRepository.save(item);
+
         });
 
         this.contractRepository.save(contract);
