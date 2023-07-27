@@ -122,13 +122,22 @@ public class ContractService {
     @Transactional
     public ContractResponseDto addNewItemToContract(Long contractId, ItemContractCreateDto itemDto) {
 
+        //from itemContractCreateDto for itemContract
         ItemContract item = this.itemContractMapper.toItemContract(itemDto);
+
+        //find contract
         Contract contract = this.findByContractId(contractId);
 
-        item.setContract(contract);
+        //setting contract to item
+        contract.addNewItem(item);
+
+        //saving contract to repository
         itemContractRepository.save(item);
 
+        //saving(updating)contract
         contract = this.contractRepository.save(contract);
+
+        //returning contractResponseDto from contract
         return this.contractMapper.toContractResponseDto(contract);
     }
 
@@ -147,10 +156,23 @@ public class ContractService {
      */
     @Transactional
     public ContractResponseDto deleteItemContract(Long itemId) {
+
+        //fetch item contract
         ItemContract item = this.itemContractRepository.findById(itemId).orElseThrow(()-> new ItemContractNotFoundException("This item doesn't exist"));
+
+        //get contract from item
         Contract contract = item.getContract();
+
+        //remove item from contract
+        contract.getItens().remove(item);
+
+        //delete item from db
         this.itemContractRepository.delete(item);
-        this.contractRepository.save(contract);
+
+        //saves contract to db
+        contract = this.contractRepository.save(contract);
+
+        //return a contractResponseDto from contract
         return this.contractMapper.toContractResponseDto(contract);
 
     }

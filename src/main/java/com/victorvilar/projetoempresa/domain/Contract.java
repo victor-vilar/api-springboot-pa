@@ -66,10 +66,10 @@ public class Contract implements Serializable {
 	 * @param itemContract
 	 */
 	public void addNewItem(ItemContract itemContract) {
-		//if (!itens.contains(itemContract)) {
+		if (!itens.contains(itemContract)) {
 			itemContract.setContract(this);
 			this.itens.add(itemContract);
-		//}
+		}
 	}
 
     //Constructors

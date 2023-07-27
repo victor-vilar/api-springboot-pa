@@ -1,5 +1,6 @@
 package com.victorvilar.projetoempresa.controllers;
 
+import com.victorvilar.projetoempresa.domain.Contract;
 import com.victorvilar.projetoempresa.dto.contract.ContractCreateDto;
 import com.victorvilar.projetoempresa.dto.contract.ContractResponseDto;
 import com.victorvilar.projetoempresa.dto.contract.ContractUpdateDto;

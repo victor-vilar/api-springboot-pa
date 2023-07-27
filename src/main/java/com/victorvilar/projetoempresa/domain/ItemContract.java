@@ -50,7 +50,7 @@ public class ItemContract implements Serializable{
 	@Column(nullable=false)
 	private double itemValue;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name="contract_id", nullable=false)
 	private Contract contract;
 	
