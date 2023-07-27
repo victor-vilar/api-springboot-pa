@@ -252,7 +252,7 @@ class ContractServiceTest {
                 .thenReturn(list);
         when(this.contractMapper.toContractResponseDto(any()))
                 .thenReturn(contractResponseDto1);
-        ContractResponseDto contractResponseDto = this.contractService.update(1L,contractUpdateDto1);
+        ContractResponseDto contractResponseDto = this.contractService.update(contractUpdateDto1);
         verify(this.itemContractRepository,times(2)).save(any());
         verify(this.contractRepository,times(1)).save(any());
         Assertions.assertFalse(contractResponseDto.getItens().isEmpty());
@@ -285,7 +285,7 @@ class ContractServiceTest {
         when(this.itemContractRepository.findById(any()))
                 .thenReturn(Optional.of(new ItemContract()));
 
-        ContractResponseDto contractResponseDto = this.contractService.update(1L,contractUpdateDto1);
+        ContractResponseDto contractResponseDto = this.contractService.update(contractUpdateDto1);
         verify(this.itemContractRepository,times(2)).save(any());
         verify(this.contractRepository,times(1)).save(any());
 

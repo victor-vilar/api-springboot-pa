@@ -30,7 +30,7 @@ public class ContractUpdateDto {
     private String customerId;
 
     @NotEmpty(message = "A contract must have at least one item")
-    private List<ItemContractUpdateDto> itens  = new ArrayList<>();;
+    private List<ItemContractUpdateDto> itens  = new ArrayList<>();
 
     public ContractUpdateDto(Long id, String number, LocalDate beginDate, LocalDate endDate, String customerId, List<ItemContractUpdateDto> itens) {
         this.id = id;

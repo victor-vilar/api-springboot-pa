@@ -178,17 +178,16 @@ public class ContractService {
     }
 
     /**
-     * Update contract
-     * @param contractId
+     * Update contract and its itens
      * @return
      */
     @Transactional
-    public ContractResponseDto update(Long contractId, ContractUpdateDto contractUpdateDto){
+    public ContractResponseDto update(ContractUpdateDto contractUpdateDto){
 
         //creates instance of contract
-        Contract contract = this.findByContractId(contractId);
+        Contract contract = this.findByContractId(contractUpdateDto.getId());
 
-        //updating contracting
+        //updating contract data
         contract.setCustomer(this.customerService.findCustomerById(contractUpdateDto.getCustomerId()));
         contract.setNumber(contractUpdateDto.getNumber());
         contract.setBeginDate(contractUpdateDto.getBeginDate());
@@ -199,14 +198,21 @@ public class ContractService {
 
         //loop to insert a new item or update an exist one
         lista.stream().forEach(item ->{
-            if(item.getId() == null){
-                item.setContract(contract);
-                itemContractRepository.save(item);
-            }else{
+
+            //setting contract to item, the itens comes with a null contract from mapper
+            item.setContract(contract);
+
+            //if item id it's not null, so its a item update
+            if(item.getId() != null){
                 updateItemContract(contract,item);
+            }else{
+                contract.addNewItem(item);
             }
 
+            //save item
+            itemContractRepository.save(item);
         });
+
         return this.contractMapper.toContractResponseDto(this.contractRepository.save(contract));
     }
 

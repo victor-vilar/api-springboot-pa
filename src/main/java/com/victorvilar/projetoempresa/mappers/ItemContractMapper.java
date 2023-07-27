@@ -40,6 +40,10 @@ public class ItemContractMapper {
         ItemContract item = this.mapper.map(itemDto,ItemContract.class);
         item.setResidue(this.residueService.findResidueById(itemDto.getResidue()));
         item.setEquipament(this.equipmentService.findEquipmentById(itemDto.getEquipment()));
+
+        //set contract to null cause mapper was setting contract id equals item id, throwing an exception
+        item.setContract(null);
+
         return item;
     }
 

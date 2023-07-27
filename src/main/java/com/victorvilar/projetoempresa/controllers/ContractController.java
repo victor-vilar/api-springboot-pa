@@ -102,14 +102,11 @@ public class ContractController {
 
     /**
      * Update contract
-     * @param contractId
      * @return
      */
-    @PutMapping("/{contractId}")
-    public ResponseEntity<ContractResponseDto> update(@PathVariable Long contractId,
-                                                              @RequestBody ContractUpdateDto contractUpdateDto){
-
-        return ResponseEntity.ok(this.service.update(contractId,contractUpdateDto));
+    @PutMapping()
+    public ResponseEntity<ContractResponseDto> update(@RequestBody ContractUpdateDto contractUpdateDto){
+        return ResponseEntity.ok(this.service.update(contractUpdateDto));
 
     }
 
