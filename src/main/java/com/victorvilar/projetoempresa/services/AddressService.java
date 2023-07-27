@@ -75,7 +75,6 @@ public class AddressService {
         Address address = this.addressMapper.toAddress(addressCreateDto);
         Customer customer = this.customerService.findCustomerById(addressCreateDto.getCustomerId());
         customer.addNewAddress(address);
-        this.customerRepository.save(customer);
         return this.addressMapper.toAddressResponseDto(this.addressRepository.save(address));
     }
 
