@@ -210,7 +210,7 @@ public class ContractService {
             }
 
             //save item
-            itemContractRepository.save(item);
+            //itemContractRepository.save(item);
         });
 
         return this.contractMapper.toContractResponseDto(this.contractRepository.save(contract));
