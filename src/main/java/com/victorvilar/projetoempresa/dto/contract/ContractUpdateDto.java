@@ -12,7 +12,7 @@ import java.util.List;
 
 public class ContractUpdateDto {
 
-    @NotBlank(message ="A contract to update must have a number")
+    @NotNull(message ="A contract to update must have a number")
     private Long id;
 
     @NotBlank(message ="The contract must have a number")

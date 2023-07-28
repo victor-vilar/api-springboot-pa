@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotNull;
 
 public class EquipmentUpdateDto {
 
-    @NotBlank(message="An equipment to update must have an id")
+    @NotNull(message="An equipment to update must have an id")
     private Long id;
     @NotBlank(message="The equipment must have a name")
     private String equipmentName;

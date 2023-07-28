@@ -57,7 +57,7 @@ public class EquipmentController {
      * @param equipmentUpdateDto equipment instance to get the new data
      * @return equipment updated
      */
-    @PutMapping("")
+    @PutMapping
     public ResponseEntity<EquipmentResponseDto> update(@Valid @RequestBody EquipmentUpdateDto equipmentUpdateDto){
         return ResponseEntity.ok(this.equipmentService.update(equipmentUpdateDto));
     }

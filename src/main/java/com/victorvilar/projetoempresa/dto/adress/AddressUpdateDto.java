@@ -1,10 +1,11 @@
 package com.victorvilar.projetoempresa.dto.adress;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public class AddressUpdateDto {
 
-    @NotBlank(message="An address to update must have an id")
+    @NotNull(message="An address to update must have an id")
     private Long id;
     private String addressName;
     private String addressNumber;

@@ -72,7 +72,7 @@ public class ResidueController {
      * @param residue residue type with data
      * @return residue updated
      */
-    @PutMapping("")
+    @PutMapping()
     public ResponseEntity<ResidueResponseDto> udpate(@Valid @RequestBody ResidueUpdateDto residue){
         return new ResponseEntity<>(this.residueService.udpate(residue),HttpStatus.OK);
     }
