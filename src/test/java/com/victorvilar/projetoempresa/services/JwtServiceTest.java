@@ -1,6 +1,7 @@
 package com.victorvilar.projetoempresa.services;
 
 import io.jsonwebtoken.Claims;
+import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,7 +21,7 @@ class JwtServiceTest {
     @InjectMocks
     private JwtService jwtService;
 
-    private String token;
+    private static String token;
 
     @Test
     @DisplayName("generate a token")
@@ -38,7 +39,9 @@ class JwtServiceTest {
     @DisplayName("validate a token")
     public void validateToken_WhenSuccessfull(){
         Claims claims = this.jwtService.validateJwtToken(this.token);
-        assertEquals(claims.);
+        assertEquals(claims.get("role"), "testUser");
+        assertEquals(claims.get("username"), "teste");
+
     }
 
 
