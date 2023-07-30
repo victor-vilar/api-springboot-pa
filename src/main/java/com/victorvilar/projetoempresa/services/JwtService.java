@@ -19,7 +19,8 @@ import java.util.Map;
 public class JwtService {
 
     //private signature key
-    private final String SIGNATURE_KEY = "lmoybqnycrQtzhhq6F3HEovlVWEnAPzoMOmv6GgpCBM";
+    private static final String SIGNATURE_KEY = "lmoybqnycrQtzhhq6F3HEovlVWEnAPzoMOmv6GgpCBM";
+    private static final String API_ISSUER = "Res Application by Victor Vilar";
 
 
     /**
@@ -34,7 +35,7 @@ public class JwtService {
     //generate a new jwt token
     public String generateJwtToken(Map<String,Object> claims){
         return Jwts.builder()
-                .setIssuer("Rest Application by Victor Vilar")
+                .setIssuer(API_ISSUER)
                 .setIssuedAt(new Date())
                 .setClaims(claims)
                 .signWith(this.encondeKey())

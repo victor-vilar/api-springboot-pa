@@ -1,5 +1,6 @@
 package com.victorvilar.projetoempresa.services;
 
+import io.jsonwebtoken.Claims;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,8 +20,7 @@ class JwtServiceTest {
     @InjectMocks
     private JwtService jwtService;
 
-
-
+    private String token;
 
     @Test
     @DisplayName("generate a token")
@@ -29,16 +29,16 @@ class JwtServiceTest {
         claims.put("username","teste");
         claims.put("role","testUser");
         String token = this.jwtService.generateJwtToken(claims);
+        this.token = token;
         Assertions.assertNotNull(token);
-
 
     }
 
     @Test
     @DisplayName("validate a token")
     public void validateToken_WhenSuccessfull(){
-
-
+        Claims claims = this.jwtService.validateJwtToken(this.token);
+        assertEquals(claims.);
     }
 
 
