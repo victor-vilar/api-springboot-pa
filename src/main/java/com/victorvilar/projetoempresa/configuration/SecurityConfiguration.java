@@ -57,7 +57,7 @@ public class SecurityConfiguration {
 
                 //csrf configuration
                 .csrf(csrf -> csrf
-                        //include de csrf token as attribute of respose
+                        //include de csrf token as attribute of response
                         .csrfTokenRequestHandler(new CsrfTokenRequestAttributeHandler())
                         //end points that not have a csrf protection
                         .ignoringRequestMatchers(AntPathRequestMatcher.antMatcher("/h2/**"))

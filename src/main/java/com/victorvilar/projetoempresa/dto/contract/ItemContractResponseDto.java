@@ -53,11 +53,11 @@ public class ItemContractResponseDto {
         this.qtdOfResidue = qtdOfResidue;
     }
 
-    public double getValue() {
+    public double getItemValue() {
         return itemValue;
     }
 
-    public void setValue(double itemValue) {
+    public void setItemValue(double itemValue) {
         this.itemValue = itemValue;
     }
 

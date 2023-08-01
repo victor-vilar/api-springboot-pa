@@ -226,7 +226,7 @@ public class ContractService {
         itemToUpdate.setEquipament(item.getEquipament());
         itemToUpdate.setResidue(item.getResidue());
         itemToUpdate.setQtdOfResidue(item.getQtdOfResidue());
-        itemToUpdate.setValue(item.getValue());
+        itemToUpdate.setItemValue(item.getItemValue());
         itemContractRepository.save(item);
     }
 

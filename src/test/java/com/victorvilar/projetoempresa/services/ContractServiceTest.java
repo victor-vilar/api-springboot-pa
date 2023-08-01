@@ -260,7 +260,7 @@ class ContractServiceTest {
         verify(this.contractRepository,times(1)).save(any());
         Assertions.assertFalse(contractResponseDto.getItens().isEmpty());
         Assertions.assertEquals(contract1.getItens().size(),contractResponseDto.getItens().size());
-        Assertions.assertEquals(contract1.getItens().get(0).getValue(),contractResponseDto.getItens().get(0).getValue());
+        Assertions.assertEquals(contract1.getItens().get(0).getItemValue(),contractResponseDto.getItens().get(0).getItemValue());
 
 
     }
@@ -295,7 +295,7 @@ class ContractServiceTest {
 
         Assertions.assertFalse(contractResponseDto.getItens().isEmpty());
         Assertions.assertEquals(contract1.getItens().size(),contractResponseDto.getItens().size());
-        Assertions.assertEquals(contract1.getItens().get(0).getValue(),contractResponseDto.getItens().get(0).getValue());
+        Assertions.assertEquals(contract1.getItens().get(0).getItemValue(),contractResponseDto.getItens().get(0).getItemValue());
 
 
     }
