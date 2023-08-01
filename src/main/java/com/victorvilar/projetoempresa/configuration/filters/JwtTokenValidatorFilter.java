@@ -31,7 +31,7 @@ public class JwtTokenValidatorFilter extends OncePerRequestFilter {
         String token = request.getHeader(TOKEN_HEADER);
         System.out.println(request.getServletPath());
 
-        if(token != null){
+        if(token != null && getBasicAuthenticationType(token)){
 
             String jwt = this.getAuthenticationTokenCode(token);
             Claims claims = this.jwtService.validateJwtToken(jwt);
@@ -50,6 +50,21 @@ public class JwtTokenValidatorFilter extends OncePerRequestFilter {
 
     private String getAuthenticationTokenCode(String token){
         return token.substring(7);
+    }
+
+    /**
+     * check if the type of authentication equals 'Basic '
+     * if it is a basic authentication the filter must not execute
+     * @param token
+     * @return
+     */
+    private boolean getBasicAuthenticationType(String token){
+
+        if(!token.substring(0,6).equals("Basic ")){
+            return true;
+        }
+
+        return false;
     }
 
     /**
