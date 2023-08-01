@@ -23,13 +23,13 @@ public class JwtTokenValidatorFilter extends OncePerRequestFilter {
 
     public JwtTokenValidatorFilter(JwtService jwtService){
         this.jwtService =jwtService;
+
     }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
         String token = request.getHeader(TOKEN_HEADER);
-        System.out.println(request.getServletPath());
 
         if(token != null && getBasicAuthenticationType(token)){
 
@@ -40,7 +40,7 @@ public class JwtTokenValidatorFilter extends OncePerRequestFilter {
                     AuthorityUtils.commaSeparatedStringToAuthorityList(claims.get("authorities").toString()));
 
             SecurityContextHolder.getContext().setAuthentication(auth);
-            System.out.println(SecurityContextHolder.getContext().getAuthentication().toString());
+
 
         }
 
