@@ -3,6 +3,7 @@ package com.victorvilar.projetoempresa.handlers;
 import com.victorvilar.projetoempresa.exceptions.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -99,9 +100,18 @@ public class ExceptionsHandler {
     @ResponseBody
     @ResponseStatus(HttpStatus.NOT_ACCEPTABLE)
     @ExceptionHandler(ApplicationUserNotFoundException.class)
-    ResponseEntity<ErrorHandlerResponse> WrongLengthOfCpfCnpjExceptionHandler(ApplicationUserNotFoundException exception){
+    ResponseEntity<ErrorHandlerResponse> ApplicationUserNotFoundException(ApplicationUserNotFoundException exception){
         ErrorHandlerResponse error = new ErrorHandlerResponse(exception.getMessage(),HttpStatus.NOT_ACCEPTABLE.value());
         return new ResponseEntity<ErrorHandlerResponse>(error,HttpStatus.NOT_FOUND);
+
+    }
+
+    @ResponseBody
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(CredentialsNotFoundException.class)
+    ResponseEntity<ErrorHandlerResponse> WrongCredentialsException(CredentialsNotFoundException exception){
+        ErrorHandlerResponse error = new ErrorHandlerResponse(exception.getMessage(),HttpStatus.BAD_REQUEST.value());
+        return new ResponseEntity<ErrorHandlerResponse>(error,HttpStatus.BAD_REQUEST);
 
     }
 
