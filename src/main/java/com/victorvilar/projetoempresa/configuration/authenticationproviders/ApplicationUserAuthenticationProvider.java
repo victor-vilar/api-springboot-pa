@@ -2,6 +2,7 @@ package com.victorvilar.projetoempresa.configuration.authenticationproviders;
 
 import com.victorvilar.projetoempresa.domain.ApplicationUser;
 import com.victorvilar.projetoempresa.domain.ApplicationUserRole;
+import com.victorvilar.projetoempresa.exceptions.ApplicationUserNotFoundException;
 import com.victorvilar.projetoempresa.repository.ApplicationUserRolesRepository;
 import com.victorvilar.projetoempresa.repository.ApplicationUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ public class ApplicationUserAuthenticationProvider implements AuthenticationProv
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 
-        ApplicationUser user = this.applicationUserRepository.findByUsername(authentication.getName()).orElseThrow(() ->new RuntimeException("Não há"));
+        ApplicationUser user = this.applicationUserRepository.findByUsername(authentication.getName()).orElseThrow(() ->new ApplicationUserNotFoundException("Application User not found !"));
         String encodedPassword = this.passwordEncoder.encode(authentication.getCredentials().toString());
 
         if(user != null && this.passwordEncoder.matches(user.getPassword(),encodedPassword)){

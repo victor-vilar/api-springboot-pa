@@ -2,6 +2,7 @@ package com.victorvilar.projetoempresa.handlers;
 
 import com.victorvilar.projetoempresa.exceptions.*;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -93,6 +94,15 @@ public class ExceptionsHandler {
     @ExceptionHandler(WrongLengthOfCpfCnpjException.class)
     ErrorHandlerResponse WrongLengthOfCpfCnpjExceptionHandler(WrongLengthOfCpfCnpjException exception){
         return new ErrorHandlerResponse(exception.getMessage(),HttpStatus.NOT_ACCEPTABLE.value());
+    }
+
+    @ResponseBody
+    @ResponseStatus(HttpStatus.NOT_ACCEPTABLE)
+    @ExceptionHandler(ApplicationUserNotFoundException.class)
+    ResponseEntity<ErrorHandlerResponse> WrongLengthOfCpfCnpjExceptionHandler(ApplicationUserNotFoundException exception){
+        ErrorHandlerResponse error = new ErrorHandlerResponse(exception.getMessage(),HttpStatus.NOT_ACCEPTABLE.value());
+        return new ResponseEntity<ErrorHandlerResponse>(error,HttpStatus.NOT_FOUND);
+
     }
 
 
