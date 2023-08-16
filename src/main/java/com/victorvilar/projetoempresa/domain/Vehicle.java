@@ -1,7 +1,6 @@
 package com.victorvilar.projetoempresa.domain;
 
 
-import com.victorvilar.projetoempresa.domain.Refueling;
 import com.victorvilar.projetoempresa.enums.VechicleType;
 import jakarta.persistence.Column;
 import jakarta.persistence.EnumType;
@@ -14,7 +13,7 @@ import java.util.List;
 /**
  * REPRESENTAR UM VEICULO -- todo
  */
-public class Vechicle {
+public class Vehicle {
 
     private String id;
     //tipo de Veiculo

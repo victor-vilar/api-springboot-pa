@@ -15,7 +15,7 @@ public class Refueling {
     private LocalDate refuelDate;
     @ManyToOne
     @JoinColumn(name="vechile_id")
-    private Vechicle vechicle;
+    private Vehicle vechicle;
     @Column(nullable = false)
     private FuelType fuelType;
     @Column(nullable = false)

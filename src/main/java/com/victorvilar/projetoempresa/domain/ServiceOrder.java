@@ -19,7 +19,7 @@ public class ServiceOrder {
     private String manifestINEA;
 
     @ManyToOne
-    private Vechicle vechicle;
+    private Vehicle vehicle;
 
     @ManyToOne
     @Column(nullable = false)
