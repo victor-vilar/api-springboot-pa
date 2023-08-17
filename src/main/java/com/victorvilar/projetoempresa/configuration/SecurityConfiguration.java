@@ -47,7 +47,7 @@ public class SecurityConfiguration {
 
                 //tell to spring to generate JSessionId only when required
                 .sessionManagement(session -> session
-                    .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
+                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 
                 )
                 //cors configuration
@@ -63,7 +63,7 @@ public class SecurityConfiguration {
                         .ignoringRequestMatchers(AntPathRequestMatcher.antMatcher("/h2/**"))
                         //repository of csrf tokens
                         .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-                        //.disable()
+                        .disable()
                 )
 
                 //validate the token before the http response
@@ -88,8 +88,14 @@ public class SecurityConfiguration {
 
                 //default login page configuration
                 .formLogin(Customizer.withDefaults())
-                .httpBasic(Customizer.withDefaults());
+                .httpBasic(Customizer.withDefaults())
 
+                .logout(logout -> logout
+                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                        .logoutSuccessUrl("/logout.done").deleteCookies("JSESSIONID")
+                        .invalidateHttpSession(true)
+                        .clearAuthentication(true)
+                );
 
 
         return http.build();
