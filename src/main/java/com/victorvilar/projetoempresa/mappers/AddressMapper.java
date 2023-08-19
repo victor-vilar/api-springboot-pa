@@ -25,7 +25,9 @@ public class AddressMapper {
     }
 
     public Address toAddress(AddressCreateDto addressCreateDto){
-        return this.mapper.map(addressCreateDto,Address.class);
+        Address address = this.mapper.map(addressCreateDto,Address.class);
+        address.setId(null);
+        return address;
     }
 
     public Address toAddress(AddressUpdateDto addressUpdateDto){

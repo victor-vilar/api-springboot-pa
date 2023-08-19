@@ -58,18 +58,18 @@ public class SecurityConfiguration {
                 //csrf configuration
                 .csrf(csrf -> csrf
                         //include de csrf token as attribute of response
-                        .csrfTokenRequestHandler(new CsrfTokenRequestAttributeHandler())
+                        //.csrfTokenRequestHandler(new CsrfTokenRequestAttributeHandler())
                         //end points that not have a csrf protection
-                        .ignoringRequestMatchers(AntPathRequestMatcher.antMatcher("/h2/**"))
+                        //.ignoringRequestMatchers(AntPathRequestMatcher.antMatcher("/h2/**"))
                         //repository of csrf tokens
-                        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+                        //.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
                         .disable()
                 )
 
                 //validate the token before the http response
                 .addFilterBefore(new JwtTokenValidatorFilter(new JwtService()),BasicAuthenticationFilter.class)
                 //send a csrf token to request after an authentication
-                .addFilterAfter(new CsrfCookieSessionFilter(), BasicAuthenticationFilter.class)
+                //.addFilterAfter(new CsrfCookieSessionFilter(), BasicAuthenticationFilter.class)
                 //generates a new jwt token after an authentication
                 .addFilterAfter(new JwtTokenGeneratorFilter(new JwtService()),BasicAuthenticationFilter.class)
 
