@@ -19,7 +19,7 @@ public class ItemContractResponseDto {
         this.equipment = equipment;
         this.qtdOfResidue = qtdOfResidue;
         this.itemValue = itemValue;
-        this.description =description
+        this.description =description;
     }
 
 

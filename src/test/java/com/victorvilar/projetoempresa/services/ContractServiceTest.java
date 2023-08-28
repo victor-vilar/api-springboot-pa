@@ -321,8 +321,8 @@ class ContractServiceTest {
 
 
         //add item to contract 1
-        contract1.addNewItem(new ItemContract(residue,equipment,10,10));
-        contract1.addNewItem(new ItemContract(residue,equipment,20,20));
+        contract1.addNewItem(new ItemContract(residue,equipment,10,10,"coleta residuo"));
+        contract1.addNewItem(new ItemContract(residue,equipment,20,20, "coleta residuo"));
 
 
         //contract 2
@@ -345,8 +345,8 @@ class ContractServiceTest {
 
         contractCreateDto1.setItens(
                 Arrays.asList(
-                new ItemContractCreateDto(residue.getId(),equipment.getId(),10d,10d),
-                new ItemContractCreateDto(residue.getId(),equipment.getId(),20d,20d)));
+                new ItemContractCreateDto(residue.getId(),equipment.getId(),10d,10d,"coleta residuo"),
+                new ItemContractCreateDto(residue.getId(),equipment.getId(),20d,20d,"coleta residuo")));
 
 
          contractCreateDto2 = ContractCreateDto.builder()
@@ -358,8 +358,8 @@ class ContractServiceTest {
 
         contractCreateDto2.setItens(
                 Arrays.asList(
-                new ItemContractCreateDto(residue.getId(),equipment.getId(),10d,10d),
-                new ItemContractCreateDto(residue.getId(),equipment.getId(),20d,20d)));
+                new ItemContractCreateDto(residue.getId(),equipment.getId(),10d,10d,"coleta residuo"),
+                new ItemContractCreateDto(residue.getId(),equipment.getId(),20d,20d,"coleta residuo")));
 
 
     }
@@ -374,8 +374,8 @@ class ContractServiceTest {
 
         contractUpdateDto1.setItens(
                 Arrays.asList(
-                        new ItemContractUpdateDto(null,residue.getId(),equipment.getId(),10d,10d),
-                        new ItemContractUpdateDto(null,residue.getId(),equipment.getId(),20d,20d)));
+                        new ItemContractUpdateDto(null,residue.getId(),equipment.getId(),10d,10d,"coleta residuo"),
+                        new ItemContractUpdateDto(null,residue.getId(),equipment.getId(),20d,20d,"coleta residuo")));
 
 
         contractUpdateDto2 = ContractUpdateDto.builder()
@@ -387,8 +387,8 @@ class ContractServiceTest {
 
         contractUpdateDto2.setItens(
                 Arrays.asList(
-                        new ItemContractUpdateDto(3L,residue.getId(),equipment.getId(),10d,10d),
-                        new ItemContractUpdateDto(4L,residue.getId(),equipment.getId(),20d,20d)));
+                        new ItemContractUpdateDto(3L,residue.getId(),equipment.getId(),10d,10d,"coleta residuo"),
+                        new ItemContractUpdateDto(4L,residue.getId(),equipment.getId(),20d,20d,"coleta residuo")));
     }
     private void setUpContractResponse(){
 
@@ -401,8 +401,8 @@ class ContractServiceTest {
 
         contractResponseDto1.setItens(
                 Arrays.asList(
-                        new ItemContractResponseDto(1L,residue.getType(),equipment.getEquipmentName(),10d,10d),
-                        new ItemContractResponseDto(2L,residue.getType(),equipment.getEquipmentName(),10d,10d)));
+                        new ItemContractResponseDto(1L,residue.getType(),equipment.getEquipmentName(),10d,10d,"coleta residuo"),
+                        new ItemContractResponseDto(2L,residue.getType(),equipment.getEquipmentName(),10d,10d,"coleta residuo")));
 
         contractResponseDto2 = ContractResponseDto.builder()
                 .number("2000")
@@ -413,19 +413,19 @@ class ContractServiceTest {
 
         contractResponseDto2.setItens(
                 Arrays.asList(
-                        new ItemContractResponseDto(1L,residue.getType(),equipment.getEquipmentName(),10d,10d),
-                        new ItemContractResponseDto(2L,residue.getType(),equipment.getEquipmentName(),10d,10d)));
+                        new ItemContractResponseDto(1L,residue.getType(),equipment.getEquipmentName(),10d,10d,"coleta residuo"),
+                        new ItemContractResponseDto(2L,residue.getType(),equipment.getEquipmentName(),10d,10d,"coleta residuo")));
 
     }
     private void setUpItemContract(){
-        itemContract1 = new ItemContract(residue,equipment,10d,10d);
-        itemContract2 = new ItemContract(residue,equipment,20d,20d);
+        itemContract1 = new ItemContract(residue,equipment,10d,10d,"coleta residuo");
+        itemContract2 = new ItemContract(residue,equipment,20d,20d,"coleta residuo");
         itemContract1.setContract(contract1);
         itemContract2.setContract(contract1);
         itens.addAll(Arrays.asList(itemContract1,itemContract2));
 
-        itemContractCreateDto1 = new ItemContractCreateDto(residue.getId(),equipment.getId(),10d,10d);
-        itemContractCreateDto2 = new ItemContractCreateDto(residue.getId(),equipment.getId(),20d,20d);
+        itemContractCreateDto1 = new ItemContractCreateDto(residue.getId(),equipment.getId(),10d,10d,"coleta residuo");
+        itemContractCreateDto2 = new ItemContractCreateDto(residue.getId(),equipment.getId(),20d,20d,"coleta residuo");
 
         itens.addAll(Arrays.asList(itemContract1,itemContract2));
     }
