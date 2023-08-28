@@ -20,17 +20,21 @@ public class ItemContractUpdateDto {
     @NotNull(message = "the item must have a value")
     private Double itemValue;
 
+    private String description;
+
+
 
     //constructors
     public ItemContractUpdateDto() {
 
     }
-    public ItemContractUpdateDto(Long id, Long residue, Long equipment, Double qtdOfResidue, Double itemValue) {
+    public ItemContractUpdateDto(Long id, Long residue, Long equipment, Double qtdOfResidue, Double itemValue, String description) {
         this.id = id;
         this.residue = residue;
         this.equipment = equipment;
         this.qtdOfResidue = qtdOfResidue;
         this.itemValue = itemValue;
+        this.description=description;
     }
     //----------------------------
 
@@ -74,4 +78,9 @@ public class ItemContractUpdateDto {
     public void setItemValue(double itemValue) {
         this.itemValue = itemValue;
     }
+
+    //getters and setters - description
+    public String getDescription() {return this.description;}
+    public void setDescription(String description){this.description = description;}
+    //-----------
 }
