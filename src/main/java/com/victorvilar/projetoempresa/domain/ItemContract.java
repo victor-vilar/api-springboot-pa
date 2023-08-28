@@ -45,6 +45,9 @@ public class ItemContract implements Serializable{
 	@Column(nullable=false)
 	private double itemValue;
 
+	//item Description
+	private String description;
+
 	@ManyToOne
 	@JoinColumn(name="contract_id", nullable=false)
 	private Contract contract;
@@ -55,18 +58,20 @@ public class ItemContract implements Serializable{
 		
 	}
 	
-	public ItemContract(Residue residue, Equipment equipment, double qtd, double value) {
+	public ItemContract(Residue residue, Equipment equipment, double qtd, double value, String description) {
 		this.residue = residue;
 		this.equipment = equipment;
 		this.qtdOfResidue = qtd;
 		this.itemValue = value;
+		this.description = description;
 	}
+
+
 	
 	//getters e setters - Contract
 	public Contract getContract() {
 		return this.contract;
 	}
-
 	public void setContract(Contract contract) {
 		this.contract = contract;
 	}
@@ -77,7 +82,6 @@ public class ItemContract implements Serializable{
 	public Residue getResidue() {
 		return residue;
 	}
-
 	public void setResidue(Residue residue) {
 		this.residue = residue;
 	}
@@ -87,7 +91,6 @@ public class ItemContract implements Serializable{
 	public Equipment getEquipament() {
 		return equipment;
 	}
-
 	public void setEquipament(Equipment equipment) {
 		this.equipment = equipment;
 	}
@@ -97,7 +100,6 @@ public class ItemContract implements Serializable{
 	public Double getQtdOfResidue() {
 		return qtdOfResidue;
 	}
-
 	public void setQtdOfResidue(Double qtdOfResidue) {
 		this.qtdOfResidue = qtdOfResidue;
 	}
@@ -107,12 +109,24 @@ public class ItemContract implements Serializable{
 	public double getItemValue() {
 		return itemValue;
 	}
-
 	public void setItemValue(double value) {
 		this.itemValue = value;
 	}
 	//-----------
-	
+
+	//getters and setters - description
+	public String getDescription() {return this.description;}
+	public void setDescription(String description){this.description = description;}
+	//-----------
+
+	//getters and setters - id
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	//-----------
 	
 	@Override
 	public String toString() {
@@ -126,13 +140,6 @@ public class ItemContract implements Serializable{
 		return string.toString();
 	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 
 }
