@@ -231,10 +231,9 @@ class ContractServiceTest {
         when(this.contractMapper.toContractResponseDto(any()))
                 .thenReturn(contractResponseDto1);
 
-        ContractResponseDto contractResponseDto = this.contractService.deleteItemContract(1L);
+        ContractResponseDto contractResponseDto = this.contractService.deleteItemContract(Arrays.asList(1L,2L));
 
-        verify(this.itemContractRepository,times(1)).delete(any());
-        verify(this.contractRepository,times(1)).save(any());
+        verify(this.itemContractRepository,times(1)).deleteAllById(any());
 
         Assertions.assertEquals(contractResponseDto.getNumber(), contractResponseDto1.getNumber());
     }

@@ -151,26 +151,20 @@ public class ContractService {
     }
 
     /**
-     * remove a item from a contract
-     * @param itemId id of the item
+     * remove a list of itens from a contract
+     * @param  itens A list of item contract id of the item
      */
     @Transactional
-    public ContractResponseDto deleteItemContract(Long itemId) {
+    public ContractResponseDto deleteItemContract(List<Long> itens) {
 
-        //fetch item contract
-        ItemContract item = this.itemContractRepository.findById(itemId).orElseThrow(()-> new ItemContractNotFoundException("This item doesn't exist"));
 
-        //get contract from item
+        ItemContract item = this.itemContractRepository.findById(itens.get(0)).orElseThrow(()-> new ItemContractNotFoundException("This item doesn't exist"));
+
+        //finding the item contract to return
         Contract contract = item.getContract();
 
-        //remove item from contract
-        contract.getItens().remove(item);
-
-        //delete item from db
-        this.itemContractRepository.delete(item);
-
-        //saves contract to db
-        contract = this.contractRepository.save(contract);
+        //deleting all itens contract.
+        this.itemContractRepository.deleteAllById(itens);
 
         //return a contractResponseDto from contract
         return this.contractMapper.toContractResponseDto(contract);
@@ -205,14 +199,15 @@ public class ContractService {
             //if item id it's not null, so its a item update
             if(item.getId() != null){
                 updateItemContract(contract,item);
+
+                //else it is a new item
             }else{
                 contract.addNewItem(item);
             }
 
-            //save item
-            //itemContractRepository.save(item);
         });
 
+        //saves contract and return as a contract resposne dto
         return this.contractMapper.toContractResponseDto(this.contractRepository.save(contract));
     }
 
