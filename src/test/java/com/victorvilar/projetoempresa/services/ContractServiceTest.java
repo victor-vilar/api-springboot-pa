@@ -226,16 +226,8 @@ class ContractServiceTest {
     @Test
     @DisplayName("Delete a item from contract")
     void deleteItemContract_whenSuccessfull() {
-        when(this.itemContractRepository.findById(anyLong()))
-                .thenReturn(Optional.of(itemContract1));
-        when(this.contractMapper.toContractResponseDto(any()))
-                .thenReturn(contractResponseDto1);
-
-        ContractResponseDto contractResponseDto = this.contractService.deleteItemContract(Arrays.asList(1L,2L));
-
+        this.contractService.deleteItemContract(Arrays.asList(1L,2L));
         verify(this.itemContractRepository,times(1)).deleteAllById(any());
-
-        Assertions.assertEquals(contractResponseDto.getNumber(), contractResponseDto1.getNumber());
     }
 
     @Test

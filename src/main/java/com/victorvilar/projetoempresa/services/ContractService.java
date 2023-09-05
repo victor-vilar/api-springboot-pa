@@ -155,19 +155,11 @@ public class ContractService {
      * @param  itens A list of item contract id of the item
      */
     @Transactional
-    public ContractResponseDto deleteItemContract(List<Long> itens) {
-
-
-        ItemContract item = this.itemContractRepository.findById(itens.get(0)).orElseThrow(()-> new ItemContractNotFoundException("This item doesn't exist"));
-
-        //finding the item contract to return
-        Contract contract = item.getContract();
+    public void deleteItemContract(List<Long> itens) {
 
         //deleting all itens contract.
         this.itemContractRepository.deleteAllById(itens);
 
-        //return a contractResponseDto from contract
-        return this.contractMapper.toContractResponseDto(contract);
 
     }
 
