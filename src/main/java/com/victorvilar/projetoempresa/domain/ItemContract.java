@@ -1,6 +1,7 @@
 package com.victorvilar.projetoempresa.domain;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import jakarta.persistence.*;
 
@@ -29,6 +30,10 @@ public class ItemContract implements Serializable{
 	@ManyToOne
 	@JoinColumn(nullable = false)
 	private Equipment equipment;
+
+	//quantity of equipment that will be made available
+	@JoinColumn(nullable = false)
+	private Integer equipmentQuantity;
 	
 	//the quantity estimated for  year
 	@Column(nullable = false, name="max_qtd_year")
@@ -36,12 +41,12 @@ public class ItemContract implements Serializable{
 	
 	//the value of the item
 	@Column(nullable=false)
-	private double itemValue;
+	private BigDecimal itemValue;
 
 	//item Description
 	private String description;
 
-	//the coolection frequency don't know the itemContract, unilateral relation
+	//the collection frequency don't know the itemContract, unilateral relationship
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="frequency_id")
 	private CollectionFrequency collectionFrequency;
@@ -58,7 +63,7 @@ public class ItemContract implements Serializable{
 		
 	}
 	
-	public ItemContract(Residue residue, Equipment equipment, double qtd, double value, String description) {
+	public ItemContract(Residue residue, Equipment equipment, double qtd, BigDecimal value, String description) {
 		this.residue = residue;
 		this.equipment = equipment;
 		this.qtdOfResidue = qtd;
@@ -115,10 +120,10 @@ public class ItemContract implements Serializable{
 	//-----------
 	
 	//getters e setters - value
-	public double getItemValue() {
+	public BigDecimal getItemValue() {
 		return itemValue;
 	}
-	public void setItemValue(double value) {
+	public void setItemValue(BigDecimal value) {
 		this.itemValue = value;
 	}
 	//-----------
@@ -142,7 +147,6 @@ public class ItemContract implements Serializable{
 		string.append("Equipamento: " + this.equipment.getEquipmentName()+ "\n");
 		string.append("Valor Unitário: R$" + this.itemValue + "\n");
 		string.append("Qtd Anual: " + this.qtdOfResidue + "\n");
-		string.append("Valor Anual: R$" + (Double)this.itemValue * this.qtdOfResidue + "\n" );
 		return string.toString();
 	}
 

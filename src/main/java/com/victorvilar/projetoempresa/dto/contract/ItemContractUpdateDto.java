@@ -3,6 +3,8 @@ package com.victorvilar.projetoempresa.dto.contract;
 
 import jakarta.validation.constraints.NotNull;
 
+import java.math.BigDecimal;
+
 public class ItemContractUpdateDto {
 
 
@@ -18,7 +20,7 @@ public class ItemContractUpdateDto {
     private Double qtdOfResidue;
 
     @NotNull(message = "the item must have a value")
-    private Double itemValue;
+    private BigDecimal itemValue;
 
     private String description;
 
@@ -28,7 +30,7 @@ public class ItemContractUpdateDto {
     public ItemContractUpdateDto() {
 
     }
-    public ItemContractUpdateDto(Long id, Long residue, Long equipment, Double qtdOfResidue, Double itemValue, String description) {
+    public ItemContractUpdateDto(Long id, Long residue, Long equipment, Double qtdOfResidue, BigDecimal itemValue, String description) {
         this.id = id;
         this.residue = residue;
         this.equipment = equipment;
@@ -71,11 +73,11 @@ public class ItemContractUpdateDto {
         this.qtdOfResidue = qtdOfResidue;
     }
 
-    public double getItemValue() {
+    public BigDecimal getItemValue() {
         return itemValue;
     }
 
-    public void setItemValue(double itemValue) {
+    public void setItemValue(BigDecimal itemValue) {
         this.itemValue = itemValue;
     }
 

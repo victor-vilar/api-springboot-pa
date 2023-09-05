@@ -1,19 +1,21 @@
 package com.victorvilar.projetoempresa.dto.contract;
 
+import java.math.BigDecimal;
+
 public class ItemContractResponseDto {
 
     private Long id;
     private String residue;
     private String equipment;
     private Double qtdOfResidue;
-    private Double itemValue;
+    private BigDecimal itemValue;
     private String contract;
     private String description;
 
     public ItemContractResponseDto() {
     }
 
-    public ItemContractResponseDto(Long id, String residue, String equipment, Double qtdOfResidue, Double itemValue, String description) {
+    public ItemContractResponseDto(Long id, String residue, String equipment, Double qtdOfResidue, BigDecimal itemValue, String description) {
         this.id = id;
         this.residue = residue;
         this.equipment = equipment;
@@ -55,11 +57,11 @@ public class ItemContractResponseDto {
         this.qtdOfResidue = qtdOfResidue;
     }
 
-    public double getItemValue() {
+    public BigDecimal getItemValue() {
         return itemValue;
     }
 
-    public void setItemValue(double itemValue) {
+    public void setItemValue(BigDecimal itemValue) {
         this.itemValue = itemValue;
     }
 
