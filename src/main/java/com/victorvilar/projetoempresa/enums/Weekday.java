@@ -2,6 +2,7 @@ package com.victorvilar.projetoempresa.enums;
 
 /**
  * weekdays in pt-br
+ * @author Victor Vilar
  */
 public enum Weekday {
 
