@@ -2,14 +2,7 @@ package com.victorvilar.projetoempresa.domain;
 
 import java.io.Serializable;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 /**
  * A class that represents the itens of contract
@@ -48,6 +41,13 @@ public class ItemContract implements Serializable{
 	//item Description
 	private String description;
 
+	//the coolection frequency don't know the itemContract, unilateral relation
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="frequency_id")
+	private CollectionFrequency collectionFrequency;
+
+
+
 	@ManyToOne
 	@JoinColumn(name="contract_id", nullable=false)
 	private Contract contract;
@@ -66,6 +66,15 @@ public class ItemContract implements Serializable{
 		this.description = description;
 	}
 
+
+	//getters and setters - id
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	//-----------
 
 	
 	//getters e setters - Contract
@@ -119,14 +128,11 @@ public class ItemContract implements Serializable{
 	public void setDescription(String description){this.description = description;}
 	//-----------
 
-	//getters and setters - id
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
+	//getters and setters - collection Frequency
+	public CollectionFrequency getCollectionFrequency(){return this.collectionFrequency;}
+	public void setCollectionFrequency(CollectionFrequency collectionFrequency){this.collectionFrequency = collectionFrequency;}
 	//-----------
+
 	
 	@Override
 	public String toString() {
@@ -139,6 +145,7 @@ public class ItemContract implements Serializable{
 		string.append("Valor Anual: R$" + (Double)this.itemValue * this.qtdOfResidue + "\n" );
 		return string.toString();
 	}
+
 
 
 
