@@ -1,7 +1,7 @@
 package com.victorvilar.projetoempresa.enums;
 
 /**
- * enum that represents a schedule to collect an ItemCOntract
+ * enum that represents a schedule to collect an ItemContract
  * @author Victor Vilar
  */
 public enum Schedule {
@@ -28,7 +28,7 @@ public enum Schedule {
         return schedule;
     }
 
-    public Schedule getScheduleById(int id){
+    public static Schedule getScheduleById(int id){
         for(Schedule s : Schedule.values()){
             if(s.id == id){
                 return s;
@@ -37,7 +37,7 @@ public enum Schedule {
         return null;
     }
 
-    public Schedule getScheduleByName(String name){
+    public static Schedule getScheduleByName(String name){
         for(Schedule s : Schedule.values()){
             if(s.getSchedule().equals(name)){
                 return s;
