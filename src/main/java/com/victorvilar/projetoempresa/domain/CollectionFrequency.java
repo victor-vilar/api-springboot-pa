@@ -66,4 +66,11 @@ public class CollectionFrequency implements Serializable {
     public void setFrequency(Schedule schedule) {
         this.schedule = schedule;
     }
+
+
+    @Override
+    public String toString() {
+        return "Dias de Coleta:" + days + " - Frequência: " + schedule;
+
+    }
 }

@@ -1,5 +1,8 @@
 package com.victorvilar.projetoempresa.dto.contract;
 
+import com.victorvilar.projetoempresa.domain.CollectionFrequency;
+import jakarta.validation.constraints.NotNull;
+
 import java.math.BigDecimal;
 
 public class ItemContractResponseDto {
@@ -7,6 +10,7 @@ public class ItemContractResponseDto {
     private Long id;
     private String residue;
     private String equipment;
+    private Integer equipmentQuantity;
     private Double qtdOfResidue;
     private BigDecimal itemValue;
     private String contract;
@@ -68,6 +72,16 @@ public class ItemContractResponseDto {
     //getters and setters - description
     public String getDescription() {return this.description;}
     public void setDescription(String description){this.description = description;}
+    //-----------
+
+    //getters and setters - equipment quantity
+    public Integer getEquipmentQuantity() {return this.equipmentQuantity;}
+    public void setEquipmentQuantity(Integer equipmentQuantity){this.equipmentQuantity = equipmentQuantity;}
+    //-----------
+
+    //getters and setter - collection frequency
+    public CollectionFrequency getCollectionFrequency(){ return this.collectionFrequency;}
+    public void setCollectionFrequency(CollectionFrequency collectionFrequency){this.collectionFrequency = collectionFrequency;}
     //-----------
 
 }
