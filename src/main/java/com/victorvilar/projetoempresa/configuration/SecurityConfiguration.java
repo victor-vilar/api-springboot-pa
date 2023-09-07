@@ -77,7 +77,7 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(auth -> auth
                     .requestMatchers("/h2/**").permitAll()
                     .requestMatchers(HttpMethod.POST,"/v1/login/**").permitAll()
-                    .anyRequest().permitAll()
+                    .anyRequest().authenticated()
 
                 )
 
