@@ -22,11 +22,11 @@ class ItemContractTest {
     private void setUp(){
 
         collectionFrequency1.setDays(Set.of(Weekday.SEGUNDA,Weekday.QUARTA,Weekday.SEXTA));
-        collectionFrequency1.setFrequency(Schedule.SEMANAL);
+        collectionFrequency1.setSchedule(Schedule.SEMANAL);
 
 
         collectionFrequency2.setDays(Set.of(Weekday.TERCA,Weekday.QUINTA,Weekday.SABADO));
-        collectionFrequency2.setFrequency(Schedule.MENSAL);
+        collectionFrequency2.setSchedule(Schedule.MENSAL);
 
 
         itemContract1.setCollectionFrequency(collectionFrequency1);
@@ -62,9 +62,10 @@ class ItemContractTest {
         assertFalse(itemContract2.getCollectionFrequency().getDays().contains(Weekday.SEGUNDA));
         assertFalse(itemContract2.getCollectionFrequency().getDays().contains(Weekday.DOMINGO));
 
-
-
     }
+
+
+
 
 
 }
