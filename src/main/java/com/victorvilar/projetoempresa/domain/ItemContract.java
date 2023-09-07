@@ -102,10 +102,10 @@ public class ItemContract implements Serializable{
 	//-----------
 	
 	//getters e setters - equipament
-	public Equipment getEquipament() {
+	public Equipment getEquipment() {
 		return equipment;
 	}
-	public void setEquipament(Equipment equipment) {
+	public void setEquipment(Equipment equipment) {
 		this.equipment = equipment;
 	}
 	//-----------
@@ -138,7 +138,17 @@ public class ItemContract implements Serializable{
 	public void setCollectionFrequency(CollectionFrequency collectionFrequency){this.collectionFrequency = collectionFrequency;}
 	//-----------
 
-	
+
+
+	//getters and setters - equipment quantity
+	public Integer getEquipmentQuantity() {
+		return equipmentQuantity;
+	}
+	public void setEquipmentQuantity(Integer equipmentQuantity) {
+		this.equipmentQuantity = equipmentQuantity;
+	}
+	//-----------
+
 	@Override
 	public String toString() {
 		StringBuilder string = new StringBuilder();

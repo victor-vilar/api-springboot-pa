@@ -210,7 +210,7 @@ public class ContractService {
     @Transactional
     public void updateItemContract(Contract contract, ItemContract item){
         ItemContract itemToUpdate = this.itemContractRepository.findById(item.getId()).orElseThrow(() -> new ItemContractNotFoundException("Item not found"));
-        itemToUpdate.setEquipament(item.getEquipament());
+        itemToUpdate.setEquipment(item.getEquipment());
         itemToUpdate.setResidue(item.getResidue());
         itemToUpdate.setQtdOfResidue(item.getQtdOfResidue());
         itemToUpdate.setItemValue(item.getItemValue());
