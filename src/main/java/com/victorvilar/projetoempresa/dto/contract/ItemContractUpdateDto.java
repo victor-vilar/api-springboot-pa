@@ -28,6 +28,7 @@ public class ItemContractUpdateDto {
 
     private String description;
 
+    private CollectionFrequency collectionFrequency;
 
 
     //constructors

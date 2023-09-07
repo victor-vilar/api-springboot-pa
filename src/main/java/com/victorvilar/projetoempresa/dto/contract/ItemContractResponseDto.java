@@ -15,6 +15,7 @@ public class ItemContractResponseDto {
     private BigDecimal itemValue;
     private String contract;
     private String description;
+    private CollectionFrequency collectionFrequency;
 
     public ItemContractResponseDto() {
     }
