@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Class that represents the frequency of collection of an item. Itens have different needs of collection.
@@ -25,19 +26,14 @@ public class CollectionFrequency implements Serializable {
     private Long id;
 
 
-    @ElementCollection(targetClass = Weekday.class)
-    @CollectionTable(name = "collection_frequency_weekdays")
-    @Enumerated(EnumType.ORDINAL)
-    private Set<Weekday> days = new HashSet<>();
-
-    @Enumerated(EnumType.ORDINAL) //
-    private Schedule schedule;
+    private Set<Integer> days = new HashSet<>();
+    private Integer schedule;
 
 
     public CollectionFrequency() {
     }
 
-    public CollectionFrequency(Long id, Set<Weekday> days, Schedule schedule) {
+    public CollectionFrequency(Long id, Set<Integer> days, Integer schedule) {
         this.id = id;
         this.days = days;
         this.schedule = schedule;
@@ -51,26 +47,46 @@ public class CollectionFrequency implements Serializable {
         this.id = id;
     }
 
-    public Set<Weekday> getDays() {
-        return days;
-    }
-
+    /**
+     * get a set of weekdays constant and transform in a set of id;
+     * @param days
+     */
     public void setDays(Set<Weekday> days) {
-        this.days = days;
+        this.days = days.stream().map(day -> Weekday.getEnumId(day)).collect(Collectors.toSet());
     }
 
-    public Schedule getFrequency() {
-        return schedule;
+    /**
+     * get a Schedule constant and transform in an int id;
+     * @param schedule
+     */
+    public void setSchedule(Schedule schedule) {
+        this.schedule = Schedule.getEnumId(schedule);
     }
 
-    public void setFrequency(Schedule schedule) {
-        this.schedule = schedule;
+    /**
+     * The class store the 'ids'of the schedule, so when return transform the integer in schedule enumerator
+     * @return
+     */
+    public Schedule getSchedule() {
+        return Schedule.getById(schedule);
     }
+
+    /**
+     *The class store the 'ids' of the days, so when return transform the integer in days enumerator
+     * Using this way to not use Enumeration.Ordinal
+     * @return a Set of weekdays
+     */
+    public Set<Weekday> getDays() {
+        return this.days.stream().map(day -> Weekday.getByDay(day)).collect(Collectors.toSet());
+    }
+
+
+
 
 
     @Override
     public String toString() {
-        return "Dias de Coleta:" + days + " - Frequência: " + schedule;
+        return "Dias de Coleta:" + this.getDays() + " - Frequência: " + this.getSchedule();
 
     }
 }
