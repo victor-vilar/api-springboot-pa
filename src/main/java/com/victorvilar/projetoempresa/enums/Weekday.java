@@ -30,16 +30,19 @@ public enum Weekday {
         return this.dayName;
     }
 
-    public static Weekday getWeekdayByName(String weekday){
+
+
+    public static Weekday getByName(String name) {
         for(Weekday weekDayConstant : values()){
-            if( weekDayConstant.dayName.equals(weekday)){
+            if( weekDayConstant.dayName.equals(name)){
                 return weekDayConstant;
             }
         }
         return null;
     }
 
-    public static Weekday getWeekdayByDay(int id){
+
+    public static Weekday getByDay(int id) {
         for(Weekday weekDayConstant : values()){
             if( weekDayConstant.id == id){
                 return weekDayConstant;
@@ -50,4 +53,12 @@ public enum Weekday {
 
 
 
+    public static Integer getEnumId(Weekday enumDataRetriever) {
+        for(Weekday day:values()){
+            if(day.equals(enumDataRetriever)){
+                return day.id;
+            }
+        }
+        return null;
+    }
 }
