@@ -25,7 +25,9 @@ public class CollectionFrequency implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
+    @ElementCollection
+    @CollectionTable(name="collection_frequency_days")
+    @Column(name="days")
     private Set<Integer> days = new HashSet<>();
     private Integer schedule;
 
