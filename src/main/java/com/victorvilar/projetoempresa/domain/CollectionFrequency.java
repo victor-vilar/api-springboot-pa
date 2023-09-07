@@ -52,7 +52,7 @@ public class CollectionFrequency implements Serializable {
      * @param days
      */
     public void setDays(Set<Weekday> days) {
-        this.days = days.stream().map(day -> Weekday.getEnumId(day)).collect(Collectors.toSet());
+        this.days = days.stream().map(day -> day.getId()).collect(Collectors.toSet());
     }
 
     /**
@@ -60,7 +60,7 @@ public class CollectionFrequency implements Serializable {
      * @param schedule
      */
     public void setSchedule(Schedule schedule) {
-        this.schedule = Schedule.getEnumId(schedule);
+        this.schedule = schedule.getId();
     }
 
     /**

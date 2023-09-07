@@ -53,12 +53,4 @@ public enum Weekday {
 
 
 
-    public static Integer getEnumId(Weekday enumDataRetriever) {
-        for(Weekday day:values()){
-            if(day.equals(enumDataRetriever)){
-                return day.id;
-            }
-        }
-        return null;
-    }
 }

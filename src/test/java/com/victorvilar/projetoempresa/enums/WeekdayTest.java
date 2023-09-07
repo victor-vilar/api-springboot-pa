@@ -34,28 +34,9 @@ class WeekdayTest {
 
     }
 
-    @Test
-    @DisplayName("find the weekday id when passing a weekday constant")
-    public void findWeekdayIdSucessfully_WhenPassingValidWeekdayConstant(){
-
-        int domingo = Weekday.getEnumId(Weekday.DOMINGO);
-        int segunda = Weekday.getEnumId(Weekday.SEGUNDA);
-        int terca = Weekday.getEnumId(Weekday.TERCA);
-        int quarta = Weekday.getEnumId(Weekday.QUARTA);
-        int quinta = Weekday.getEnumId(Weekday.QUINTA);
-        int sexta = Weekday.getEnumId(Weekday.SEXTA);
-        int sabado = Weekday.getEnumId(Weekday.SABADO);
-
-        assertEquals(domingo, 1);
-        assertEquals(segunda, 2);
-        assertEquals(terca, 3);
-        assertEquals(quarta, 4);
-        assertEquals(quinta, 5);
-        assertEquals(sexta, 6);
-        assertEquals(sabado, 7);
 
 
-    }
+
 
 
 

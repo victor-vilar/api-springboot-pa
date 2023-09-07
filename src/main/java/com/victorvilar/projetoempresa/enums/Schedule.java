@@ -46,12 +46,4 @@ public enum Schedule {
         return null;
     }
 
-    public static Integer getEnumId(Schedule enumDataRetriever) {
-        for(Schedule schedule:values()){
-            if(schedule.equals(enumDataRetriever)){
-                return schedule.id;
-            }
-        }
-        return null;
-    }
 }

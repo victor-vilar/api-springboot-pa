@@ -32,22 +32,4 @@ class ScheduleTest {
 
     }
 
-    @Test
-    @DisplayName("find the schedule id by schedule constant")
-    void  findScheduleIdSucessfully_WhenPassingValidScheduleConstant() {
-
-        int diario = Schedule.getEnumId(Schedule.DIARIO);
-        int semanal = Schedule.getEnumId(Schedule.SEMANAL);
-        int quinzenal = Schedule.getEnumId(Schedule.QUINZENAL);
-        int mensal = Schedule.getEnumId(Schedule.MENSAL);
-        int sobSolicitacao = Schedule.getEnumId(Schedule.SOB_SOLICITACAO);
-
-        assertEquals(diario,1);
-        assertEquals(semanal,2);
-        assertEquals(quinzenal,3);
-        assertEquals(mensal,4);
-        assertEquals(sobSolicitacao,5);
-
-
-    }
 }
