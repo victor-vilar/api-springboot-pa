@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.victorvilar.projetoempresa.enums.StatusInformation;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -59,6 +60,9 @@ public class Contract implements Serializable {
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name = "customer_id", nullable=false)
 	private Customer customer;
+
+	//each new contract has an 'ATIVO' status
+	private Integer status = 1;
       
 	
 	/**
@@ -131,14 +135,31 @@ public class Contract implements Serializable {
 	}
 	//--------------
 
-	public static ContractBuilder builder(){
-		return new ContractBuilder();
-	}
-
 	//delete a item from contract
 	public void deleteItem(int itemIndex){
 		this.itens.remove(itemIndex);
 	}
+
+	//getters and setters - status
+	public void setStatus(StatusInformation status){
+		this.status = status.getId();
+	}
+	public StatusInformation getStatus(){
+		return StatusInformation.getByStatusInformation(this.status);
+	}
+	//--------------
+
+	/**
+	 * crates a new Contractbuilder
+	 * @return ContractBuilder
+	 */
+	public static ContractBuilder builder(){
+		return new ContractBuilder();
+	}
+
+
+
+
 
 	public static final class ContractBuilder{
 
@@ -147,6 +168,7 @@ public class Contract implements Serializable {
 		private LocalDate endDate;
 		private List<ItemContract> itens = new ArrayList<ItemContract>();
 		private Customer customer;
+		private Integer status;
 
 		public ContractBuilder number(String number){
 			this.number = number;
@@ -168,12 +190,19 @@ public class Contract implements Serializable {
 			return this;
 		}
 
+		public ContractBuilder status(StatusInformation statusInformation){
+			this.status = statusInformation.getId();
+			return this;
+		}
+
+
 		public Contract build(){
 			Contract contract = new Contract();
 			contract.setNumber(this.number);
 			contract.setBeginDate(this.beginDate);
 			contract.setEndDate(this.endDate);
 			contract.setCustomer(this.customer);
+			contract.setStatus(StatusInformation.getByStatusInformation(this.status));
 			return contract;
 		}
 

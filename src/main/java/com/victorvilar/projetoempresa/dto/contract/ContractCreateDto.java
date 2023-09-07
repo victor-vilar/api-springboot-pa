@@ -3,6 +3,7 @@ package com.victorvilar.projetoempresa.dto.contract;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 
+import com.victorvilar.projetoempresa.enums.StatusInformation;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -30,6 +31,9 @@ public class ContractCreateDto {
 
     @NotNull(message = "the contract must have a customer")
     private String customerId;
+
+    //each new contract has an 'ATIVO' status
+    private Integer status = 1;
 
     public ContractCreateDto() {
     }
@@ -78,6 +82,15 @@ public class ContractCreateDto {
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
+
+    //getters and setters - status
+    public void setStatus(StatusInformation status){
+        this.status = status.getId();
+    }
+    public StatusInformation getStatus(){
+        return StatusInformation.getByStatusInformation(this.status);
+    }
+    //--------------
 
     public static ContractCreateDtoBuilder builder(){
         return new ContractCreateDtoBuilder();
