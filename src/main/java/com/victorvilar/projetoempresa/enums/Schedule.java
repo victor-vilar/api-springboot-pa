@@ -23,12 +23,12 @@ public enum Schedule {
     public int getId() {
         return id;
     }
-
     public String getSchedule() {
         return schedule;
     }
 
-    public static Schedule getScheduleById(int id){
+
+    public static Schedule getById(int id){
         for(Schedule s : Schedule.values()){
             if(s.id == id){
                 return s;
@@ -37,10 +37,19 @@ public enum Schedule {
         return null;
     }
 
-    public static Schedule getScheduleByName(String name){
+    public static Schedule getByName(String name){
         for(Schedule s : Schedule.values()){
             if(s.getSchedule().equals(name)){
                 return s;
+            }
+        }
+        return null;
+    }
+
+    public static Integer getEnumId(Schedule enumDataRetriever) {
+        for(Schedule schedule:values()){
+            if(schedule.equals(enumDataRetriever)){
+                return schedule.id;
             }
         }
         return null;
