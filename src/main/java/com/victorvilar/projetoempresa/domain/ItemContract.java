@@ -67,14 +67,15 @@ public class ItemContract implements Serializable{
 
 
 
-	public ItemContract(Residue residue, Equipment equipment, double qtd, BigDecimal value, String description, CollectionFrequency collectionFrequency, Integer measurementUnit) {
+	public ItemContract(Residue residue, Equipment equipment, double qtd, BigDecimal value, String description,Integer equipmentQuantity, CollectionFrequency collectionFrequency, MeasurementUnit measurementUnit) {
 		this.residue = residue;
 		this.equipment = equipment;
 		this.qtdOfResidue = qtd;
 		this.itemValue = value;
 		this.description = description;
+		this.equipmentQuantity = equipmentQuantity;
 		this.collectionFrequency = collectionFrequency;
-		this.measurementUnit = measurementUnit;
+		this.measurementUnit = measurementUnit.getId();
 	}
 
 

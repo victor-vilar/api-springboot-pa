@@ -1,6 +1,7 @@
 package com.victorvilar.projetoempresa.dto.contract;
 
 import com.victorvilar.projetoempresa.domain.CollectionFrequency;
+import com.victorvilar.projetoempresa.enums.MeasurementUnit;
 import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
@@ -16,6 +17,7 @@ public class ItemContractResponseDto {
     private String contract;
     private String description;
     private CollectionFrequency collectionFrequency;
+    private MeasurementUnit measurementUnit;
 
     public ItemContractResponseDto() {
     }
@@ -86,10 +88,10 @@ public class ItemContractResponseDto {
     //-----------
 
     //getters and setter - measurement unit
-    public Integer getMeasurementUnit() {
+    public MeasurementUnit getMeasurementUnit() {
         return measurementUnit;
     }
-    public void setMeasurementUnit(Integer measurementUnit) {
+    public void setMeasurementUnit(MeasurementUnit measurementUnit) {
         this.measurementUnit = measurementUnit;
     }
     //-----------

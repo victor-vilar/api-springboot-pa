@@ -5,6 +5,10 @@ import com.victorvilar.projetoempresa.domain.Contract;
 import com.victorvilar.projetoempresa.domain.Customer;
 import com.victorvilar.projetoempresa.domain.ItemContract;
 import com.victorvilar.projetoempresa.dto.contract.*;
+import com.victorvilar.projetoempresa.enums.ContractStatus;
+import com.victorvilar.projetoempresa.enums.MeasurementUnit;
+import com.victorvilar.projetoempresa.enums.Schedule;
+import com.victorvilar.projetoempresa.enums.Weekday;
 import com.victorvilar.projetoempresa.exceptions.ContractNotFoundException;
 import com.victorvilar.projetoempresa.mappers.ContractMapper;
 import com.victorvilar.projetoempresa.mappers.ItemContractMapper;
@@ -20,10 +24,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
@@ -76,6 +77,8 @@ class ContractServiceTest {
     Customer customer;
     Residue residue;
     Equipment equipment;
+    CollectionFrequency collectionFrequency = new CollectionFrequency();
+
 
     @BeforeEach
     void setUp() {
@@ -93,6 +96,8 @@ class ContractServiceTest {
         this.setUpContractUpdate();
         this.setUpContractResponse();
         this.setUpItemContract();
+        collectionFrequency.setSchedule(Schedule.SEMANAL);
+        collectionFrequency.setDays(Set.of(Weekday.SEGUNDA,Weekday.QUARTA));
 
     }
 
@@ -248,7 +253,7 @@ class ContractServiceTest {
         when(this.contractMapper.toContractResponseDto(any()))
                 .thenReturn(contractResponseDto1);
         ContractResponseDto contractResponseDto = this.contractService.update(contractUpdateDto1);
-        //verify(this.itemContractRepository,times(2)).save(any());
+
         verify(this.contractRepository,times(1)).save(any());
         Assertions.assertFalse(contractResponseDto.getItens().isEmpty());
         Assertions.assertEquals(contract1.getItens().size(),contractResponseDto.getItens().size());
@@ -308,13 +313,15 @@ class ContractServiceTest {
                 .beginDate(LocalDate.of(2023,11,11))
                 .endDate(LocalDate.of(2024,11,11))
                 .customer(customer)
+                .contractStatus(ContractStatus.ATIVO)
                 .build();
 
 
 
+
         //add item to contract 1
-        contract1.addNewItem(new ItemContract(residue,equipment,10,new BigDecimal(10),"coleta residuo"));
-        contract1.addNewItem(new ItemContract(residue,equipment,20,new BigDecimal(20), "coleta residuo"));
+        contract1.addNewItem(new ItemContract(residue,equipment,10,new BigDecimal(10),"coleta residuo",12,collectionFrequency, MeasurementUnit.LITROS));
+        contract1.addNewItem(new ItemContract(residue,equipment,20,new BigDecimal(20), "coleta residuo",12,collectionFrequency, MeasurementUnit.LITROS));
 
 
         //contract 2
@@ -323,6 +330,7 @@ class ContractServiceTest {
                 .beginDate(LocalDate.of(2023,11,11))
                 .endDate(LocalDate.of(2024,11,11))
                 .customer(customer)
+                .contractStatus(ContractStatus.ATIVO)
                 .build();
 
     }
@@ -333,12 +341,13 @@ class ContractServiceTest {
                  .beginDate(LocalDate.of(2023,11,11))
                  .endDate(LocalDate.of(2024,11,11))
                  .customer(customer.getCpfCnpj())
+                .contractStatus(ContractStatus.ATIVO)
                  .build();
 
         contractCreateDto1.setItens(
                 Arrays.asList(
-                new ItemContractCreateDto(residue.getId(),equipment.getId(),10d,new BigDecimal(10d),"coleta residuo"),
-                new ItemContractCreateDto(residue.getId(),equipment.getId(),20d,new BigDecimal(20d),"coleta residuo")));
+                new ItemContractCreateDto(residue.getId(),equipment.getId(),10d,new BigDecimal(10d),"coleta residuo",12,collectionFrequency,MeasurementUnit.EQUIPAMENTO),
+                new ItemContractCreateDto(residue.getId(),equipment.getId(),20d,new BigDecimal(20d),"coleta residuo",12,collectionFrequency,MeasurementUnit.EQUIPAMENTO)));
 
 
          contractCreateDto2 = ContractCreateDto.builder()
@@ -346,12 +355,13 @@ class ContractServiceTest {
                  .beginDate(LocalDate.of(2023,11,11))
                  .endDate(LocalDate.of(2024,11,11))
                  .customer(customer.getCpfCnpj())
+                 .contractStatus(ContractStatus.ATIVO)
                  .build();
 
         contractCreateDto2.setItens(
                 Arrays.asList(
-                new ItemContractCreateDto(residue.getId(),equipment.getId(),10d,new BigDecimal(10d),"coleta residuo"),
-                new ItemContractCreateDto(residue.getId(),equipment.getId(),20d,new BigDecimal(20d),"coleta residuo")));
+                new ItemContractCreateDto(residue.getId(),equipment.getId(),10d,new BigDecimal(10d),"coleta residuo",12,collectionFrequency,MeasurementUnit.EQUIPAMENTO),
+                new ItemContractCreateDto(residue.getId(),equipment.getId(),20d,new BigDecimal(20d),"coleta residuo",12,collectionFrequency,MeasurementUnit.EQUIPAMENTO)));
 
 
     }
@@ -362,6 +372,7 @@ class ContractServiceTest {
                 .beginDate(LocalDate.of(2023,11,11))
                 .endDate(LocalDate.of(2024,11,11))
                 .customer(customer.getCpfCnpj())
+                .contractStatus(ContractStatus.ATIVO)
                 .build();
 
         contractUpdateDto1.setItens(
@@ -375,6 +386,7 @@ class ContractServiceTest {
                 .beginDate(LocalDate.of(2023,11,11))
                 .endDate(LocalDate.of(2024,11,11))
                 .customer(customer.getCpfCnpj())
+                .contractStatus(ContractStatus.ATIVO)
                 .build();
 
         contractUpdateDto2.setItens(
@@ -389,7 +401,9 @@ class ContractServiceTest {
                 .beginDate(LocalDate.of(2023,11,11))
                 .endDate(LocalDate.of(2024,11,11))
                 .customer(customer.getCpfCnpj())
+                .contractStatus(ContractStatus.ATIVO)
                 .build();
+
 
         contractResponseDto1.setItens(
                 Arrays.asList(
@@ -401,6 +415,7 @@ class ContractServiceTest {
                 .beginDate(LocalDate.of(2023,11,11))
                 .endDate(LocalDate.of(2024,11,11))
                 .customer(customer.getCpfCnpj())
+                .contractStatus(ContractStatus.ATIVO)
                 .build();
 
         contractResponseDto2.setItens(
@@ -410,14 +425,14 @@ class ContractServiceTest {
 
     }
     private void setUpItemContract(){
-        itemContract1 = new ItemContract(residue,equipment,10d,new BigDecimal(10d),"coleta residuo");
-        itemContract2 = new ItemContract(residue,equipment,20d,new BigDecimal(20d),"coleta residuo");
+        itemContract1 = new ItemContract(residue,equipment,10d,new BigDecimal(10d),"coleta residuo",12,collectionFrequency,MeasurementUnit.EQUIPAMENTO);
+        itemContract2 = new ItemContract(residue,equipment,20d,new BigDecimal(20d),"coleta residuo",12,collectionFrequency,MeasurementUnit.EQUIPAMENTO);
         itemContract1.setContract(contract1);
         itemContract2.setContract(contract1);
         itens.addAll(Arrays.asList(itemContract1,itemContract2));
 
-        itemContractCreateDto1 = new ItemContractCreateDto(residue.getId(),equipment.getId(),10d,new BigDecimal(10d),"coleta residuo");
-        itemContractCreateDto2 = new ItemContractCreateDto(residue.getId(),equipment.getId(),20d,new BigDecimal(20d),"coleta residuo");
+        itemContractCreateDto1 = new ItemContractCreateDto(residue.getId(),equipment.getId(),10d,new BigDecimal(10d),"coleta residuo",12,collectionFrequency,MeasurementUnit.EQUIPAMENTO);
+        itemContractCreateDto2 = new ItemContractCreateDto(residue.getId(),equipment.getId(),20d,new BigDecimal(20d),"coleta residuo",12,collectionFrequency,MeasurementUnit.EQUIPAMENTO);
 
         itens.addAll(Arrays.asList(itemContract1,itemContract2));
     }

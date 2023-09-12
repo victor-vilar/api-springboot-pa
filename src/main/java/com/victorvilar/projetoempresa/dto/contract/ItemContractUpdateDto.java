@@ -105,10 +105,10 @@ public class ItemContractUpdateDto {
     //-----------
 
     //getters and setter - measurement unit
-    public Integer getMeasurementUnit() {
+    public MeasurementUnit getMeasurementUnit() {
         return measurementUnit;
     }
-    public void setMeasurementUnit(Integer measurementUnit) {
+    public void setMeasurementUnit(MeasurementUnit measurementUnit) {
         this.measurementUnit = measurementUnit;
     }
     //-----------

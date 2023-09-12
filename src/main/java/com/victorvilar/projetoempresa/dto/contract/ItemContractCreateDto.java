@@ -37,12 +37,13 @@ public class ItemContractCreateDto {
     public ItemContractCreateDto() {
 
     }
-    public ItemContractCreateDto(Long residue, Long equipment, Double qtdOfResidue, BigDecimal itemValue, String description, Integer Equipment, CollectionFrequency collectionFrequency, MeasurementUnit measurementUnit) {
+    public ItemContractCreateDto(Long residue, Long equipment, Double qtdOfResidue, BigDecimal itemValue, String description, Integer equipmentQuantity, CollectionFrequency collectionFrequency, MeasurementUnit measurementUnit) {
         this.residue = residue;
         this.equipment = equipment;
         this.qtdOfResidue = qtdOfResidue;
         this.itemValue = itemValue;
         this.description = description;
+        this.equipmentQuantity =equipmentQuantity;
         this.collectionFrequency = collectionFrequency;
         this.measurementUnit = measurementUnit;
     }
