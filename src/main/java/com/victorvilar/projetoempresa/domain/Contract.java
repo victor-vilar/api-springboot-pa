@@ -145,7 +145,7 @@ public class Contract implements Serializable {
 		this.status = status.getId();
 	}
 	public ContractStatus getStatus(){
-		return ContractStatus.getByStatusInformation(this.status);
+		return ContractStatus.getById(this.status);
 	}
 	//--------------
 
@@ -202,7 +202,7 @@ public class Contract implements Serializable {
 			contract.setBeginDate(this.beginDate);
 			contract.setEndDate(this.endDate);
 			contract.setCustomer(this.customer);
-			contract.setStatus(ContractStatus.getByStatusInformation(this.status));
+			contract.setStatus(ContractStatus.getById(this.status));
 			return contract;
 		}
 

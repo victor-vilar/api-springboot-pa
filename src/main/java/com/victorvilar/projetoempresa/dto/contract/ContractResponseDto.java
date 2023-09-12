@@ -23,7 +23,7 @@ public class ContractResponseDto {
     private List<ItemContractResponseDto> itens = new ArrayList<ItemContractResponseDto>();
 
     //each new contract has an 'ATIVO' status
-    private Integer contractStatus = 1;
+    private ContractStatus contractStatus = ContractStatus.ATIVO;
 
     public ContractResponseDto() {
     }
@@ -92,10 +92,10 @@ public class ContractResponseDto {
 
     //getters and setters - status
     public void setContractStatus(ContractStatus contractStatus){
-        this.contractStatus = contractStatus.getId();
+        this.contractStatus = contractStatus;
     }
     public ContractStatus getContractStatus(){
-        return ContractStatus.getByStatusInformation(this.contractStatus);
+        return this.contractStatus;
     }
     //--------------
 

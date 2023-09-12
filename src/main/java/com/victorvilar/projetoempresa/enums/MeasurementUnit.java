@@ -18,7 +18,7 @@ public enum MeasurementUnit {
         return this.id;
     }
 
-    public static MeasurementUnit getByStatusInformation(Integer id){
+    public static MeasurementUnit getById(Integer id){
         for(MeasurementUnit status : values()){
             if(status.getId() == id){
                 return status;

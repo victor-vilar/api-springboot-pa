@@ -18,7 +18,7 @@ public enum ContractStatus {
         return this.id;
     }
 
-    public static ContractStatus getByStatusInformation(Integer id){
+    public static ContractStatus getById(Integer id){
         for(ContractStatus status : values()){
             if(status.getId() == id){
                 return status;

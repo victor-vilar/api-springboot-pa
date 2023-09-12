@@ -34,7 +34,7 @@ public class ContractUpdateDto {
     private List<ItemContractUpdateDto> itens  = new ArrayList<>();
 
     //each new contract has an 'ATIVO' status
-    private Integer contractStatus = 1;
+    private ContractStatus contractStatus = ContractStatus.ATIVO;
 
     public ContractUpdateDto(Long id, String number, LocalDate beginDate, LocalDate endDate, String customerId, List<ItemContractUpdateDto> itens) {
         this.id = id;
@@ -97,10 +97,10 @@ public class ContractUpdateDto {
 
     //getters and setters - status
     public void setContractStatus(ContractStatus contractStatus){
-        this.contractStatus = contractStatus.getId();
+        this.contractStatus = contractStatus;
     }
     public ContractStatus getContractStatus(){
-        return ContractStatus.getByStatusInformation(this.contractStatus);
+        return this.contractStatus;
     }
     //--------------
 

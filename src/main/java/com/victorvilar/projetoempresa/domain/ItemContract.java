@@ -152,8 +152,8 @@ public class ItemContract implements Serializable{
 	//-----------
 
 	//getters and setters - measurementUnit
-	public Integer getMeasurementUnit() {
-		return measurementUnit;
+	public MeasurementUnit getMeasurementUnit() {
+		return MeasurementUnit.getById(this.measurementUnit);
 	}
 	public void setMeasurementUnit(MeasurementUnit measurementUnit) {
 		this.measurementUnit = measurementUnit.getId();

@@ -1,5 +1,6 @@
 package com.victorvilar.projetoempresa.domain;
 
+import com.victorvilar.projetoempresa.enums.MeasurementUnit;
 import com.victorvilar.projetoempresa.enums.Schedule;
 import com.victorvilar.projetoempresa.enums.Weekday;
 import org.junit.jupiter.api.BeforeEach;
@@ -63,6 +64,8 @@ class ItemContractTest {
         assertFalse(itemContract2.getCollectionFrequency().getDays().contains(Weekday.DOMINGO));
 
     }
+
+
 
 
 
