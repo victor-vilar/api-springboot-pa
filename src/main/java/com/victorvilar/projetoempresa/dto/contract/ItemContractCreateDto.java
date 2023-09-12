@@ -2,6 +2,7 @@ package com.victorvilar.projetoempresa.dto.contract;
 
 
 import com.victorvilar.projetoempresa.domain.CollectionFrequency;
+import com.victorvilar.projetoempresa.enums.MeasurementUnit;
 import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
@@ -28,17 +29,22 @@ public class ItemContractCreateDto {
     @NotNull(message = "the item must have a frequency that the service going to be undertaken")
     private CollectionFrequency collectionFrequency;
 
+    @NotNull(message = "the item must have a unit measurement ")
+    private MeasurementUnit measurementUnit;
+
 
     //constructors
     public ItemContractCreateDto() {
 
     }
-    public ItemContractCreateDto(Long residue, Long equipment, Double qtdOfResidue, BigDecimal itemValue, String description) {
+    public ItemContractCreateDto(Long residue, Long equipment, Double qtdOfResidue, BigDecimal itemValue, String description, Integer Equipment, CollectionFrequency collectionFrequency, MeasurementUnit measurementUnit) {
         this.residue = residue;
         this.equipment = equipment;
         this.qtdOfResidue = qtdOfResidue;
         this.itemValue = itemValue;
         this.description = description;
+        this.collectionFrequency = collectionFrequency;
+        this.measurementUnit = measurementUnit;
     }
     //----------------------------
 
@@ -90,4 +96,12 @@ public class ItemContractCreateDto {
     public void setCollectionFrequency(CollectionFrequency collectionFrequency){this.collectionFrequency = collectionFrequency;}
     //-----------
 
+    //getters and setter - measurement unit
+    public MeasurementUnit getMeasurementUnit() {
+        return measurementUnit;
+    }
+    public void setMeasurementUnit(MeasurementUnit measurementUnit) {
+        this.measurementUnit = measurementUnit;
+    }
+    //-----------
 }

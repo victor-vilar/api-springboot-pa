@@ -85,4 +85,13 @@ public class ItemContractResponseDto {
     public void setCollectionFrequency(CollectionFrequency collectionFrequency){this.collectionFrequency = collectionFrequency;}
     //-----------
 
+    //getters and setter - measurement unit
+    public Integer getMeasurementUnit() {
+        return measurementUnit;
+    }
+    public void setMeasurementUnit(Integer measurementUnit) {
+        this.measurementUnit = measurementUnit;
+    }
+    //-----------
+
 }

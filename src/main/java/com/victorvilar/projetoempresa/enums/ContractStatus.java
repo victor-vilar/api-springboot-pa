@@ -1,14 +1,15 @@
 package com.victorvilar.projetoempresa.enums;
 
-public enum StatusInformation {
+public enum ContractStatus {
 
     ATIVO(1),
     CANCELADO(2),
-    PENDENTE(3);
+    RENOVACAO_PENDENTE(3),
+    ENCERRADO(4);
 
     private final int id;
 
-    StatusInformation(int id){
+    ContractStatus(int id){
         this.id =id;
     }
 
@@ -17,8 +18,8 @@ public enum StatusInformation {
         return this.id;
     }
 
-    public static StatusInformation getByStatusInformation(Integer id){
-        for(StatusInformation status : values()){
+    public static ContractStatus getByStatusInformation(Integer id){
+        for(ContractStatus status : values()){
             if(status.getId() == id){
                 return status;
             }

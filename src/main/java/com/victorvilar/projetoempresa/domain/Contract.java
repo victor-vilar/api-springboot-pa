@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.victorvilar.projetoempresa.enums.StatusInformation;
+import com.victorvilar.projetoempresa.enums.ContractStatus;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -141,11 +141,11 @@ public class Contract implements Serializable {
 	}
 
 	//getters and setters - status
-	public void setStatus(StatusInformation status){
+	public void setStatus(ContractStatus status){
 		this.status = status.getId();
 	}
-	public StatusInformation getStatus(){
-		return StatusInformation.getByStatusInformation(this.status);
+	public ContractStatus getStatus(){
+		return ContractStatus.getByStatusInformation(this.status);
 	}
 	//--------------
 
@@ -190,8 +190,8 @@ public class Contract implements Serializable {
 			return this;
 		}
 
-		public ContractBuilder status(StatusInformation statusInformation){
-			this.status = statusInformation.getId();
+		public ContractBuilder status(ContractStatus contractStatus){
+			this.status = contractStatus.getId();
 			return this;
 		}
 
@@ -202,7 +202,7 @@ public class Contract implements Serializable {
 			contract.setBeginDate(this.beginDate);
 			contract.setEndDate(this.endDate);
 			contract.setCustomer(this.customer);
-			contract.setStatus(StatusInformation.getByStatusInformation(this.status));
+			contract.setStatus(ContractStatus.getByStatusInformation(this.status));
 			return contract;
 		}
 

@@ -3,7 +3,7 @@ package com.victorvilar.projetoempresa.dto.contract;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 
-import com.victorvilar.projetoempresa.enums.StatusInformation;
+import com.victorvilar.projetoempresa.enums.ContractStatus;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -33,7 +33,7 @@ public class ContractCreateDto {
     private String customerId;
 
     //each new contract has an 'ATIVO' status
-    private Integer status = 1;
+    private ContractStatus contractStatus = ContractStatus.ATIVO;
 
     public ContractCreateDto() {
     }
@@ -84,11 +84,11 @@ public class ContractCreateDto {
     }
 
     //getters and setters - status
-    public void setStatus(StatusInformation status){
-        this.status = status.getId();
+    public void setContractStatus(ContractStatus contractStatus){
+        this.contractStatus = contractStatus;
     }
-    public StatusInformation getStatus(){
-        return StatusInformation.getByStatusInformation(this.status);
+    public ContractStatus getContractStatus(){
+        return this.contractStatus;
     }
     //--------------
 

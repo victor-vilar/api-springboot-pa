@@ -1,6 +1,6 @@
 package com.victorvilar.projetoempresa.dto.contract;
 
-import com.victorvilar.projetoempresa.enums.StatusInformation;
+import com.victorvilar.projetoempresa.enums.ContractStatus;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ public class ContractResponseDto {
     private List<ItemContractResponseDto> itens = new ArrayList<ItemContractResponseDto>();
 
     //each new contract has an 'ATIVO' status
-    private Integer status = 1;
+    private Integer contractStatus = 1;
 
     public ContractResponseDto() {
     }
@@ -91,11 +91,11 @@ public class ContractResponseDto {
     }
 
     //getters and setters - status
-    public void setStatus(StatusInformation status){
-        this.status = status.getId();
+    public void setContractStatus(ContractStatus contractStatus){
+        this.contractStatus = contractStatus.getId();
     }
-    public StatusInformation getStatus(){
-        return StatusInformation.getByStatusInformation(this.status);
+    public ContractStatus getContractStatus(){
+        return ContractStatus.getByStatusInformation(this.contractStatus);
     }
     //--------------
 

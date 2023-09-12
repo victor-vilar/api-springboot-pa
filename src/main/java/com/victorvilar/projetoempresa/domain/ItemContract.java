@@ -3,6 +3,7 @@ package com.victorvilar.projetoempresa.domain;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+import com.victorvilar.projetoempresa.enums.MeasurementUnit;
 import jakarta.persistence.*;
 
 /**
@@ -51,7 +52,8 @@ public class ItemContract implements Serializable{
 	@JoinColumn(name="frequency_id")
 	private CollectionFrequency collectionFrequency;
 
-
+	//unit of measurment
+	private Integer measurementUnit;
 
 	@ManyToOne
 	@JoinColumn(name="contract_id", nullable=false)
@@ -62,13 +64,17 @@ public class ItemContract implements Serializable{
 	public ItemContract() {
 		
 	}
-	
-	public ItemContract(Residue residue, Equipment equipment, double qtd, BigDecimal value, String description) {
+
+
+
+	public ItemContract(Residue residue, Equipment equipment, double qtd, BigDecimal value, String description, CollectionFrequency collectionFrequency, Integer measurementUnit) {
 		this.residue = residue;
 		this.equipment = equipment;
 		this.qtdOfResidue = qtd;
 		this.itemValue = value;
 		this.description = description;
+		this.collectionFrequency = collectionFrequency;
+		this.measurementUnit = measurementUnit;
 	}
 
 
@@ -81,7 +87,6 @@ public class ItemContract implements Serializable{
 	}
 	//-----------
 
-	
 	//getters e setters - Contract
 	public Contract getContract() {
 		return this.contract;
@@ -90,7 +95,6 @@ public class ItemContract implements Serializable{
 		this.contract = contract;
 	}
 	//-----------
-	
 
 	//getters e setters - residue
 	public Residue getResidue() {
@@ -138,14 +142,21 @@ public class ItemContract implements Serializable{
 	public void setCollectionFrequency(CollectionFrequency collectionFrequency){this.collectionFrequency = collectionFrequency;}
 	//-----------
 
-
-
 	//getters and setters - equipment quantity
 	public Integer getEquipmentQuantity() {
 		return equipmentQuantity;
 	}
 	public void setEquipmentQuantity(Integer equipmentQuantity) {
 		this.equipmentQuantity = equipmentQuantity;
+	}
+	//-----------
+
+	//getters and setters - measurementUnit
+	public Integer getMeasurementUnit() {
+		return measurementUnit;
+	}
+	public void setMeasurementUnit(MeasurementUnit measurementUnit) {
+		this.measurementUnit = measurementUnit.getId();
 	}
 	//-----------
 
