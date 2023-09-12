@@ -107,6 +107,7 @@ public class ContractResponseDto {
         private LocalDate beginDate;
         private LocalDate endDate;
         private List<ItemContractResponseDto> itens = new ArrayList<ItemContractResponseDto>();
+        private ContractStatus contractStatus;
 
         private ContractResponseDtoBuilder id(Long id){
             this.id = id;
@@ -133,12 +134,18 @@ public class ContractResponseDto {
             return this;
         }
 
+        public ContractResponseDtoBuilder contractStatus(ContractStatus contractStatus){
+            this.contractStatus = contractStatus;
+            return this;
+        }
+
         public ContractResponseDto build(){
             ContractResponseDto contract = new ContractResponseDto();
             contract.setNumber(this.number);
             contract.setBeginDate(this.beginDate);
             contract.setEndDate(this.endDate);
             contract.setCustomerId(this.customerId);
+            contract.setContractStatus(this.contractStatus);
             return contract;
         }
 

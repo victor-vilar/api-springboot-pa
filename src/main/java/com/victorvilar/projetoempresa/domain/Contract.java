@@ -141,10 +141,10 @@ public class Contract implements Serializable {
 	}
 
 	//getters and setters - status
-	public void setStatus(ContractStatus status){
+	public void setContractStatus(ContractStatus status){
 		this.status = status.getId();
 	}
-	public ContractStatus getStatus(){
+	public ContractStatus getContractStatus(){
 		return ContractStatus.getById(this.status);
 	}
 	//--------------
@@ -157,10 +157,6 @@ public class Contract implements Serializable {
 		return new ContractBuilder();
 	}
 
-
-
-
-
 	public static final class ContractBuilder{
 
 		private String number;
@@ -168,7 +164,7 @@ public class Contract implements Serializable {
 		private LocalDate endDate;
 		private List<ItemContract> itens = new ArrayList<ItemContract>();
 		private Customer customer;
-		private Integer status;
+		private ContractStatus contractStatus;
 
 		public ContractBuilder number(String number){
 			this.number = number;
@@ -190,8 +186,8 @@ public class Contract implements Serializable {
 			return this;
 		}
 
-		public ContractBuilder status(ContractStatus contractStatus){
-			this.status = contractStatus.getId();
+		public ContractBuilder contractStatus(ContractStatus contractStatus){
+			this.contractStatus = contractStatus;
 			return this;
 		}
 
@@ -202,7 +198,7 @@ public class Contract implements Serializable {
 			contract.setBeginDate(this.beginDate);
 			contract.setEndDate(this.endDate);
 			contract.setCustomer(this.customer);
-			contract.setStatus(ContractStatus.getById(this.status));
+			contract.setContractStatus(this.contractStatus);
 			return contract;
 		}
 

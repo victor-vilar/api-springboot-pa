@@ -3,6 +3,7 @@ package com.victorvilar.projetoempresa.dto.contract;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 
+import com.victorvilar.projetoempresa.domain.Contract;
 import com.victorvilar.projetoempresa.enums.ContractStatus;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
@@ -103,6 +104,7 @@ public class ContractCreateDto {
         private LocalDate endDate;
         private List<ItemContractCreateDto> itens = new ArrayList<ItemContractCreateDto>();
         private String customerId;
+        private ContractStatus contractStatus;
 
         public ContractCreateDtoBuilder number(String number){
             this.number = number;
@@ -123,6 +125,10 @@ public class ContractCreateDto {
             this.customerId = customer;
             return this;
         }
+        public ContractCreateDtoBuilder contractStatus(ContractStatus contractStatus){
+            this.contractStatus = contractStatus;
+            return this;
+        }
 
         public ContractCreateDto build(){
             ContractCreateDto contract = new ContractCreateDto();
@@ -130,6 +136,7 @@ public class ContractCreateDto {
             contract.setBeginDate(this.beginDate);
             contract.setEndDate(this.endDate);
             contract.setCustomerId(this.customerId);
+            contract.setContractStatus(this.contractStatus);
             return contract;
         }
 

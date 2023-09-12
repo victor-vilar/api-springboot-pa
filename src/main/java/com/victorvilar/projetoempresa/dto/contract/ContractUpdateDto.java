@@ -111,6 +111,7 @@ public class ContractUpdateDto {
         private LocalDate endDate;
         private List<ItemContractUpdateDto> itens = new ArrayList<ItemContractUpdateDto>();
         private String customerId;
+        private ContractStatus contractStatus;
 
         public ContractUpdateDtoBuilder number(String number){
             this.number = number;
@@ -132,12 +133,18 @@ public class ContractUpdateDto {
             return this;
         }
 
+        public ContractUpdateDtoBuilder contractStatus(ContractStatus contractStatus){
+            this.contractStatus = contractStatus;
+            return this;
+        }
+
         public ContractUpdateDto build(){
             ContractUpdateDto contract = new ContractUpdateDto();
             contract.setNumber(this.number);
             contract.setBeginDate(this.beginDate);
             contract.setEndDate(this.endDate);
             contract.setCustomerId(this.customerId);
+            contract.setContractStatus(this.contractStatus);
             return contract;
         }
 
