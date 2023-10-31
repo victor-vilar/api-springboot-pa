@@ -2,6 +2,7 @@ package com.victorvilar.projetoempresa.services;
 
 import java.util.List;
 
+import com.victorvilar.projetoempresa.business.rules.customer.CustomerRegisterRuler;
 import com.victorvilar.projetoempresa.dto.customer.CustomerCreateDto;
 import com.victorvilar.projetoempresa.dto.customer.CustomerResponseDto;
 import com.victorvilar.projetoempresa.domain.Customer;
@@ -23,11 +24,13 @@ public class CustomerService {
 	
 	private final CustomerRepository repository;
 	private final CustomerMapper mapper;
+	private final List<CustomerRegisterRuler> customerRegisterRulers;
 	
 	@Autowired
-	public CustomerService(CustomerRepository repository, CustomerMapper mapper) {
+	public CustomerService(CustomerRepository repository, CustomerMapper mapper, List<CustomerRegisterRuler> rules) {
 		this.repository = repository;
 		this.mapper = mapper;
+		this.customerRegisterRulers = rules;
 	}
 	
 	/**
@@ -64,31 +67,12 @@ public class CustomerService {
 	@Transactional
 	public CustomerResponseDto save(CustomerCreateDto customerCreateDto) throws InvalidCpfOrCnpjException, CpfOrCnpjAlreadyExistsException {
 
+
 		Customer customer = this.mapper.toCustomer(customerCreateDto);
+		this.customerRegisterRulers.forEach(rule -> rule.verification(customer,this.repository));
+		customer.setNameCompanyName(customer.getNameCompanyName().toUpperCase());
+		return this.mapper.toCustomerResponseDto(this.repository.save(customer));
 
-		//check if customer has a name
-		if(customer.getNameCompanyName() == null){
-			throw new NullPointerException("The customer must have a name");
-		}
-
-		//check if customer has as cpfCnpj
-		if(customer.getCpfCnpj() == null){
-			throw new NullPointerException("The customer must have a cpf or cnpj");
-		}
-
-		//if client with this cpf or cpjs already exists, throws a new exception
-		boolean isPresent = this.repository.findByCpfCnpj(customer.getCpfCnpj()).isPresent();
-		if(isPresent){
-			throw new CpfOrCnpjAlreadyExistsException("This Cpf/Cnpj already exists");
-		}
-		//if the cpf or cnpj is valid, it saves the client
-		if(CpfCnpjValidator.checkIfIsValid(customer.getCpfCnpj())) {
-			//upper case client name
-			customer.setNameCompanyName(customer.getNameCompanyName().toUpperCase());
-			return this.mapper.toCustomerResponseDto(this.repository.save(customer));
-		}else {
-			throw new InvalidCpfOrCnpjException("This CPF or CNPJ is Invalid");
-		}
 
 	}
 
