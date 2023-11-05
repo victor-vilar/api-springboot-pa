@@ -3,6 +3,7 @@ package com.victorvilar.projetoempresa.services;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Service;
 
@@ -18,31 +19,42 @@ import java.util.Map;
 @Service
 public class JwtService {
 
-    //private signature key
-    private static final String SIGNATURE_KEY = "lmoybqnycrQtzhhq6F3HEovlVWEnAPzoMOmv6GgpCBM";
-    private static final String API_ISSUER = "Res Application by Victor Vilar";
+    @Value("${app.security.configuration.signature}")
+    private String signatureKey;
+    @Value("${app.security.configuration.issuer}")
+    private String apiIssuer;
 
 
     /**
-     * crates a SecretKey
+     * creates a SecretKey
      * @return
      */
     private SecretKey encondeKey(){
-        return Keys.hmacShaKeyFor(SIGNATURE_KEY.getBytes(StandardCharsets.UTF_8));
+        return Keys.hmacShaKeyFor(signatureKey.getBytes(StandardCharsets.UTF_8));
     }
 
 
-    //generate a new jwt token
+    /**
+     * Generate a new token
+     *
+     * @param claims
+     * @return string of a jwt token
+     */
     public String generateJwtToken(Map<String,Object> claims){
         return Jwts.builder()
-                .setIssuer(API_ISSUER)
+                .setIssuer(apiIssuer)
                 .setIssuedAt(new Date())
                 .setClaims(claims)
                 .signWith(this.encondeKey())
                 .compact();
     }
 
-    //validate a jwt token
+    /**
+     * validates a token
+     *
+     * @param token token created and signed by application
+     * @return the claims
+     */
     public Claims validateJwtToken(String token){
         try{
             return Jwts.parserBuilder()

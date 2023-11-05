@@ -20,7 +20,7 @@ public class Vehicle {
     @Enumerated(EnumType.STRING)
     private VechicleType type;
 
-    //placa XXXX-XXXX
+    //placa XXX-XXXX
     @Column(nullable = false)
     private String plate;
 

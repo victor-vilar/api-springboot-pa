@@ -3,6 +3,7 @@ package com.victorvilar.projetoempresa.domain;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 /**
  * CRIAR OBJETO ORDEM DE SERVIÇO -- todo
@@ -14,9 +15,12 @@ public class ServiceOrder {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDate emissionDate = LocalDate.now();
-    private LocalDate serviceDate;
-    private String manifestINEA;
+    private final LocalDate emissionDate = LocalDate.now();
+    private LocalDate serviceExpectedDate;
+    private String IneaManifest;
+    private LocalTime serviceTime;
+    private String observation;
+    private String osFileUrl;
 
     @ManyToOne
     private Vehicle vehicle;
@@ -25,8 +29,11 @@ public class ServiceOrder {
     @Column(nullable = false)
     private ItemContract itemContract;
 
-    private String observation;
-    private String osFileUrl;
+    @ManyToOne
+    @Column(nullable = false)
+    private Customer customer;
+
+
 
 
 

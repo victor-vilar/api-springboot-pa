@@ -6,6 +6,7 @@ import com.victorvilar.projetoempresa.configuration.filters.JwtTokenValidatorFil
 import com.victorvilar.projetoempresa.services.JwtService;
 import io.jsonwebtoken.Jwt;
 import jakarta.persistence.Basic;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -29,6 +30,12 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration {
+
+    @Autowired
+    private JwtTokenValidatorFilter jwtTokenValidatorFilter;
+
+    @Autowired
+    private JwtTokenGeneratorFilter jwtTokenGeneratorFilter;
 
     @Bean
     public PasswordEncoder passwordEncoder(){
@@ -67,11 +74,11 @@ public class SecurityConfiguration {
                 )
 
                 //validate the token before the http response
-                .addFilterBefore(new JwtTokenValidatorFilter(new JwtService()),BasicAuthenticationFilter.class)
+                .addFilterBefore(this.jwtTokenValidatorFilter,BasicAuthenticationFilter.class)
                 //send a csrf token to request after an authentication
                 //.addFilterAfter(new CsrfCookieSessionFilter(), BasicAuthenticationFilter.class)
                 //generates a new jwt token after an authentication
-                .addFilterAfter(new JwtTokenGeneratorFilter(new JwtService()),BasicAuthenticationFilter.class)
+                .addFilterAfter(this.jwtTokenGeneratorFilter,BasicAuthenticationFilter.class)
 
                 //end points configuration and roles
                 .authorizeHttpRequests(auth -> auth

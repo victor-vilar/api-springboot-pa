@@ -69,8 +69,8 @@ public class EquipmentService {
     }
 
     /**
-     * update a equipment
-     * @param equipmentUpdateDto equipment instace to get the new data
+     * update an equipment
+     * @param equipmentUpdateDto equipment instance to get the new data
      * @return equipment updated
      */
     public EquipmentResponseDto update(EquipmentUpdateDto equipmentUpdateDto){
