@@ -1,6 +1,7 @@
-package com.victorvilar.projetoempresa.controllers;
+package com.victorvilar.projetoempresa.controllers.interfaces;
 
 import jakarta.validation.Valid;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,16 +16,14 @@ import java.util.List;
  */
 public interface SystemController<C,U,R> {
 
+
     @GetMapping("/")
     public ResponseEntity<List<R>> getAll();
-
-    @GetMapping("by-customer/{customerId}")
-    public ResponseEntity<List<R>> getAllByCustomerId(@PathVariable String customerId);
 
     @GetMapping("/{id}")
     public ResponseEntity<R> getById(@PathVariable Long id);
 
-    @PostMapping()
+    @PostMapping("/")
     public ResponseEntity<R> save(@Valid @RequestBody C createDto);
 
     @DeleteMapping("/{id}")
