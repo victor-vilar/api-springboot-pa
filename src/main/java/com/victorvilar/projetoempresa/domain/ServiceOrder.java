@@ -17,10 +17,6 @@ public class ServiceOrder {
 
     private final LocalDate emissionDate = LocalDate.now();
     private LocalDate serviceExpectedDate;
-    private String IneaManifest;
-    private LocalTime serviceTime;
-    private String observation;
-    private String osFileUrl;
 
     @ManyToOne
     private Vehicle vehicle;
@@ -32,6 +28,15 @@ public class ServiceOrder {
     @ManyToOne
     @Column(nullable = false)
     private Customer customer;
+
+
+    //information to be filled after the service execution
+    private String IneaManifest;
+    private LocalTime serviceTime;
+    private String observation;
+    private String osFileUrl;
+
+
 
 
 

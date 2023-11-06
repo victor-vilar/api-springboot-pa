@@ -57,6 +57,7 @@ public class JwtTokenValidatorFilter extends OncePerRequestFilter {
     /**
      * check if the type of authentication equals 'Basic '
      * if it is a basic authentication the filter must not execute
+     *
      * @param token
      * @return
      */
@@ -72,6 +73,7 @@ public class JwtTokenValidatorFilter extends OncePerRequestFilter {
     /**
      * this filter doesn't need to be executed if the request path
      * is equals the login endpoint.
+     *
      * @param request
      * @return
      */
