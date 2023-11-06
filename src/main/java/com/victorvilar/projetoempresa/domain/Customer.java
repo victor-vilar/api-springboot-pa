@@ -46,6 +46,9 @@ public class Customer implements Serializable {
 	
 	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
 	private List<Contract> contracts = new ArrayList<Contract>();
+
+	@OneToMany(mappedBy = "customer")
+	private List<ServiceOrder> serviceOrders = new ArrayList<>();
 	
 
 	/**
@@ -65,6 +68,7 @@ public class Customer implements Serializable {
 		supervisor.setCustomer(this);
 		this.getSupervisors().add(supervisor);
 	}
+
 	/**
 	 * Add a new Contract to client, add this to contract client
 	 * @param contract
@@ -73,6 +77,17 @@ public class Customer implements Serializable {
 		contract.setCustomer(this);
 		this.getContracts().add(contract);
 	}
+
+	/**
+	 * Add a new ServiceOrder to client, add this to contract client
+	 * @param serviceorder
+	 */
+	public void addNewServiceOrder(ServiceOrder serviceorder){
+		serviceorder.setCustomer(this);
+		this.getServiceOrders().add(serviceorder);
+	}
+
+
 	//Constructors
 	public Customer() {
 		
@@ -117,6 +132,9 @@ public class Customer implements Serializable {
 	}
 	//-------------------------------------
 
+	//getters and setters - ServiceOrders
+	public List<ServiceOrder> getServiceOrders(){return this.serviceOrders;}
+	//--------------------------------------
 
 	@Override
 	public String toString() {
