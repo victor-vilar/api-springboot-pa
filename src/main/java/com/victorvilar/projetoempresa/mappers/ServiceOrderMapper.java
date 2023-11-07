@@ -21,19 +21,19 @@ public class ServiceOrderMapper {
     }
 
     public ServiceOrder toServiceOrder(ServiceOrderCreateDto createDto){
-        return null;
+        return this.mapper.map(createDto,ServiceOrder.class);
     }
 
     public ServiceOrder toServiceOrder(ServiceOrderUpdateDto updateDto){
-        return null;
+        return this.mapper.map(updateDto,ServiceOrder.class);
     }
 
     public ServiceOrderResponseDto toServiceOrderResponseDto(ServiceOrder order){
-        return null;
+        return this.mapper.map(order,ServiceOrderResponseDto.class);
     }
 
     public List<ServiceOrderResponseDto> toServiceResponseDtoList(List<ServiceOrder> list ){
-        return null;
+        return list.stream().map(order -> this.toServiceOrderResponseDto(order)).toList();
     }
 
 
