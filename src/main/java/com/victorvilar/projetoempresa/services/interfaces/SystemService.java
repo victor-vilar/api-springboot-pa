@@ -2,6 +2,7 @@ package com.victorvilar.projetoempresa.services.interfaces;
 
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,7 +19,10 @@ public interface SystemService<C,U,R> {
 
     public List<R> getAll();
     public R getById( Long id);
+    @Transactional
     public R save( C createDto);
+    @Transactional
     public void delete( Long id);
+    @Transactional
     public R update( U updateDto);
 }
