@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * Interface with a method to search the entity by customer
+ * Interface with basic crud methods
  *
  * @param <C> class of CreateDto
  * @param <U> class of UpdateDto
