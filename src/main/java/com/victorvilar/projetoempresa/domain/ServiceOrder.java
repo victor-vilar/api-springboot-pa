@@ -11,7 +11,7 @@ import java.time.LocalTime;
  */
 
 @Entity
-@Table(name = "service-order")
+@Table(name = "service_order")
 public class ServiceOrder implements Serializable {
 
     /**
