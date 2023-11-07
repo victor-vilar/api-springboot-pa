@@ -1,5 +1,7 @@
 package com.victorvilar.projetoempresa.controllers;
 
+import com.victorvilar.projetoempresa.controllers.interfaces.EntityOfCustomerController;
+import com.victorvilar.projetoempresa.controllers.interfaces.SystemController;
 import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderCreateDto;
 import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderResponseDto;
 import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderUpdateDto;
@@ -10,10 +12,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/service-order")
-public class ServiceOrderController implements SystemController<ServiceOrderCreateDto,ServiceOrderUpdateDto, ServiceOrderResponseDto>{
+public class ServiceOrderController implements EntityOfCustomerController<ServiceOrderCreateDto,ServiceOrderUpdateDto, ServiceOrderResponseDto> {
 
 
     @Override
+
     public ResponseEntity<List<ServiceOrderResponseDto>> getAll() {
         return null;
     }
