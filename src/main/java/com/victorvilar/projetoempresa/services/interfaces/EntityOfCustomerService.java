@@ -14,5 +14,5 @@ import java.util.List;
  * @param <R> class of ResponseDto
  */
 public interface EntityOfCustomerService<C,U,R> extends SystemService<C,U,R> {
-    public ResponseEntity<List<R>> getAllByCustomerId(@PathVariable String customerId);
+    public List<R> getAllByCustomerId(@PathVariable String customerId);
 }

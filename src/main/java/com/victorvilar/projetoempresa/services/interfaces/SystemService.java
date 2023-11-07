@@ -16,17 +16,9 @@ import java.util.List;
 public interface SystemService<C,U,R> {
 
 
-    public ResponseEntity<List<R>> getAll();
-
-
-    public ResponseEntity<R> getById(@PathVariable Long id);
-
-
-    public ResponseEntity<R> save(@Valid @RequestBody C createDto);
-
-
-    public ResponseEntity<Void> delete(@PathVariable Long id);
-
-
-    public ResponseEntity<R> update(@RequestBody U updateDto);
+    public List<R> getAll();
+    public R getById( Long id);
+    public R save( C createDto);
+    public void delete( Long id);
+    public R update( U updateDto);
 }
