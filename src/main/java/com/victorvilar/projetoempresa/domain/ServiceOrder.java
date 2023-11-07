@@ -37,11 +37,11 @@ public class ServiceOrder implements Serializable {
     private Vehicle vehicle;
 
     @ManyToOne
-    @Column(nullable = false)
+    @JoinColumn(name="item_id",nullable = false)
     private ItemContract itemContract;
 
     @ManyToOne
-    @Column(nullable = false)
+    @JoinColumn(name="customer_id",nullable = false)
     private Customer customer;
 
 
