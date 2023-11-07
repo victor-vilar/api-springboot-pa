@@ -26,32 +26,32 @@ public class ServiceOrderService implements EntityOfCustomerService<ServiceOrder
 
 
     @Override
-    public ResponseEntity<List<ServiceOrderUpdateDto>> getAllByCustomerId(String customerId) {
+    public List<ServiceOrderUpdateDto> getAllByCustomerId(String customerId) {
         return null;
     }
 
     @Override
-    public ResponseEntity<List<ServiceOrderUpdateDto>> getAll() {
+    public List<ServiceOrderUpdateDto> getAll() {
         return null;
     }
 
     @Override
-    public ResponseEntity<ServiceOrderUpdateDto> getById(Long id) {
+    public ServiceOrderUpdateDto getById(Long id) {
         return null;
     }
 
     @Override
-    public ResponseEntity<ServiceOrderUpdateDto> save(ServiceOrderCreateDto createDto) {
+    public ServiceOrderUpdateDto save(ServiceOrderCreateDto createDto) {
         return null;
     }
 
     @Override
-    public ResponseEntity<Void> delete(Long id) {
-        return null;
+    public void delete(Long id) {
+
     }
 
     @Override
-    public ResponseEntity<ServiceOrderUpdateDto> update(ServiceOrderUpdateDto updateDto) {
+    public ServiceOrderUpdateDto update(ServiceOrderUpdateDto updateDto) {
         return null;
     }
 }
