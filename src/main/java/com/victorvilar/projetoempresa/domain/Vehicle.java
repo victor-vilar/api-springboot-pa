@@ -12,7 +12,7 @@ import java.util.List;
  * REPRESENTAR UM VEICULO -- todo
  */
 @Entity
-@Table(name="vehicle")
+@Table(name="vehicles")
 public class Vehicle implements Serializable {
 
     /**
@@ -22,7 +22,7 @@ public class Vehicle implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private Long id;
 
     //tipo de Veiculo
     @Enumerated(EnumType.STRING)
