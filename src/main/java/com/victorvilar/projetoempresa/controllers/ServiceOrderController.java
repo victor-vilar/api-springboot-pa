@@ -5,6 +5,8 @@ import com.victorvilar.projetoempresa.controllers.interfaces.SystemController;
 import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderCreateDto;
 import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderResponseDto;
 import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderUpdateDto;
+import com.victorvilar.projetoempresa.services.ServiceOrderService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,34 +17,39 @@ import java.util.List;
 public class ServiceOrderController implements EntityOfCustomerController<ServiceOrderCreateDto,ServiceOrderUpdateDto, ServiceOrderResponseDto> {
 
 
-    @Override
+    private ServiceOrderService serviceOrderService;
 
+    public ServiceOrderController(ServiceOrderService orderService){
+        this.serviceOrderService = orderService;
+    }
+
+    @Override
     public ResponseEntity<List<ServiceOrderResponseDto>> getAll() {
-        return null;
+        return ResponseEntity.status(HttpStatus.OK).body(this.serviceOrderService.getAll());
     }
 
     @Override
     public ResponseEntity<List<ServiceOrderResponseDto>> getAllByCustomerId(String customerId) {
-        return null;
+        return ResponseEntity.status(HttpStatus.OK).body(this.serviceOrderService.getAllByCustomerId(customerId));
     }
 
     @Override
     public ResponseEntity<ServiceOrderResponseDto> getById(Long id) {
-        return null;
+        return ResponseEntity.status(HttpStatus.OK).body(this.serviceOrderService.getById(id));
     }
 
     @Override
     public ResponseEntity<ServiceOrderResponseDto> save(ServiceOrderCreateDto createDto) {
-        return null;
+        return ResponseEntity.status(HttpStatus.OK).body(this.serviceOrderService.save(createDto));
     }
 
     @Override
     public ResponseEntity<Void> delete(Long id) {
-        return null;
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     @Override
     public ResponseEntity<ServiceOrderResponseDto> update(ServiceOrderUpdateDto updateDto) {
-        return null;
+        return ResponseEntity.status(HttpStatus.OK).body(this.serviceOrderService.update(updateDto));
     }
 }
