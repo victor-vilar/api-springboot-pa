@@ -27,6 +27,8 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.csrf.CsrfTokenRequestAttributeHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration {
@@ -82,7 +84,7 @@ public class SecurityConfiguration {
 
                 //end points configuration and roles
                 .authorizeHttpRequests(auth -> auth
-                    .requestMatchers("/h2/**").permitAll()
+                    .requestMatchers(antMatcher( "/h2/**")).permitAll()
                     .requestMatchers(HttpMethod.POST,"/v1/login/**").permitAll()
                     .anyRequest().authenticated()
 

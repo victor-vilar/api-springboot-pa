@@ -3,7 +3,7 @@ package com.victorvilar.projetoempresa.enums;
 public enum VechicleType {
 
     CAMINHAO_COMPACTADOR("Caminhão Compactador"),
-    CAMINHAO_POLIGUINDATE("Caminhão Poliguindaste"),
+    CAMINHAO_POLIGUINDASTE("Caminhão Poliguindaste"),
     CAMINHAO_ROLLON_ROLLOFF("Caminhão RollOn RollOff"),
     CAMINHAO_BAU("Caminhão Báu"),
     CAMINHAO_TANQUE("Caminhão Tanque"),
