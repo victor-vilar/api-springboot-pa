@@ -43,6 +43,10 @@ public class ServiceOrderController implements EntityOfCustomerController<Servic
         return ResponseEntity.status(HttpStatus.OK).body(this.serviceOrderService.save(createDto));
     }
 
+    public ResponseEntity<List<ServiceOrderResponseDto>> save(List<ServiceOrderCreateDto> createDtoList){
+        return ResponseEntity.status(HttpStatus.OK).body(this.serviceOrderService.save(createDtoList));
+    }
+
     @Override
     public ResponseEntity<Void> delete(Long id) {
         return ResponseEntity.status(HttpStatus.OK).build();
