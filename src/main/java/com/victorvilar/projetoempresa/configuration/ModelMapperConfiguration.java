@@ -1,13 +1,11 @@
 package com.victorvilar.projetoempresa.configuration;
 
+import com.victorvilar.projetoempresa.domain.*;
 import com.victorvilar.projetoempresa.dto.adress.AddressResponseDto;
 import com.victorvilar.projetoempresa.dto.contract.ContractResponseDto;
 import com.victorvilar.projetoempresa.dto.contract.ItemContractResponseDto;
+import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderResponseDto;
 import com.victorvilar.projetoempresa.dto.supervisor.SupervisorResponseDto;
-import com.victorvilar.projetoempresa.domain.Address;
-import com.victorvilar.projetoempresa.domain.Contract;
-import com.victorvilar.projetoempresa.domain.ItemContract;
-import com.victorvilar.projetoempresa.domain.Supervisor;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -39,6 +37,12 @@ public class ModelMapperConfiguration {
                 .addMappings(maper ->{
                     maper.map(src-> src.getResidue().getType(), ItemContractResponseDto::setResidue);
                     maper.map(src-> src.getEquipment().getEquipmentName(),ItemContractResponseDto::setEquipment);
+                });
+
+        mapper.typeMap(ServiceOrder.class, ServiceOrderResponseDto.class)
+                .addMappings(maper ->{
+                    maper.map(src-> src.getCustomer().getCpfCnpj(), ServiceOrderResponseDto::setCustomerId);
+
                 });
 
         return mapper;
