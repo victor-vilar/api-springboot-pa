@@ -2,6 +2,7 @@ package com.victorvilar.projetoempresa.dto.customer;
 
 import com.victorvilar.projetoempresa.dto.adress.AddressResponseDto;
 import com.victorvilar.projetoempresa.dto.contract.ContractResponseDto;
+import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderResponseDto;
 import com.victorvilar.projetoempresa.dto.supervisor.SupervisorResponseDto;
 
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ public class CustomerResponseDto {
     private List<SupervisorResponseDto> supervisors = new ArrayList<SupervisorResponseDto>();
     private List<ContractResponseDto> contracts = new ArrayList<ContractResponseDto>();
     private List<AddressResponseDto> addresses = new ArrayList<AddressResponseDto>();
+    private List<ServiceOrderResponseDto> serviceOrders = new ArrayList<>();
 
     public CustomerResponseDto(){
 
@@ -71,6 +73,15 @@ public class CustomerResponseDto {
     }
     public void setAddresses(List<AddressResponseDto> address) {
         this.addresses = address;
+    }
+    //-----------
+
+    //getters and setters - address
+    public List<ServiceOrderResponseDto> getServiceOrders() {
+        return serviceOrders;
+    }
+    public void setServiceOrders(List<ServiceOrderResponseDto> serviceOrders) {
+        this.serviceOrders = serviceOrders;
     }
     //-----------
 }
