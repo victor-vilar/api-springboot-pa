@@ -26,7 +26,7 @@ public class ServiceOrder implements Serializable {
     /**
      * the date of emission of the service order
      */
-    private final LocalDate emissionDate = LocalDate.now();
+    private LocalDate emissionDate = LocalDate.now();
 
     /**
      * expected date of service, sometimes the service is not executed in the expected time
@@ -44,6 +44,14 @@ public class ServiceOrder implements Serializable {
     @JoinColumn(name="customer_id",nullable = false)
     private Customer customer;
 
+    @ManyToOne
+    @JoinColumn(name="address_id",nullable = false)
+    private Address address;
+
+    /**
+     * the total of residue collected in the service;
+     */
+    private Long amountCollected;
 
     /**
      * inea manifest it is a document that the customer must emit in each service execution. This document must
@@ -70,7 +78,7 @@ public class ServiceOrder implements Serializable {
     public ServiceOrder() {
     }
 
-    public ServiceOrder(Long id, LocalDate serviceExpectedDate, Vehicle vehicle, ItemContract itemContract, Customer customer, String ineaManifest, LocalTime serviceTime, String observation, String osFileUrl) {
+    public ServiceOrder(Long id, LocalDate serviceExpectedDate, Vehicle vehicle, ItemContract itemContract, Customer customer, String ineaManifest, LocalTime serviceTime, String observation, String osFileUrl,Long amountCollected) {
         this.id = id;
         this.serviceExpectedDate = serviceExpectedDate;
         this.vehicle = vehicle;
@@ -80,6 +88,7 @@ public class ServiceOrder implements Serializable {
         this.serviceTime = serviceTime;
         this.observation = observation;
         this.osFileUrl = osFileUrl;
+        this.amountCollected = amountCollected;
     }
 
 
@@ -94,6 +103,7 @@ public class ServiceOrder implements Serializable {
     public LocalDate getEmissionDate() {
         return emissionDate;
     }
+    public void setEmissionDate(LocalDate localDate){this.emissionDate = localDate;}
 
     public LocalDate getServiceExpectedDate() {
         return serviceExpectedDate;
@@ -157,5 +167,108 @@ public class ServiceOrder implements Serializable {
 
     public void setOsFileUrl(String osFileUrl) {
         this.osFileUrl = osFileUrl;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public Long getAmountCollected() {
+        return amountCollected;
+    }
+
+    public void setAmountCollected(Long amountCollected) {
+        this.amountCollected = amountCollected;
+    }
+
+    public static ServiceOrderBuilder builder(){
+        return new ServiceOrderBuilder();
+    }
+
+    public static class ServiceOrderBuilder{
+
+        private Long id;
+        private LocalDate emissionDate;
+        private LocalDate serviceExpectedDate;
+        private Vehicle vehicle;
+        private ItemContract itemContract;
+        private Customer customer;
+        private String ineaManifest;
+        private LocalTime serviceTime;
+        private String observation;
+        private String osFileUrl;
+        private Address address;
+        private Long amountCollected;
+
+        public ServiceOrderBuilder id(Long id){
+            this.id = id;
+            return this;
+        }
+
+        public ServiceOrderBuilder emissionDate(LocalDate date){
+            this.emissionDate=date;
+            return this;
+        }
+        public ServiceOrderBuilder serviceExpectedDate(LocalDate date){
+            this.serviceExpectedDate=date;
+            return this;
+        }
+        public ServiceOrderBuilder vehicle(Vehicle vehicle){
+            this.vehicle = vehicle;
+            return this;
+        }
+        public ServiceOrderBuilder itemContract(ItemContract item){
+            this.itemContract = item;
+            return this;
+        }
+        public ServiceOrderBuilder customer(Customer customer){
+            this.customer = customer;
+            return this;
+        }
+        public ServiceOrderBuilder ineaManifest(String ineaManifest){
+            this.ineaManifest = ineaManifest;
+            return this;
+        }
+        public ServiceOrderBuilder serviceTime(LocalTime serviceTime){
+            this.serviceTime =serviceTime;
+            return this;
+        }
+        public ServiceOrderBuilder observation(String observation){
+            this.observation = observation;
+            return this;
+        }
+        public ServiceOrderBuilder osFileUrl(String osFileUrl){
+            this.osFileUrl = osFileUrl;
+            return this;
+        }
+        public ServiceOrderBuilder address(Address address){
+            this.address = address;
+            return this;
+        }
+        public ServiceOrderBuilder amountCollected(Long amount){
+            this.amountCollected = amount;
+            return this;
+        }
+
+        public ServiceOrder build(){
+            ServiceOrder order = new ServiceOrder();
+            order.setId(this.id);
+            order.setEmissionDate(this.emissionDate);
+            order.setServiceExpectedDate(this.serviceExpectedDate);
+            order.setVehicle(this.vehicle);
+            order.setItemContract(this.itemContract);
+            order.setCustomer(this.customer);
+            order.setIneaManifest(this.ineaManifest);
+            order.setServiceTime(this.serviceTime);
+            order.setObservation(this.observation);
+            order.setOsFileUrl(this.osFileUrl);
+            order.setAddress(this.address);
+            order.setAmountCollected(this.amountCollected);
+            return order;
+        }
     }
 }
