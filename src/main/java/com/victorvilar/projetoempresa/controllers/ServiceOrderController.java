@@ -6,6 +6,7 @@ import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderCreateDto;
 import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderResponseDto;
 import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderUpdateDto;
 import com.victorvilar.projetoempresa.services.ServiceOrderService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -43,12 +44,14 @@ public class ServiceOrderController implements EntityOfCustomerController<Servic
         return ResponseEntity.status(HttpStatus.OK).body(this.serviceOrderService.save(createDto));
     }
 
-    public ResponseEntity<List<ServiceOrderResponseDto>> save(List<ServiceOrderCreateDto> createDtoList){
+    @PostMapping("/save-all")
+    public ResponseEntity<List<ServiceOrderResponseDto>> save(@Valid @RequestBody List<ServiceOrderCreateDto> createDtoList){
         return ResponseEntity.status(HttpStatus.OK).body(this.serviceOrderService.save(createDtoList));
     }
 
     @Override
     public ResponseEntity<Void> delete(Long id) {
+        this.serviceOrderService.delete(id);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
