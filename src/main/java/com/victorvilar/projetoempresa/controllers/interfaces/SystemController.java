@@ -30,6 +30,6 @@ public interface SystemController<C,U,R> {
     public ResponseEntity<Void> delete(@PathVariable Long id);
 
     @PutMapping()
-    public ResponseEntity<R> update(@RequestBody U updateDto);
+    public ResponseEntity<R> update(@Valid @RequestBody U updateDto);
 
 }
