@@ -2,6 +2,7 @@ package com.victorvilar.projetoempresa.controllers;
 
 import com.victorvilar.projetoempresa.controllers.interfaces.EntityOfCustomerController;
 import com.victorvilar.projetoempresa.controllers.interfaces.SystemController;
+import com.victorvilar.projetoempresa.domain.ServiceOrder;
 import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderCreateDto;
 import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderResponseDto;
 import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderUpdateDto;
@@ -44,7 +45,7 @@ public class ServiceOrderController implements EntityOfCustomerController<Servic
         return ResponseEntity.status(HttpStatus.OK).body(this.serviceOrderService.save(createDto));
     }
 
-    @PostMapping("/save-all")
+    @PostMapping("/all")
     public ResponseEntity<List<ServiceOrderResponseDto>> save(@Valid @RequestBody List<ServiceOrderCreateDto> createDtoList){
         return ResponseEntity.status(HttpStatus.OK).body(this.serviceOrderService.save(createDtoList));
     }
@@ -58,5 +59,10 @@ public class ServiceOrderController implements EntityOfCustomerController<Servic
     @Override
     public ResponseEntity<ServiceOrderResponseDto> update(ServiceOrderUpdateDto updateDto) {
         return ResponseEntity.status(HttpStatus.OK).body(this.serviceOrderService.update(updateDto));
+    }
+
+    @PutMapping("/all")
+    public ResponseEntity<List<ServiceOrderResponseDto>> update(List<ServiceOrderUpdateDto> updateDtoList){
+        return ResponseEntity.status(HttpStatus.OK).body(this.serviceOrderService.update(updateDtoList));
     }
 }
