@@ -50,4 +50,45 @@ public class Vehicle implements Serializable {
     */
     // @OneToMany
     //List<Tratament> tratamentList = ArrayList<>();
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public VechicleType getType() {
+        return type;
+    }
+
+    public void setType(VechicleType type) {
+        this.type = type;
+    }
+
+    public String getPlate() {
+        return plate;
+    }
+
+    public void setPlate(String plate) {
+        this.plate = plate;
+    }
+
+    public String getRenavam() {
+        return renavam;
+    }
+
+    public void setRenavam(String renavam) {
+        this.renavam = renavam;
+    }
+
+    public String getValidCrlvUrl() {
+        return validCrlvUrl;
+    }
+
+    public void setValidCrlvUrl(String validCrlvUrl) {
+        this.validCrlvUrl = validCrlvUrl;
+    }
 }
