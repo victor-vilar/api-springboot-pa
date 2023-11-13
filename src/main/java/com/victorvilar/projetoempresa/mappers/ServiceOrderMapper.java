@@ -42,7 +42,8 @@ public class ServiceOrderMapper {
 
     public ServiceOrder toServiceOrder(ServiceOrderCreateDto createDto){
         ServiceOrder serviceOrder = this.mapper.map(createDto,ServiceOrder.class);
-        return this.setBasicProperties(serviceOrder, createDto.getItemContract(),createDto.getAddress());
+        this.setBasicProperties(serviceOrder, createDto.getItemContract(),createDto.getAddress());
+        return serviceOrder;
     }
 
     public ServiceOrder toServiceOrder(ServiceOrderUpdateDto updateDto){
@@ -69,12 +70,13 @@ public class ServiceOrderMapper {
 
     /**
      * set all properties that can not be null
+     *
      * @param serviceOrder service order to set the properties
      * @param item the item contract of the service
      * @param serviceAddress the address where the service is going to be undertake
      * @return service order with properties filled
      */
-    private ServiceOrder setBasicProperties(ServiceOrder serviceOrder, Long item, Long serviceAddress){
+    private void setBasicProperties(ServiceOrder serviceOrder, Long item, Long serviceAddress){
 
         ItemContract itemContract = this.itemContractRepository.findById(item).get();
         Customer customer = itemContract.getContract().getCustomer();
@@ -83,7 +85,7 @@ public class ServiceOrderMapper {
         serviceOrder.setItemContract(itemContract);
         serviceOrder.setCustomer(customer);
         serviceOrder.setAddress(address);
-        return serviceOrder;
+
     }
 
     /**
@@ -98,7 +100,7 @@ public class ServiceOrderMapper {
         ServiceOrder order = this.serviceOrderRepository.findById(updateDto.getId()).orElseThrow(() -> new ServiceOrderNotFoundException("Service Order Not Found !"));
 
         //set the basic properties, in this case it will update
-        order = this.setBasicProperties(order, updateDto.getItemContract(), updateDto.getAddress());
+        this.setBasicProperties(order, updateDto.getItemContract(), updateDto.getAddress());
 
         Vehicle vehicle = this.vehicleRepository.findById(updateDto.getVehicle()).get();
 
@@ -107,6 +109,7 @@ public class ServiceOrderMapper {
         order.setServiceTime(updateDto.getServiceTime());
         order.setObservation(updateDto.getObservation());
         order.setOsFileUrl(updateDto.getOsFileUrl());
+        order.setAmountCollected(updateDto.getAmountCollected());
 
         return order;
 
