@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -52,7 +53,7 @@ public class ServiceOrderController implements EntityOfCustomerController<Servic
 
     @Override
     public ResponseEntity<Void> delete(Long id) {
-        this.serviceOrderService.delete(id);
+        this.serviceOrderService.delete(Arrays.asList(id));
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
